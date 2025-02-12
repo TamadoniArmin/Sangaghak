@@ -18,7 +18,7 @@ namespace Connection.Configurations
             builder.HasOne(x => x.Expert)
                 .WithMany(x => x.Suggests)
                 .HasForeignKey(x => x.ExpertId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.Request)
                 .WithMany(x => x.Suggests)
@@ -26,7 +26,8 @@ namespace Connection.Configurations
 
             builder.HasOne(x=>x.AcceptedRequest)
                 .WithOne(x => x.AcceptedSugget)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<Suggest>(x=>x.AcceptedRequestId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

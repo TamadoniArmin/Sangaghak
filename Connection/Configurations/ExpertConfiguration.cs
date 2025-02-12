@@ -13,7 +13,7 @@ namespace Connection.Configurations
     {
         public void Configure(EntityTypeBuilder<Expert> builder)
         {
-            builder.HasKey(x => x.Id);
+            //builder.HasKey(x => x.Id);
 
             builder.HasMany(x => x.Skills).WithMany(x => x.Experts);
         }

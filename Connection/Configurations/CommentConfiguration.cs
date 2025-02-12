@@ -18,12 +18,12 @@ namespace Connection.Configurations
             builder.HasOne(x=>x.Customer)
                 .WithMany(x=>x.Comments)
                 .HasForeignKey(x=>x.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.Expert)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.ExpertId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

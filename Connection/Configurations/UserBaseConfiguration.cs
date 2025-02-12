@@ -19,18 +19,18 @@ namespace Connection.Configurations
             builder.HasOne(x=>x.Role)
                 .WithMany(x => x.Users)
                 .HasForeignKey(x=> x.RoleId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
 
-            builder.HasOne(x=>x.Image)
-                .WithOne(x => x.User)
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.HasOne(x=>x.Image)
+            //    .WithOne(x => x.User)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
 
             builder.HasOne(x=>x.City)
                 .WithMany(x=>x.Users)
                 .HasForeignKey(x=>x.CityId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace App.Domain.Core.Sangaghak.Entities.BaseEntities
         #region Properties
         public int Id { get; set; }
         public string Path { get; set; }
+        public int UserId { get; set; }
         public int RequestId { get; set; }
         public int CategoryId { get; set; }
         #endregion

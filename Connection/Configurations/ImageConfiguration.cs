@@ -17,16 +17,18 @@ namespace Connection.Configurations
 
             builder.HasOne(x => x.User)
                 .WithOne(x=>x.Image)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<Image>(x=>x.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x=>x.Request)
                 .WithMany(x=>x.Images)
                 .HasForeignKey(x=>x.RequestId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x=>x.Category)
                 .WithOne(x=>x.Image)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<Image>(x=>x.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

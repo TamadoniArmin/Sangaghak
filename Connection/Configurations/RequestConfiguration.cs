@@ -22,12 +22,12 @@ namespace Connection.Configurations
             builder.HasOne(x => x.City)
                 .WithMany(x => x.Requests)
                 .HasForeignKey(x => x.CityId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.Category)
                 .WithMany(x => x.Requests)
                 .HasForeignKey(x => x.CategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
