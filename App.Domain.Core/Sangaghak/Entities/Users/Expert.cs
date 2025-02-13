@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Core.Sangaghak.Entities.Categories;
@@ -11,10 +12,11 @@ namespace App.Domain.Core.Sangaghak.Entities.Users
 {
     public class Expert : UserBase
     {
-        public int Id { get; set; }
         public List<Category> Skills { get; set; }
-        public List<Suggest> Suggests { get; set; }
+        public List<Offer>? Offer { get; set; }
         public List<Comment>? Comments { get; set; }
+        public List<int>? PointerIds { get; set; }
+        public List<int>? Points { get; set; }
         public int TotalRate { get; set; }
     }
 }

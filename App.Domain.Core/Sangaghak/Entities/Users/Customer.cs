@@ -10,7 +10,6 @@ namespace App.Domain.Core.Sangaghak.Entities.Users
 {
     public class Customer : UserBase
     {
-        public int Id { get; set; }
         public List<Request>? Requets { get; set; }
         public List<Comment>? Comments { get; set; }
     }

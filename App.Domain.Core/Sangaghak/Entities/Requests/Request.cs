@@ -21,15 +21,16 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
         public int CityId { get; set; }
         public int CustomerId { get; set; }
         public int CategoryId { get; set; }
+        public DateTime SetAt { get; set; }
 
         #endregion
 
         #region NavigationProperties
-        public List<Suggest> Suggests { get; set; }
+        public List<Offer>? Offers { get; set; }
         public Category Category { get; set; }
         public Customer Customer { get; set; }
-        public Suggest AcceptedSugget { get; set; }
-        public List<Image> Images { get; set; }
+        public Offer? AcceptedOffer { get; set; }
+        public List<Image>? Images { get; set; }
         public City City { get; set; }
         #endregion
 

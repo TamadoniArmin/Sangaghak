@@ -20,11 +20,11 @@ namespace App.Domain.Core.Sangaghak.Entities.Categories
 
 
         #region NavigationProperties
-        public Image Image { get; set; }
+        public Image? Image { get; set; }
         public List<Category>? Subcategories { get; set; }
         public Category? ParentCategory { get; set; }
-        public List<Request> Requests { get; set; }
-        public List<Expert> Experts { get; set; }
+        public List<Request>? Requests { get; set; }
+        public List<Expert>? Experts { get; set; }
         #endregion
     }
 }

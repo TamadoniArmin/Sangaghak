@@ -9,24 +9,24 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Connection.Configurations
 {
-    public class SuggestConfiguration : IEntityTypeConfiguration<Suggest>
+    public class OfferConfiguration : IEntityTypeConfiguration<Offer>
     {
-        public void Configure(EntityTypeBuilder<Suggest> builder)
+        public void Configure(EntityTypeBuilder<Offer> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Expert)
-                .WithMany(x => x.Suggests)
+                .WithMany(x => x.Offer)
                 .HasForeignKey(x => x.ExpertId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.Request)
-                .WithMany(x => x.Suggests)
+                .WithMany(x => x.Offers)
                 .HasForeignKey(x => x.RequestId);
 
             builder.HasOne(x=>x.AcceptedRequest)
-                .WithOne(x => x.AcceptedSugget)
-                .HasForeignKey<Suggest>(x=>x.AcceptedRequestId)
+                .WithOne(x => x.AcceptedOffer)
+                .HasForeignKey<Offer>(x=>x.AcceptedRequestId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

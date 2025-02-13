@@ -15,6 +15,12 @@ namespace Connection.Configurations
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasData(new List<Role>()
+            {
+                new Role() {Id = 1 ,Title = "Admin"},
+                new Role() {Id = 2 ,Title = "Customer"},
+                new Role() {Id = 3 ,Title = "Expert"},
+            });
         }
     }
 }

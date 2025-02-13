@@ -10,9 +10,9 @@ namespace App.Domain.Core.Sangaghak.Enum
 {
     public enum RequestStatusEnum
     {
-        WatingForExpertsSuggests=1,
+        WatingForExpertsOffers=1,
         WatingForCustomerComfimation,
-        SuggestAccepted,
+        OfferAccepted,
         JobDone,
         WatingForPay,
         Complited

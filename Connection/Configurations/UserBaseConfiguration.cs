@@ -16,21 +16,29 @@ namespace Connection.Configurations
             builder.HasKey(x => x.Id);
 
 
-            builder.HasOne(x=>x.Role)
+            builder.HasOne(x => x.Role)
                 .WithMany(x => x.Users)
-                .HasForeignKey(x=> x.RoleId)
+                .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-
-            //builder.HasOne(x=>x.Image)
-            //    .WithOne(x => x.User)
-            //    .OnDelete(DeleteBehavior.Cascade);
-
-
-            builder.HasOne(x=>x.City)
-                .WithMany(x=>x.Users)
-                .HasForeignKey(x=>x.CityId)
+            builder.HasOne(x => x.City)
+                .WithMany(x => x.Users)
+                .HasForeignKey(x => x.CityId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasData(new List<UserBase>() {
+                new UserBase {Id = 1,
+                    Email="Admin@Admin.com",
+                    Phone="09130609857",
+                    Password="123456",
+                    FirstName="Armin",
+                    LastName="Tamadoni",
+                    UserName="Admin",
+                    RoleId=1,
+                    Balance=10000,
+                    CityId=3,
+                    RegisteredAt=new DateTime(2025,1,1,0,0,0)
+                } });
         }
     }
 }

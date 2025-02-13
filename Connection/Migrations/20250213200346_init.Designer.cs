@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Connection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250212155554_init")]
+    [Migration("20250213200346_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -40,6 +40,133 @@ namespace Connection.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "تهران"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "مشهد"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = "اصفهان"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Title = "شیراز"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Title = "تبریز"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Title = "کرج"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Title = "قم"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Title = "اهواز"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Title = "رشت"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Title = "کرمانشاه"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Title = "زاهدان"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Title = "ارومیه"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Title = "یزد"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Title = "همدان"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Title = "قزوین"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Title = "سنندج"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Title = "بندرعباس"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Title = "زنجان"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Title = "ساری"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Title = "بوشهر"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Title = "مازندران"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Title = "گرگان"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Title = "کرمان"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Title = "خرم آباد"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Title = "سمنان"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.BaseEntities.Image", b =>
@@ -96,6 +223,57 @@ namespace Connection.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "بنایی"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "برقکاری"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = "نقاشی"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Title = "لوله کشی"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Title = "دکوراسیون داخلی"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ParentId = 1,
+                            Title = "گچ کاری"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ParentId = 1,
+                            Title = "آجرچینی"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ParentId = 3,
+                            Title = "رنگزنی دیوار و سقف"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ParentId = 5,
+                            Title = "کاغذ دیواری"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Comments.Comment", b =>
@@ -131,6 +309,51 @@ namespace Connection.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Offer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AcceptedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("AcceptedRequestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ExpertId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OfferedPrice")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OfferedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RequestId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SetAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcceptedRequestId")
+                        .IsUnique();
+
+                    b.HasIndex("ExpertId");
+
+                    b.HasIndex("RequestId");
+
+                    b.ToTable("Offers");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Request", b =>
                 {
                     b.Property<int>("RequestId")
@@ -144,6 +367,9 @@ namespace Connection.Migrations
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("SetAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -167,48 +393,6 @@ namespace Connection.Migrations
                     b.ToTable("Requests");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Suggest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AcceptedRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ExpertId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequestId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SetAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SuggestedPrice")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SuggestedTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AcceptedRequestId")
-                        .IsUnique();
-
-                    b.HasIndex("ExpertId");
-
-                    b.HasIndex("RequestId");
-
-                    b.ToTable("Suggests");
-                });
-
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -224,6 +408,23 @@ namespace Connection.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "Customer"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = "Expert"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.UserBase", b =>
@@ -240,21 +441,14 @@ namespace Connection.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -265,11 +459,13 @@ namespace Connection.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("RegisteredAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -280,9 +476,23 @@ namespace Connection.Migrations
 
                     b.ToTable("Users");
 
-                    b.HasDiscriminator().HasValue("UserBase");
+                    b.UseTptMappingStrategy();
 
-                    b.UseTphMappingStrategy();
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Balance = 10000,
+                            CityId = 3,
+                            Email = "Admin@Admin.com",
+                            FirstName = "Armin",
+                            LastName = "Tamadoni",
+                            Password = "123456",
+                            Phone = "09130609857",
+                            RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = 1,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("CategoryExpert", b =>
@@ -304,17 +514,56 @@ namespace Connection.Migrations
                 {
                     b.HasBaseType("App.Domain.Core.Sangaghak.Entities.Users.UserBase");
 
-                    b.HasDiscriminator().HasValue("Customer");
+                    b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Balance = 10000,
+                            CityId = 2,
+                            Email = "Mehdi@Mehdi.com",
+                            FirstName = "Mehdi",
+                            LastName = "Mortazavi",
+                            Password = "123456",
+                            Phone = "0912345678",
+                            RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = 2,
+                            UserName = "mehdi"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Expert", b =>
                 {
                     b.HasBaseType("App.Domain.Core.Sangaghak.Entities.Users.UserBase");
 
+                    b.PrimitiveCollection<string>("PointerIds")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.PrimitiveCollection<string>("Points")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TotalRate")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Expert");
+                    b.ToTable("Experts", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Balance = 10000,
+                            CityId = 5,
+                            Email = "Hassan@Hassan.com",
+                            FirstName = "Hassan",
+                            LastName = "Hassani",
+                            Password = "123456",
+                            Phone = "09987654321",
+                            RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = 3,
+                            UserName = "hassan",
+                            TotalRate = 0
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.BaseEntities.Image", b =>
@@ -373,6 +622,33 @@ namespace Connection.Migrations
                     b.Navigation("Expert");
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Offer", b =>
+                {
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Requests.Request", "AcceptedRequest")
+                        .WithOne("AcceptedOffer")
+                        .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Requests.Offer", "AcceptedRequestId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Expert", "Expert")
+                        .WithMany("Offer")
+                        .HasForeignKey("ExpertId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Requests.Request", "Request")
+                        .WithMany("Offers")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AcceptedRequest");
+
+                    b.Navigation("Expert");
+
+                    b.Navigation("Request");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Request", b =>
                 {
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Categories.Category", "Category")
@@ -398,33 +674,6 @@ namespace Connection.Migrations
                     b.Navigation("City");
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Suggest", b =>
-                {
-                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Requests.Request", "AcceptedRequest")
-                        .WithOne("AcceptedSugget")
-                        .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Requests.Suggest", "AcceptedRequestId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Expert", "Expert")
-                        .WithMany("Suggests")
-                        .HasForeignKey("ExpertId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Requests.Request", "Request")
-                        .WithMany("Suggests")
-                        .HasForeignKey("RequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AcceptedRequest");
-
-                    b.Navigation("Expert");
-
-                    b.Navigation("Request");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.UserBase", b =>
@@ -461,6 +710,24 @@ namespace Connection.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Customer", b =>
+                {
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.UserBase", null)
+                        .WithOne()
+                        .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Users.Customer", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Expert", b =>
+                {
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.UserBase", null)
+                        .WithOne()
+                        .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Users.Expert", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.BaseEntities.City", b =>
                 {
                     b.Navigation("Requests");
@@ -470,8 +737,7 @@ namespace Connection.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Categories.Category", b =>
                 {
-                    b.Navigation("Image")
-                        .IsRequired();
+                    b.Navigation("Image");
 
                     b.Navigation("Requests");
 
@@ -480,12 +746,11 @@ namespace Connection.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Request", b =>
                 {
-                    b.Navigation("AcceptedSugget")
-                        .IsRequired();
+                    b.Navigation("AcceptedOffer");
 
                     b.Navigation("Images");
 
-                    b.Navigation("Suggests");
+                    b.Navigation("Offers");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Role", b =>
@@ -495,8 +760,7 @@ namespace Connection.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.UserBase", b =>
                 {
-                    b.Navigation("Image")
-                        .IsRequired();
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Customer", b =>
@@ -510,7 +774,7 @@ namespace Connection.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Suggests");
+                    b.Navigation("Offer");
                 });
 #pragma warning restore 612, 618
         }

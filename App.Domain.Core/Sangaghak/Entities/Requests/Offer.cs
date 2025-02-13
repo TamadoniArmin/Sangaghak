@@ -7,7 +7,7 @@ using App.Domain.Core.Sangaghak.Entities.Users;
 
 namespace App.Domain.Core.Sangaghak.Entities.Requests
 {
-    public class Suggest
+    public class Offer
     {
         public int Id { get; set; }
         public int ExpertId { get; set; }
@@ -16,9 +16,10 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
         public Request Request { get; set; }
         public int AcceptedRequestId { get; set; }
         public Request AcceptedRequest { get; set; }
-        public int SuggestedPrice { get; set; }
+        public int OfferedPrice { get; set; }
         public string Description { get; set; }
-        public DateTime SuggestedTime { get; set; }
+        public DateTime OfferedTime { get; set; }
+        public DateTime AcceptedAt { get; set; }
         public DateTime SetAt { get; set; }
     }
 }

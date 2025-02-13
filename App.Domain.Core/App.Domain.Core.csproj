@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Sangaghak\App.Domain.Core\" />
-    <Folder Include="Sangaghak\Data\" />
     <Folder Include="Sangaghak\DTOs\" />
     <Folder Include="Sangaghak\Service\" />
   </ItemGroup>

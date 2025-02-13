@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using App.Domain.Core.Sangaghak.Entities.BaseEntities;
+﻿using App.Domain.Core.Sangaghak.Entities.BaseEntities;
 using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using App.Domain.Core.Sangaghak.Entities.Requests;
@@ -28,8 +23,11 @@ namespace Connection.Common
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new RequestConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguraion());
-            modelBuilder.ApplyConfiguration(new SuggestConfiguration());
+            modelBuilder.ApplyConfiguration(new OfferConfiguration());
             modelBuilder.ApplyConfiguration(new UserBaseConfiguration());
+            // پیکربندی ارث‌بری به روش Table Per Type
+            modelBuilder.Entity<Customer>().ToTable("Customers");
+            modelBuilder.Entity<Expert>().ToTable("Experts");
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Category> Categories { get; set; }
@@ -40,7 +38,8 @@ namespace Connection.Common
         public DbSet<Image> Imagies { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Suggest> Suggests { get; set; }
+        public DbSet<Offer> Offers { get; set; }
         public DbSet<UserBase> Users { get; set; }
+
     }
 }

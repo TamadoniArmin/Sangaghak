@@ -20,6 +20,22 @@ namespace Connection.Configurations
                 .WithOne(x => x.ParentCategory)
                 .HasForeignKey(x => x.ParentId)
                 .OnDelete(DeleteBehavior.NoAction);
+            builder.HasData(new List<Category>()
+            {
+                new Category() { Id = 1, Title = "بنایی", ParentId = null },
+                new Category() { Id = 2, Title = "برقکاری", ParentId = null},
+                new Category() { Id = 3, Title = "نقاشی", ParentId = null},
+                new Category() { Id = 4, Title = "لوله کشی", ParentId = null},
+                new Category() { Id = 5, Title = "دکوراسیون داخلی", ParentId = null},
+
+                new Category() { Id = 6, Title = "گچ کاری", ParentId = 1},
+                new Category() { Id = 7, Title = "آجرچینی", ParentId = 1},
+
+                new Category() { Id = 8, Title = "رنگزنی دیوار و سقف", ParentId = 3},
+                new Category() { Id = 9, Title = "کاغذ دیواری", ParentId = 5},
+
+            });
+
         }
     }
 }
