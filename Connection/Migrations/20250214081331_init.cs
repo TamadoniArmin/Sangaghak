@@ -131,7 +131,8 @@ namespace Connection.Migrations
                 name: "Requests",
                 columns: table => new
                 {
-                    RequestId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WantedPrice = table.Column<int>(type: "int", nullable: false),
                     WantedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -143,7 +144,7 @@ namespace Connection.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Requests", x => x.RequestId);
+                    table.PrimaryKey("PK_Requests", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Requests_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -155,8 +156,8 @@ namespace Connection.Migrations
                         principalTable: "Cities",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Requests_Customers_RequestId",
-                        column: x => x.RequestId,
+                        name: "FK_Requests_Customers_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -236,7 +237,7 @@ namespace Connection.Migrations
                         name: "FK_Imagies_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
-                        principalColumn: "RequestId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Imagies_Users_UserId",
                         column: x => x.UserId,
@@ -271,12 +272,12 @@ namespace Connection.Migrations
                         name: "FK_Offers_Requests_AcceptedRequestId",
                         column: x => x.AcceptedRequestId,
                         principalTable: "Requests",
-                        principalColumn: "RequestId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Offers_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
-                        principalColumn: "RequestId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -427,6 +428,11 @@ namespace Connection.Migrations
                 name: "IX_Requests_CityId",
                 table: "Requests",
                 column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_CustomerId",
+                table: "Requests",
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_CityId",

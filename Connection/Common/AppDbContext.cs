@@ -25,7 +25,6 @@ namespace Connection.Common
             modelBuilder.ApplyConfiguration(new RoleConfiguraion());
             modelBuilder.ApplyConfiguration(new OfferConfiguration());
             modelBuilder.ApplyConfiguration(new UserBaseConfiguration());
-            // پیکربندی ارث‌بری به روش Table Per Type
             modelBuilder.Entity<Customer>().ToTable("Customers");
             modelBuilder.Entity<Expert>().ToTable("Experts");
             base.OnModelCreating(modelBuilder);

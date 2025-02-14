@@ -27,7 +27,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<bool> DeleteRequestDetailsAsync(int RequestId)
         {
-            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.RequestId == RequestId);
+            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == RequestId);
             if (Request != null)
             {
                 _context.Requests.Remove(Request);
@@ -59,7 +59,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<bool> UpdateRequestDetailsAsync(Offer offer, int RequestId)
         {
-            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.RequestId == RequestId);
+            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == RequestId);
             if (Request != null)
             {
                 Request.AcceptedOffer = offer;
@@ -72,7 +72,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus)
         {
-            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.RequestId == RequestId);
+            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == RequestId);
             if (Request != null)
             {
                 Request.Status = requestStatus;

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Connection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250213200346_init")]
+    [Migration("20250214081331_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -356,8 +356,11 @@ namespace Connection.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Request", b =>
                 {
-                    b.Property<int>("RequestId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -384,11 +387,13 @@ namespace Connection.Migrations
                     b.Property<DateTime>("WantedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("RequestId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Requests");
                 });
@@ -665,7 +670,7 @@ namespace Connection.Migrations
 
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Customer", "Customer")
                         .WithMany("Requets")
-                        .HasForeignKey("RequestId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
