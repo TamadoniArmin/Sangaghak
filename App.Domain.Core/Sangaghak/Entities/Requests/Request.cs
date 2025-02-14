@@ -24,6 +24,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
         public int CustomerId { get; set; }
         public int CategoryId { get; set; }
         public DateTime SetAt { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         #endregion
 

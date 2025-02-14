@@ -9,8 +9,10 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
 {
     public interface ICityRepository
     {
+        #region Read
         public Task<List<City>> GetAllCities();
         public Task<City> GetCityById(int id);
         public Task<City> GetCityByName(string cityName);
+        #endregion
     }
 }

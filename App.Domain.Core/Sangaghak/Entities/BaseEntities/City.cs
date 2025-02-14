@@ -10,9 +10,13 @@ namespace App.Domain.Core.Sangaghak.Entities.BaseEntities
 {
     public class City
     {
+        #region Propperties
         public int Id { get; set; }
         public string Title { get; set; }
+        #endregion
+        #region NavigationProperties
         public List<UserBase> Users { get; set; }
         public List<Request> Requests { get; set; }
+        #endregion
     }
 }

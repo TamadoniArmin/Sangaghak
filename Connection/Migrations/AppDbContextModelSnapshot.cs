@@ -208,6 +208,9 @@ namespace Connection.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
@@ -225,49 +228,58 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 1,
+                            IsDeleted = false,
                             Title = "بنایی"
                         },
                         new
                         {
                             Id = 2,
+                            IsDeleted = false,
                             Title = "برقکاری"
                         },
                         new
                         {
                             Id = 3,
+                            IsDeleted = false,
                             Title = "نقاشی"
                         },
                         new
                         {
                             Id = 4,
+                            IsDeleted = false,
                             Title = "لوله کشی"
                         },
                         new
                         {
                             Id = 5,
+                            IsDeleted = false,
                             Title = "دکوراسیون داخلی"
                         },
                         new
                         {
                             Id = 6,
+                            IsDeleted = false,
                             ParentId = 1,
                             Title = "گچ کاری"
                         },
                         new
                         {
                             Id = 7,
+                            IsDeleted = false,
                             ParentId = 1,
                             Title = "آجرچینی"
                         },
                         new
                         {
                             Id = 8,
+                            IsDeleted = false,
                             ParentId = 3,
                             Title = "رنگزنی دیوار و سقف"
                         },
                         new
                         {
                             Id = 9,
+                            IsDeleted = false,
                             ParentId = 5,
                             Title = "کاغذ دیواری"
                         });
@@ -290,6 +302,9 @@ namespace Connection.Migrations
 
                     b.Property<int>("ExpertId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Rate")
                         .HasColumnType("int");
@@ -326,6 +341,9 @@ namespace Connection.Migrations
 
                     b.Property<int>("ExpertId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("OfferedPrice")
                         .HasColumnType("int");
@@ -368,6 +386,9 @@ namespace Connection.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("SetAt")
                         .HasColumnType("datetime2");
 
@@ -401,6 +422,7 @@ namespace Connection.Migrations
                             CategoryId = 9,
                             CityId = 3,
                             CustomerId = 2,
+                            IsDeleted = false,
                             SetAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 1,
                             Title = "درخواست برای کاغذ دیواری خانه",
@@ -464,6 +486,9 @@ namespace Connection.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -502,6 +527,7 @@ namespace Connection.Migrations
                             CityId = 3,
                             Email = "Admin@Admin.com",
                             FirstName = "Armin",
+                            IsDeleted = false,
                             LastName = "Tamadoni",
                             Password = "123456",
                             Phone = "09130609857",
@@ -540,6 +566,7 @@ namespace Connection.Migrations
                             CityId = 2,
                             Email = "Mehdi@Mehdi.com",
                             FirstName = "Mehdi",
+                            IsDeleted = false,
                             LastName = "Mortazavi",
                             Password = "123456",
                             Phone = "0912345678",
@@ -552,6 +579,9 @@ namespace Connection.Migrations
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Expert", b =>
                 {
                     b.HasBaseType("App.Domain.Core.Sangaghak.Entities.Users.UserBase");
+
+                    b.Property<int>("AcceptedRequestId")
+                        .HasColumnType("int");
 
                     b.PrimitiveCollection<string>("PointerIds")
                         .HasColumnType("nvarchar(max)");
@@ -572,12 +602,14 @@ namespace Connection.Migrations
                             CityId = 5,
                             Email = "Hassan@Hassan.com",
                             FirstName = "Hassan",
+                            IsDeleted = false,
                             LastName = "Hassani",
                             Password = "123456",
                             Phone = "09987654321",
                             RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RoleId = 3,
                             UserName = "hassan",
+                            AcceptedRequestId = 0,
                             TotalRate = 0
                         });
                 });

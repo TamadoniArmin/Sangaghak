@@ -15,7 +15,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Categories
         public int Id { get; set; }
         public string Title { get; set; }
         public int? ParentId { get; set; }
-        //public int ImegeId { get; set; }
+        public bool IsDeleted { get; set; } = false;
         #endregion
 
 

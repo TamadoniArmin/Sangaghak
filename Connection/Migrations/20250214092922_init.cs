@@ -20,7 +20,8 @@ namespace Connection.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: true)
+                    ParentId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +74,8 @@ namespace Connection.Migrations
                     RegisteredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Balance = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,6 +114,7 @@ namespace Connection.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
+                    AcceptedRequestId = table.Column<int>(type: "int", nullable: false),
                     PointerIds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Points = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalRate = table.Column<int>(type: "int", nullable: false)
@@ -140,7 +143,8 @@ namespace Connection.Migrations
                     CityId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    SetAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    SetAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -197,7 +201,8 @@ namespace Connection.Migrations
                     Rate = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     ExpertId = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -253,12 +258,13 @@ namespace Connection.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExpertId = table.Column<int>(type: "int", nullable: false),
                     RequestId = table.Column<int>(type: "int", nullable: false),
-                    AcceptedRequestId = table.Column<int>(type: "int", nullable: false),
                     OfferedPrice = table.Column<int>(type: "int", nullable: false),
+                    AcceptedRequestId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OfferedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AcceptedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SetAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    SetAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -283,14 +289,14 @@ namespace Connection.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "ParentId", "Title" },
+                columns: new[] { "Id", "IsDeleted", "ParentId", "Title" },
                 values: new object[,]
                 {
-                    { 1, null, "بنایی" },
-                    { 2, null, "برقکاری" },
-                    { 3, null, "نقاشی" },
-                    { 4, null, "لوله کشی" },
-                    { 5, null, "دکوراسیون داخلی" }
+                    { 1, false, null, "بنایی" },
+                    { 2, false, null, "برقکاری" },
+                    { 3, false, null, "نقاشی" },
+                    { 4, false, null, "لوله کشی" },
+                    { 5, false, null, "دکوراسیون داخلی" }
                 });
 
             migrationBuilder.InsertData(
@@ -337,23 +343,23 @@ namespace Connection.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "ParentId", "Title" },
+                columns: new[] { "Id", "IsDeleted", "ParentId", "Title" },
                 values: new object[,]
                 {
-                    { 6, 1, "گچ کاری" },
-                    { 7, 1, "آجرچینی" },
-                    { 8, 3, "رنگزنی دیوار و سقف" },
-                    { 9, 5, "کاغذ دیواری" }
+                    { 6, false, 1, "گچ کاری" },
+                    { 7, false, 1, "آجرچینی" },
+                    { 8, false, 3, "رنگزنی دیوار و سقف" },
+                    { 9, false, 5, "کاغذ دیواری" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Balance", "CityId", "Email", "FirstName", "LastName", "Password", "Phone", "RegisteredAt", "RoleId", "UserName" },
+                columns: new[] { "Id", "Balance", "CityId", "Email", "FirstName", "IsDeleted", "LastName", "Password", "Phone", "RegisteredAt", "RoleId", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 10000, 3, "Admin@Admin.com", "Armin", "Tamadoni", "123456", "09130609857", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Admin" },
-                    { 2, 10000, 2, "Mehdi@Mehdi.com", "Mehdi", "Mortazavi", "123456", "0912345678", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "mehdi" },
-                    { 3, 10000, 5, "Hassan@Hassan.com", "Hassan", "Hassani", "123456", "09987654321", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "hassan" }
+                    { 1, 10000, 3, "Admin@Admin.com", "Armin", false, "Tamadoni", "123456", "09130609857", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Admin" },
+                    { 2, 10000, 2, "Mehdi@Mehdi.com", "Mehdi", false, "Mortazavi", "123456", "0912345678", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "mehdi" },
+                    { 3, 10000, 5, "Hassan@Hassan.com", "Hassan", false, "Hassani", "123456", "09987654321", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "hassan" }
                 });
 
             migrationBuilder.InsertData(
@@ -363,8 +369,13 @@ namespace Connection.Migrations
 
             migrationBuilder.InsertData(
                 table: "Experts",
-                columns: new[] { "Id", "PointerIds", "Points", "TotalRate" },
-                values: new object[] { 3, null, null, 0 });
+                columns: new[] { "Id", "AcceptedRequestId", "PointerIds", "Points", "TotalRate" },
+                values: new object[] { 3, 0, null, null, 0 });
+
+            migrationBuilder.InsertData(
+                table: "Requests",
+                columns: new[] { "Id", "CategoryId", "CityId", "CustomerId", "IsDeleted", "SetAt", "Status", "Title", "WantedPrice", "WantedTime" },
+                values: new object[] { 1, 9, 3, 2, false, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "درخواست برای کاغذ دیواری خانه", 10000, new DateTime(2025, 12, 12, 10, 12, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_ParentId",

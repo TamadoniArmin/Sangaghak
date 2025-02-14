@@ -21,7 +21,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Users
         public int Balance { get; set; } = 0;
         public int CityId { get; set; }
         public int RoleId { get; set; }
-        //public int ImegeId { get; set; }
+        public bool IsDeleted { get; set; }
 
         #endregion
 

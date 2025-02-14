@@ -12,11 +12,14 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 {
     public class CityRepository : ICityRepository
     {
+        #region Dependency Injection
         private readonly AppDbContext _context;
         public CityRepository(AppDbContext appDbContext)
         {
             _context = appDbContext;
         }
+        #endregion
+        #region Read
         public async Task<List<City>> GetAllCities()
         {
             return await _context.Cities.AsNoTracking().ToListAsync();
@@ -31,5 +34,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             return await _context.Cities.AsNoTracking().FirstOrDefaultAsync(x => x.Title == cityName);
         }
+        #endregion
     }
 }
