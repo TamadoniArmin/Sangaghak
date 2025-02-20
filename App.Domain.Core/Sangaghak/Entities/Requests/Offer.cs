@@ -14,7 +14,6 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
         public int ExpertId { get; set; }
         public int RequestId { get; set; }
         public int OfferedPrice { get; set; }
-        public int AcceptedRequestId { get; set; }
         public string Description { get; set; }
         public DateTime OfferedTime { get; set; }
         public DateTime AcceptedAt { get; set; }
@@ -24,7 +23,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
         #region NavigationProperties
         public Expert Expert { get; set; }
         public Request Request { get; set; }
-        public Request AcceptedRequest { get; set; }
+        public Request? AcceptedRequest { get; set; }
         #endregion
     }
 }

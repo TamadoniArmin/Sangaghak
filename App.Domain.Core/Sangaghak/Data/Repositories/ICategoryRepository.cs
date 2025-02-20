@@ -7,23 +7,23 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
     public interface ICategoryRepository
     {
         #region Create
-        public Task<bool> CreateCategory(Category Category);
-        public Task<bool> CreateSubCategory(Category SubCategory);
+        public Task<bool> CreateCategory(Category Category, CancellationToken cancellationToken);
+        public Task<bool> CreateSubCategory(Category SubCategory, CancellationToken cancellationToken);
         #endregion
         #region Read
-        public Task<List<Category>> GetAllCategories();
-        public Task<Category> GetById(int CategoryId);
-        public Task<List<Category>> FindByTitle(string title);//برای سرچ کردن کتگوری
-        public Task<Category> GetByTitle(string title);
-        public Task<List<Category>> GetAllSubCategories();
-        public Task<List<Category>> GetSubCategoriesByParentId(int ParentCategoryId);
+        public Task<List<Category>> GetAllCategories(CancellationToken cancellationToken);
+        public Task<Category> GetById(int CategoryId, CancellationToken cancellationToken);
+        public Task<List<Category>> FindByTitle(string title, CancellationToken cancellationToken);//برای سرچ کردن کتگوری
+        public Task<Category> GetByTitle(string title, CancellationToken cancellationToken);
+        public Task<List<Category>> GetAllSubCategories( CancellationToken cancellationToken);
+        public Task<List<Category>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken);
         #endregion
         #region Update
-        public Task<bool> UpdateCategory(Category category, string PriorTitle);
+        public Task<bool> UpdateCategory(Category category, string PriorTitle, CancellationToken cancellationToken);
         #endregion
         #region Delete
-        public Task<bool> DeleteCategory(int CategoryId);
-        public Task<bool> DeleteSubCategory(int SubCategoryId);
+        public Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken);
+        public Task<bool> DeleteSubCategory(int SubCategoryId, CancellationToken cancellationToken);
         #endregion
     }
 }

@@ -16,48 +16,48 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Create
-        public async Task<bool> CreateCommentAsync(Comment comment)
+        public async Task<bool> CreateCommentAsync(Comment comment, CancellationToken cancellationToken)
         {
-            var Comment = await _context.Comments.FirstOrDefaultAsync(x => x.Description == comment.Description && x.CustomerId == comment.CustomerId && x.ExpertId == comment.ExpertId);
+            var Comment = await _context.Comments.FirstOrDefaultAsync(x => x.Description == comment.Description && x.CustomerId == comment.CustomerId && x.ExpertId == comment.ExpertId ,cancellationToken);
             if (Comment == null)
             {
-                await _context.Comments.AddAsync(comment);
+                await _context.Comments.AddAsync(comment,cancellationToken);
                 return true;
             }
             return false;
         }
         #endregion
         #region Read
-        public async Task<List<Comment>> GetAllCommentsAsync()
+        public async Task<List<Comment>> GetAllCommentsAsync(CancellationToken cancellationToken)
         {
-            return await _context.Comments.AsNoTracking().Where( x=>x.IsDeleted == false).ToListAsync();
+            return await _context.Comments.AsNoTracking().Where( x=>x.IsDeleted == false).ToListAsync(cancellationToken);
         }
 
-        public async Task<List<Comment>> GetCommentByCustomerIdAsync(int CustomerId)
+        public async Task<List<Comment>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
-            return await _context.Comments.AsNoTracking().Where(x => x.CustomerId == CustomerId && x.IsDeleted == false).ToListAsync();
+            return await _context.Comments.AsNoTracking().Where(x => x.CustomerId == CustomerId && x.IsDeleted == false).ToListAsync(cancellationToken);
         }
 
-        public async Task<List<Comment>> GetCommentByExpertIdAsync(int ExpertId)
+        public async Task<List<Comment>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            return await _context.Comments.AsNoTracking().Where(x => x.ExpertId == ExpertId && x.IsDeleted == false).ToListAsync();
+            return await _context.Comments.AsNoTracking().Where(x => x.ExpertId == ExpertId && x.IsDeleted == false).ToListAsync(cancellationToken);
         }
         #endregion
         #region Update
-        public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status)
+        public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)
         {
-            var Comment = await _context.Comments.FirstOrDefaultAsync(x => x.id == CommentId);
+            var Comment = await _context.Comments.FirstOrDefaultAsync(x => x.id == CommentId, cancellationToken);
             if (Comment != null)
             {
                 Comment.Status = status;
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(cancellationToken);
                 return true;
             }
             return false;
         }
         #endregion
         #region Delete
-        public async Task<bool> DeleteCommentStatusAsync(int CommentId)
+        public async Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
         {
             var Comment = await _context.Comments.FirstOrDefaultAsync(x => x.id == CommentId && x.IsDeleted == false);
             if (Comment != null)

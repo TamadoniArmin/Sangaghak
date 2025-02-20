@@ -13,7 +13,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Users
     public class Expert : UserBase
     {
         #region Properties
-        public int AcceptedRequestId { get; set; }
+        public int AcceptedRequestId { get; set; }//<<--
         public List<int>? PointerIds { get; set; }
         public List<int>? Points { get; set; }
         public int TotalRate { get; set; }

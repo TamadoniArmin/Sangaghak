@@ -14,20 +14,20 @@ namespace Connection.Configurations
         public void Configure(EntityTypeBuilder<Expert> builder)
         {
             builder.HasMany(x => x.Skills).WithMany(x => x.Experts);
-            builder.HasData(new List<Expert>() {
-                new Expert {Id = 3,
-                    Email="Hassan@Hassan.com",
-                    Phone="09987654321",
-                    Password="123456",
-                    FirstName="Hassan",
-                    LastName="Hassani",
-                    UserName="hassan",
-                    RoleId=3,
-                    TotalRate=0,
-                    Balance=10000,
-                    CityId=5,
-                    RegisteredAt=new DateTime(2025,1,1,0,0,0)
-                } });
+            //builder.HasData(new List<Expert>() {
+            //    new Expert {Id = 3,
+            //        Email="Hassan@Hassan.com",
+            //        Phone="09987654321",
+            //        Password="123456",
+            //        FirstName="Hassan",
+            //        LastName="Hassani",
+            //        UserName="hassan",
+            //        RoleId=3,
+            //        TotalRate=0,
+            //        Balance=10000,
+            //        CityId=5,
+            //        RegisteredAt=new DateTime(2025,1,1,0,0,0)
+            //    } });
         }
     }
 }

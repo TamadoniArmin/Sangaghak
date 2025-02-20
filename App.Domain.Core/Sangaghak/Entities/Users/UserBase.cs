@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Core.Sangaghak.Entities.BaseEntities;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Domain.Core.Sangaghak.Entities.Users
 {
-    public class UserBase
+    public class UserBase : IdentityUser<int>
     {
         #region properties  
         public int Id { get; set; }

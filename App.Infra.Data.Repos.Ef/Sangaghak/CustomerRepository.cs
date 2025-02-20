@@ -14,49 +14,20 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
     {
         #region Dependency Injection
         private readonly AppDbContext _appDbContext;
-        public CustomerRepository(AppDbContext appDbContext)
+        public CustomerRepository(AppDbContext appDbContext, CancellationToken cancellationToken)
         {
             _appDbContext = appDbContext;
         }
         #endregion
-        #region Create
-        public async Task<bool> CustomerRegisterAsync(string Email, string PhoneNumber, string Password)
-        {
-            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Email == Email);
-            if (Customer == null)
-            {
-                Customer customer = new Customer();
-                customer.Email = Email;
-                customer.Phone = PhoneNumber;
-                customer.Password = Password;
-                customer.RoleId = 2;
-                customer.Role.Title = "Customer";
-                customer.RegisteredAt = DateTime.Now;
-                await _appDbContext.AddAsync(customer);
-                await _appDbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
-        }
-        #endregion
         #region Read
-        public async Task<bool> LoginCustomerAsync(string Email, string Password)
+        public async Task<List<Customer>> GetAllCustomerAsync(CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Email == Email && x.Password == Password && x.IsDeleted == false);
-            if (Customer != null)
-            {
-                return true;
-            }
-            return false;
-        }
-        public async Task<List<Customer>> GetAllCustomerAsync()
-        {
-            return await _appDbContext.Customers.AsNoTracking().Where(x=>x.IsDeleted == false).ToListAsync();
+            return await _appDbContext.Customers.AsNoTracking().Where(x=>x.IsDeleted == false).ToListAsync(cancellationToken);
         }
 
-        public async Task<int> GetCustomerBalanceAsync(int Customerid)
+        public async Task<int> GetCustomerBalanceAsync(int Customerid, CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == Customerid && x.IsDeleted == false);
+            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == Customerid && x.IsDeleted == false,cancellationToken);
             if (Customer != null)
             {
                 return Customer.Balance;
@@ -64,20 +35,20 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return -1;
         }
 
-        public async Task<Customer> GetCustomerByIdAsync(int id)
+        public async Task<Customer> GetCustomerByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
+            return await _appDbContext.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false, cancellationToken);
         }
 
-        public async Task<Customer> GetCustomerByNameAsync(string name)
+        public async Task<Customer> GetCustomerByNameAsync(string name, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.UserName == name && x.IsDeleted == false);
+            return await _appDbContext.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.UserName == name && x.IsDeleted == false, cancellationToken);
         }
         #endregion
         #region Update
-        public async Task<bool> DecreaseCustomerBalanceAsync(int Money, int Customerid)
+        public async Task<bool> DecreaseCustomerBalanceAsync(int Money, int Customerid, CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == Customerid);
+            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == Customerid, cancellationToken);
             if (Customer != null)
             {
                 if (Customer.Balance < Money)
@@ -87,6 +58,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 else if (Customer.Balance > Money)
                 {
                     Customer.Balance -= Money;
+                    await _appDbContext.SaveChangesAsync(cancellationToken);
                     return true;
                 }
             }
@@ -94,13 +66,13 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
 
 
-        public async Task<bool> IncreaseCustomerBalanceAsync(int Money, int Customerid)
+        public async Task<bool> IncreaseCustomerBalanceAsync(int Money, int Customerid, CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == Customerid);
+            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == Customerid,cancellationToken);
             if (Customer != null)
             {
                 Customer.Balance += Money;
-                await _appDbContext.SaveChangesAsync();
+                await _appDbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
             return false;
@@ -108,9 +80,9 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
 
 
-        public async Task<bool> UpdateCustomerDetails(Customer customer, int CustomerId)
+        public async Task<bool> UpdateCustomerDetailsAsync(Customer customer, int CustomerId, CancellationToken cancellationToken)
         {
-            var WantedCustomer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == CustomerId);
+            var WantedCustomer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == CustomerId, cancellationToken);
             if (WantedCustomer != null)
             {
                 WantedCustomer.UserName = customer.UserName;
@@ -118,20 +90,20 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 WantedCustomer.LastName = customer.LastName;
                 WantedCustomer.CityId = customer.CityId;
                 WantedCustomer.City = customer.City;
-                await _appDbContext.SaveChangesAsync();
+                await _appDbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
             return false;
         }
         #endregion
         #region Delete
-        public async Task<bool> DeleteCustomerAsync(int id)
+        public async Task<bool> DeleteCustomerAsync(int id, CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
+            var Customer = await _appDbContext.Customers.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false, cancellationToken);
             if (Customer != null)
             {
                 Customer.IsDeleted = true;
-                await _appDbContext.SaveChangesAsync();
+                await _appDbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
             return false;

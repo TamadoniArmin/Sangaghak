@@ -31,20 +31,25 @@ namespace Connection.Configurations
                 .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(x=>x.AcceptedOffer)
+                .WithOne(x => x.AcceptedRequest)
+                .HasForeignKey<Request>(x=>x.AcceptedOfferId)
+                .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasData(new List<Request>
-            { new Request {
-            Id = 1,
-            CustomerId = 2,
-            Title="درخواست برای کاغذ دیواری خانه",
-            WantedPrice=10000,
-            WantedTime=new DateTime (2025,12,12,10,12,0),
-            Status=RequestStatusEnum.WatingForExpertsOffers,
-            CityId=3,
-            CategoryId=9,
-            SetAt=new DateTime(2025,1,1,0,0,0)
-            }
-            });
+
+            //builder.HasData(new List<Request>
+            //{ new Request {
+            //Id = 1,
+            //CustomerId = 2,
+            //Title="درخواست برای کاغذ دیواری خانه",
+            //WantedPrice=10000,
+            //WantedTime=new DateTime (2025,12,12,10,12,0),
+            //Status=RequestStatusEnum.WatingForExpertsOffers,
+            //CityId=3,
+            //CategoryId=9,
+            //SetAt=new DateTime(2025,1,1,0,0,0)
+            //}
+            //});
         }
     }
 }

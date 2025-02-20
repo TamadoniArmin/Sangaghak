@@ -24,6 +24,11 @@ namespace Connection.Configurations
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.ExpertId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.Request)
+                .WithOne(x => x.Comment)
+                .HasForeignKey<Comment>(x => x.RequestId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

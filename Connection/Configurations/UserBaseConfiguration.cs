@@ -26,19 +26,19 @@ namespace Connection.Configurations
                 .HasForeignKey(x => x.CityId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasData(new List<UserBase>() {
-                new UserBase {Id = 1,
-                    Email="Admin@Admin.com",
-                    Phone="09130609857",
-                    Password="123456",
-                    FirstName="Armin",
-                    LastName="Tamadoni",
-                    UserName="Admin",
-                    RoleId=1,
-                    Balance=10000,
-                    CityId=3,
-                    RegisteredAt=new DateTime(2025,1,1,0,0,0)
-                } });
+            //builder.HasData(new List<UserBase>() {
+            //    new UserBase {Id = 1,
+            //        Email="Admin@Admin.com",
+            //        Phone="09130609857",
+            //        Password="123456",
+            //        FirstName="Armin",
+            //        LastName="Tamadoni",
+            //        UserName="Admin",
+            //        RoleId=1,
+            //        Balance=10000,
+            //        CityId=3,
+            //        RegisteredAt=new DateTime(2025,1,1,0,0,0)
+            //    } });
         }
     }
 }

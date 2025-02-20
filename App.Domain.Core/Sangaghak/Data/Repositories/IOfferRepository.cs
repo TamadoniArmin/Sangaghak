@@ -10,20 +10,20 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
     public interface IOfferRepository
     {
         #region Create
-        public Task<bool> CreatOffer(Offer offer);
+        public Task<bool> CreatOffer(Offer offer, CancellationToken cancellationToken);
         #endregion
         #region Read
-        public Task<List<Offer>> GetAllOffersAsync();
-        public Task<List<Offer>> GetRequestOffersAsync(int Requestid);
-        public Task<Offer> GetOfferByIdAsync(int Id);
-        public Task<Offer> GetOfferByExpertAsync(int ExpertId);
+        public Task<List<Offer>> GetAllOffersAsync(CancellationToken cancellationToken);
+        public Task<List<Offer>> GetRequestOffersAsync(int Requestid, CancellationToken cancellationToken);
+        public Task<Offer> GetOfferByIdAsync(int Id, CancellationToken cancellationToken);
+        public Task<Offer> GetOfferByExpertAsync(int ExpertId, CancellationToken cancellationToken);
         #endregion
         #region Update
-        public Task<bool> UpdateOfferAsync(Offer offer, int OfferId);
-        public Task<bool> SetOfferAsAcceptedAsync(int OfferId, int RequestId, Request AcceptedRequest);
+        public Task<bool> UpdateOfferAsync(Offer offer, int OfferId, CancellationToken cancellationToken);
+        public Task<bool> SetOfferAsAcceptedAsync(int OfferId, Request AcceptedRequest, CancellationToken cancellationToken);
         #endregion
         #region Delete
-        public Task<bool> DeleteOffer(int OfferId);
+        public Task<bool> DeleteOffer(int OfferId, CancellationToken cancellationToken);
         #endregion
     }
 }

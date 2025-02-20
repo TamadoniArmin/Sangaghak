@@ -20,19 +20,19 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Read
-        public async Task<List<City>> GetAllCities()
+        public async Task<List<City>> GetAllCities(CancellationToken cancellationToken)
         {
-            return await _context.Cities.AsNoTracking().ToListAsync();
+            return await _context.Cities.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public async Task<City> GetCityById(int id)
+        public async Task<City> GetCityById(int id, CancellationToken cancellationToken)
         {
-            return await _context.Cities.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Cities.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task<City> GetCityByName(string cityName)
+        public async Task<City> GetCityByName(string cityName, CancellationToken cancellationToken)
         {
-            return await _context.Cities.AsNoTracking().FirstOrDefaultAsync(x => x.Title == cityName);
+            return await _context.Cities.AsNoTracking().FirstOrDefaultAsync(x => x.Title == cityName, cancellationToken);
         }
         #endregion
     }
