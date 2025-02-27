@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SangaghakRazorEndPoint.Areas.Admin
+namespace SangaghakRazorEndPoint.Areas.Admin.Pages
 {
     [Authorize(Roles = "Admin")]
     public class IndexModel(IDashboardAppService dashboardAppService) : PageModel
@@ -35,12 +35,12 @@ namespace SangaghakRazorEndPoint.Areas.Admin
             var data = User;
             Users = await dashboardAppService.GetAllUsersAsync(cancellationToken);
             AllUsersCount = await dashboardAppService.GetAllUsersCount(cancellationToken);
-            CustomerCount = await dashboardAppService.GetEachRoleCount(RoleEnum.Customer,cancellationToken);
-            ExpertCount=await dashboardAppService.GetEachRoleCount(RoleEnum.Expert,cancellationToken);
-            Balance= await dashboardAppService.GetBalance(1,cancellationToken);
-            AllRequestsCount=await dashboardAppService.GetAllRequestsCountAsync(cancellationToken);
-            CurrentRequestsCount=await dashboardAppService.GetCurrentRequestsCountAsync(cancellationToken);
-            PendingCommentsCount=await dashboardAppService.GetPendingCommentCountAsync(cancellationToken);
+            CustomerCount = await dashboardAppService.GetEachRoleCount(RoleEnum.Customer, cancellationToken);
+            ExpertCount = await dashboardAppService.GetEachRoleCount(RoleEnum.Expert, cancellationToken);
+            Balance = await dashboardAppService.GetBalance(1, cancellationToken);
+            AllRequestsCount = await dashboardAppService.GetAllRequestsCountAsync(cancellationToken);
+            CurrentRequestsCount = await dashboardAppService.GetCurrentRequestsCountAsync(cancellationToken);
+            PendingCommentsCount = await dashboardAppService.GetPendingCommentCountAsync(cancellationToken);
         }
     }
 }

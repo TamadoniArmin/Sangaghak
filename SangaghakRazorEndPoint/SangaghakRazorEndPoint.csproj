@@ -7,6 +7,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Content Remove="Areas\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <None Remove="Areas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\Admin\Pages\CommentManagement.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\CreateSubCategory.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\Index.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\LoginUser.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAllCategories.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAllRequests.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAllUsers.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeRequestDetails.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeUserProfile.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\UpdateUser.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\UserRegister.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\Admin\Pages\CommentManagement.cshtml" />
+    <Content Include="Areas\Admin\Pages\CreateCategory.cshtml" />
+    <Content Include="Areas\Admin\Pages\CreateSubCategory.cshtml" />
+    <Content Include="Areas\Admin\Pages\Index.cshtml" />
+    <Content Include="Areas\Admin\Pages\LoginUser.cshtml" />
+    <Content Include="Areas\Admin\Pages\SeeAllCategories.cshtml" />
+    <Content Include="Areas\Admin\Pages\SeeAllRequests.cshtml" />
+    <Content Include="Areas\Admin\Pages\SeeAllUsers.cshtml" />
+    <Content Include="Areas\Admin\Pages\SeeRequestDetails.cshtml" />
+    <Content Include="Areas\Admin\Pages\SeeUserProfile.cshtml" />
+    <Content Include="Areas\Admin\Pages\UpdateUser.cshtml" />
+    <Content Include="Areas\Admin\Pages\UserRegister.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
@@ -22,13 +59,6 @@
     <ProjectReference Include="..\Connection\Connection.csproj" />
     <ProjectReference Include="..\SangaghakAppService\SangaghakAppService.csproj" />
     <ProjectReference Include="..\SangaghakService\SangaghakService.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
   </ItemGroup>
 
 </Project>
