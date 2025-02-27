@@ -19,6 +19,16 @@ namespace Connection.Configurations
                 .WithMany(x => x.Offers)
                 .HasForeignKey(x => x.RequestId)
                 .OnDelete(DeleteBehavior.NoAction);
+            builder.HasData(new Offer()
+            {
+                Id = 1,
+                ExpertId = 1,
+                RequestId = 1,
+                OfferedPrice = 1,
+                Description = "من از در سریع ترین زمان ممکن برای شما این کار را انجام میدهدم",
+                OfferedTime = DateTime.Parse("2025-04-10"),
+                SetAt = DateTime.Parse("2024-09-01")
+            });
         }
     }
 }

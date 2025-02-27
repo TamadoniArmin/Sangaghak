@@ -1,6 +1,9 @@
 ﻿using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Categories;
+using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Service;
+using App.Infra.Data.Repos.Ef.Sangaghak;
 
 namespace SangaghakService.Sangaghak.Categories
 {
@@ -11,14 +14,15 @@ namespace SangaghakService.Sangaghak.Categories
         {
             _categoryRepository = categoryRepository;
         }
-        public async Task<bool> CreateCategory(Category Category, CancellationToken cancellationToken)
+
+        public async Task<bool> CreateCategory(CategoryForCreateDto Model, CancellationToken cancellationToken)
         {
-            return await _categoryRepository.CreateCategory(Category, cancellationToken);
+            return await _categoryRepository.CreateCategory(Model, cancellationToken);
         }
 
-        public async Task<bool> CreateSubCategory(Category SubCategory, CancellationToken cancellationToken)
+        public async Task<bool> CreateSubCategory(SubCategoryFroCreateDto Model, CancellationToken cancellationToken)
         {
-            return await _categoryRepository.CreateSubCategory(SubCategory, cancellationToken);
+            return await _categoryRepository.CreateSubCategory(Model, cancellationToken);
         }
 
         public async Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken)
@@ -26,44 +30,44 @@ namespace SangaghakService.Sangaghak.Categories
             return await _categoryRepository.DeleteCategory(CategoryId, cancellationToken);
         }
 
-        public async Task<bool> DeleteSubCategory(int SubCategoryId, CancellationToken cancellationToken)
-        {
-            return await _categoryRepository.DeleteSubCategory(SubCategoryId, cancellationToken);
-        }
-
-        public async Task<List<Category>> FindByTitle(string title, CancellationToken cancellationToken)
+        public async Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken)
         {
             return await _categoryRepository.FindByTitle(title, cancellationToken);
         }
 
-        public async Task<List<Category>> GetAllCategories(CancellationToken cancellationToken)
+        public async Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetAllCategories(cancellationToken);
         }
 
-        public async Task<List<Category>> GetAllSubCategories(CancellationToken cancellationToken)
+        public async Task<List<CategoryDTO>> GetAllParentsCategory(CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.GetAllParentsCategory(cancellationToken);
+        }
+
+        public async Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetAllSubCategories(cancellationToken);
         }
 
-        public async Task<Category> GetById(int CategoryId, CancellationToken cancellationToken)
-        {
-            return await _categoryRepository.GetById(CategoryId, cancellationToken);
-        }
-
-        public async Task<Category> GetByTitle(string title, CancellationToken cancellationToken)
+        public async Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetByTitle(title, cancellationToken);
         }
 
-        public async Task<List<Category>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken)
+        public async Task<CategoryDTO> GetCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.GetCategoryByIdAysnc(Id, cancellationToken);
+        }
+
+        public async Task<List<SubCategoryDTO>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetSubCategoriesByParentId(ParentCategoryId, cancellationToken);
         }
 
-        public async Task<bool> UpdateCategory(Category category, string PriorTitle, CancellationToken cancellationToken)
+        public async Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken)
         {
-            return await _categoryRepository.UpdateCategory(category, PriorTitle,cancellationToken);
+            return await _categoryRepository.UpdateCategory(Model, PriorTitle, cancellationToken);
         }
     }
 }

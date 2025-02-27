@@ -11,19 +11,19 @@ namespace SangaghakAppService.Sangaghak.BaseEntities
         {
             _cityService = cityService;
         }
-        public async Task<List<City>> GetAllCities(CancellationToken cancellationToken)
-        {
-            return await _cityService.GetAllCities(cancellationToken);
-        }
+        //public async Task<List<City>> GetAllCities(CancellationToken cancellationToken)
+        //{
+        //    return await _cityService.GetAllCities(cancellationToken);
+        //}
 
-        public async Task<City> GetCityById(int id, CancellationToken cancellationToken)
-        {
-            return await GetCityById(id, cancellationToken);
-        }
+        //public async Task<City> GetCityById(int id, CancellationToken cancellationToken)
+        //{
+        //    return await GetCityById(id, cancellationToken);
+        //}
 
-        public async Task<City> GetCityByName(string cityName, CancellationToken cancellationToken)
-        {
-            return await _cityService.GetCityByName(cityName, cancellationToken);
-        }
+        //public async Task<City> GetCityByName(string cityName, CancellationToken cancellationToken)
+        //{
+        //    return await _cityService.GetCityByName(cityName, cancellationToken);
+        //}
     }
 }

@@ -1,5 +1,7 @@
 ﻿
 
+using App.Domain.Core.Sangaghak.DTOs.Categories;
+using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Categories;
 
 namespace App.Domain.Core.Sangaghak.Data.Repositories
@@ -7,23 +9,23 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
     public interface ICategoryRepository
     {
         #region Create
-        public Task<bool> CreateCategory(Category Category, CancellationToken cancellationToken);
-        public Task<bool> CreateSubCategory(Category SubCategory, CancellationToken cancellationToken);
+        public Task<bool> CreateCategory(CategoryForCreateDto Model, CancellationToken cancellationToken);
+        public Task<bool> CreateSubCategory(SubCategoryFroCreateDto Model, CancellationToken cancellationToken);
         #endregion
         #region Read
-        public Task<List<Category>> GetAllCategories(CancellationToken cancellationToken);
-        public Task<Category> GetById(int CategoryId, CancellationToken cancellationToken);
-        public Task<List<Category>> FindByTitle(string title, CancellationToken cancellationToken);//برای سرچ کردن کتگوری
-        public Task<Category> GetByTitle(string title, CancellationToken cancellationToken);
-        public Task<List<Category>> GetAllSubCategories( CancellationToken cancellationToken);
-        public Task<List<Category>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken);
+        public Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken);
+        public Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken);//برای سرچ کردن کتگوری
+        public Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken);
+        public Task<List<CategoryDTO>> GetAllParentsCategory(CancellationToken cancellationToken);
+        public Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken);
+        public Task<List<SubCategoryDTO>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken);
+        public Task<CategoryDTO> GetCategoryByIdAysnc(int Id,CancellationToken cancellationToken);
         #endregion
         #region Update
-        public Task<bool> UpdateCategory(Category category, string PriorTitle, CancellationToken cancellationToken);
+        public Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken);
         #endregion
         #region Delete
         public Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken);
-        public Task<bool> DeleteSubCategory(int SubCategoryId, CancellationToken cancellationToken);
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Comments;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
@@ -12,7 +13,8 @@ namespace SangaghakService.Sangaghak.Comments
         {
             _commentRepository = commentRepository;
         }
-        public async Task<bool> CreateCommentAsync(Comment comment, CancellationToken cancellationToken)
+
+        public async Task<bool> CreateCommentAsync(CommentForCreateDTO comment, CancellationToken cancellationToken)
         {
             return await _commentRepository.CreateCommentAsync(comment, cancellationToken);
         }
@@ -22,19 +24,29 @@ namespace SangaghakService.Sangaghak.Comments
             return await _commentRepository.DeleteCommentStatusAsync(CommentId, cancellationToken);
         }
 
-        public async Task<List<Comment>> GetAllCommentsAsync(CancellationToken cancellationToken)
+        public async Task<List<CommentDTO>> GetAllCommentsAsync(CancellationToken cancellationToken)
         {
             return await _commentRepository.GetAllCommentsAsync(cancellationToken);
         }
 
-        public async Task<List<Comment>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
+        public async Task<List<CommentDTO>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
             return await _commentRepository.GetCommentByCustomerIdAsync(CustomerId, cancellationToken);
         }
 
-        public async Task<List<Comment>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<List<CommentDTO>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
             return await _commentRepository.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
+        }
+
+        public async Task<List<CommentDTO>> GetPendingCommentAsync(CancellationToken cancellationToken)
+        {
+            return await _commentRepository.GetPendingCommentAsync(cancellationToken);
+        }
+
+        public Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)

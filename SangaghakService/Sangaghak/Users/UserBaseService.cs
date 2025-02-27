@@ -1,5 +1,7 @@
 ﻿using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Users;
 using App.Domain.Core.Sangaghak.Entities.Users;
+using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
 
 namespace SangaghakService.Sangaghak.Users
@@ -11,9 +13,60 @@ namespace SangaghakService.Sangaghak.Users
         {
             _repository = repository;
         }
-        public async Task<List<UserBase>> GetAllUsersAsync(CancellationToken cancellationToken)
+
+        public async Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllUsersAsync(cancellationToken);
+            return await _repository.DecreaseBalanceAsync(UserId, money, cancellationToken);
+        }
+
+        public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllAsync(cancellationToken);
+        }
+
+        public async Task<int> GetBalanceAsync(int UserId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetBalanceAsync(UserId, cancellationToken);
+        }
+
+        public async Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByIdAsync(id, cancellationToken);
+        }
+
+        public async  Task<GetUserBaseForViewPage> GetByNameAsync(string name, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByNameAsync(name, cancellationToken);
+        }
+
+        public async  Task<int> GetCountAsync(CancellationToken cancellationToken)
+        {
+            return await _repository.GetCountAsync(cancellationToken);
+        }
+
+        public async Task<int> GetCountByRoleAsync(RoleEnum role, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCountByRoleAsync(role, cancellationToken);
+        }
+
+        public async Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCustomerByCustomerIdAsync(CustomerId, cancellationToken);
+        }
+
+        public async Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetExpertNameByExpertIdAsync(ExpertId, cancellationToken);
+        }
+
+        public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)
+        {
+            return await _repository.IncreaseBalance(UserId, money, cancellationToken);
+        }
+
+        public async Task<bool> UpdateUserInfoAsync(UserBaseDTO user, int UserId, CancellationToken cancellationToken)
+        {
+            return await _repository.UpdateUserInfo(user, UserId, cancellationToken);
         }
     }
 }

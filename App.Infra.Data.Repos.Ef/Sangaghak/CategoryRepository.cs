@@ -1,4 +1,7 @@
-﻿using App.Domain.Core.Sangaghak.Data.Repositories;
+﻿using System;
+using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Categories;
+using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Categories;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
@@ -16,97 +19,197 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Create
-        public async Task<bool> CreateCategory(Category Category, CancellationToken cancellationToken)
+        public async Task<bool> CreateCategory(CategoryForCreateDto Model, CancellationToken cancellationToken)
         {
-            var WantedCategory = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == Category.Title);
-            if (WantedCategory == null)
+            try
             {
-                await _appDbContext.Categories.AddAsync(Category ,cancellationToken);
+                var Category = new Category()
+                {
+                    Title = Model.Title,
+                    Description= Model.Description,
+                    ImagePath = Model.ImagePath,
+                };
+                await _appDbContext.Categories.AddAsync(Category, cancellationToken);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
-            return false;
+            catch (Exception e)
+            {
+                return false;
+                throw new Exception("Exception");
+            }
         }
 
-        public async Task<bool> CreateSubCategory(Category SubCategory, CancellationToken cancellationToken)
+        public async Task<bool> CreateSubCategory(SubCategoryFroCreateDto Model, CancellationToken cancellationToken)
         {
-            var WantedSubCategory = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == SubCategory.Title);
-            if (WantedSubCategory == null)
+            try
             {
+                var SubCategory = new Category()
+                {
+                    Title = Model.Title,
+                    Description = Model.Description,
+                    BasePrice = Model.BasePrice,
+                    ImagePath = Model.ImagePath,
+                    ParentId = Model.ParentId
+                };
                 await _appDbContext.Categories.AddAsync(SubCategory, cancellationToken);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
-            return false;
+            catch (Exception e)
+            {
+                return false;
+                throw new Exception("Exception");
+            }
         }
         #endregion
         #region Read
-        public async Task<List<Category>> GetAllCategories(CancellationToken cancellationToken)
+        public async Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Categories.Where(x => x.ParentId == 0 && x.ParentCategory == null && x.IsDeleted==false).ToListAsync(cancellationToken);
+            var subcategories = await _appDbContext
+            .Categories
+            .Where(x => x.Title.Contains(title) && x.IsDeleted==false)
+            .Include(x => x.Requests)
+            .Include(x => x.Experts)//<<--پرسیده شود
+            .Select(x => new GetSubcategoryForHomePageDto
+            {
+                CategoryId = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                BasePrice = x.BasePrice,
+                ImagePath = x.ImagePath,
+                RequestsCount = x.Requests.Count,
+                ExpertsCount = x.Experts.Count
+            }).ToListAsync(cancellationToken);
+            return subcategories;
         }
 
-        public async Task<List<Category>> GetAllSubCategories(CancellationToken cancellationToken)
+        public async Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken)
         {
-            return await _appDbContext.Categories.Where(x => x.ParentId != 0 && x.ParentCategory != null && x.IsDeleted == false).ToListAsync(cancellationToken);
+            var categories = await _appDbContext
+            .Categories
+            .Where(x=>x.IsDeleted == false)
+            .Include(x => x.Subcategories)
+            .Select(x => new CategoryDTO
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                ImagePath = x.ImagePath,
+                SubCategoryCount = x.Subcategories.Count,
+            }).ToListAsync(cancellationToken);
+            return categories;
         }
 
-        public async Task<Category> GetById(int CategoryId, CancellationToken cancellationToken)
+        public async Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken)
         {
-            return await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == CategoryId && x.IsDeleted==false, cancellationToken);
+            var subcategories = await _appDbContext
+            .Categories
+            .Where(x=>x.IsDeleted == false)
+            .Select(x => new SubCategoryDTO
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description= x.Description,
+                BasePrice = x.BasePrice,
+                ImagePath = x.ImagePath,
+                ParentId = x.ParentId
+            }).ToListAsync(cancellationToken);
+            return subcategories;
         }
-        public async Task<List<Category>> FindByTitle(string title, CancellationToken cancellationToken)
+        public async Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Categories.Where(x => x.Title.Contains(title) && x.IsDeleted == false).ToListAsync();
+            var FindCategory = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == title && x.IsDeleted == false, cancellationToken);
+            if (FindCategory != null)
+            {
+                var Subcategory = new GetSubcategoryForHomePageDto()
+                {
+                    CategoryId = FindCategory.Id,
+                    Title = FindCategory.Title,
+                    Description = FindCategory.Description,
+                    BasePrice = FindCategory.BasePrice,
+                    ImagePath = FindCategory.ImagePath,
+                    RequestsCount = FindCategory.Requests.Count,
+                    ExpertsCount = FindCategory.Experts.Count
+
+                };
+                return Subcategory;
+            }
+            return null;//اینجا لاگ بزن
         }
 
-        public async Task<Category> GetByTitle(string title, CancellationToken cancellationToken)
+        public async Task<List<SubCategoryDTO>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == title && x.IsDeleted==false, cancellationToken);
+            var subcategories = await _appDbContext
+            .Categories
+            .Where(x => x.ParentId == ParentCategoryId && x.IsDeleted == false)
+            .Include(x => x.Requests)
+            .Include(x => x.Experts)//<<--پرسیده شود
+            .Select(x => new SubCategoryDTO
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description= x.Description,
+                BasePrice = x.BasePrice,
+                ImagePath = x.ImagePath,
+                ParentId = x.ParentId
+            }).ToListAsync(cancellationToken);
+            return subcategories;
         }
-
-        public async Task<List<Category>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken)
+        public async Task<CategoryDTO> GetCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Categories.Where(x => x.ParentId == ParentCategoryId && x.IsDeleted == false).ToListAsync(cancellationToken);
+            var Category= await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == Id,cancellationToken);
+            if (Category is null) return null;
+            else
+            {
+                CategoryDTO categoryDTO = new CategoryDTO()
+                {
+                    Id = Category.Id,
+                    Title = Category.Title,
+                    Description = Category.Description,
+                    ImagePath = Category.ImagePath,
+                    SubCategoryCount = Category.Subcategories.Count()
+                };
+                return categoryDTO;
+            }
+        }
+        public async Task<List<CategoryDTO>> GetAllParentsCategory(CancellationToken cancellationToken)
+        {
+            return await _appDbContext
+                .Categories
+                .Where(x=>(x.ParentId == null || x.ParentId==0 ) && x.IsDeleted==false)
+                .Select(x=> new CategoryDTO()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Description = x.Description,
+                    ImagePath=x.ImagePath,
+                    SubCategoryCount=x.Subcategories.Count()
+                }).ToListAsync(cancellationToken);
         }
         #endregion
         #region Update
-        public async Task<bool> UpdateCategory(Category category, string PriorTitle, CancellationToken cancellationToken)
+        public async Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken)
         {
-            var WantedCategory = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == PriorTitle, cancellationToken);
-            if (WantedCategory != null)
-            {
-                WantedCategory.Title = category.Title;
-                //WantedCategory.Image = category.Image;
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-                return true;
-            }
-            return false;
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == PriorTitle, cancellationToken);
+            if (Category == null) return false;
+            Category.Title = Model.Title;
+            Category.Description = Model.Description;
+            Category.BasePrice = Model.BasePrice;
+            Category.ImagePath = Model.ImagePath;
+            Category.ParentId = Model.ParentId;
+            await _appDbContext.SaveChangesAsync(cancellationToken);
+            return true;
         }
         #endregion
         #region Delete
         public async Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken)
         {
-            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(c => c.Id == CategoryId && c.IsDeleted==false, cancellationToken);
-            if (Category != null)
-            {
-                Category.IsDeleted = true;
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-                return true;
-            }
-            return false;
-        }
-
-        public async Task<bool> DeleteSubCategory(int SubCategoryId, CancellationToken cancellationToken)
-        {
-            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(c => c.Id == SubCategoryId && c.IsDeleted == false, cancellationToken);
-            if (Category != null)
-            {
-                Category.IsDeleted = true;
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-                return true;
-            }
-            return false;
+            var Category= await _appDbContext.Categories.FirstOrDefaultAsync(x=>x.Id == CategoryId && x.IsDeleted==false, cancellationToken);
+            if (Category == null) return false;
+            Category.IsDeleted = true;
+            await _appDbContext.SaveChangesAsync(cancellationToken);
+            return true;
         }
         #endregion
     }

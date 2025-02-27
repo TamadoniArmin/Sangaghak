@@ -19,6 +19,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Comments
         public int ExpertId { get; set; }
         public int RequestId { get; set; }
         public CommentStatusEnum Status { get; set; }
+        public DateTime SetAt { get; set; }
         public bool IsDeleted { get; set; }=false;
         #endregion
 

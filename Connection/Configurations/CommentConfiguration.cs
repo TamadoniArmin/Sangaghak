@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Domain.Core.Sangaghak.Entities.BaseEntities;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -29,6 +30,18 @@ namespace Connection.Configurations
                 .WithOne(x => x.Comment)
                 .HasForeignKey<Comment>(x => x.RequestId)
                 .OnDelete(DeleteBehavior.NoAction);
+            builder.HasData(new List<Comment>()
+            {
+                new Comment
+                {
+                    id = 1,
+                    Description="بسیار عالی و وقت شناس",
+                    Rate=4,
+                    CustomerId=1,
+                    ExpertId=1,
+                    RequestId=1,
+                }
+            });
         }
     }
 }

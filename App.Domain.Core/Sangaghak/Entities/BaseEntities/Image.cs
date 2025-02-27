@@ -19,9 +19,9 @@ namespace App.Domain.Core.Sangaghak.Entities.BaseEntities
         public int CategoryId { get; set; }
         #endregion
         #region NavigationProperties
-        public UserBase? User { get; set; }
+        //public UserBase? User { get; set; }
         public Request? Request { get; set; }
-        public Category? Category { get; set; }
+        //public Category? Category { get; set; }
         #endregion
     }
 }

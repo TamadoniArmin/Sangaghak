@@ -15,19 +15,9 @@ namespace Connection.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.User)
-                .WithOne(x=>x.Image)
-                .HasForeignKey<Image>(x=>x.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
             builder.HasOne(x=>x.Request)
                 .WithMany(x=>x.Images)
                 .HasForeignKey(x=>x.RequestId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.HasOne(x=>x.Category)
-                .WithOne(x=>x.Image)
-                .HasForeignKey<Image>(x=>x.CategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

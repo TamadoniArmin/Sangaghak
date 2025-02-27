@@ -1,4 +1,5 @@
-﻿using App.Domain.Core.Sangaghak.Entities.Requests;
+﻿using App.Domain.Core.Sangaghak.DTOs.Requests;
+using App.Domain.Core.Sangaghak.Entities.Requests;
 using App.Domain.Core.Sangaghak.Enum;
 
 namespace App.Domain.Core.Sangaghak.Service
@@ -6,16 +7,18 @@ namespace App.Domain.Core.Sangaghak.Service
     public interface IRequestService
     {
         #region Create
-        public Task<bool> CreateRequestAsync(Request request, CancellationToken cancellationToken);
+        public Task<bool> CreateRequestAsync(GetDataForCreateRequestDto request, CancellationToken cancellationToken);
         #endregion
         #region Read
-        public Task<List<Request>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
-        public Task<List<Request>> GetAllRequestsAsync(CancellationToken cancellationToken);
-        public Task<List<Request>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken);
-        public Task<List<Request>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetAllRequestsAsync(CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken);
+        public Task<int> GetAllRequestsCountAsync(CancellationToken cancellationToken);
+        public Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken);
         #endregion
         #region Update
-        public Task<bool> UpdateRequestDetailsAsync(Offer offer, int RequestId, CancellationToken cancellationToken);
+        public Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken);
         public Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken);
         #endregion
         #region Delete

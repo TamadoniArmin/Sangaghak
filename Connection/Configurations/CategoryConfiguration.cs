@@ -22,17 +22,17 @@ namespace Connection.Configurations
                 .OnDelete(DeleteBehavior.NoAction);
             builder.HasData(new List<Category>()
             {
-                new Category() { Id = 1, Title = "بنایی", ParentId = null },
-                new Category() { Id = 2, Title = "برقکاری", ParentId = null},
-                new Category() { Id = 3, Title = "نقاشی", ParentId = null},
-                new Category() { Id = 4, Title = "لوله کشی", ParentId = null},
-                new Category() { Id = 5, Title = "دکوراسیون داخلی", ParentId = null},
+                new Category() { Id = 1, Title = "بنایی", ParentId = null , Description="بنایی"},
+                new Category() { Id = 2, Title = "برقکاری", ParentId = null,Description="برقکاری"},
+                new Category() { Id = 3, Title = "نقاشی", ParentId = null,Description = "نقاشی"},
+                new Category() { Id = 4, Title = "لوله کشی", ParentId = null,Description = "لوله کشی"},
+                new Category() { Id = 5, Title = "دکوراسیون داخلی", ParentId = null,Description = "دکوراسیون داخلی"},
 
-                new Category() { Id = 6, Title = "گچ کاری", ParentId = 1},
-                new Category() { Id = 7, Title = "آجرچینی", ParentId = 1},
+                new Category() { Id = 6, Title = "گچ کاری", ParentId = 1,Description = "گچ کاری"},
+                new Category() { Id = 7, Title = "آجرچینی", ParentId = 1,Description = "آجرچینی"},
 
-                new Category() { Id = 8, Title = "رنگزنی دیوار و سقف", ParentId = 3},
-                new Category() { Id = 9, Title = "کاغذ دیواری", ParentId = 5},
+                new Category() { Id = 8, Title = "رنگزنی دیوار و سقف", ParentId = 3,Description = "رنگزنی"},
+                new Category() { Id = 9, Title = "کاغذ دیواری", ParentId = 5,Description="کاغذ دیواری"},
 
             });
 

@@ -1,0 +1,1434 @@
+﻿@page
+@model SangaghakRazorEndPoint.Areas.Admin.CreateSubCategoryModel
+@{
+}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-menu-size="sm-hover">
+
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <title>ایجاد دسته | لارکن قالب مدیریتی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully responsive premium admin dashboard template" />
+    <meta name="author" content="Techzaa" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="assets/libs/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/icons.css">
+    <link rel="stylesheet" href="assets/css/fontiran.min.css">
+    <script src="assets/js/config.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="topbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="d-flex align-items-center">
+                        <!-- دکمه toggle منو -->
+                        <div class="topbar-item">
+                            <button type="button" class="button-toggle-menu me-2">
+                                <iconify-icon icon="solar:hamburger-menu-broken" class="fs-24 align-middle"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <!-- عنوان صفحه -->
+                        <div class="topbar-item">
+                            <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">ایجاد دسته</h4>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-1">
+
+                        <!-- تم رنگ (روشن/تاریک) -->
+                        <div class="topbar-item">
+                            <button type="button" class="topbar-button" id="light-dark-mode">
+                                <iconify-icon icon="solar:moon-bold-duotone" class="fs-24 align-middle"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <!-- اعلان‌ها -->
+                        <div class="dropdown topbar-item">
+                            <button type="button" class="topbar-button position-relative"
+                                    id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <iconify-icon icon="solar:bell-bing-bold-duotone" class="fs-24 align-middle"></iconify-icon>
+                                <span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">
+                                    3<span class="visually-hidden">پیام‌های خوانده نشده</span>
+                                </span>
+                            </button>
+                            <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end"
+                                 aria-labelledby="page-header-notifications-dropdown">
+                                <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0 fs-16 fw-semibold"> اعلان‌ها</h6>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                                <small>پاک کردن همه</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-simplebar style="max-height: 280px;">
+                                    <!-- آیتم -->
+                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom text-wrap">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <img src="/images/users/avatar-1.jpg"
+                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" />
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-0">
+                                                    <span class="fw-medium">جوزفین تامپسون </span>در مورد پنل مدیر نظر داده
+                                                    <span>" وای 😍! این پنل مدیر عالی و طراحی جذاب است"</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- آیتم -->
+                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avatar-sm me-2">
+                                                    <span class="avatar-title bg-soft-info text-info fs-20 rounded-circle">
+                                                        D
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-0 fw-semibold">دونوگویی سوزان</p>
+                                                <p class="mb-0 text-wrap">
+                                                    سلام، حال شما چطور است؟ جلسه بعدی ما چی؟
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- آیتم -->
+                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <img src="/images/users/avatar-3.jpg"
+                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-3" />
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-0 fw-semibold">جیکوب گینس</p>
+                                                <p class="mb-0 text-wrap">پاسخ داد به کامنت شما در گراف پیش‌بینی جریان نقدی 🔔.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- آیتم -->
+                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avatar-sm me-2">
+                                                    <span class="avatar-title bg-soft-warning text-warning fs-20 rounded-circle">
+                                                        <iconify-icon icon="iconamoon:comment-dots-duotone"></iconify-icon>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-0 fw-semibold text-wrap">شما <b>20</b> پیام جدید در مکالمه دریافت کرده‌اید</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- آیتم -->
+                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <img src="/images/users/avatar-5.jpg"
+                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-5" />
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-0 fw-semibold">شان بنچ</p>
+                                                <p class="mb-0 text-wrap">
+                                                    نظر داده در پنل مدیر
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="text-center py-3">
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm">
+                                        مشاهده تمامی اعلان‌ها <i class="bx bx-left-arrow-alt ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- تنظیمات تم -->
+                        <div class="topbar-item d-none d-md-flex">
+                            <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas"
+                                    data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+                                <iconify-icon icon="solar:settings-bold-duotone" class="fs-24 align-middle"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <!-- فعالیت -->
+                        <div class="topbar-item d-none d-md-flex">
+                            <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas"
+                                    data-bs-target="#theme-activity-offcanvas" aria-controls="theme-settings-offcanvas">
+                                <iconify-icon icon="solar:clock-circle-bold-duotone" class="fs-24 align-middle"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <!-- کاربر -->
+                        <div class="dropdown topbar-item">
+                            <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <span class="d-flex align-items-center">
+                                    <img class="rounded-circle" width="32" src="/images/users/avatar-1.jpg"
+                                         alt="avatar-3">
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- آیتم-->
+                                <h6 class="dropdown-header">به گاستون خوش آمدید!</h6>
+                                <a class="dropdown-item" href="pages-profile.html">
+                                    <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">پروفایل</span>
+                                </a>
+                                <a class="dropdown-item" href="chat.html">
+                                    <i class="bx bx-message-dots text-muted fs-18 align-middle me-1"></i><span class="align-middle">پیام‌ها</span>
+                                </a>
+
+                                <a class="dropdown-item" href="pricing.html">
+                                    <i class="bx bx-wallet text-muted fs-18 align-middle me-1"></i><span class="align-middle">قیمت‌گذاری</span>
+                                </a>
+                                <a class="dropdown-item" href="faqs.html">
+                                    <i class="bx bx-help-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">راهنما</span>
+                                </a>
+                                <a class="dropdown-item" href="lock-screen.html">
+                                    <i class="bx bx-lock text-muted fs-18 align-middle me-1"></i><span class="align-middle">قفل صفحه</span>
+                                </a>
+
+                                <div class="dropdown-divider my-1"></div>
+
+                                <a class="dropdown-item text-danger" href="login.html">
+                                    <i class="bx bx-log-out fs-18 align-middle me-1"></i><span class="align-middle">خروج</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- جستجوی اپ -->
+                        <form class="app-search d-none d-md-block ms-2">
+                            <div class="position-relative">
+                                <input type="search" class="form-control" placeholder="جستجو..." autocomplete="off" value="">
+                                <iconify-icon icon="solar:magnifer-linear" class="search-widget-icon"></iconify-icon>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Activity Timeline -->
+        <div>
+            <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-activity-offcanvas"
+                 style="max-width: 450px; width: 100%;">
+                <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
+                    <h5 class="text-white m-0 fw-semibold">جریان فعالیت</h5>
+                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
+                            aria-label="بستن"></button>
+                </div>
+
+                <div class="offcanvas-body p-0">
+                    <div data-simplebar class="h-100 p-4">
+                        <div class="position-relative ms-2">
+                            <span class="position-absolute start-0  top-0 border border-dashed h-100"></span>
+                            <div class="position-relative ps-4">
+                                <div class="mb-4">
+                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-danger d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
+                                        <iconify-icon icon="iconamoon:folder-check-duotone"></iconify-icon>
+                                    </span>
+                                    <div class="ms-2">
+                                        <h5 class="mb-1 text-dark fw-semibold fs-15 lh-base">گزارش-اصلاح / به‌روزرسانی</h5>
+                                        <p class="d-flex align-items-center">
+                                            افزودن 3 فایل به <span class=" d-flex align-items-center text-primary ms-1">
+                                                <iconify-icon icon="iconamoon:file-light"></iconify-icon> وظایف
+                                            </span>
+                                        </p>
+                                        <div class="bg-light bg-opacity-50 rounded-2 p-2">
+                                            <div class="row">
+                                                <div class="col-lg-6 border-end border-light">
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <i class="bx bxl-figma fs-20 text-red"></i>
+                                                        <a href="#!" class="text-dark fw-medium">Concept.fig</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <i class="bx bxl-file-doc fs-20 text-success"></i>
+                                                        <a href="#!" class="text-dark fw-medium">larkon.docs</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h6 class="mt-2 text-muted">دوشنبه، ساعت ۴:۲۴ عصر</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative ps-4">
+                                <div class="mb-4">
+                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-success d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
+                                        <iconify-icon icon="iconamoon:check-circle-1-duotone"></iconify-icon>
+                                    </span>
+                                    <div class="ms-2">
+                                        <h5 class="mb-1 text-dark fw-semibold fs-15 lh-base">وضعیت پروژه</h5>
+                                        <p class="d-flex align-items-center mb-0">
+                                            علامت‌گذاری<span class=" d-flex align-items-center text-primary mx-1">
+                                                <iconify-icon icon="iconamoon:file-light"></iconify-icon> طراحی
+                                            </span> به عنوان <span class="badge bg-success-subtle text-success px-2 py-1 ms-1">تکمیل‌شده</span>
+                                        </p>
+                                        <div class="d-flex align-items-center gap-3 mt-1 bg-light bg-opacity-50 p-2 rounded-2">
+                                            <a href="#!" class="fw-medium text-dark">طراحی UI/UX فایگما</a>
+                                            <div class="ms-auto">
+                                                <a href="#!" class="fw-medium text-primary fs-18" data-bs-toggle="tooltip"
+                                                   data-bs-title="دانلود" data-bs-placement="bottom">
+                                                    <iconify-icon icon="iconamoon:cloud-download-duotone"></iconify-icon>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۳:۰۰ عصر</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative ps-4">
+                                <div class="mb-4">
+                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-primary d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-16">UI</span>
+                                    <div class="ms-2">
+                                        <h5 class="mb-1 text-dark fw-semibold fs-15">
+                                            نسخه جدید UI اپلیکیشن Larkon v2.0.0 <span class="badge bg-primary-subtle text-primary px-2 py-1 ms-1">جدیدترین</span>
+                                        </h5>
+                                        <p>دسترسی به بیش از ۲۰ صفحه شامل طراحی داشبورد، نمودارها، تابلو کانبان، تقویم و صفحات از پیش‌سفارش‌شده برای E-commerce و بازاریابی.</p>
+                                        <div class="mt-2">
+                                            <a href="#!" class="btn btn-light btn-sm">دانلود فایل زیپ</a>
+                                        </div>
+                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۲:۱۰ عصر</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative ps-4">
+                                <div class="mb-4">
+                                    <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
+                                        <img src="/images/users/avatar-7.jpg" alt="avatar-5"
+                                             class="avatar-sm rounded-circle">
+                                    </span>
+                                    <div class="ms-2">
+                                        <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">الکس اسمیت، عکس‌های پیوست‌شده</h5>
+                                        <div class="row g-2 mt-2">
+                                            <div class="col-lg-4">
+                                                <a href="#!">
+                                                    <img src="/images/small/img-6.jpg" alt="" class="img-fluid rounded">
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <a href="#!">
+                                                    <img src="/images/small/img-3.jpg" alt="" class="img-fluid rounded">
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <a href="#!">
+                                                    <img src="/images/small/img-4.jpg" alt="" class="img-fluid rounded">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۱:۰۰ عصر</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative ps-4">
+                                <div class="mb-4">
+                                    <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
+                                        <img src="/images/users/avatar-6.jpg" alt="avatar-5"
+                                             class="avatar-sm rounded-circle">
+                                    </span>
+                                    <div class="ms-2">
+                                        <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">ربکا جی. یک عضو جدید به تیم اضافه کرد</h5>
+                                        <p class="d-flex align-items-center gap-1">
+                                            <iconify-icon icon="iconamoon:check-circle-1-duotone"
+                                                          class="text-success"></iconify-icon>
+                                            یک عضو جدید به داشبورد جلو اضافه کرد
+                                        </p>
+                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۱۰:۰۰ صبح</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative ps-4">
+                                <div class="mb-4">
+                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-warning d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
+                                        <iconify-icon icon="iconamoon:certificate-badge-duotone"></iconify-icon>
+                                    </span>
+                                    <div class="ms-2">
+                                        <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">دستاوردها</h5>
+                                        <p class="d-flex align-items-center gap-1 mt-1">
+                                            دریافت یک
+                                            <iconify-icon icon="iconamoon:certificate-badge-duotone"
+                                                          class="text-danger fs-20"></iconify-icon>
+                                            "جایزه بهترین محصول"
+                                        </p>
+                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۹:۳۰ صبح</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#!" class="btn btn-outline-dark w-100">مشاهده همه</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="main-nav">
+            <!-- Sidebar Logo -->
+            <div class="logo-box">
+                <a href="index.html" class="logo-dark">
+                    <img src="/images/logo-sm.png" class="logo-sm" alt="logo sm">
+                    <img src="/images/logo-dark.png" class="logo-lg" alt="logo dark">
+                </a>
+
+                <a href="index.html" class="logo-light">
+                    <img src="/images/logo-sm.png" class="logo-sm" alt="logo sm">
+                    <img src="/images/logo-light.png" class="logo-lg" alt="logo light">
+                </a>
+            </div>
+
+            <!-- Menu Toggle Button (sm-hover) -->
+            <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar">
+                <iconify-icon icon="solar:double-alt-arrow-left-bold-duotone" class="button-sm-hover-icon"></iconify-icon>
+            </button>
+
+            <div class="scrollbar" data-simplebar>
+                <ul class="navbar-nav" id="navbar-nav">
+
+                    <li class="menu-title">عمومی</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:widget-5-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> داشبورد </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarProducts" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarProducts">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:t-shirt-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> محصولات </span>
+                        </a>
+                        <div class="collapse" id="sidebarProducts">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="products-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="products-grid.html">شبکه‌ای</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="products-detail.html">جزئیات</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="products-edit.html">ویرایش</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="products-create.html">ایجاد</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarCategory" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarCategory">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:clipboard-list-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> دسته‌بندی </span>
+                        </a>
+                        <div class="collapse" id="sidebarCategory">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="category-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="category-edit.html">ویرایش</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="category-create.html">ایجاد</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarInventory" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarInventory">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:box-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> موجودی </span>
+                        </a>
+                        <div class="collapse" id="sidebarInventory">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="inventory-warehouse.html">انبار</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="inventory-received-orders.html">سفارشات دریافت‌شده</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarOrders" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarOrders">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:bag-smile-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> سفارشات </span>
+                        </a>
+                        <div class="collapse" id="sidebarOrders">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="orders-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="orders-details.html">جزئیات</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="orders-cart.html">سبد خرید</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="orders-checkout.html">تسویه‌حساب</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarPurchases" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarPurchases">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:card-send-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> خریدها </span>
+                        </a>
+                        <div class="collapse" id="sidebarPurchases">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="purchase-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="purchase-order.html">سفارش</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="purchase-return.html">بازگشت</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarAttributes" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarAttributes">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:confetti-minimalistic-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> ویژگی‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarAttributes">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="edit.html">ویرایش</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="create.html">ایجاد</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarInvoice" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarInvoice">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:bill-list-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> فاکتورها </span>
+                        </a>
+                        <div class="collapse" id="sidebarInvoice">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="invoice-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="invoice-details.html">جزئیات</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="invoice-create.html">ایجاد</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="settings.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:settings-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> تنظیمات </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title mt-2">کاربران</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages-profile.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:chat-square-like-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> پروفایل </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarRoles" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarRoles">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:user-speak-rounded-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> نقش‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarRoles">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="role-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="role-edit.html">ویرایش</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="role-create.html">ایجاد</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages-permission.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:checklist-minimalistic-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> دسترسی‌ها </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarCustomers">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:users-group-two-rounded-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> مشتریان </span>
+                        </a>
+                        <div class="collapse" id="sidebarCustomers">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="customer-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="customer-details.html">جزئیات</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarSellers" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarSellers">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:shop-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> فروشندگان </span>
+                        </a>
+                        <div class="collapse" id="sidebarSellers">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="seller-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="seller-details.html">جزئیات</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="seller-edit.html">ویرایش</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="seller-create.html">ایجاد</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    <li class="menu-title mt-2">سایر</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarCoupons" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarCoupons">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> کوپن‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarCoupons">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="coupons-list.html">لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="coupons-add.html">افزودن</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages-review.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:chat-square-like-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> نظرات </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title mt-2">برنامه‌های دیگر</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="chat.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:chat-round-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> چت </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="email.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:mailbox-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> ایمیل </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="calendar.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:calendar-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> تقویم </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="todo.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:checklist-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> کارها </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title mt-2">پشتیبانی</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="help-center.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:help-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> مرکز راهنما </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="faqs.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:question-circle-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> پرسش‌های متداول </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="privacy-policy.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:document-text-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> سیاست حفظ حریم خصوصی </span>
+                        </a>
+                    </li>
+
+
+                    <li class="menu-title mt-2">سفارشی</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarPages" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarPages">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:gift-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> صفحات </span>
+                        </a>
+                        <div class="collapse" id="sidebarPages">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="starter.html">خوش آمدید</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="coming-soon.html">به زودی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="timeline.html">خط زمانی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="pricing.html">قیمت گذاری</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="maintenance.html">نگهداری</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="error-404.html">خطای ۴۰۴</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="error-404-alt.html">خطای ۴۰۴ (آلترناتیو)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarAuthentication" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarAuthentication">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:lock-keyhole-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> احراز هویت </span>
+                        </a>
+                        <div class="collapse" id="sidebarAuthentication">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="login.html">ورود</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="register.html">ثبت نام</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="reset-password.html">بازنشانی رمز عبور</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="lock-screen.html">صفحه قفل</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="widgets.html">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:atom-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text">ویجت‌ها</span>
+                            <span class="badge bg-info badge-pill text-end">۹+</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title mt-2">اجزا</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarBaseUI" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarBaseUI">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:bookmark-square-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> رابط‌های پایه </span>
+                        </a>
+                        <div class="collapse" id="sidebarBaseUI">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="accordion.html">آکاردئون</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="alerts.html">هشدارها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="avatar.html">آواتار</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="badge.html">نشان</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="breadcrumb.html">مسیر</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="buttons.html">دکمه‌ها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="cards.html">کارت</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="carousel.html">کاروسل</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="collapse.html">بازشونده</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="dropdown.html">منوی کشویی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="list-group.html">گروه لیست</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="modal.html">مدال</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="tabs.html">تب‌ها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="offcanvas.html">آف‌کنس</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="pagination.html">صفحه‌بندی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="placeholder.html">جایگزین‌ها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="popovers.html">پاپ‌اوور</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="progress.html">پیشرفت</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="scrollspy.html">اسکرول‌اسپای</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="spinners.html">اسپینرها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="toasts.html">توست‌ها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="tooltips.html">تول‌تیپ‌ها</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarExtendedUI" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarExtendedUI">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:case-round-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> رابط‌های پیشرفته </span>
+                        </a>
+                        <div class="collapse" id="sidebarExtendedUI">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="rating.html">رتبه‌بندی‌ها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="sweet-alerts.html">سوییت آلرت</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="swiper-slider.html">اسلایدر سوایپر</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="scrollbar.html">اسکرول بار</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="toastify.html">توسعت توست</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarCharts" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarCharts">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:pie-chart-2-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> نمودارها </span>
+                        </a>
+                        <div class="collapse" id="sidebarCharts">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-area.html">مساحت</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-column.html">ستون</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-bubble.html">حباب</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-candlestick.html">شمعی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-bar.html">ستونی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-heatmap.html">نقشه گرمایی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-line.html">خطی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-mixed.html">مختلط</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-timeline.html">خط زمانی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-boxplot.html">جعبه‌نمودار</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-treemap.html">درخت‌نقشه</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-pie.html">دایره</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-radar.html">راداری</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-radialbar.html">رادیا‌ل‌بار</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-scatter.html">پراکندگی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="apex-polar-area.html">منطقه قطبی</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarForms" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarForms">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:book-bookmark-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> فرم‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarForms">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="basic.html">عناصر پایه</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="checkbox-radio.html">چک‌باکس و رادیو</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="choice-select.html">انتخاب</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="clipboard.html">کلیپ‌بورد</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="calendar.html">تقویم</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="validation.html">اعتبارسنجی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="wizard.html">جادوگر</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="file-upload.html">بارگذاری فایل</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="editors.html">ویرایشگرها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="input-mask.html">ماسک ورودی</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="range-slider.html">اسلایدر</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarTables" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarTables">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:tuning-2-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> جدول‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarTables">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="table-basic.html">جدول‌های پایه</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="table-gridjs.html">گرید جی‌اس</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarIcons" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarIcons">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:ufo-2-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> آیکون‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarIcons">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="boxicons.html">باکس‌آیکون‌ها</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="solar.html">آیکون‌های سولار</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarMaps" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarMaps">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:streets-map-point-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> نقشه‌ها </span>
+                        </a>
+                        <div class="collapse" id="sidebarMaps">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="google.html">نقشه‌های گوگل</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="vector.html">نقشه‌های برداری</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:volleyball-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text">منوی نشان</span>
+                            <span class="badge bg-danger badge-pill text-end">1</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse" role="button"
+                           aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:share-circle-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> مورد منو </span>
+                        </a>
+                        <div class="collapse" id="sidebarMultiLevelDemo">
+                            <ul class="nav sub-navbar-nav">
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link" href="#">مورد منو 1</a>
+                                </li>
+                                <li class="sub-nav-item">
+                                    <a class="sub-nav-link menu-arrow" href="#sidebarItemDemoSubItem" data-bs-toggle="collapse"
+                                       role="button" aria-expanded="false" aria-controls="sidebarItemDemoSubItem">
+                                        <span> مورد منو 2 </span>
+                                    </a>
+                                    <div class="collapse" id="sidebarItemDemoSubItem">
+                                        <ul class="nav sub-navbar-nav">
+                                            <li class="sub-nav-item">
+                                                <a class="sub-nav-link" href="#">زیرمورد منو</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">
+                            <span class="nav-icon">
+                                <iconify-icon icon="solar:user-block-rounded-bold-duotone"></iconify-icon>
+                            </span>
+                            <span class="nav-text"> مورد غیرفعال </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-content">
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="card">
+                            <div class="card-footer border-top">
+                                <div class="row g-2">
+                                    <div class="col-lg-6">
+                                        <a href="#!" class="btn btn-outline-secondary w-100">ایجاد دسته بندی</a>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a href="#!" class="btn btn-primary w-100">لغو</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">افزودن تصویر شاخص</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="dropzone bg-light-subtle py-5">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple="multiple">
+                                    </div>
+                                    <div class="dz-message needsclick">
+                                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
+                                        <h3 class="mt-4">تصاویر خود را اینجا بکشید، یا <span class="text-primary">برای مرور کلیک کنید</span></h3>
+                                        <span class="text-muted fs-13">
+                                            اندازه پیشنهادی 1600 x 1200 (4:3). فرمت‌های PNG، JPG و GIF مجاز هستند
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                    <li class="mt-2" id="dropzone-preview-list">
+                                        <!-- این به عنوان الگوی پیش‌نمایش فایل استفاده می‌شود -->
+                                        <div class="border rounded">
+                                            <div class="d-flex p-2">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar-sm bg-light rounded">
+                                                        <img data-dz-thumbnail class="img-fluid rounded d-block" src="#" alt="Dropzone-Image" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="pt-1">
+                                                        <h5 class="fs-14 mb-1" data-dz-name>&</h5>
+                                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                        <strong class="error text-primary" data-dz-errormessage></strong>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-3">
+                                                    <button data-dz-remove class="btn btn-sm btn-primary">حذف</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- پایان پیش‌نمایش dropzone -->
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">اطلاعات عمومی</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <form method="post">
+                                            <div class="mb-3">
+                                                <label for="category-title" class="form-label">عنوان دسته بندی</label>
+                                                <input type="text" id="category-title" class="form-control" placeholder="عنوان را وارد کنید" value="@Model.SubCategory.Title">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="product-stock" class="form-label">قیمت پایه به تومان</label>
+                                                <input type="number" id="product-stock" class="form-control" placeholder="قیمت" value="@Model.SubCategory.BasePrice">
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-0">
+                                            <label for="description" class="form-label">توضیحات</label>
+                                            <textarea class="form-control bg-light-subtle" id="description" rows="7" placeholder="توضیحات را تایپ کنید"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+            </div>
+
+            <!-- ========== Footer Start ========== -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
+                            <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
+                            <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+    </div>
+
+
+    <div>
+        <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
+            <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
+                <h5 class="text-white m-0">تنظیمات تم</h5>
+                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+            </div>
+
+            <div class="offcanvas-body p-0">
+                <div data-simplebar class="h-100">
+                    <div class="p-3 settings-bar">
+
+                        <div>
+                            <h5 class="mb-3 font-16 fw-semibold">طرح رنگ</h5>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-light" value="light">
+                                <label class="form-check-label" for="layout-color-light">روشن</label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-dark" value="dark">
+                                <label class="form-check-label" for="layout-color-dark">تاریک</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5 class="my-3 font-16 fw-semibold">رنگ نوار بالایی</h5>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-light" value="light">
+                                <label class="form-check-label" for="topbar-color-light">روشن</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-dark" value="dark">
+                                <label class="form-check-label" for="topbar-color-dark">تاریک</label>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <h5 class="my-3 font-16 fw-semibold">رنگ منو</h5>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-light" value="light">
+                                <label class="form-check-label" for="leftbar-color-light">
+                                    روشن
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-dark" value="dark">
+                                <label class="form-check-label" for="leftbar-color-dark">
+                                    تاریک
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5 class="my-3 font-16 fw-semibold">اندازه سایدبار</h5>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-default" value="default">
+                                <label class="form-check-label" for="leftbar-size-default">
+                                    پیش‌فرض
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small" value="condensed">
+                                <label class="form-check-label" for="leftbar-size-small">
+                                    فشرده
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-hidden" value="hidden">
+                                <label class="form-check-label" for="leftbar-hidden">
+                                    پنهان
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover-active" value="sm-hover-active">
+                                <label class="form-check-label" for="leftbar-size-small-hover-active">
+                                    کوچک و فعال بر روی هاور
+                                </label>
+                            </div>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover" value="sm-hover">
+                                <label class="form-check-label" for="leftbar-size-small-hover">
+                                    کوچک و هاور
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="offcanvas-footer border-top p-3 text-center">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-danger w-100" id="reset-layout">بازنشانی</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+    <script src='assets/js/pages/ecommerce-product-details.js'></script>
+</body>
+
+</html>

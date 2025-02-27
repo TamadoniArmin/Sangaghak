@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Requests;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
@@ -12,7 +13,8 @@ namespace SangaghakService.Sangaghak.Requests
         {
             _repository = requestRepository;
         }
-        public async Task<bool> CreateRequestAsync(Request request, CancellationToken cancellationToken)
+
+        public async Task<bool> CreateRequestAsync(GetDataForCreateRequestDto request, CancellationToken cancellationToken)
         {
             return await _repository.CreateRequestAsync(request, cancellationToken);
         }
@@ -22,29 +24,39 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.DeleteRequestDetailsAsync(RequestId, cancellationToken);
         }
 
-        public async Task<List<Request>> GetAllRequestsAsync(CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetAllRequestsAsync(CancellationToken cancellationToken)
         {
             return await _repository.GetAllRequestsAsync(cancellationToken);
         }
 
-        public async Task<List<Request>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken)
+        public async Task<int> GetAllRequestsCountAsync(CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllRequestsCountAsync(cancellationToken);
+        }
+
+        public async Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken)
+        {
+            return await _repository.GetCurrentRequestsCountAsync(cancellationToken);
+        }
+
+        public async Task<List<RequestDTO>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken)
         {
             return await _repository.GetRequestByStatusAsync(status, cancellationToken);
         }
 
-        public async Task<List<Request>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken)
         {
-            return await _repository.GetRequestBySubCategoryAsync(subCategoryId , cancellationToken);
+            return await _repository.GetRequestBySubCategoryAsync(subCategoryId, cancellationToken);
         }
 
-        public async Task<List<Request>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
             return await _repository.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
         }
 
-        public async Task<bool> UpdateRequestDetailsAsync(Offer offer, int RequestId, CancellationToken cancellationToken)
+        public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
         {
-            return await _repository.UpdateRequestDetailsAsync(offer, RequestId,cancellationToken);
+            return await _repository.UpdateRequestDetailsAsync(OfferId, RequestId, cancellationToken);
         }
 
         public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken)

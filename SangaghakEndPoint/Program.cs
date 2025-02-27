@@ -28,7 +28,8 @@ namespace SangaghakEndPoint
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer("Data Source=DESKTOP-7D9S1GO;Initial Catalog=Sangaghak;Integrated Security=SSPI;TrustServerCertificate=True;"));
+
+
             builder.Services.AddIdentity<UserBase, IdentityRole<int>>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
@@ -43,9 +44,6 @@ namespace SangaghakEndPoint
 
 
 
-            builder.Services.AddScoped<IAdminRepository,AdminRepository>();
-            builder.Services.AddScoped<IAdminService,AdminService>();
-            builder.Services.AddScoped<IAdminAppService,AdminAppService>();
 
             builder.Services.AddScoped<IUserBaseRepository, UserBaseRepository>();
             builder.Services.AddScoped<IUserBaseService, UserBaseService>();

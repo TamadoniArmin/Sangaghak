@@ -17,9 +17,10 @@ namespace Connection.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x=>x.Customer)
-                .WithMany(x=>x.Requets)
-                .HasForeignKey(x=>x.CustomerId);
+            //builder.HasOne(x=>x.Customer)
+            //    .WithMany(x=>x.Requets)
+            //    .HasForeignKey(x=>x.CustomerId)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.City)
                 .WithMany(x => x.Requests)
@@ -31,25 +32,26 @@ namespace Connection.Configurations
                 .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x=>x.AcceptedOffer)
+            builder.HasOne(x => x.AcceptedOffer)
                 .WithOne(x => x.AcceptedRequest)
-                .HasForeignKey<Request>(x=>x.AcceptedOfferId)
+                .HasForeignKey<Request>(x => x.AcceptedOfferId)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
-            //builder.HasData(new List<Request>
-            //{ new Request {
-            //Id = 1,
-            //CustomerId = 2,
-            //Title="درخواست برای کاغذ دیواری خانه",
-            //WantedPrice=10000,
-            //WantedTime=new DateTime (2025,12,12,10,12,0),
-            //Status=RequestStatusEnum.WatingForExpertsOffers,
-            //CityId=3,
-            //CategoryId=9,
-            //SetAt=new DateTime(2025,1,1,0,0,0)
-            //}
-            //});
+            builder.HasData(new List<Request>
+            { new Request {
+            Id = 1,
+            CustomerId = 1,
+            Description="درخواست برای کاغذ دیواری خانه",
+            WantedPrice=10000,
+            Address="خیابانی از خیابان های تهران",
+            MaxTime=DateTime.Parse("2025-12-01"),
+            Status=RequestStatusEnum.WatingForCustomerComfimation,
+            CityId=3,
+            CategoryId=9,
+            SetAt=DateTime.Parse("2024-09-01")
+            }
+            });
         }
     }
 }

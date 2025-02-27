@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SangaghakService", "Sangagh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SangaghakAppService", "SangaghakAppService\SangaghakAppService.csproj", "{717700BF-93AA-49C9-9854-C5B33B219070}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SangaghakRazorEndPoint", "SangaghakRazorEndPoint\SangaghakRazorEndPoint.csproj", "{0A4488EA-94CD-4BFB-87CD-0BA177023DF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{717700BF-93AA-49C9-9854-C5B33B219070}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{717700BF-93AA-49C9-9854-C5B33B219070}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{717700BF-93AA-49C9-9854-C5B33B219070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4488EA-94CD-4BFB-87CD-0BA177023DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4488EA-94CD-4BFB-87CD-0BA177023DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4488EA-94CD-4BFB-87CD-0BA177023DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4488EA-94CD-4BFB-87CD-0BA177023DF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +85,6 @@ Global
 		{D309600C-CF3F-408A-B016-9014EF2C72D9} = {32BB69FD-D8A7-4951-B947-35D70062DC59}
 		{10762341-3F29-4ADC-8B5D-DBB2F6BBD1E3} = {37457FD4-325E-43F4-A874-81E0E05DE201}
 		{717700BF-93AA-49C9-9854-C5B33B219070} = {37457FD4-325E-43F4-A874-81E0E05DE201}
+		{0A4488EA-94CD-4BFB-87CD-0BA177023DF0} = {C15A4E20-3723-45AC-A793-56D9B688EB3D}
 	EndGlobalSection
 EndGlobal

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Domain.Core.Sangaghak.DTOs.Comments;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using App.Domain.Core.Sangaghak.Enum;
 
@@ -11,12 +12,14 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
     public interface ICommentRepository
     {
         #region Create
-        public Task<bool> CreateCommentAsync(Comment comment, CancellationToken cancellationToken);
+        public Task<bool> CreateCommentAsync(CommentForCreateDTO comment, CancellationToken cancellationToken);
         #endregion
         #region Read
-        public Task<List<Comment>> GetAllCommentsAsync(CancellationToken cancellationToken);
-        public Task<List<Comment>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken);
-        public Task<List<Comment>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken);
+        public Task<List<CommentDTO>> GetAllCommentsAsync(CancellationToken cancellationToken);
+        public Task<List<CommentDTO>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken);
+        public Task<List<CommentDTO>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken);
+        public Task<List<CommentDTO>> GetPendingCommentAsync(CancellationToken cancellationToken);
+        public Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken);
         #endregion
         #region Update
 

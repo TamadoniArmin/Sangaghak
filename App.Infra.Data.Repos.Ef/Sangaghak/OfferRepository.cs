@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Requests;
+using App.Domain.Core.Sangaghak.Entities.Users;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,19 +18,17 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Create
-        public async Task<bool> CreatOffer(Offer offer,CancellationToken cancellationToken)
+        public async Task<bool> CreatOffer(OfferForCreateAndUpdateDTO Model, CancellationToken cancellationToken)
         {
-            var WantedOffer = await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.RequestId == offer.RequestId && x.ExpertId == offer.ExpertId, cancellationToken);
+            var WantedOffer = await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.RequestId == Model.RequestId && x.ExpertId == Model.ExpertId, cancellationToken);
             if (WantedOffer == null)
             {
                 Offer offer1 = new Offer();
-                offer1.ExpertId = offer.ExpertId;
-                offer1.RequestId = offer.RequestId;
-                offer1.OfferedPrice = offer.OfferedPrice;
-                offer1.OfferedTime = offer.OfferedTime;
-                offer1.Description = offer.Description;
-                offer1.Request = offer.Request;
-                offer1.Expert = offer1.Expert;
+                offer1.ExpertId = Model.ExpertId;
+                offer1.RequestId = Model.RequestId;
+                offer1.OfferedPrice = Model.OfferedPrice;
+                offer1.OfferedTime = Model.OfferedTime;
+                offer1.Description = Model.Description;
                 offer1.SetAt = DateTime.Now;
                 await _appDbContext.Offers.AddAsync(offer1, cancellationToken);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
@@ -38,41 +38,81 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Read
-        public async Task<List<Offer>> GetAllOffersAsync(CancellationToken cancellationToken)
+        public async Task<List<OfferDTO>> GetAllOffersAsync(CancellationToken cancellationToken)
         {
-            return await _appDbContext.Offers.AsNoTracking().Where(x =>x.IsDeleted == false).ToListAsync(cancellationToken);
+            return await _appDbContext.Offers
+                .AsNoTracking()
+                .Where(x =>x.IsDeleted == false)
+                .Select(x=> new OfferDTO()
+                {
+                    Id = x.Id,
+                    ExpertId = x.ExpertId,
+                    RequestId = x.RequestId,
+                    OfferedPrice = x.OfferedPrice,
+                    OfferedTime = x.OfferedTime,
+                    Description = x.Description,
+                })
+                .ToListAsync(cancellationToken);
         }
 
-        public async Task<Offer> GetOfferByExpertAsync(int ExpertId,CancellationToken cancellationToken)
+        public async Task<OfferDTO> GetOfferByExpertAsync(int ExpertId,CancellationToken cancellationToken)
         {
-            return await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
+            var FindOffer= await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
+            if (FindOffer == null) return null;
+            var OfferToSend = new OfferDTO()
+            {
+                Id = FindOffer.Id,
+                ExpertId = FindOffer.ExpertId,
+                RequestId = FindOffer.RequestId,
+                OfferedPrice = FindOffer.OfferedPrice,
+                OfferedTime = FindOffer.OfferedTime,
+                Description = FindOffer.Description,
+            };
+            return OfferToSend;
         }
 
-        public async Task<Offer> GetOfferByIdAsync(int Id, CancellationToken cancellationToken)
+        public async Task<OfferDTO> GetOfferByIdAsync(int Id, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id && x.IsDeleted == false,cancellationToken);
+            var FindOffer = await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id && x.IsDeleted == false, cancellationToken);
+            if (FindOffer == null) return null;
+            var OfferToSend = new OfferDTO()
+            {
+                Id = FindOffer.Id,
+                ExpertId = FindOffer.ExpertId,
+                RequestId = FindOffer.RequestId,
+                OfferedPrice = FindOffer.OfferedPrice,
+                OfferedTime = FindOffer.OfferedTime,
+                Description = FindOffer.Description,
+            };
+            return OfferToSend;
         }
 
-        public async Task<List<Offer>> GetRequestOffersAsync(int Requestid, CancellationToken cancellationToken)
+        public async Task<List<OfferDTO>> GetRequestOffersAsync(int Requestid, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Offers.AsNoTracking().Where(x => x.RequestId == Requestid && x.IsDeleted == false).ToListAsync(cancellationToken);
+            return await _appDbContext.Offers
+                .AsNoTracking()
+                .Where(x => x.RequestId == Requestid && x.IsDeleted == false)
+                .Select(x => new OfferDTO()
+                {
+                    Id = x.Id,
+                    ExpertId = x.ExpertId,
+                    RequestId = x.RequestId,
+                    OfferedPrice = x.OfferedPrice,
+                    OfferedTime = x.OfferedTime,
+                    Description = x.Description,
+                }
+                ).ToListAsync(cancellationToken);
+        }
+        public async Task<int> GetExpertIdByOfferIdAysnc(int OfferId, CancellationToken cancellationToken)
+        {
+            var Offer= await _appDbContext.Offers.FirstOrDefaultAsync(x=>x.Id == OfferId,cancellationToken);
+            if (Offer==null) return 0;
+            else return Offer.ExpertId;
         }
         #endregion
         #region Update
-        public async Task<bool> SetOfferAsAcceptedAsync(int OfferId, Request AcceptedRequest,CancellationToken cancellationToken)
-        {
-            var Offer = await _appDbContext.Offers.FirstOrDefaultAsync(x => x.Id == OfferId,cancellationToken);
-            if (Offer != null)
-            {
-                Offer.AcceptedRequest = AcceptedRequest;
-                Offer.AcceptedAt = DateTime.Now;
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-                return true;
-            }
-            return false;
-        }
 
-        public async Task<bool> UpdateOfferAsync(Offer offer, int OfferId, CancellationToken cancellationToken)
+        public async Task<bool> UpdateOfferAsync(OfferForCreateAndUpdateDTO offer, int OfferId, CancellationToken cancellationToken)
         {
             var Offer = await _appDbContext.Offers.FirstOrDefaultAsync(x => x.Id == OfferId, cancellationToken);
             if (Offer != null)

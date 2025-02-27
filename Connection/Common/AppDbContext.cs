@@ -12,24 +12,27 @@ namespace Connection.Common
 {
     public class AppDbContext : IdentityDbContext<UserBase, IdentityRole<int>, int>
     {
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+
+        //}
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            //modelBuilder.ApplyConfiguration(new CityConfiguration());
-            //modelBuilder.ApplyConfiguration(new CommentConfiguration());
-            //modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            //modelBuilder.ApplyConfiguration(new ExpertConfiguration());
-            //modelBuilder.ApplyConfiguration(new ImageConfiguration());
-            //modelBuilder.ApplyConfiguration(new RequestConfiguration());
-            //modelBuilder.ApplyConfiguration(new RoleConfiguraion());
-            //modelBuilder.ApplyConfiguration(new OfferConfiguration());
-            //modelBuilder.ApplyConfiguration(new UserBaseConfiguration());
-            //modelBuilder.Entity<Customer>().ToTable("Customers");
-            //modelBuilder.Entity<Expert>().ToTable("Experts");
-            //modelBuilder.Entity<Admin>().ToTable("Admin");
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CityConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new ExpertConfiguration());
+            modelBuilder.ApplyConfiguration(new ImageConfiguration());
+            modelBuilder.ApplyConfiguration(new RequestConfiguration());
+            modelBuilder.ApplyConfiguration(new OfferConfiguration());
+            UserBaseConfiguration.SeedUsers(modelBuilder);
+            modelBuilder.Entity<Customer>().ToTable("Customers");
+            modelBuilder.Entity<Expert>().ToTable("Experts");
+            modelBuilder.Entity<Admin>().ToTable("Admin");
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Admin> Admins { get; set; }
@@ -40,7 +43,6 @@ namespace Connection.Common
         public DbSet<Expert> Experts { get; set; }
         public DbSet<Image> Imagies { get; set; }
         public DbSet<Request> Requests { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<UserBase> Users { get; set; }
     }

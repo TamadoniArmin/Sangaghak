@@ -17,15 +17,15 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
     {
         #region Properties
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Description { get; set; }
         public int WantedPrice { get; set; }
-        public DateTime WantedTime { get; set; }
+        public DateTime MaxTime { get; set; }
         public string Address { get; set; }
         public RequestStatusEnum Status { get; set; }
         public int CityId { get; set; }
         public int CustomerId { get; set; }
         public int CategoryId { get; set; }
-        public int AcceptedOfferId { get; set; }
+        public int? AcceptedOfferId { get; set; }
         public DateTime SetAt { get; set; }
         public bool IsDeleted { get; set; } = false;
         #endregion
