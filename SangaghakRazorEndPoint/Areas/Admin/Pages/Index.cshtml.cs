@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Pages
 {
-    [Authorize(Roles = "Admin")]
+    //Authorize(Roles = "Admin")]
     public class IndexModel(IDashboardAppService dashboardAppService) : PageModel
     {
         [BindProperty]
@@ -41,6 +41,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
             AllRequestsCount = await dashboardAppService.GetAllRequestsCountAsync(cancellationToken);
             CurrentRequestsCount = await dashboardAppService.GetCurrentRequestsCountAsync(cancellationToken);
             PendingCommentsCount = await dashboardAppService.GetPendingCommentCountAsync(cancellationToken);
+            Requests = await dashboardAppService.GetAllRequests(cancellationToken);
         }
     }
 }

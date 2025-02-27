@@ -1,0 +1,32 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Divarcheh.Endpoints.RazorPages.Areas.Account.Pages.LoginModel
+@{
+}
+
+
+<section id="main" class="clearfix user-page">
+    <div class="container">
+        <div class="row text-center">
+            <!-- user-login -->			
+            <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="user-account">
+                    <h2>فرم ورود</h2>
+                    <!-- form -->
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="text" asp-for="PageModel.Username" class="form-control" placeholder="نام کاربری">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" asp-for="PageModel.Password" class="form-control" placeholder="رمزعبور">
+                        </div>
+                        <button type="submit" class="btn">ورود</button>
+                    </form><!-- form -->
+                    <!-- forgot-password -->
+                </div>
+                <a  asp-page="reg" class="btn-primary">ساخت اکانت جدید</a>
+            </div><!-- user-login -->			
+        </div><!-- row -->	
+    </div><!-- container -->
+</section><!-- signin-page -->

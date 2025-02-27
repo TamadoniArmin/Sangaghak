@@ -1,0 +1,76 @@
+﻿@page
+@using Divarcheh.Domain.Core.Contracts.AppService
+@model Divarcheh.Endpoints.RazorPages.Pages.Advertisement.SelectCategoryModel
+@{
+}
+
+@inject ICategoryAppService CategoryAppService;
+<!-- post-page -->
+<section id="main" class="clearfix ad-post-page">
+	<div class="container">
+
+		<div class="breadcrumb-section">
+			<!-- breadcrumb -->
+			<ol class="breadcrumb">
+				<li><a href="index.html">خانه</a></li>
+				<li>افزودن آگهی</li>
+			</ol><!-- breadcrumb -->
+			<h2 class="title">ارسال آگهی رایگان</h2>
+		</div><!-- banner -->
+
+
+
+		<div id="ad-post">
+			<div class="row category-tab">
+				<div class="col-lg-4 col-md-6">
+					<div class="section cat-option select-category post-option">
+						<h4>یک زیر شاخه را انتخاب کنید</h4>
+                        <ul role="tablist" class="nav nav-tabs">
+							@foreach (var category in @Model.Parents)
+                            {
+                                <li>
+                                    <a asp-route-parentId="@category.Id">
+                                        <span class="select">
+                                            <img src="@category.ImagePath" alt="@category.Title" class="img-">
+                                        </span>
+										@category.Title
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+					</div>
+				</div>
+
+				<!-- Tab panes -->
+				<div class="col-lg-4 col-md-6">
+					<div class="section tab-content subcategory post-option">
+						<h4>یک زیر شاخه را انتخاب کنید</h4>
+
+                        <div role="tabpanel" class="tab-pane active show" id="cat2">
+                            @foreach (var childCategory in @Model.Childs)
+                            {
+                                <ul>
+									<li><a asp-route-childCategoryId="@childCategory.Id" asp-route-parentId="@Model.ParentId">@childCategory.Title</a></li>
+                                </ul>
+                            }
+                        </div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="section next-stap post-option">
+						<h2>ارسال آگهی تنها در <span>30 ثانیه</span></h2>
+						<p>لطفاً برای چندین مورد یا خدمات ، چندین تبلیغات ارسال نکنید. همه تبلیغات تکراری ، اسپم و طبقه بندی اشتباه حذف می شوند.</p>
+                        <div class="btn-section">
+							@if (@Model.ChildCategoryId > 0)
+                            {
+								<a asp-route-childCategoryId="@Model.ChildCategoryId" asp-page="Create" class="btn btn-success">بعدی</a>
+                            }
+                            <a href="#" class="btn-info">لغو</a>
+                        </div>
+					</div>
+				</div><!-- next-stap -->
+			</div>
+		</div>
+	</div><!-- container -->
+</section><!-- post-page -->

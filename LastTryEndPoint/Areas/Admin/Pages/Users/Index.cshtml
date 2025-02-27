@@ -1,0 +1,82 @@
+﻿@page
+@model Divarcheh.Endpoints.RazorPages.Areas.Admin.Pages.Users.IndexModel
+@{
+    ViewData["Title"] = "دیوارچه > مدیریت کاربران > لیست کاربران";
+}
+<div class="col-lg-12">
+    <div class="portlet box shadow">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h3 class="title">
+                    کاربران
+                </h3>
+            </div><!-- /.portlet-title -->
+        </div><!-- /.portlet-heading -->
+        <div class="portlet-body">
+            <div class="top-buttons-box mb-2">
+                <a class="btn btn-success" href="#">
+                    <i class="icon-plus"></i>
+                    افزودن
+                    <div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div>
+                </a>
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped" id="data-table">
+                        <thead>
+                            <tr>
+                                <th class="p-low"><input type="checkbox" id="btn-check-all-toggle"></th>
+                                <th>#</th>
+                                <th>پروفایل</th>
+                                <th>نام</th>
+                                <th>نام خانوادگی</th>
+                                <th>نام کاربری</th>
+                                <th>موبایل</th>
+                                <th>ایمیل</th>
+                                <th>شهر</th>
+                                <th>نقش</th>
+                                <th>عملیات</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in @Model.users)
+                            {
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>@user.Id</td>
+
+                                    @if (string.IsNullOrEmpty(user.ImagePath))
+                                    {
+                                        <td><img style="border-radius : 50%" src="~/AdminTemplate/images/user/placeholder.jpg" width="80" height="80" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td><img style="border-radius : 50%" src="@user.ImagePath" width="80" height="80" /></td>
+                                    }
+
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td>@user.UserName</td>
+                                    <td>@user.Mobile</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.City</td>
+                                    <td>@user.Role</td>
+                                    <td>
+                                        <a asp-page="Update" asp-route-Id="@user.Id" class="btn btn-info">ویرایش</a>
+                                        <a onclick="return confirm('آیا از حذف این کاربر اطمینان دارید؟')" asp-page-handler="Delete" asp-route-Id="@user.Id" class="btn btn-danger">حذف</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.portlet-body -->
+    </div><!-- /.portlet -->
+</div><!-- /.col-lg-12 -->
+@section Scripts
+{
+    <script src="~/AdminTemplate/plugins/data-table/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminTemplate/js/pages/datatable.js"></script>
+}

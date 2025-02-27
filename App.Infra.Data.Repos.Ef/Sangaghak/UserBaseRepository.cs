@@ -54,7 +54,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     CityId=x.CityId,
                     Role=x.Role,
                     ImagePath=x.ImagePath
-                }).ToListAsync(cancellationToken);
+                }).ToListAsync();
         }
 
         public async Task<int> GetBalanceAsync(int UserId,CancellationToken cancellationToken)

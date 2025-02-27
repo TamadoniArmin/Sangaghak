@@ -1,0 +1,118 @@
+﻿@page
+@model Divarcheh.Endpoints.RazorPages.Areas.Admin.Pages.Users.CreateModel
+@{
+    ViewData["Title"] = "دیوارچه > مدیریت کاربران > ایجاد کاربران";
+
+}
+
+<div class="col-lg-12">
+    <div class="portlet box shadow">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h3 class="title">
+                    کاربران
+                </h3>
+            </div><!-- /.portlet-title -->
+        </div><!-- /.portlet-heading -->
+        <div class="portlet-body">
+            <div class="top-buttons-box mb-2">
+            </div>
+            <div class="row">
+                <form enctype="multipart/form-data" id="simple-form" role="form" method="post">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.FirstName" class="form-control" type="text" placeholder="نام">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.LastName" class="form-control" type="text" placeholder="نام خانوادگی">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.Mobile" class="form-control" type="text" placeholder="شماره موبایل" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.Email" class="form-control" type="email" placeholder="آدرس ایمیل" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.Address" class="form-control" type="text" placeholder="آدرس" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.UserName" class="form-control" type="text" placeholder="نام کاربری" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input asp-for="User.Password" class="form-control" type="password" placeholder="کلمه عبور" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <select asp-for="User.CityId" class="form-select">
+                                    @foreach (var city in @Model.Cities)
+                                    {
+                                        <option value="@city.Id">@city.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <select asp-for="User.Role" class="form-select">
+                                    <option value="1">Admin</option>
+                                    <option value="2">Visitor</option>
+                                    <option value="3">Advertiser</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group relative">
+                            <input asp-for="User.ProfileImgFile" type="file" class="form-control">
+                            <label>آپلود عکس</label>
+                            <div class="input-group round">
+                                <input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success">
+                                        <i class="icon-picture"></i>
+                                        آپلود عکس
+                                        <div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div>
+                                    </button>
+                                </span>
+                            </div><!-- /.input-group -->
+                            <div class="help-block"></div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">
+                            <i class="icon-check"></i>
+                            ذخیره
+                        </button>
+                        <a asp-page="Index" class="btn btn-warning">
+                            بازگشت
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.portlet-body -->
+    </div><!-- /.portlet -->
+</div><!-- /.col-lg-12 -->

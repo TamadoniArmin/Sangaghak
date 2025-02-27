@@ -1,0 +1,73 @@
+﻿@page
+@model Divarcheh.Endpoints.RazorPages.Areas.Admin.Pages.IndexModel
+@{
+    ViewData["Title"] = "پیشخوان";
+}
+
+<div class="col-lg-12">
+    <div class="portlet box shadow">
+        <div class="portlet-heading">
+            <div class="portlet-title">
+                <h3 class="title">
+                    آمار
+                </h3>
+            </div><!-- /.portlet-title -->
+        </div><!-- /.portlet-heading -->
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="stat-box use-cyan shadow">
+                        <a href="#">
+                            <div class="stat">
+                                <div class="counter-down"><div class="num">@Model.DashboardData.UserCount</div></div>
+                                <div class="h3">کاربر</div>
+                            </div><!-- /.stat -->
+                            <div class="visual">
+                                <i class="icon-people"></i>
+                            </div><!-- /.visual -->
+                        </a>
+                    </div><!-- /.stat-box -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-3 col-6">
+                    <div class="stat-box use-blue shadow">
+                        <a href="#">
+                            <div class="stat">
+                                <div class="counter-down"><div class="num">@Model.DashboardData.CategoryCount</div></div>
+                                <div class="h3">تعداد دسته بندی ها</div>
+                            </div><!-- /.stat -->
+                            <div class="visual">
+                                <i class="icon-present"></i>
+                            </div><!-- /.visual -->
+                        </a>
+                    </div><!-- /.stat-box -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-3 col-6">
+                    <div class="stat-box use-green shadow">
+                        <a href="#">
+                            <div class="stat">
+                                <div class="counter-down"><div class="num">@Model.DashboardData.AdvertisementCount</div></div>
+                                <div class="h3">تعداد آگهی ها</div>
+                            </div><!-- /.stat -->
+                            <div class="visual">
+                                <i class="icon-diamond"></i>
+                            </div><!-- /.visual -->
+                        </a>
+                    </div><!-- /.stat-box -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-3 col-6">
+                    <div class="stat-box use-purple shadow">
+                        <a href="#">
+                            <div class="stat">
+                                <div class="counter-down"><div class="num">@Model.DashboardData.BrandCount</div></div>
+                                <div class="h3">تعداد برندها</div>
+                            </div><!-- /.stat -->
+                            <div class="visual">
+                                <i class="icon-bubbles"></i>
+                            </div><!-- /.visual -->
+                        </a>
+                    </div><!-- /.stat-box -->
+                </div><!-- /.col-lg-3 -->
+            </div>
+        </div><!-- /.portlet-body -->
+    </div><!-- /.portlet -->
+</div><!-- /.col-lg-12 -->

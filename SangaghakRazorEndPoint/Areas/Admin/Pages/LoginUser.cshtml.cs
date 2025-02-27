@@ -4,18 +4,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Users
 {
-    public class LoginViewModel
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public bool RememberMe { get; set; }
-    }
-
     public class LoginUserModel(IUserBaseAppService userAppService) : PageModel
     {
 
         [BindProperty]
-        public LoginViewModel PageModel { get; set; }
+        public string Username { get; set; }
+        [BindProperty]
+        public string Password { get; set; }
+        [BindProperty]
+        public bool RememberMe { get; set; }
 
         public IActionResult OnGet()
         {
@@ -24,7 +21,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Users
 
         public async Task<IActionResult> OnPost()
         {
-            await userAppService.Login(PageModel.Username, PageModel.Password, true);
+            await userAppService.Login(Username, Password, true);
             return RedirectToPage("Login");
         }
     }
