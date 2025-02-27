@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Areas\Account\Pages\AccessDenied.cshtml.cs" />
+    <Compile Include="Areas\Account\Pages\Login.cshtml.cs" />
+    <Compile Include="Areas\Account\Pages\Logout.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CommentManagement.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateSubCategory.cshtml.cs" />
@@ -59,6 +62,38 @@
     <ProjectReference Include="..\Connection\Connection.csproj" />
     <ProjectReference Include="..\SangaghakAppService\SangaghakAppService.csproj" />
     <ProjectReference Include="..\SangaghakService\SangaghakService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\AdminTemplate\libs\chart.js\docs\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\e2e\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\integration\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\plugins\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\support\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\src\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\choices.js\src\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\daterangepicker\example\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\flatpickr\types\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\flatpickr\utils\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\gmaps\docs\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\gmaps\examples\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\gmaps\test\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\gridjs\src\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\rater-js\example\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\rater-js\test\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\swiper\angular\angular\src\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\swiper\angular\esm2020\angular\src\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\swiper\types\modules\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\toastify-js\example\" />
+    <Folder Include="wwwroot\AdminTemplate\libs\toastify-js\src\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Account\Pages\AccessDenied.cshtml" />
+    <None Include="Areas\Account\Pages\Login.cshtml" />
+    <None Include="Areas\Account\Pages\Logout.cshtml" />
+    <None Include="Areas\Account\Pages\_ViewImports.cshtml" />
+    <None Include="Areas\Account\Pages\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>
