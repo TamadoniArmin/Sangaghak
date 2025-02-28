@@ -24,10 +24,14 @@ namespace SangaghakRazorEndPoint
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
+            //var configuration = builder.Configuration;
+
 
             // Add services to the container.
-            builder.Services.AddRazorPages();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer("Data Source=DESKTOP-7D9S1GO;Initial Catalog=Sangaghak;Integrated Security=SSPI;TrustServerCertificate=True;"));
 
             builder.Services.AddIdentity<UserBase, IdentityRole<int>>(options =>
             {
@@ -42,8 +46,7 @@ namespace SangaghakRazorEndPoint
             .AddEntityFrameworkStores<AppDbContext>();
 
 
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer("Data Source=DESKTOP-7D9S1GO;Initial Catalog=Sangaghak;Integrated Security=SSPI;TrustServerCertificate=True;"));
+
             //    optionsBuilder.UseSqlServer();
             //    base.OnConfiguring(optionsBuilder);
 
@@ -86,8 +89,11 @@ namespace SangaghakRazorEndPoint
             builder.Services.AddScoped<IRequestService, RequestService>();
             //builder.Services.AddScoped<IRequestAppService, RequestAppService>();
 
-            builder.Services.AddScoped<IDashboardAppService,DashboardAppService>();
-            builder.Services.AddScoped<IGeneralService,GeneralService>();
+            builder.Services.AddScoped<IDashboardAppService, DashboardAppService>();
+            builder.Services.AddScoped<IGeneralService, GeneralService>();
+
+            builder.Services.AddRazorPages();
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
             var app = builder.Build();
 

@@ -37,9 +37,9 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await _appDbContext
+            var Result= await _appDbContext
                 .Users
-                .AsNoTracking()
+                //.AsNoTracking()
                 .Where(x => x.IsDeleted == false)
                 .Select(x => new GetUserBaseForViewPage()
                 {
@@ -47,14 +47,15 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     FullName=x.FirstName+" "+ x.LastName,
-                    UserName=x.UserName,
+                    UserName=x.UserName??string.Empty,
                     Mobile=x.Mobile,
                     Email=x.Email,
                     RegisterAt=x.RegisteredAt,
                     CityId=x.CityId,
                     Role=x.Role,
                     ImagePath=x.ImagePath
-                }).ToListAsync();
+                }).ToListAsync(cancellationToken);
+            return Result;
         }
 
         public async Task<int> GetBalanceAsync(int UserId,CancellationToken cancellationToken)

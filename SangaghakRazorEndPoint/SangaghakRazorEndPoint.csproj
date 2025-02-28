@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Compile Include="Areas\Account\Pages\AccessDenied.cshtml.cs" />
-    <Compile Include="Areas\Account\Pages\Login.cshtml.cs" />
     <Compile Include="Areas\Account\Pages\Logout.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CommentManagement.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
@@ -48,6 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -65,6 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Account\" />
     <Folder Include="wwwroot\AdminTemplate\libs\chart.js\docs\" />
     <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\e2e\" />
     <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\integration\" />
@@ -90,7 +91,6 @@
 
   <ItemGroup>
     <None Include="Areas\Account\Pages\AccessDenied.cshtml" />
-    <None Include="Areas\Account\Pages\Login.cshtml" />
     <None Include="Areas\Account\Pages\Logout.cshtml" />
     <None Include="Areas\Account\Pages\_ViewImports.cshtml" />
     <None Include="Areas\Account\Pages\_ViewStart.cshtml" />

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Pages
 {
-    //Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class IndexModel(IDashboardAppService dashboardAppService) : PageModel
     {
         [BindProperty]

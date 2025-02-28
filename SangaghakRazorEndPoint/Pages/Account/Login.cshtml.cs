@@ -2,20 +2,16 @@ using App.Domain.Core.Sangaghak.App.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SangaghakRazorEndPoint.Areas.Account.Pages
+namespace SangaghakRazorEndPoint.Pages.Account
 {
-    public class LoginViewModel
+    public class LoginModel (IUserBaseAppService userBaseAppService) : PageModel
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public bool RememberMe { get; set; }
-    }
-
-    public class LoginModel(IUserBaseAppService userAppService) : PageModel
-    {
-
         [BindProperty]
-        public LoginViewModel PageModel { get; set; }
+        public string Username { get; set; }
+        [BindProperty]
+        public string Password { get; set; }
+        [BindProperty]
+        public bool RememberMe { get; set; }
 
         public IActionResult OnGet()
         {
@@ -24,8 +20,8 @@ namespace SangaghakRazorEndPoint.Areas.Account.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            await userAppService.Login(PageModel.Username, PageModel.Password, true);
-            return RedirectToPage("Login");
+            await userBaseAppService.Login(Username, Password, true);
+            return RedirectToPage("Index");
         }
     }
 }

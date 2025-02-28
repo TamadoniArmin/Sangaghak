@@ -1,31 +1,56 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.DTOs.Users;
+using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
+using Connection.Common;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace SangaghakAppService.Sangaghak.Pages
 {
-    public class DashboardAppService(IUserBaseService userBaseService, IRequestService requestService, ICommentService commentService, IOfferService offerService, ICategoryService categoryService, ICityService cityService) : IDashboardAppService
+    public class DashboardAppService(IUserBaseService userBaseService, IRequestService requestService, ICommentService commentService, IOfferService offerService, ICategoryService categoryService, ICityService cityService,UserManager<UserBase> userManager) : IDashboardAppService
     {
         public async Task<int> GetAllUsersCount(CancellationToken cancellationToken)
         {
-            return await userBaseService.GetCountAsync(cancellationToken);
+            return await userManager.Users.AsNoTracking().Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
-            return await userBaseService.GetAllAsync(cancellationToken);
+            var result = await userManager.Users
+            .AsNoTracking()
+            .Where(x => !x.IsDeleted)
+            .Select(x => new GetUserBaseForViewPage
+            {
+                Id = x.Id,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                FullName = x.FirstName + " " + x.LastName,
+                UserName = x.UserName ?? string.Empty,
+                Mobile = x.Mobile,
+                Email = x.Email,
+                RegisterAt = x.RegisteredAt,
+                CityId = x.CityId,
+                Role = x.Role,
+                ImagePath = x.ImagePath
+            })
+            .ToListAsync(cancellationToken);
+
+            return result;
         }
 
         public async Task<int> GetBalance(int UserId,CancellationToken cancellationToken)
         {
-            return await userBaseService.GetBalanceAsync(UserId,cancellationToken);
+            var WantedUser = await userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId, cancellationToken);
+            if (WantedUser == null) return -1;
+            return WantedUser.Balance;
         }
 
         public async Task<int> GetEachRoleCount(RoleEnum role,CancellationToken cancellationToken)
         {
-            return await userBaseService.GetCountByRoleAsync(role,cancellationToken);
+            return await userManager.Users.AsNoTracking().Where(x => x.Role == role && x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<List<RequestDTO>> GetAllRequests(CancellationToken cancellationToken)
