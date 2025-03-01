@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Connection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250227193809_init")]
-    partial class init
+    [Migration("20250228084453_ini2")]
+    partial class ini2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -510,6 +510,12 @@ namespace Connection.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admin", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Customer", b =>
@@ -688,12 +694,15 @@ namespace Connection.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            Balance = 0,
+                            AdminId = 1,
+                            Balance = 1000000,
                             CityId = 3,
                             ConcurrencyStamp = "e975c22f-8ab0-44e3-805f-7fdd0dd974c7",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
+                            FirstName = "armin",
                             IsDeleted = false,
+                            LastName = "tamadoni",
                             LockoutEnabled = false,
                             Mobile = "09377507920",
                             NormalizedEmail = "ADMIN@GMAIL.COM",
@@ -701,7 +710,7 @@ namespace Connection.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAENZzgudddM6uMKVrN6RXQO9fhzSGKyginx5emR1QIKySt7TAfPHMHbsonZfYcotxbA==",
                             PhoneNumberConfirmed = false,
                             RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Role = 0,
+                            Role = 1,
                             RoleId = 1,
                             SecurityStamp = "ada9a37d-4e66-4f49-a14e-bf1f4bd0e6f0",
                             TwoFactorEnabled = false,
@@ -711,12 +720,15 @@ namespace Connection.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            Balance = 0,
+                            Balance = 1000000,
                             CityId = 1,
                             ConcurrencyStamp = "9f860973-8ca8-4f36-8aaf-9dc177c92bac",
+                            CustomerId = 1,
                             Email = "Customer@gmail.com",
                             EmailConfirmed = false,
+                            FirstName = "Ali",
                             IsDeleted = false,
+                            LastName = "baghani",
                             LockoutEnabled = false,
                             Mobile = "09222222222",
                             NormalizedEmail = "CUSTOMER@GMAIL.COM",
@@ -724,7 +736,7 @@ namespace Connection.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEHKRtQ90vsbb39tRXod/l3TdKUV4dN+SoRhYrRCgQYgesUOEVcWcBotKpqNf7OIujw==",
                             PhoneNumberConfirmed = false,
                             RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Role = 0,
+                            Role = 2,
                             RoleId = 2,
                             SecurityStamp = "bd984d87-783f-4230-9797-4c37e661373b",
                             TwoFactorEnabled = false,
@@ -734,12 +746,15 @@ namespace Connection.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            Balance = 0,
+                            Balance = 1000000,
                             CityId = 1,
                             ConcurrencyStamp = "27965def-0d29-4833-90d6-1a59788a1525",
                             Email = "Expert@gmail.com",
                             EmailConfirmed = false,
+                            ExpertId = 1,
+                            FirstName = "Kazem",
                             IsDeleted = false,
+                            LastName = "Hassani",
                             LockoutEnabled = false,
                             Mobile = "09333333333",
                             NormalizedEmail = "EXPERT@GMAIL.COM",
@@ -747,7 +762,7 @@ namespace Connection.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEDNGogG29TzbpfXR8dEyW54z9msx39N5p7J60B8qFXsXyqn3wlEH2YyTrCo/r898MQ==",
                             PhoneNumberConfirmed = false,
                             RegisteredAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Role = 0,
+                            Role = 3,
                             RoleId = 3,
                             SecurityStamp = "56da5aa9-24c0-4932-8688-1c49e8aad93d",
                             TwoFactorEnabled = false,

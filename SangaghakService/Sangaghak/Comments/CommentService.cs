@@ -44,9 +44,9 @@ namespace SangaghakService.Sangaghak.Comments
             return await _commentRepository.GetPendingCommentAsync(cancellationToken);
         }
 
-        public Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
+        public async Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _commentRepository.GetPendingCommentCountAsync(cancellationToken);
         }
 
         public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)

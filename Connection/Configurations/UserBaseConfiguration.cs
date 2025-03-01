@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.Entities.Users;
+using App.Domain.Core.Sangaghak.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +21,16 @@ namespace Connection.Configurations
                 NormalizedUserName = "ADMIN@GMAIL.COM",
                 Email = "Admin@gmail.com",
                 NormalizedEmail = "ADMIN@GMAIL.COM",
+                FirstName ="armin",
+                LastName ="tamadoni",
+                Balance =1000000,
                 LockoutEnabled = false,
                 Mobile = "09377507920",
                 SecurityStamp = "ada9a37d-4e66-4f49-a14e-bf1f4bd0e6f0",
                 CityId = 3,
-                //AdminId = 1,
+                AdminId = 1,
                 RoleId = 1,
+                Role=RoleEnum.Admin,
                 ConcurrencyStamp ="e975c22f-8ab0-44e3-805f-7fdd0dd974c7",
                 PasswordHash="AQAAAAIAAYagAAAAENZzgudddM6uMKVrN6RXQO9fhzSGKyginx5emR1QIKySt7TAfPHMHbsonZfYcotxbA==",
                 RegisteredAt=new DateTime(2025,1,1)
@@ -35,14 +40,18 @@ namespace Connection.Configurations
                 Id = 2,
                 UserName = "Customer@gmail.com",
                 NormalizedUserName = "CUSTOMER@GMAIL.COM",
+                FirstName ="Ali",
+                LastName ="baghani",
+                Balance=1000000,
                 Email = "Customer@gmail.com",
                 NormalizedEmail = "CUSTOMER@GMAIL.COM",
                 LockoutEnabled = false,
                 Mobile = "09222222222",
                 SecurityStamp = "bd984d87-783f-4230-9797-4c37e661373b",
                 CityId = 1,
-                //CustomerId = 1,
+                CustomerId = 1,
                 RoleId = 2,
+                Role=RoleEnum.Customer,
                 ConcurrencyStamp ="9f860973-8ca8-4f36-8aaf-9dc177c92bac",
                 PasswordHash="AQAAAAIAAYagAAAAEHKRtQ90vsbb39tRXod/l3TdKUV4dN+SoRhYrRCgQYgesUOEVcWcBotKpqNf7OIujw==",
                 RegisteredAt=new DateTime(2025,1,1)
@@ -52,14 +61,18 @@ namespace Connection.Configurations
                 Id = 3,
                 UserName = "Expert@gmail.com",
                 NormalizedUserName = "EXPERT@GMAIL.COM",
+                FirstName ="Kazem",
+                LastName ="Hassani",
+                Balance=1000000,
                 Email = "Expert@gmail.com",
                 NormalizedEmail = "EXPERT@GMAIL.COM",
                 LockoutEnabled = false,
                 Mobile = "09333333333",
                 SecurityStamp = "56da5aa9-24c0-4932-8688-1c49e8aad93d",
                 CityId = 1,
-                //ExpertId = 1,
+                ExpertId = 1,
                 RoleId = 3,
+                Role=RoleEnum.Expert,
                 ConcurrencyStamp ="27965def-0d29-4833-90d6-1a59788a1525",
                 PasswordHash="AQAAAAIAAYagAAAAEDNGogG29TzbpfXR8dEyW54z9msx39N5p7J60B8qFXsXyqn3wlEH2YyTrCo/r898MQ==",
                 RegisteredAt=new DateTime(2025,1,1)

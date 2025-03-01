@@ -5,11 +5,7 @@
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    Layout = "_Layout";
-}
-
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 <html dir="rtl" lang="fa" class="h-100">
 
 <head>
@@ -52,30 +48,30 @@
                                 <p class="text-muted mt-1 mb-4">جدید به پلتفرم ما هستید؟ همین حالا ثبت نام کنید! این فقط یک دقیقه طول می‌کشد.</p>
 
                                 <div >
-                                    <form class="authentication-form" method="post">
+                                    <form class="authentication-form" enctype="multipart/form-data" method="post">
                                         <div class="mb-3">
-                                            <label class="form-label" for="example-name">نام کاربری</label>
-                                            <input asp-for="@Model.UserForRegiter.UserName" type="text" id="example-name" name="example-name"
+                                            <label class="form-label" for="UserName">نام کاربری</label>
+                                            <input asp-for="@Model.UserName" type="text" id="UserName" name="UserName"
                                                    class="form-control" placeholder="نام کاربری خود را وارد کنید">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="example-email">ایمیل</label>
-                                            <input asp-for="@Model.UserForRegiter.Email" type="email" id="example-email" name="example-email"
+                                            <label class="form-label" for="email">ایمیل</label>
+                                            <input asp-for="@Model.Email" type="email" id="email" name="email"
                                                    class="form-control bg-" placeholder="ایمیل خود را وارد کنید">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="example-email">تلفن همراه</label>
-                                            <input asp-for="@Model.UserForRegiter.Phone" type="number" id="example-email" name="example-email"
+                                            <label class="form-label" for="phonenumber">تلفن همراه</label>
+                                            <input asp-for="@Model.Phone" type="number" id="phonenumber" name="phonenumber"
                                                    class="form-control bg-" placeholder="شماره موبایل خود را وارد کنید">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="example-password">گذرواژه</label>
-                                            <input asp-for="@Model.UserForRegiter.Password" type="password" id="example-password" class="form-control"
+                                            <label class="form-label" for="password">گذرواژه</label>
+                                            <input asp-for="@Model.Password" type="password" id="password" class="form-control"
                                                    placeholder="گذرواژه خود را وارد کنید">
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <select asp-for="@Model.UserForRegiter.Role" class="form-select">
+                                                <select asp-for="@Model.Role" class="form-select">
                                                     <option value="1">Admin</option>
                                                     <option value="2">Customer</option>
                                                     <option value="3">Expert</option>
@@ -83,7 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group relative">
-                                            <input asp-for="@Model.UserForRegiter.ProfileImgFile" type="file" class="form-control">
+                                            <input asp-for="@Model.ProfileFile" type="file" class="form-control">
                                             <label>آپلود عکس</label>
                                             <div class="input-group round">
                                                 <input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
@@ -109,14 +105,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xxl-5 d-none d-xxl-flex">
-                    <div class="card h-100 mb-0 overflow-hidden">
-                        <div class="d-flex flex-column h-100">
-                            <img src="/images/small/img-10.jpg" alt="" class="w-100 h-100">
-                        </div>
-                    </div> <!-- پایان کارت -->
-                </div>
             </div>
         </div>
     </div>
@@ -124,4 +112,32 @@
     <script src="~/AdminTemplate/js/layout.js"></script>
 </body>
 
-</html>
+</html> *@
+<form method="post">
+    <div class="form-group">
+        <label for="Gmail">Gmail</label>
+        <input asp-for="@Model.newUser.Email" type="email" class="form-control" id="Gmail" name="Gmail" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input asp-for="@Model.newUser.Password" type="password" class="form-control" id="Password" name="Password" required />
+    </div>
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input asp-for="@Model.newUser.UserName" type="text" class="form-control" id="Username" name="Username" required />
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber">PhoneNumber</label>
+        <input asp-for="@Model.newUser.Phone" type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" required />
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <select asp-for="@Model.newUser.Role" class="form-select">
+                <option value="1">Admin</option>
+                <option value="2">Customer</option>
+                <option value="3">Expert</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Continue</button>
+</form>

@@ -94,6 +94,12 @@ namespace SangaghakRazorEndPoint
 
             builder.Services.AddRazorPages();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+            //builder.Services
+            //.AddRazorPages()
+            //.AddRazorPagesOptions(opt => opt.RootDirectory = "/Admin/Index");
+            builder.Services
+            .AddRazorPages()
+            .AddRazorPagesOptions(opt => opt.RootDirectory = "/Admin/LoginUser");
 
             var app = builder.Build();
 
@@ -114,7 +120,6 @@ namespace SangaghakRazorEndPoint
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
-
             app.Run();
         }
     }

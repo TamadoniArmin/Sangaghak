@@ -26,7 +26,7 @@
     <script src="~/AdminTemplate/js/config.js"></script>
 </head>
 
-<body>
+        <body>
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row">
@@ -205,42 +205,66 @@
                                     </div>
                                 </div>
                                 <!-- end card body -->
-                                <div class="table-responsive table-centered">
-                                    <table class="table mb-0">
-                                        <thead class="bg-light bg-opacity-50">
-                                            <tr>
-                                                <th class="ps-3">
-                                                    شناسه درخواست
-                                                </th>
-                                                <th>
-                                                    تاریخ
-                                                </th>
-                                                <th>
-                                                    دسته بندی
-                                                </th>
-                                                <th>
-                                                    نام مشتری
-                                                </th>
-                                                <th>
-                                                    ایمیل
-                                                </th>
-                                                <th>
-                                                    شماره تلفن
-                                                </th>
-                                                <th>
-                                                    شهر
-                                                </th>
-                                                <th>
-                                                    کارشناس
-                                                </th>
-                                                <th>
-                                                    وضعیت
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <!-- end thead-->
-                                        <tbody>
+                            <!-- end card body -->
+                            <div class="table-responsive table-centered">
+                                <table class="table mb-0">
+                                    <thead class="bg-light bg-opacity-50">
+                                        <tr>
+                                            <th class="ps-3">
+                                                شناسه سفارش
+                                            </th>
+                                            <th>
+                                                تاریخ
+                                            </th>
+                                            <th>
+                                                دسته بندی
+                                            </th>
+                                            <th>
+                                                نام مشتری
+                                            </th>
+                                            <th>
+                                                ایمیل
+                                            </th>
+                                            <th>
+                                                شماره تلفن
+                                            </th>
+                                            <th>
+                                                شهر
+                                            </th>
+                                            <th>
+                                                کارشناس
+                                            </th>
+                                            <th>
+                                                وضعیت
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <!-- end thead-->
+                                    <tbody>
+                                        <tr>
+                                            @foreach(var Request in Model.Requests)
+                                            {
+                                                <td class="ps-3">
+                                                    <a href="apps-ecommerce-order-detail.html">@Request.Id</a>
+                                                </td>
+                                                <td>@Request.SetAt</td>
+                                                <td>
+                                                    <img src="/images/products/product-1(1).png" alt="product-1(1)"
+                                                         class="img-fluid avatar-sm">
+                                                </td>
+                                                <td>
+                                                    <a href="#!">@Request.CustomerFullName</a>
+                                                </td>
+                                                <td>@Request.CustomerEmail</td>
+                                                <td>@Request.CustomerPhone</td>
+                                                <td>@Request.CityTitle</td>
+                                                <td>@Request.ExpertFullName</td>
+                                                <td>
+                                                    <i class="bx bxs-circle text-success me-1"></i> @Request.Status
+                                                </td>
+                                            }
 
+                                        </tr>
                                     </tbody>
                                     <!-- end tbody -->
                                 </table>

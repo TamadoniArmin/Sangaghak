@@ -30,7 +30,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
         public int PendingCommentsCount { get; set; }//تعدادکانت های در انتظار تایید
         [BindProperty]
         public List<RequestDTO> Requests { get; set; }
-        public async void OnGet(CancellationToken cancellationToken)
+        public async Task OnGet(CancellationToken cancellationToken)
         {
             var data = User;
             Users = await dashboardAppService.GetAllUsersAsync(cancellationToken);

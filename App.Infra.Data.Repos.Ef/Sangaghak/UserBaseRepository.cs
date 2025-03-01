@@ -94,7 +94,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Id = WantedUser.Id,
                 FirstName = WantedUser.FirstName,
                 LastName = WantedUser.LastName,
-                UserName = WantedUser.UserName,
+                UserName = WantedUser.UserName ?? string.Empty,
                 Mobile = WantedUser.Mobile,
                 Email = WantedUser.Email,
                 CityId = WantedUser.CityId,

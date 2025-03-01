@@ -29,6 +29,7 @@ namespace Connection.Common
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new RequestConfiguration());
             modelBuilder.ApplyConfiguration(new OfferConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
             UserBaseConfiguration.SeedUsers(modelBuilder);
             modelBuilder.Entity<Customer>().ToTable("Customers");
             modelBuilder.Entity<Expert>().ToTable("Experts");

@@ -167,8 +167,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Id = Category.Id,
                     Title = Category.Title,
                     Description = Category.Description,
-                    ImagePath = Category.ImagePath,
-                    SubCategoryCount = Category.Subcategories.Count()
+                    ImagePath = Category.ImagePath??string.Empty,
+                    SubCategoryCount = 0
                 };
                 return categoryDTO;
             }

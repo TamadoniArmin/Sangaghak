@@ -4,6 +4,7 @@ using Connection.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Connection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250228083645_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -692,7 +695,7 @@ namespace Connection.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             AdminId = 1,
-                            Balance = 1000000,
+                            Balance = 0,
                             CityId = 3,
                             ConcurrencyStamp = "e975c22f-8ab0-44e3-805f-7fdd0dd974c7",
                             Email = "Admin@gmail.com",
@@ -717,7 +720,7 @@ namespace Connection.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            Balance = 1000000,
+                            Balance = 0,
                             CityId = 1,
                             ConcurrencyStamp = "9f860973-8ca8-4f36-8aaf-9dc177c92bac",
                             CustomerId = 1,
@@ -743,7 +746,7 @@ namespace Connection.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            Balance = 1000000,
+                            Balance = 0,
                             CityId = 1,
                             ConcurrencyStamp = "27965def-0d29-4833-90d6-1a59788a1525",
                             Email = "Expert@gmail.com",

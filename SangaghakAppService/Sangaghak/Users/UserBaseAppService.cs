@@ -30,12 +30,14 @@ namespace SangaghakAppService.Sangaghak.Users
 
         public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
-            var Users = await _userService.GetAllAsync(cancellationToken);
-            foreach (var User in Users)
+            var WantedUsers = await _userService.GetAllAsync(cancellationToken);
+            var Name=await _cityService.GetNameOfCity(3,cancellationToken);
+            foreach (var WantedUser in WantedUsers)
             {
-                User.CityName = await _cityService.GetNameOfCity(User.CityId, cancellationToken);
+                var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
+                WantedUser.CityName = cityName;
             }
-            return Users;
+            return WantedUsers;
         }
 
         public Task<int> GetBalance(int UserId, CancellationToken cancellationToken)

@@ -9,7 +9,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin
     {
         [BindProperty]
         public List<GetUserBaseForViewPage> AllUsers { get; set; }
-        public async void OnGet(CancellationToken cancellationToken)
+        public async Task OnGet(CancellationToken cancellationToken)
         {
             AllUsers = await userBaseAppService.GetAllUsersAsync(cancellationToken);
         }

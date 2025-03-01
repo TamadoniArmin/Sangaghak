@@ -28,9 +28,9 @@ namespace SangaghakService.Sangaghak.BaseEntities
             return await _cityRepository.GetCityByName(cityName, cancellationToken);
         }
 
-        public Task<string> GetNameOfCity(int CityId, CancellationToken cancellationToken)
+        public async Task<string> GetNameOfCity(int CityId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _cityRepository.GetNameOfCity(CityId, cancellationToken);
         }
     }
 }
