@@ -11,6 +11,9 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<GetUserBaseForViewPage> GetByNameAsync(string name, CancellationToken cancellationToken);
         public Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId,CancellationToken cancellationToken);
         public Task<string> GetExpertNameByExpertIdAsync(int ExpertId,CancellationToken cancellationToken);
+        public Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId,CancellationToken cancellationToken);
+        public Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId,CancellationToken cancellationToken);
+        public Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId,CancellationToken cancellationToken);
         public Task<int> GetCountAsync(CancellationToken cancellationToken);
         public Task<int> GetCountByRoleAsync(RoleEnum role, CancellationToken cancellationToken);
         public Task<int> GetBalanceAsync(int UserId, CancellationToken cancellationToken);

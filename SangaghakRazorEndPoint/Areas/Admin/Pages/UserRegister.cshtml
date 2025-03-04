@@ -5,50 +5,52 @@
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@* <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html dir="rtl" lang="fa" class="h-100">
 
 <head>
-    <!-- Title Meta -->
-    <meta charset="utf-8" />
-    <title>ثبت نام | لارکن قالب مدیریتی</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully responsive premium admin dashboard template" />
-    <meta name="author" content="Techzaa" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Title Meta -->
+	<meta charset="utf-8" />
+	<title>ثبت نام | لارکن قالب مدیریتی</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A fully responsive premium admin dashboard template" />
+	<meta name="author" content="Techzaa" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
+	<!-- App favicon -->
+	<link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
 
-    <link rel="stylesheet" href="~/AdminTemplate/css/app.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
-    <script src="~/AdminTemplate/js/config.js"></script>
+	<link rel="stylesheet" href="~/AdminTemplate/css/app.css">
+	<link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
+	<link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
+	<script src="~/AdminTemplate/js/config.js"></script>
 
 </head>
 
 <body class="h-100">
-    <div class="d-flex flex-column h-100 p-3">
-        <div class="d-flex flex-column flex-grow-1">
-            <div class="row h-100">
-                <div class="col-xxl-7">
-                    <div class="row justify-content-center h-100">
-                        <div class="col-lg-6 py-lg-5">
-                            <div class="d-flex flex-column h-100 justify-content-center">
-                                <div class="auth-logo mb-4">
-                                    <a href="index.html" class="logo-dark"> <img src="/images/logo-dark.png" height="24" alt="لوگوی تاریک"> </a>
+	<div class="d-flex flex-column h-100 p-3">
+		<div class="d-flex flex-column flex-grow-1">
+			<div class="row h-100">
+				<div class="col-xxl-7">
+					<div class="row justify-content-center h-100">
+						<div class="col-lg-6 py-lg-5">
+							<div class="d-flex flex-column h-100 justify-content-center">
+								<div class="auth-logo mb-4">
+									<a href="index.html" class="logo-dark"> <img src="/images/logo-dark.png" height="24" alt="لوگوی تاریک"> </a>
 
-                                    <a href="index.html" class="logo-light">
-                                        <img src="/images/logo-light.png" height="24" alt="لوگوی روشن">
-                                    </a>
-                                </div>
+									<a href="index.html" class="logo-light">
+										<img src="/images/logo-light.png" height="24" alt="لوگوی روشن">
+									</a>
+								</div>
 
-                                <h2 class="fw-bold fs-24">ثبت نام</h2>
+								<h2 class="fw-bold fs-24">ثبت نام</h2>
 
-                                <p class="text-muted mt-1 mb-4">جدید به پلتفرم ما هستید؟ همین حالا ثبت نام کنید! این فقط یک دقیقه طول می‌کشد.</p>
+								<p class="text-muted mt-1 mb-4">جدید به پلتفرم ما هستید؟ همین حالا ثبت نام کنید! این فقط یک دقیقه طول می‌کشد.</p>
 
-                                <div >
-                                    <form class="authentication-form" enctype="multipart/form-data" method="post">
+								<div>
+
+									@*                                     <form class="authentication-form" enctype="multipart/form-data" method="post">
                                         <div class="mb-3">
                                             <label class="form-label" for="UserName">نام کاربری</label>
                                             <input asp-for="@Model.UserName" type="text" id="UserName" name="UserName"
@@ -96,48 +98,51 @@
                                         <div class="mb-1 text-center d-grid">
                                             <button class="btn btn-soft-primary" type="submit">ثبت نام</button>
                                         </div>
-                                    </form>
+                                    </form> *@
+									<form method="post">
+										<div class="form-body">
+											<div class="form-group">
+												<label for="Email">Email</label>
+												<input asp-for="@Model.Email" type="email" class="form-control" id="Email" name="Email" required />
+											</div>
+											<div class="form-group">
+												<label for="Password">Password</label>
+												<input asp-for="@Model.Password" type="password" class="form-control" id="Password" name="Password" required />
+											</div>
+											<div class="form-group">
+												<label for="Username">Username</label>
+												<input asp-for="@Model.UserName" type="text" class="form-control" id="Username" name="Username" required />
+											</div>
+											<div class="form-group">
+												<label for="PhoneNumber">PhoneNumber</label>
+												<input asp-for="@Model.PhoneNumber" type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" required />
+											</div>
+											<div class="form-group">
+												<div class="input-group">
+													<select asp-for="@Model.Role" class="form-select">
+														<option value="1">Admin</option>
+														<option value="2">Customer</option>
+														<option value="3">Expert</option>
+													</select>
+												</div>
+											</div>
+											
+										</div>
+										<button type="submit" class="btn btn-primary">Continue</button>
+									</form>
 
-                                <p class="mt-auto text-danger text-center pt-3">
-                                        من قبلاً یک حساب دارم <a asp-page="LoginUser" class="text-dark fw-bold ms-1">ورود</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="~/AdminTemplate/js/app.js"></script>
-    <script src="~/AdminTemplate/js/layout.js"></script>
+									<p class="mt-auto text-danger text-center pt-3">
+										من قبلاً یک حساب دارم <a asp-page="LoginUser" class="text-dark fw-bold ms-1">ورود</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="~/AdminTemplate/js/app.js"></script>
+		<script src="~/AdminTemplate/js/layout.js"></script>
 </body>
 
-</html> *@
-<form method="post">
-    <div class="form-group">
-        <label for="Gmail">Gmail</label>
-        <input asp-for="@Model.newUser.Email" type="email" class="form-control" id="Gmail" name="Gmail" required />
-    </div>
-    <div class="form-group">
-        <label for="Password">Password</label>
-        <input asp-for="@Model.newUser.Password" type="password" class="form-control" id="Password" name="Password" required />
-    </div>
-    <div class="form-group">
-        <label for="Username">Username</label>
-        <input asp-for="@Model.newUser.UserName" type="text" class="form-control" id="Username" name="Username" required />
-    </div>
-    <div class="form-group">
-        <label for="PhoneNumber">PhoneNumber</label>
-        <input asp-for="@Model.newUser.Phone" type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" required />
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <select asp-for="@Model.newUser.Role" class="form-select">
-                <option value="1">Admin</option>
-                <option value="2">Customer</option>
-                <option value="3">Expert</option>
-            </select>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Continue</button>
-</form>
+</html>

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.Entities.Requests;
+using App.Domain.Core.Sangaghak.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -26,6 +27,7 @@ namespace Connection.Configurations
                 RequestId = 1,
                 OfferedPrice = 1,
                 Description = "من از در سریع ترین زمان ممکن برای شما این کار را انجام میدهدم",
+                Status=OfferStatusEnum.Pending,
                 OfferedTime = DateTime.Parse("2025-04-10"),
                 SetAt = DateTime.Parse("2024-09-01")
             });

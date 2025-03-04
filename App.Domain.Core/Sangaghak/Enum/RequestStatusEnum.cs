@@ -15,6 +15,7 @@ namespace App.Domain.Core.Sangaghak.Enum
         OfferAccepted,
         JobDone,
         WatingForPay,
-        Complited
+        Complited,
+        Cancelled
     }
 }

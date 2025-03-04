@@ -13,7 +13,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin
         {
             //ورودی آن گت این صفحه برسی شود با توجه به ریدایرکت پایین
         }
-        public async Task<IActionResult> OnPost(CancellationToken cancellationToken)
+        public async Task<IActionResult> OnPostCreateCategory(CancellationToken cancellationToken)
         {
             var Result=await categoryAppService.CreateCategory(Category,cancellationToken);
             if (!Result)

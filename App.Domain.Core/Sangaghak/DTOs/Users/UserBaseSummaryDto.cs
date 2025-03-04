@@ -7,11 +7,13 @@ namespace App.Domain.Core.Sangaghak.DTOs.Users
         public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public string? FullName { get; set; }
         public string UserName { get; set; }
         public string Mobile { get; set; }
         public string? Email { get; set; }
         public DateTime RegisterAt { get; set; }
-        public string City { get; set; }
+        public int CityId { get; set; }
+        public string? CityName { get; set; }
         public RoleEnum Role { get; set; }
         public string? ImagePath { get; set; }
     }

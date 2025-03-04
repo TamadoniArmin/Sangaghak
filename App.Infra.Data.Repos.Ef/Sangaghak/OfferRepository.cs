@@ -3,6 +3,7 @@ using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Requests;
 using App.Domain.Core.Sangaghak.Entities.Users;
+using App.Domain.Core.Sangaghak.Enum;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 offer1.OfferedPrice = Model.OfferedPrice;
                 offer1.OfferedTime = Model.OfferedTime;
                 offer1.Description = Model.Description;
+                offer1.Status=OfferStatusEnum.Pending;
                 offer1.SetAt = DateTime.Now;
                 await _appDbContext.Offers.AddAsync(offer1, cancellationToken);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
@@ -51,6 +53,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     OfferedPrice = x.OfferedPrice,
                     OfferedTime = x.OfferedTime,
                     Description = x.Description,
+                    Status = x.Status,
                 })
                 .ToListAsync(cancellationToken);
         }
@@ -67,6 +70,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 OfferedPrice = FindOffer.OfferedPrice,
                 OfferedTime = FindOffer.OfferedTime,
                 Description = FindOffer.Description,
+                Status = FindOffer.Status,
             };
             return OfferToSend;
         }
@@ -83,6 +87,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 OfferedPrice = FindOffer.OfferedPrice,
                 OfferedTime = FindOffer.OfferedTime,
                 Description = FindOffer.Description,
+                Status = FindOffer.Status,
             };
             return OfferToSend;
         }
@@ -100,6 +105,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     OfferedPrice = x.OfferedPrice,
                     OfferedTime = x.OfferedTime,
                     Description = x.Description,
+                    Status = x.Status,
                 }
                 ).ToListAsync(cancellationToken);
         }

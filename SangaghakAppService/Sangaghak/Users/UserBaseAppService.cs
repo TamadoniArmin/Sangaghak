@@ -18,7 +18,7 @@ namespace SangaghakAppService.Sangaghak.Users
         private readonly SignInManager<UserBase> _signInManager;
         private readonly IPasswordHasher<UserBase> _passwordHasher;
 
-        public UserBaseAppService(IUserBaseService userService, /*IBaseDataService baseDataService*/ UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService)
+        public UserBaseAppService(IUserBaseService userService, /*IBaseDataService baseDataService*/ UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService,ICityService cityService)
         {
             _userService = userService;
             //_baseDataService = baseDataService;
@@ -26,6 +26,7 @@ namespace SangaghakAppService.Sangaghak.Users
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
             _generalService = generalService;
+            _cityService = cityService;
         }
 
         public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)

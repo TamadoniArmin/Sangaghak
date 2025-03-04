@@ -18,6 +18,7 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken);
         public Task<List<SubCategoryDTO>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken);
         public Task<CategoryDTO> GetCategoryByIdAysnc(int Id, CancellationToken cancellationToken);
+        public Task<string> GetSubCategoryNameByIdAysnc(int Id, CancellationToken cancellationToken);
         #endregion
         #region Update
         public Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken);

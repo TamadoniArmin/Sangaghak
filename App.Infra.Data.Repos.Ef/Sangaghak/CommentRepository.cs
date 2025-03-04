@@ -57,7 +57,9 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Rate = x.Rate,
                     ExpertId = x.ExpertId,
                     RequestId = x.RequestId,
-                    CustomerId = x.CustomerId
+                    CustomerId = x.CustomerId,
+                    Status=x.Status,
+                    SetAt=x.SetAt
                 }
                 ).ToListAsync(cancellationToken);
         }
@@ -114,6 +116,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 RequestId = x.RequestId,
                 CustomerId = x.CustomerId,
                 JobCategory = x.Request.Category.Title,
+                Status = x.Status,
+                SetAt = x.SetAt
             }
             ).ToListAsync(cancellationToken);
         }

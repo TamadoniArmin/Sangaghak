@@ -399,6 +399,9 @@ namespace Connection.Migrations
                     b.Property<DateTime>("SetAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ExpertId");
@@ -418,7 +421,8 @@ namespace Connection.Migrations
                             OfferedPrice = 1,
                             OfferedTime = new DateTime(2646, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RequestId = 1,
-                            SetAt = new DateTime(2645, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            SetAt = new DateTime(2645, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1
                         });
                 });
 

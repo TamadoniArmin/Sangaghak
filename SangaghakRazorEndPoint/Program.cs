@@ -67,27 +67,27 @@ namespace SangaghakRazorEndPoint
 
             builder.Services.AddScoped<ICommentRepository, CommentRepository>();
             builder.Services.AddScoped<ICommentService, CommentService>();
-            //builder.Services.AddScoped<ICommentAppService, CommentAppService>();
+            builder.Services.AddScoped<ICommentAppService, CommentAppService>();
 
 
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<ICustomerService, CustomerService>();
-            //builder.Services.AddScoped<ICustomerAppService, CustomerAppService>();
+            builder.Services.AddScoped<ICustomerAppService, CustomerAppService>();
 
 
             builder.Services.AddScoped<IExpertRepository, ExpertRepository>();
             builder.Services.AddScoped<IExpertService, ExpertService>();
-            //builder.Services.AddScoped<IExpertAppService, ExpertAppService>();
+            builder.Services.AddScoped<IExpertAppService, ExpertAppService>();
 
 
             builder.Services.AddScoped<IOfferRepository, OfferRepository>();
             builder.Services.AddScoped<IOfferService, OfferService>();
-            //builder.Services.AddScoped<IOfferAppService, OfferAppService>();
+            builder.Services.AddScoped<IOfferAppService, OfferAppService>();
 
 
             builder.Services.AddScoped<IRequestRepository, RequestRepository>();
             builder.Services.AddScoped<IRequestService, RequestService>();
-            //builder.Services.AddScoped<IRequestAppService, RequestAppService>();
+            builder.Services.AddScoped<IRequestAppService, RequestAppService>();
 
             builder.Services.AddScoped<IDashboardAppService, DashboardAppService>();
             builder.Services.AddScoped<IGeneralService, GeneralService>();
@@ -97,9 +97,9 @@ namespace SangaghakRazorEndPoint
             //builder.Services
             //.AddRazorPages()
             //.AddRazorPagesOptions(opt => opt.RootDirectory = "/Admin/Index");
-            builder.Services
-            .AddRazorPages()
-            .AddRazorPagesOptions(opt => opt.RootDirectory = "/Admin/LoginUser");
+            //builder.Services
+            //.AddRazorPages()
+            //.AddRazorPagesOptions(opt => opt.RootDirectory = "/Admin/LoginUser");
 
             var app = builder.Build();
 
@@ -120,6 +120,9 @@ namespace SangaghakRazorEndPoint
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
+            //app.MapControllerRoute(
+            //name: "default",
+            //pattern: "{}/{action=Index}/{id?}");
             app.Run();
         }
     }

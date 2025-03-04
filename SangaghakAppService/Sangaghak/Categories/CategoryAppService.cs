@@ -8,18 +8,28 @@ namespace SangaghakAppService.Sangaghak.Categories
     public class CategoryAppService : ICategoryAppService
     {
         private readonly ICategoryService _categoryService;
-        public CategoryAppService(ICategoryService categoryService)
+        private readonly IGeneralService _generalService;
+        public CategoryAppService(ICategoryService categoryService, IGeneralService generalService)
         {
             _categoryService = categoryService;
+            _generalService = generalService;
         }
 
         public async Task<bool> CreateCategory(CategoryForCreateDto Model, CancellationToken cancellationToken)
         {
+            if(Model.ImageFile is not null)
+            {
+                Model.ImagePath = await _generalService.UploadImage(Model.ImageFile!, "Categories", cancellationToken);
+            }
             return await _categoryService.CreateCategory(Model, cancellationToken);
         }
 
         public async Task<bool> CreateSubCategory(SubCategoryFroCreateDto Model, CancellationToken cancellationToken)
         {
+            if (Model.ImageFile is not null)
+            {
+                Model.ImagePath = await _generalService.UploadImage(Model.ImageFile!, "Categories", cancellationToken);
+            }
             return await _categoryService.CreateSubCategory(Model, cancellationToken);
         }
 
@@ -45,7 +55,12 @@ namespace SangaghakAppService.Sangaghak.Categories
 
         public async Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken)
         {
-            return await _categoryService.GetAllSubCategories(cancellationToken);
+            var Subcategoirs= await _categoryService.GetAllSubCategories(cancellationToken);
+            foreach(var subcategory in Subcategoirs)
+            {
+                subcategory.ParentName = await _categoryService.GetSubCategoryNameByIdAysnc(subcategory.ParentId, cancellationToken);
+            }
+            return Subcategoirs;
         }
 
         public async Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken)

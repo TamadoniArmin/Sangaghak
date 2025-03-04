@@ -10,6 +10,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin
     {
         [BindProperty]
         public SubCategoryFroCreateDto SubCategory { get; set; }
+
         public void OnGet()
         {
         }

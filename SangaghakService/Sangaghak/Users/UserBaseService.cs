@@ -54,9 +54,24 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.GetCustomerByCustomerIdAsync(CustomerId, cancellationToken);
         }
 
+        public async Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCustomerNameByCustomerIdAsync(CustomerId,cancellationToken);
+        }
+
+        public async Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCustomerSummeryByCustomerId(CustomerId, cancellationToken);
+        }
+
         public async Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
             return await _repository.GetExpertNameByExpertIdAsync(ExpertId, cancellationToken);
+        }
+
+        public async Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetExpertSummeryByExpertId(ExpertId,cancellationToken) ;
         }
 
         public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Core.Sangaghak.Entities.Users;
+using App.Domain.Core.Sangaghak.Enum;
 
 namespace App.Domain.Core.Sangaghak.Entities.Requests
 {
@@ -15,6 +16,7 @@ namespace App.Domain.Core.Sangaghak.Entities.Requests
         public int RequestId { get; set; }
         public int OfferedPrice { get; set; }
         public string Description { get; set; }
+        public OfferStatusEnum Status { get; set; }
         public DateTime OfferedTime { get; set; }
         public DateTime AcceptedAt { get; set; }
         public DateTime SetAt { get; set; }

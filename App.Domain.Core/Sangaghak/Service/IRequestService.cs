@@ -10,12 +10,17 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<bool> CreateRequestAsync(GetDataForCreateRequestDto request, CancellationToken cancellationToken);
         #endregion
         #region Read
+        public Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetAllRequestsAsync(CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken);
         public Task<int> GetAllRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken);
+        public Task<int> GetComplitedRequestsCountAsync(CancellationToken cancellationToken);
+        public Task<int> GetCancelledRequestsCountAsync(CancellationToken cancellationToken);
+        public Task<int> GetRequestCategoryIdAsync(int RequestId, CancellationToken cancellationToken);
+        public Task<int> GetRequestCityIdAsync(int RequestId, CancellationToken cancellationToken);
         #endregion
         #region Update
         public Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken);

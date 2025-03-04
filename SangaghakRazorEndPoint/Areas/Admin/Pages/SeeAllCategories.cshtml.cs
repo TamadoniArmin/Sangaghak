@@ -11,28 +11,28 @@ namespace SangaghakRazorEndPoint.Areas.Admin
     {
         [BindProperty]
         public List<CategoryDTO> Parents { get; set; }
-        [BindProperty]
-        public List<SubCategoryDTO> Childs { get; set; }
-        [BindProperty]
-        public int ChildCategoryId { get; set; }
+        //[BindProperty]
+        //public List<SubCategoryDTO> Childs { get; set; }
+        //[BindProperty]
+        //public int ChildCategoryId { get; set; }
         [BindProperty]
         public int ParentId { get; set; }
 
-        public async void OnGet(int parentId, int childCategoryId,CancellationToken  cancellationToken)
+        public async Task OnGet(int parentId, int childCategoryId,CancellationToken  cancellationToken)
         {
             Parents = await categoryAppService.GetAllParentsCategory(cancellationToken);
-            if (parentId > 0)
-            {
-                Childs = await categoryAppService.GetSubCategoriesByParentId(parentId,cancellationToken);
-            }
-            else
-            {
-                var firstParentId = Parents.First().Id;
-                Childs = await categoryAppService.GetSubCategoriesByParentId(firstParentId,cancellationToken);
+            //if (parentId > 0)
+            //{
+            //    Childs = await categoryAppService.GetSubCategoriesByParentId(parentId,cancellationToken);
+            //}
+            //else
+            //{
+            //    var firstParentId = Parents.First().Id;
+            //    Childs = await categoryAppService.GetSubCategoriesByParentId(firstParentId,cancellationToken);
 
-            }
-            ParentId = parentId;
-            ChildCategoryId = childCategoryId;
+            //}
+            //ParentId = parentId;
+            //ChildCategoryId = childCategoryId;
         }
     }
 }

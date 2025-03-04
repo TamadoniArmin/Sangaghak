@@ -16,13 +16,15 @@
   <ItemGroup>
     <Compile Include="Areas\Account\Pages\AccessDenied.cshtml.cs" />
     <Compile Include="Areas\Account\Pages\Logout.cshtml.cs" />
-    <Compile Include="Areas\Admin\Pages\CommentManagement.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\CommentManager.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAllComments.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateSubCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\Index.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\LoginUser.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllCategories.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllRequests.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllUsers.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeRequestDetails.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeUserProfile.cshtml.cs" />
@@ -31,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Areas\Admin\Pages\CommentManagement.cshtml" />
+    <Content Include="Areas\Admin\Pages\SeeAllComments.cshtml" />
     <Content Include="Areas\Admin\Pages\CreateCategory.cshtml" />
     <Content Include="Areas\Admin\Pages\CreateSubCategory.cshtml" />
     <Content Include="Areas\Admin\Pages\Index.cshtml" />
@@ -94,6 +96,8 @@
     <None Include="Areas\Account\Pages\Logout.cshtml" />
     <None Include="Areas\Account\Pages\_ViewImports.cshtml" />
     <None Include="Areas\Account\Pages\_ViewStart.cshtml" />
+    <None Include="Areas\Admin\Pages\CommentManager.cshtml" />
+    <None Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,10 @@
 ﻿@page
-@model SangaghakRazorEndPoint.Areas.Admin.SeeAllCategoriesModel
+@model SangaghakRazorEndPoint.Areas.Admin.Pages.SeeAllSubCategoriesModel
 @{
 }
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-menu-size="sm-hover">
 
@@ -410,13 +413,17 @@
                                         </th>
                                         <th>دسته‌بندی‌ها</th>
                                         <th>شناسه</th>
+                                        <th>شروع قیمت</th>
+                                        <th>دسته بندی والد</th>
                                         <th>توضیحات</th>
                                         <th>عملیات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach(var category in Model.Parents)
+                                    @foreach (var category in Model.Childs)
                                     {
+
+
                                         <tr>
                                             <td>
                                                 <div class="form-check">
@@ -433,6 +440,8 @@
                                                 </div>
                                             </td>
                                             <td>@category.Id</td>
+                                            <td>@category.BasePrice</td>
+                                            <td>@category.ParentName</td>
                                             <td>@category.Description</td>
                                             <td>
                                                 <div class="d-flex gap-2">

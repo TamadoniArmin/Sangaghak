@@ -1,14 +1,17 @@
 ﻿@page
-@model SangaghakRazorEndPoint.Areas.Admin.SeeAllCategoriesModel
+@model SangaghakRazorEndPoint.Areas.Admin.Pages.CommentManagerModel
 @{
 }
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-menu-size="sm-hover">
 
 <head>
     <!-- Title Meta -->
     <meta charset="utf-8" />
-    <title>لیست دسته‌بندی‌ها | لارکن قالب مدیریتی</title>
+    <title>دیدگاه ها | لارکن قالب مدیریتی</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A fully responsive premium admin dashboard template" />
     <meta name="author" content="Techzaa" />
@@ -39,7 +42,7 @@
 
                         <!-- عنوان صفحه -->
                         <div class="topbar-item">
-                            <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">لیست دسته‌بندی‌ها</h4>
+                            <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">دیدگاه ها</h4>
                         </div>
                     </div>
 
@@ -385,99 +388,86 @@
 
         </div>
 
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <p class="mb-2 text-dark fw-semibold fs-15">@comment.CustomerName</p>
+                                    <p class="mb-2 text-dark fw-semibold fs-15">@comment.SetAt</p>
+                                    <p class="mb-0">@comment.Description</p>
+                                    <div class="d-flex align-items-center gap-2 mt-2 mb-1">
+                                        <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
+                                            @for (int i = 0; i <= comment.Rate; i++)
+                                            {
+                                                <li>
+                                                    <i class="bx bxs-star"></i>
+                                                </li>
+                                            }
+                                        </ul>
+                                        @if (comment.Rate == 1)
+                                        {
+                                            <p class="fw-medium mb-0 text-dark fs-15">بسیار بد</p>
+                                        }
+                                        @if (comment.Rate == 2)
+                                        {
+                                            <p class="fw-medium mb-0 text-dark fs-15">ضعیف</p>
+                                        }
+                                        @if (comment.Rate == 3)
+                                        {
+                                            <p class="fw-medium mb-0 text-dark fs-15">متوسط</p>
+                                        }
+                                        @if (comment.Rate == 4)
+                                        {
+                                            <p class="fw-medium mb-0 text-dark fs-15">خوب</p>
+                                        }
+                                        @if (comment.Rate == 5)
+                                        {
+                                            <p class="fw-medium mb-0 text-dark fs-15">بسیار عالی</p>
+                                        }
 
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center gap-1">
-                        <h4 class="card-title flex-grow-1">لیست تمامی دسته‌بندی‌ها</h4>
-
-                        <a href="products-create.html" class="btn btn-sm btn-primary">
-                            افزودن محصول
-                        </a>
-                    </div>
-
-                    <div>
-                        <div class="table-responsive">
-                            <table class="table align-middle mb-0 table-hover table-centered">
-                                <thead class="bg-light-subtle">
-                                    <tr>
-                                        <th style="width: 20px;">
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                <label class="form-check-label" for="customCheck1"></label>
-                                            </div>
-                                        </th>
-                                        <th>دسته‌بندی‌ها</th>
-                                        <th>شناسه</th>
-                                        <th>توضیحات</th>
-                                        <th>عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach(var category in Model.Parents)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                    <label class="form-check-label" for="customCheck2"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                                                        <img src="/images/product/p-1.png" alt="" class="avatar-md">
-                                                    </div>
-                                                    <p class="text-dark fw-medium fs-15 mb-0">@category.Title</p>
-                                                </div>
-                                            </td>
-                                            <td>@category.Id</td>
-                                            <td>@category.Description</td>
-                                            <td>
-                                                <div class="d-flex gap-2">
-                                                    <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                    <a href="#!" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                    <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-primary position-relative mt-3">
+                                    <div class="position-absolute top-0 start-0 translate-middle-y ms-3">
+                                        <img src="/images/users/avatar-2.jpg" alt="" class="avatar-lg border border-light border-3 rounded-circle">
+                                    </div>
+                                    <div class="position-absolute top-0 end-0 translate-middle-y me-3">
+                                        <img src="/images/double.png" alt="" class="avatar-md">
+                                    </div>
+                                    <div class="mt-4">
+                                        <h4 class="text-white mb-1">@comment.ExpertName</h4>
+                                        <p class="text-white mb-0">@comment.JobCategory / @comment.CityName</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- end table-responsive -->
-                    </div>
-                    <div class="card-footer border-top">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end mb-0">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">قبلی</a></li>
-                                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">بعدی</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                        <form method="post">
+                            <a class="btn btn-outline-success" asp-for=""></a>
+                        </form>
+                    }
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- ========== Footer Start ========== -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
-                    <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
-                    <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
-                </div>
             </div>
+
+            <!-- ========== Footer Start ========== -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
+                            <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
+                            <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- ========== Footer End ========== -->
+
         </div>
-    </footer>
-    <!-- ========== Footer End ========== -->
-    </div>
     </div>
 
 
@@ -597,3 +587,7 @@
 </body>
 
 </html>
+
+
+
+

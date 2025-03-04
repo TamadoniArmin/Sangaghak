@@ -34,9 +34,24 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetAllRequestsCountAsync(cancellationToken);
         }
 
+        public async Task<int> GetCancelledRequestsCountAsync(CancellationToken cancellationToken)
+        {
+            return await _repository.GetCancelledRequestsCountAsync(cancellationToken);
+        }
+
+        public async Task<int> GetComplitedRequestsCountAsync(CancellationToken cancellationToken)
+        {
+            return await _repository.GetComplitedRequestsCountAsync(cancellationToken);
+        }
+
         public async Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken)
         {
             return await _repository.GetCurrentRequestsCountAsync(cancellationToken);
+        }
+
+        public async Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetRequestByIdAysnc(RequestId, cancellationToken);
         }
 
         public async Task<List<RequestDTO>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken)
@@ -47,6 +62,16 @@ namespace SangaghakService.Sangaghak.Requests
         public async Task<List<RequestDTO>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken)
         {
             return await _repository.GetRequestBySubCategoryAsync(subCategoryId, cancellationToken);
+        }
+
+        public async Task<int> GetRequestCategoryIdAsync(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetRequestCategoryIdAsync(RequestId, cancellationToken);
+        }
+
+        public async Task<int> GetRequestCityIdAsync(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetRequestCityIdAsync(RequestId, cancellationToken);
         }
 
         public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)

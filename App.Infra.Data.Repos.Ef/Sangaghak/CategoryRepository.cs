@@ -105,7 +105,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             var subcategories = await _appDbContext
             .Categories
-            .Where(x=>x.IsDeleted == false)
+            .Where(x=>x.IsDeleted == false && x.ParentId!=0 && x.ParentId!=null)
             .Select(x => new SubCategoryDTO
             {
                 Id = x.Id,
@@ -113,7 +113,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Description= x.Description,
                 BasePrice = x.BasePrice,
                 ImagePath = x.ImagePath,
-                ParentId = x.ParentId
+                ParentId = x.ParentId??0
             }).ToListAsync(cancellationToken);
             return subcategories;
         }
@@ -152,7 +152,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Description= x.Description,
                 BasePrice = x.BasePrice,
                 ImagePath = x.ImagePath,
-                ParentId = x.ParentId
+                ParentId = x.ParentId??0
             }).ToListAsync(cancellationToken);
             return subcategories;
         }
@@ -183,9 +183,15 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Id = x.Id,
                     Title = x.Title,
                     Description = x.Description,
-                    ImagePath=x.ImagePath,
+                    ImagePath=x.ImagePath??string.Empty,
                     SubCategoryCount=x.Subcategories.Count()
                 }).ToListAsync(cancellationToken);
+        }
+        public async Task<string> GetSubCategoryNameByIdAysnc(int Id, CancellationToken cancellationToken)
+        {
+            var Category=await _appDbContext.Categories.FirstOrDefaultAsync(x=>x.Id==Id && x.IsDeleted==false);
+            if (Category is null) return string.Empty;
+            else return Category.Title;
         }
         #endregion
         #region Update

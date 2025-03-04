@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
+using App.Domain.Core.Sangaghak.DTOs.Comments;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
@@ -8,38 +9,77 @@ namespace SangaghakAppService.Sangaghak.Comments
     public class CommentAppService : ICommentAppService
     {
         private readonly ICommentService _commentService;
-        public CommentAppService(ICommentService commentService)
+        private readonly IRequestService _requestService;
+        private readonly ICityService _cityService;
+        private readonly IUserBaseService _userBaseService;
+        private readonly ICategoryService _categoryService;
+        public CommentAppService(ICommentService commentService, IRequestService requestService, ICityService cityService, IUserBaseService userBaseService, ICategoryService categoryService)
         {
             _commentService = commentService;
+            _requestService = requestService;
+            _cityService = cityService;
+            _userBaseService = userBaseService;
+            _categoryService = categoryService;
         }
-        //public async Task<bool> CreateCommentAsync(Comment comment, CancellationToken cancellationToken)
-        //{
-        //    return await _commentService.CreateCommentAsync(comment, cancellationToken);
-        //}
 
-        //public async Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
-        //{
-        //    return await _commentService.DeleteCommentStatusAsync(CommentId, cancellationToken);
-        //}
+        public Task<bool> CreateCommentAsync(CommentForCreateDTO comment, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public async Task<List<Comment>> GetAllCommentsAsync(CancellationToken cancellationToken)
-        //{
-        //    return await _commentService.GetAllCommentsAsync(cancellationToken);
-        //}
+        public Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public async Task<List<Comment>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
-        //{
-        //    return await _commentService.GetCommentByCustomerIdAsync(CustomerId, cancellationToken);
-        //}
+        public async Task<List<CommentDTO>> GetAllCommentsAsync(CancellationToken cancellationToken)
+        {
+            var Comments= await _commentService.GetAllCommentsAsync(cancellationToken);
+            foreach(var comment in Comments)
+            {
+                comment.CustomerName = await _userBaseService.GetCustomerNameByCustomerIdAsync(comment.CustomerId, cancellationToken);
+                comment.ExpertName=await _userBaseService.GetExpertNameByExpertIdAsync(comment.ExpertId, cancellationToken);
+                comment.CategoryId=await _requestService.GetRequestCategoryIdAsync(comment.RequestId, cancellationToken);
+                comment.JobCategory=await _categoryService.GetSubCategoryNameByIdAysnc(comment.CategoryId,cancellationToken);
+                comment.CityId=await _requestService.GetRequestCityIdAsync(comment.RequestId, cancellationToken);
+                comment.CityName=await _cityService.GetNameOfCity(comment.CityId,cancellationToken);
+            }
+            return Comments;
+        }
 
-        //public async Task<List<Comment>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
-        //{
-        //    return await _commentService.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
-        //}
+        public Task<List<CommentDTO>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)
-        //{
-        //    return await _commentService.UpdateCommentStatusAsync(CommentId, status, cancellationToken);
-        //}
+        public Task<List<CommentDTO>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<CommentDTO>> GetPendingCommentAsync(CancellationToken cancellationToken)
+        {
+            var Comments= await _commentService.GetPendingCommentAsync(cancellationToken);
+            foreach (var comment in Comments)
+            {
+                comment.CustomerName = await _userBaseService.GetCustomerNameByCustomerIdAsync(comment.CustomerId, cancellationToken);
+                comment.ExpertName = await _userBaseService.GetExpertNameByExpertIdAsync(comment.ExpertId, cancellationToken);
+                comment.CategoryId = await _requestService.GetRequestCategoryIdAsync(comment.RequestId, cancellationToken);
+                comment.JobCategory = await _categoryService.GetSubCategoryNameByIdAysnc(comment.CategoryId, cancellationToken);
+                comment.CityId = await _requestService.GetRequestCityIdAsync(comment.RequestId, cancellationToken);
+                comment.CityName = await _cityService.GetNameOfCity(comment.CityId, cancellationToken);
+            }
+            return Comments;
+        }
+
+        public Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)
+        {
+            return await _commentService.UpdateCommentStatusAsync(CommentId, status, cancellationToken);
+        }
     }
 }

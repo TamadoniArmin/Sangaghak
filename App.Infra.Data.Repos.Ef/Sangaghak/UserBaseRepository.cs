@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data;
 using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.DTOs.Users;
+using App.Domain.Core.Sangaghak.Entities.BaseEntities;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Enum;
 using Connection.Common;
@@ -131,6 +133,36 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             }
         }
 
+        public async Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
+        {
+            var Customer = await _appDbContext.Users.FirstOrDefaultAsync(x => x.CustomerId == CustomerId && x.IsDeleted == false, cancellationToken);
+            if (Customer == null) return string.Empty;
+            else
+            {
+                var CustomerFullName = Customer.FirstName + " " + Customer.LastName;
+                return CustomerFullName;
+            }
+        }
+
+        public async Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId, CancellationToken cancellationToken)
+        {
+            var User = await _appDbContext.Users.FirstOrDefaultAsync(x => x.CustomerId == CustomerId && x.IsDeleted == false, cancellationToken);
+            if (User is null) return null;
+            else
+            {
+                UserBaseSummaryDto userBaseSummaryDto = new UserBaseSummaryDto();
+                userBaseSummaryDto.FirstName = User.FirstName;
+                userBaseSummaryDto.LastName = User.LastName;
+                userBaseSummaryDto.CityId = User.CityId;
+                userBaseSummaryDto.UserName = User.UserName ?? string.Empty;
+                userBaseSummaryDto.Email = User.Email;
+                userBaseSummaryDto.RegisterAt = User.RegisteredAt;
+                userBaseSummaryDto.Role = User.Role;
+                userBaseSummaryDto.ImagePath = User.ImagePath;
+                return userBaseSummaryDto;
+            }
+        }
+
         public async Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
             var Expert = await _appDbContext.Users.FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
@@ -140,6 +172,26 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 var ExpertFullName = Expert.FirstName + " " + Expert.LastName;
                 return ExpertFullName;
             }
+        }
+
+        public async Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId, CancellationToken cancellationToken)
+        {
+            var User= await _appDbContext.Users.FirstOrDefaultAsync(x=>x.ExpertId==ExpertId && x.IsDeleted==false, cancellationToken);
+            if (User is null) return null;
+            else
+            {
+                UserBaseSummaryDto userBaseSummaryDto = new UserBaseSummaryDto();
+                userBaseSummaryDto.FirstName = User.FirstName;
+                userBaseSummaryDto.LastName = User.LastName;
+                userBaseSummaryDto.CityId = User.CityId;
+                userBaseSummaryDto.UserName = User.UserName??string.Empty;
+                userBaseSummaryDto.Email = User.Email;
+                userBaseSummaryDto.RegisterAt = User.RegisteredAt;
+                userBaseSummaryDto.Role = User.Role;
+                userBaseSummaryDto.ImagePath= User.ImagePath;
+                return userBaseSummaryDto;
+            }
+
         }
 
         public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)
