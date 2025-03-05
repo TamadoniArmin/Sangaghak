@@ -1,0 +1,63 @@
+@media only screen and (max-width: 767px) {
+  .sidemenu-area {
+    right: -100%;
+    left: auto;
+  }
+  .sidemenu-area.active-sidemenu-area {
+    right: 0;
+    left: auto;
+  }
+  .main-dashboard-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .main-dashboard-content .navbar-area {
+    right: 0;
+    left: auto;
+    width: calc(100% - 0px);
+  }
+  .main-dashboard-content .others-option-for-responsive .dot-menu {
+    left: 40px;
+    right: auto;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .menu-profile img {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle::before {
+    left: 0;
+    right: auto;
+  }
+  .stats-fun-fact-box {
+    padding: 35px 95px 34px 25px;
+  }
+  .invoices-box ul li {
+    padding-left: 25px;
+  }
+  .invoices-box ul li .default-btn {
+    left: 0;
+  }
+  .single-applicants-card .image {
+    right: 0;
+  }
+  .single-applicants-card .content {
+    padding: 0;
+  }
+  .text-end {
+    text-align: center !important;
+  }
+  .breadcrumb-area .breadcrumb {
+    padding-right: 0;
+  }
+  .my-profile-box .profile-box .text {
+    margin-right: 0;
+  }
+  .dashboard-jobs-box .dashboard-job-card .job-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}/*# sourceMappingURL=dashboard-rtl.css.map */

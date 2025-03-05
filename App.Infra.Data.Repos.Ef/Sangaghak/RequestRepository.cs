@@ -194,6 +194,13 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return Request.CityId;
             }
         }
+        public async Task<int> GetCustomerCompletedRequestsCount(int CustomerId, CancellationToken cancellationToken)
+        {
+            return await _context
+                .Requests
+                .Where(x => x.CustomerId == CustomerId && x.Status == RequestStatusEnum.Complited && x.IsDeleted == false)
+                .CountAsync(cancellationToken);
+        }
         #endregion
         #region Update
         public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)

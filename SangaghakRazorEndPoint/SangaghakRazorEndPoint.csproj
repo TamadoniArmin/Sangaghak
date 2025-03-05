@@ -17,6 +17,8 @@
     <Compile Include="Areas\Account\Pages\AccessDenied.cshtml.cs" />
     <Compile Include="Areas\Account\Pages\Logout.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CommentManager.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\EditCategory.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\EditSubCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllComments.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateSubCategory.cshtml.cs" />
@@ -30,6 +32,7 @@
     <Compile Include="Areas\Admin\Pages\SeeUserProfile.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\UpdateUser.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\UserRegister.cshtml.cs" />
+    <Compile Include="Areas\Customer\Pages\CustomerProfile.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -97,7 +100,10 @@
     <None Include="Areas\Account\Pages\_ViewImports.cshtml" />
     <None Include="Areas\Account\Pages\_ViewStart.cshtml" />
     <None Include="Areas\Admin\Pages\CommentManager.cshtml" />
+    <None Include="Areas\Admin\Pages\EditCategory.cshtml" />
+    <None Include="Areas\Admin\Pages\EditSubCategory.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml" />
+    <None Include="Areas\Customer\Pages\CustomerProfile.cshtml" />
   </ItemGroup>
 
 </Project>

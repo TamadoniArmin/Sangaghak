@@ -2,6 +2,9 @@
 @model SangaghakRazorEndPoint.Areas.Admin.SeeAllCategoriesModel
 @{
 }
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-menu-size="sm-hover">
 
@@ -392,8 +395,8 @@
                     <div class="card-header d-flex justify-content-between align-items-center gap-1">
                         <h4 class="card-title flex-grow-1">لیست تمامی دسته‌بندی‌ها</h4>
 
-                        <a href="products-create.html" class="btn btn-sm btn-primary">
-                            افزودن محصول
+                        <a asp-page="CreateCategory" class="btn btn-sm btn-primary">
+                            افزودن دسته بندی
                         </a>
                     </div>
 
@@ -437,7 +440,7 @@
                                             <td>
                                                 <div class="d-flex gap-2">
                                                     <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                    <a href="#!" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                                    <a asp-page="EditCategory" asp-route-CategoryId="@category.Id" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
                                                     <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
                                                 </div>
                                             </td>

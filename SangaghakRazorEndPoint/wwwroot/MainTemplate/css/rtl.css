@@ -1,0 +1,2237 @@
+@import url("./dashboard-rtl.css");
+body {
+  text-align: right;
+}
+
+
+
+[type="email"], [type="number"], [type="tel"], [type="url"] {
+  direction: rtl;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, span, p, li, a, .circle-text text {
+letter-spacing: 0px !important;
+font-family: "Vazirmatn RD FD", sans-serif;
+}
+.odometer.odometer-auto-theme,.odometer.odometer-theme-default{direction: ltr;font-family: "Vazirmatn RD FD", sans-serif;}
+.coming-soon-area .coming-soon .list ul {
+  direction: ltr;
+}
+button, input, optgroup, select, textarea {
+font-family: "Vazirmatn RD FD", sans-serif;
+}
+#timer {
+  direction: ltr;
+}
+.desktop-nav .navbar .navbar-nav {
+    margin-left: auto;
+    margin-right: 40px;
+}
+.desktop-nav .navbar ul {
+    padding-left: unset;
+    padding-right: 0;
+}
+.theme-dark .table {
+    --bs-table-bg: initial;
+}
+.theme-dark .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a.active {
+    color: var(--mainColor)!important;
+}
+.pricing-wraps .pricing-table table tbody tr td.pricing-name-list3 {
+    border-right: unset !important;
+    border-left: 1px solid #eeeeee !important;
+}
+.pricing-wraps .pricing-table table tbody tr td.pricing-body-list3 {
+    border-right: unset !important;
+    border-left: 1px solid #eeeeee !important;
+}
+.pricing-wraps .pricing-table table tbody tr td.pricing-body-list-lasst {
+    border-bottom: none !important;
+    border-right: unset !important;
+    border-left: none !important;
+}
+.job-listing-form .form-group i {
+    left: unset !important;
+    right: 0!important;
+}
+.job-details-widget-side .job-details-widget .job-details-social .social-icon li {
+    margin-right: unset !important;
+    margin-left: 10px!important;
+}
+.job-details-content .article-social-icon .social-icon li {
+    margin-right: unset !important;
+    margin-left: 10px!important;
+}
+.breadcrumb-area .breadcrumb .item::before {
+    content: "\ea64"!important;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item.dropdown .dropdown-menu .dropdown-body ul .nav-item {
+    margin-left: unset !important;
+    margin-right: 0!important;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item.dropdown .dropdown-menu .dropdown-body ul .nav-item .nav-link {
+    padding: 5px 38px 5px 15px;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item.dropdown .dropdown-menu .dropdown-body ul .nav-item .nav-link i {
+    left: unset!important;
+    right: 15px!important;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item.dropdown .dropdown-menu .dropdown-footer ul .nav-item .nav-link i {
+    left: unset!important;
+    right: 15px!important;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item.dropdown .dropdown-menu .dropdown-footer ul .nav-item .nav-link {
+    padding: 5px 38px 5px 15px;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item .dropdown-bs-toggle::before {
+    right: unset!important;
+    left: 0!important;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item .dropdown-bs-toggle {
+    padding-right: unset!important;
+    padding-left: 25px!important;
+}
+.theme-dark .main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item.dropdown .dropdown-menu {
+    background-color: var(--bs-body-color)!important;
+}
+.theme-dark .side-nav-responsive {
+    background-color: var(--bs-body-color)!important;
+}
+.theme-dark .side-nav-responsive .side-nav-inner {
+    background-color: var(--bs-body-color)!important;
+}
+.theme-dark .side-nav-responsive .side-nav-inner .side-nav {
+    background-color: var(--bs-body-color)!important;
+}
+.theme-dark .candidates-job-alerts-card {
+    background-color: var(--darkColor)!important;
+}
+.main-dashboard-content .side-nav-responsive .side-nav-inner .side-nav .option-item .profile-nav-item .menu-profile img {
+    margin-right: unset!important;
+    margin-left: 8px!important;
+}
+.theme-dark .main-dashboard-content .navbar-area .desktop-nav .navbar .others-options {
+    margin-left: unset!important;
+    margin-right: auto!important;
+}
+.theme-dark .cv-manager-box {
+    background-color: var(--darkColor)!important;
+}
+.chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-right ul li .dropdown .dropdown-menu .dropdown-item {
+    padding: 5px 36px 5px 15px!important;
+}
+.chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-right ul li .dropdown .dropdown-menu .dropdown-item i {
+    left: unset!important;
+    right: 15px!important;
+}
+.company-details-content .article-social-icon .social-icon li {
+    margin-right: unset!important;
+    margin-left: 10px!important;
+}
+.coming-soon-area .coming-soon-content .newsletter-form .default-btn {
+    right: unset!important;
+    left: 0!important;
+}
+.coming-soon-area .coming-soon-content .newsletter-form .input-newsletter {
+    padding-left: unset!important;
+    padding-right: 15px!important;
+}
+.coming-soon-area #validator-newsletter {
+    text-align: right!important;
+}
+
+.simplebar-track {
+    right: unset!important;
+    left: 0!important;
+}
+.candidates-details-content .candidates-education .education-card .experience-list li {
+    margin-right: unset!important;
+    margin-left: 30px!important;
+}
+.candidates-details-content .candidates-details-experience .experience-card .experience-list li {
+    margin-right: unset!important;
+    margin-left: 30px!important;
+}
+.switch-box {
+    right: unset!important;
+    left: 120px!important;
+}
+
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .recent-job-card .content {
+        padding-left: unset!important;
+        padding-right: 85px!important;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .company-details-card img {
+        left: unset !important;
+        right: 0!important;
+    }
+    .company-details-card {
+        padding: 25px 20px!important;
+    }
+.contact-info-item {
+    padding: 25px 93px 25px 18px!important;
+}
+    .recent-job-item h3 {
+        padding-right: unset !important;
+        padding-left: 30px!important;
+    }
+    .banner-img-two {
+        max-width: 100%!important;
+        margin-top: 30px!important;
+        padding-bottom: 0!important;
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
+    .banner-img-two img {
+        max-width: 100%!important;
+    }
+    .company-card {
+        padding: 25px 89px 25px 15px!important;
+    }
+    .job-listing-form .form-group i {
+        left: unset!important;
+        right: 10px!important;
+    }
+    .recent-job-card .content .job-list1 li {
+        margin-right: unset!important;
+        margin-left: 10px!important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .banner-img-two {
+        max-width: 100%!important;
+        margin-top: 30px!important;
+        padding-bottom: 0!important;
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
+    .banner-img-two img {
+        max-width: 100%!important;
+    }
+    .job-listing-form .form-group i {
+        left: unset!important;
+        right: 10px!important;
+    }
+    .employers-cv-btn {
+        float: none!important;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .browse-jobs-item i {
+        left: unset!important;
+        right: 0!important;
+    }
+    .job-listing-form .form-group i {
+        left: unset!important;
+        right: 10px!important;
+    }
+
+    .other-candidates-list ul li {
+        padding-left: unset!important;
+        padding-right: 0!important;
+    }
+    .candidates-details-content .candidates-details-experience .experience-card .experience-list li {
+        margin-right: unset!important;
+        margin-left: 10px!important;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1299px) {
+    .job-listing-form .form-group .form-control {
+        padding: 10px 27px 10px 10px!important;
+    }
+.recent-job-card .download-btn {
+        left: unset!important;
+        right: 0!important;
+        padding: 8px 20px!important;
+    }
+}
+
+
+
+.form-control {
+  text-align: right;
+}
+
+.pl-20 {
+  padding-left: unset;
+  padding-right: 20px;
+}
+
+.pr-20 {
+  padding-left: 20px;
+  padding-right: unset;
+}
+
+.ml-20 {
+  margin-left: unset;
+  margin-right: 20px;
+}
+
+.default-btn i {
+  margin-left: 10px;
+  margin-right: unset;
+}
+
+/*=================================
+Navbar Area 
+====================================*/
+.desktop-nav .navbar .navbar-nav .nav-item:last-child a {
+  margin-right: 0;
+}
+.desktop-nav .navbar .navbar-nav .nav-item:first-child a {
+  margin-left: 0;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li a i {
+  float: left;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu {
+  right: 245px;
+  left: auto;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu {
+  right: 245px;
+  left: auto;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+  right: -250px;
+  left: auto;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+  right: -250px;
+  left: auto;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+  right: -250px;
+  left: auto;
+}
+.desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+  right: -250px;
+  left: auto;
+}
+
+.others-options .optional-item {
+  margin-left: 30px;
+  margin-right: unset;
+}
+.others-options .optional-item:last-child {
+  margin-left: 0;
+}
+
+.side-nav-responsive .dot-menu {
+  left: 60px;
+  right: auto;
+}
+.side-nav-responsive .container-max .container {
+  left: 0;
+  right: auto;
+}
+
+/*=================================
+Navbar Area End
+====================================*/
+/*================================
+Main Banner Area
+===================================*/
+.banner-content .popular-searches-tag .title {
+  margin-left: 20px;
+  margin-right: unset;
+}
+
+.banner-form {
+  margin-right: unset;
+  margin-left: -100px;
+}
+.banner-form .form-group {
+  position: relative;
+  border-left: 1px solid #E3E3E3;
+  padding-left: 10px;
+  padding-right: unset;
+  border-right: none;
+}
+.banner-form .form-group i {
+  right: 0;
+  left: auto;
+}
+.banner-form .form-group .form-control {
+  padding: 10px 25px 10px 0px;
+}
+.banner-form .form-group .form-control.form-select {
+  padding: 10px 0 10px 32px;
+}
+.banner-form .submit-btn i {
+  margin-left: 10px;
+  margin-right: unset;
+}
+
+.banner-img .banner-img-shape .shape1 {
+  right: -140px;
+  left: auto;
+}
+.banner-img .banner-img-shape .shape2 {
+  right: -75px;
+  left: auto;
+}
+.banner-img .banner-img-shape .shape3 {
+  right: 40px;
+  left: auto;
+}
+.banner-img .banner-img-shape .shape4 {
+  right: 110px;
+  left: auto;
+}
+.banner-img .banner-img-shape .shape5 {
+  left: 55px;
+  right: auto;
+}
+.banner-img .banner-img-shape .shape6 {
+  right: auto;
+  left: 0;
+}
+
+.banner-shape .shape-in-one {
+  right: auto;
+  left: 20px;
+}
+.banner-shape .shape-in-two {
+  left: 0;
+  right: auto;
+}
+
+.banner-area-two {
+  background-color: #F3F5F0;
+  padding: 120px 0 70px;
+}
+
+.banner-content-two .popular-searches-tag .title {
+  margin-left: 20px;
+  margin-right: unset;
+}
+
+.banner-form-two .form-group {
+  border-right: none;
+  border-left: 1px solid #E3E3E3;
+  padding-left: 10px;
+  padding-right: unset;
+}
+.banner-form-two .form-group.select-group {
+  border: none;
+  padding-left: 0;
+}
+.banner-form-two .form-group i {
+  right: 0;
+  left: auto;
+}
+.banner-form-two .form-group .form-control {
+  padding: 10px 27px 10px 0;
+}
+
+.banner-img-two {
+  margin-right: auto;
+  max-width: 410px;
+}
+
+.banner-shape-two .shape1 {
+  right: auto;
+  left: 0;
+}
+.banner-shape-two .shape2 {
+  right: -60px;
+  left: auto;
+}
+.banner-shape-two .shape3 {
+  left: 40.5%;
+  right: auto;
+}
+
+.banner-form-three .form-group {
+  border-right: none;
+  border-left: 1px solid #E3E3E3;
+  padding-left: 10px;
+  padding-right: unset;
+}
+.banner-form-three .form-group.select-group {
+  border: none;
+  padding-left: 0;
+}
+.banner-form-three .form-group i {
+  right: 0;
+  left: auto;
+}
+.banner-form-three .form-group .form-control {
+  padding: 10px 27px 10px 0;
+}
+
+.banner-three-other .other-content5 {
+  left: 20%;
+}
+
+.banner-img-two {
+  position: relative;
+  padding-bottom: 170px;
+  margin-right: 15px;
+  max-width: 635px;
+}
+.banner-img-two img {
+  max-width: 400px;
+}
+
+.banner-shape-two .shape1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.banner-shape-two .shape2 {
+  position: absolute;
+  bottom: -30px;
+  right: 100px;
+}
+.banner-shape-two .shape3 {
+  position: absolute;
+  top: 26.5%;
+  transform: translateY(-26.5%);
+  left: 16.5%;
+}
+
+/*================================
+Main Banner Area End
+===================================*/
+/*=================================
+Inner Banner Area
+====================================*/
+.inner-banner .inner-title ul li {
+  margin-left: 35px;
+  margin-right: unset;
+}
+.inner-banner .inner-title ul li:last-child {
+  margin-left: 0;
+}
+.inner-banner .inner-title ul li::before {
+  left: -22px;
+  right: auto;
+}
+
+/*=================================
+Inner Banner Area End
+====================================*/
+.services-card {
+  padding: 25px 100px 25px 25px;
+}
+.services-card i {
+  right: 25px;
+  left: auto;
+}
+
+/*================================
+Browse Job Area
+===================================*/
+.browse-jobs-card {
+  padding: 30px 105px 30px 30px;
+}
+.browse-jobs-card .icon {
+  right: 30px;
+  left: auto;
+}
+.browse-jobs-card .more-btn {
+  left: 20px;
+  right: auto;
+}
+
+.browse-jobs-list h3 i {
+  margin-left: 10px;
+  margin-right: unset;
+}
+.browse-jobs-list ul li::before {
+  right: 0;
+  left: auto;
+}
+.browse-jobs-list ul li:hover {
+  padding-left: unset;
+  padding-right: 20px;
+}
+
+.job-listing-form .form-group {
+  border-left: 1px solid #E3E3E3;
+  padding-left: 10px;
+  padding-right: unset;
+  border-right: none;
+}
+.job-listing-form .form-group.select-group {
+  border: none;
+  padding-left: 0;
+}
+.job-listing-form .form-group i {
+  right: 0;
+}
+.job-listing-form .form-group .form-control.form-select {
+  padding: 15px 0 15px 40px;
+}
+
+.job-listing-side-bar-content img {
+  right: auto;
+  left: 30px;
+}
+
+.job-listing-widget .accordion-widget {
+  padding-left: unset;
+  padding-right: 0;
+}
+.job-listing-widget .accordion-widget .accordion-widget-title i {
+  left: 0;
+  right: auto;
+}
+.job-listing-widget .accordion-widget .accordion-widget-content li label {
+  padding-right: 28px;
+  padding-left: unset;
+}
+.job-listing-widget .accordion-widget .accordion-widget-content li label span.fl {
+  float: left;
+}
+.job-listing-widget .accordion-widget .accordion-widget-content li label::before {
+  right: 0;
+  left: auto;
+  margin-left: 10px;
+  margin-right: unset;
+}
+
+/*================================
+Browse Job Area End
+===================================*/
+.browse-jobs-item {
+  padding: 25px 93px 25px 18px;
+}
+.browse-jobs-item i {
+  right: 20px;
+  left: auto;
+}
+
+/*================================
+Find Job Area
+===================================*/
+.find-jobs-card .find-jobs-img {
+  margin-left: 20px;
+  margin-right: 0;
+}
+.find-jobs-card .content .content-list li {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-right: unset;
+}
+.find-jobs-card .content .content-list2 li.list-one {
+  margin-right: unset;
+  margin-left: 50px;
+}
+.find-jobs-card .content .content-list2 li.list-two i {
+  margin-right: unset;
+  margin-left: 3px;
+  float: right;
+}
+.find-jobs-card .content .content-list3 li {
+  margin-left: 35px;
+  margin-right: unset;
+}
+.find-jobs-card .content .content-list3 li i {
+  margin-left: 3px;
+  margin-right: unset;
+  float: right;
+}
+.find-jobs-card .find-jobs-btn {
+  right: auto;
+  left: 30px;
+}
+.find-jobs-card .bookmark-btn {
+  right: auto;
+  left: 25px;
+}
+
+/*================================
+Find Job Area End
+===================================*/
+/*================================
+Contact Area
+===================================*/
+.contact-form .form-group i {
+  left: auto;
+  right: 0;
+}
+.contact-form .form-group .form-control {
+  padding: 15px 30px 15px 20px;
+}
+.contact-form .form-group.checkbox-option #chb2 {
+  right: 0;
+  left: auto;
+}
+.contact-form .form-group.checkbox-option p {
+  padding-right: 25px;
+  padding-left: unset;
+}
+.contact-form .agree-label #chb1 {
+  right: 0;
+  left: auto;
+}
+.contact-form .agree-label label {
+  margin-left: unset;
+  margin-right: 25px;
+}
+.contact-form .agree-label label a.forget {
+  left: 0;
+  right: auto;
+}
+.contact-form .with-errors {
+  float: right;
+}
+
+.contact-info-item {
+  padding: 25px 93px 25px 18px;
+}
+.contact-info-item i {
+  right: 20px;
+  left: auto;
+}
+
+/*================================
+Freelancers Area
+===================================*/
+.freelancers-card .title img {
+  margin-right: 20px;
+  margin-left: unset;
+}
+
+/*================================
+Freelancers Area End
+===================================*/
+/*================================
+Recent Job Area
+===================================*/
+.recent-job-item {
+  padding: 30px 90px 30px 15px;
+}
+.recent-job-item .recent-job-img {
+  left: auto;
+  right: 15px;
+}
+.recent-job-item .job-list1 li {
+  margin-left: 10px;
+  margin-right: unset;
+}
+.recent-job-item .job-list1 li i {
+  margin-right: 0;
+}
+.recent-job-item .job-list2 li {
+  margin-right: unset;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+.recent-job-item .job-list2 li:last-child {
+  margin-left: 0;
+}
+.recent-job-item .bookmark-btn {
+  left: 10px;
+  right: auto;
+}
+
+.recent-job-card .content {
+  padding-right: 90px;
+  padding-left: unset;
+}
+.recent-job-card .content .recent-job-img {
+  right: 0;
+  left: auto;
+}
+.recent-job-card .content .job-list1 li {
+  margin-left: 100px;
+  margin-right: unset;
+}
+.recent-job-card .content .job-list1 li:last-child {
+  margin-left: 0;
+}
+.recent-job-card .bookmark-btn {
+  left: 25px;
+  right: auto;
+}
+.recent-job-card .job-sub-content .job-list2 li {
+  margin-left: 10px;
+  margin-right: unset;
+}
+.recent-job-card .job-sub-content .job-list2 li:last-child {
+  margin-left: 0;
+}
+
+/*================================
+Recent Job Area End
+===================================*/
+.testimonials-item .content {
+  padding: 10px 90px 10px 0;
+  -moz-text-align-last: right;
+       text-align-last: right;
+}
+.testimonials-item .content .content-img {
+  right: 0;
+  left: auto;
+}
+
+/*================================
+Pricing Area
+===================================*/
+.pricing-content ul li {
+  margin-left: -20px;
+  margin-right: unset;
+}
+.pricing-content ul li.title {
+  margin-right: 30px;
+  margin-left: unset;
+}
+
+/*================================
+Pricing Area End
+===================================*/
+/*================================
+Job Post Area
+===================================*/
+.job-post-form .form-group.select-group .form-control {
+  padding-right: 17px;
+  padding-left: unset;
+}
+.job-post-form .form-group i {
+  right: 15px;
+  left: auto;
+}
+.job-post-form .form-group .form-control {
+  padding: 10px 45px 10px 27px;
+}
+
+.job-post-card {
+  padding: 30px 120px 30px 30px;
+}
+.job-post-card .job-post-img {
+  left: auto;
+  right: 30px;
+}
+.job-post-card .content .content-item .content-list li {
+  margin-left: 20px;
+  margin-right: unset;
+}
+.job-post-card .content .content-item .content-list li i {
+  margin-left: 3px;
+  margin-right: unset;
+}
+.job-post-card .content .content-item .content-list li:last-child {
+  margin-left: 0;
+}
+.job-post-card .content .content-item span {
+  margin-right: 40px;
+  margin-left: unset;
+}
+.job-post-card .content .content-list2 li {
+  margin-right: unset;
+  margin-left: 10px;
+}
+.job-post-card .content .content-list2 li:last-child {
+  margin-left: 0;
+}
+.job-post-card .bookmark-btn {
+  right: auto;
+  left: 25px;
+}
+
+.job-details-widget-side .job-details-widget .job-details-category li span {
+  float: left;
+}
+
+.job-details-content .job-details-list ul li {
+  padding-right: 15px;
+  padding-left: unset;
+}
+.job-details-content .job-details-list ul li::before {
+  right: 0;
+  left: auto;
+}
+
+.employers-details-content .employers-details-list ul li {
+  padding-right: 15px;
+  padding-left: unset;
+}
+.employers-details-content .employers-details-list ul li::before {
+  right: 0;
+  left: auto;
+}
+
+/*================================
+Job Post Area End
+===================================*/
+.company-card {
+  padding: 25px 110px 25px 25px;
+}
+.company-card img {
+  right: 20px;
+  left: auto;
+}
+
+.career-content .content {
+  padding: 10px 90px 10px 0;
+}
+.career-content .content img {
+  right: 0;
+  left: auto;
+}
+.career-content ul li {
+  margin-left: -20px;
+  margin-right: unset;
+}
+.career-content ul li.title {
+  margin-right: 30px;
+  margin-left: unset;
+}
+
+.blog-card .blog-img .tag {
+  right: 20px;
+  left: auto;
+}
+.blog-card .content {
+  padding-right: 20px;
+  padding-left: unset;
+}
+.blog-card .content ul li {
+  margin-right: unset;
+  margin-left: 20px;
+}
+.blog-card .content ul li:last-child {
+  margin-left: 0;
+}
+
+.blog-details-content .content ul li {
+  margin-left: 30px;
+  margin-right: unset;
+}
+.blog-details-content .content ul li.images {
+  margin-left: 10px;
+  margin-right: unset;
+}
+.blog-details-content .blockquote .line1 {
+  left: 55px;
+  right: auto;
+}
+.blog-details-content .blockquote .line2 {
+  left: 40px;
+  right: auto;
+}
+.blog-details-content .blog-details-list ul li {
+  padding-right: 35px;
+  padding-left: unset;
+}
+.blog-details-content .blog-details-list ul li i {
+  right: 0;
+  left: auto;
+}
+.blog-details-content .blog-details-list-two ul li {
+  padding-left: unset;
+  padding-right: 15px;
+}
+.blog-details-content .blog-details-list-two ul li::before {
+  right: 0;
+  left: auto;
+}
+.blog-details-content .article-share-area .article-social-icon .social-icon li {
+  margin-left: 10px;
+  margin-right: unset;
+}
+.blog-details-content .article-share-area .article-social-icon .social-icon li:last-child {
+  margin-left: 0;
+}
+.blog-details-content .article-share-area .tag {
+  float: left;
+}
+
+.side-bar-widget .search-form button {
+  left: 0;
+  right: auto;
+  border-radius: 5px 0 0 5px;
+}
+.side-bar-widget .side-bar-categories ul li a span {
+  float: left;
+}
+
+.company-details-card {
+  padding: 30px 120px 30px 30px;
+}
+.company-details-card img {
+  right: 30px;
+  left: auto;
+}
+.company-details-card .content-list li {
+  margin-left: 20px;
+  margin-right: unset;
+}
+.company-details-card .content-list li i {
+  margin-left: 3px;
+  margin-left: unset;
+}
+
+.company-details-content .company-details-list ul li {
+  padding-left: unset;
+  padding-right: 15px;
+}
+.company-details-content .company-details-list ul li::before {
+  right: 0;
+  left: auto;
+}
+
+.other-candidates-list ul li {
+  padding-right: 80px;
+  padding-left: unset;
+}
+.other-candidates-list ul li .profile {
+  right: 0;
+  left: auto;
+}
+.other-candidates-list ul li .sub-title img {
+  margin-right: 15px;
+  margin-left: unset;
+}
+
+.candidates-details-content .candidates-details-experience .experience-card {
+  padding-right: 70px;
+  padding-left: unset;
+}
+.candidates-details-content .candidates-details-experience .experience-card img {
+  right: 0;
+  left: auto;
+}
+.candidates-details-content .candidates-education .education-card {
+  padding-right: 75px;
+  padding-left: unset;
+}
+.candidates-details-content .candidates-education .education-card img {
+  right: 0;
+  left: auto;
+}
+
+.candidates-details-right .content-profile .social-icon li {
+  margin-left: 10px;
+  margin-right: unset;
+}
+
+.employers-cv-btn {
+  float: left;
+}
+
+.footer-widget .footer-contact-list li {
+  padding-left: unset;
+  padding-right: 30px;
+}
+.footer-widget .footer-contact-list li i {
+  right: 0;
+  left: auto;
+}
+
+.copy-right-text {
+  text-align: right;
+}
+
+.copy-right-social-link {
+  text-align: left;
+}
+.copy-right-social-link .social-link li {
+  margin-left: 15px;
+  margin-right: unset;
+}
+.copy-right-social-link .social-link li:last-child {
+  margin-left: 0;
+}
+
+.candidates-widget .form-group i {
+  right: 10px;
+  left: auto;
+}
+.candidates-widget .form-group .form-control {
+  padding: 15px 40px 15px 20px;
+}
+.candidates-widget .candidates-widget-listing li label {
+  padding-right: 28px;
+  padding-left: unset;
+}
+.candidates-widget .candidates-widget-listing li label span.fl {
+  float: left;
+}
+.candidates-widget .candidates-widget-listing li label::before {
+  right: 0;
+  left: auto;
+  margin-left: 10px;
+  margin-right: unset;
+}
+
+/*=================================
+Go Top Area 
+====================================*/
+.go-top {
+  left: 3%;
+  right: auto;
+}
+
+/*=================================
+Go Top Area End
+====================================*/
+/*=================================
+Faq Area 
+===================================*/
+.faq-accordion .accordion {
+  padding-right: 0;
+  padding-left: unset;
+}
+.faq-accordion .accordion .accordion-title {
+  padding: 15px 20px 15px 60px;
+}
+.faq-accordion .accordion .accordion-title i {
+  left: 15px;
+  right: auto;
+}
+
+/*=================================
+Faq Area End
+===================================*/
+.sidemenu-area {
+  right: 0;
+  left: auto;
+}
+.sidemenu-area .sidemenu-body .sidemenu-nav .nav-item .nav-link .icon {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.main-dashboard-content {
+  padding-left: 30px;
+  padding-right: 310px;
+}
+.main-dashboard-content .navbar-area {
+  right: 280px;
+  left: 0;
+  width: calc(100% - 280px);
+}
+.main-dashboard-content .navbar-area .desktop-nav {
+  left: 0;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .navbar-nav.me-auto {
+  margin-left: auto !important;
+  margin-right: unset !important;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options {
+  margin-right: auto;
+  margin-left: unset;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item .menu-profile img {
+  margin-left: 8px;
+  margin-right: 0;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item .dropdown-bs-toggle {
+  padding-left: 25px;
+  margin-right: 0;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item .dropdown-bs-toggle::before {
+  left: 0;
+  right: auto;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu {
+  left: 0;
+  right: auto;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu .dropdown-body ul .nav-item {
+  text-align: right;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu .dropdown-body ul .nav-item .nav-link {
+  padding: 5px 38px 5px 15px;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu .dropdown-body ul .nav-item .nav-link i {
+  right: 15px;
+  left: auto;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu .dropdown-footer ul .nav-item {
+  text-align: right;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu .dropdown-footer ul .nav-item .nav-link {
+  padding: 5px 38px 5px 15px;
+}
+.main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu .dropdown-footer ul .nav-item .nav-link i {
+  right: 15px;
+  left: auto;
+}
+.main-dashboard-content .navbar-area.is-sticky .desktop-nav {
+  right: 280px;
+  left: 0;
+}
+
+.my-profile-box .bar {
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+.recent-job-card .download-btn {
+  left: 30px;
+  right: auto;
+}
+
+.breadcrumb-area h1 {
+  padding-left: 15px;
+  padding-right: 0;
+}
+.breadcrumb-area h1::before {
+  left: 0;
+  right: auto;
+}
+.breadcrumb-area .breadcrumb {
+  padding-right: 15px;
+  padding-left: 0;
+}
+.breadcrumb-area .breadcrumb .item {
+  margin-left: 25px;
+  margin-right: 0;
+}
+.breadcrumb-area .breadcrumb .item:last-child {
+  margin-left: 0;
+}
+.breadcrumb-area .breadcrumb .item::before {
+  left: -22px;
+  right: auto;
+}
+
+.notification-alert .close {
+  left: 20px;
+  right: auto;
+}
+
+.stats-fun-fact-box {
+  padding: 35px 115px 34px 25px;
+}
+.stats-fun-fact-box .icon-box {
+  right: 25px;
+  left: auto;
+}
+
+.invoices-box ul {
+  padding-right: 0;
+}
+.invoices-box ul li {
+  padding-right: 80px;
+  padding-left: 170px;
+}
+.invoices-box ul li .icon {
+  right: 25px;
+  left: auto;
+}
+.invoices-box ul li .default-btn {
+  left: 25px;
+  right: auto;
+}
+.invoices-box ul li ul li {
+  margin-left: 12px;
+  margin-right: 0;
+}
+.invoices-box ul li ul li:last-child {
+  margin-left: 0;
+}
+.invoices-box ul li ul li::before {
+  left: -10px;
+  right: auto;
+}
+
+.post-a-new-job-box .bar {
+  margin-left: unset;
+  margin-right: 20px;
+}
+
+.recent-notifications-box ul {
+  padding-right: 0;
+}
+.recent-notifications-box ul li {
+  padding-right: 75px;
+  padding-left: 45px;
+}
+.recent-notifications-box ul li .icon {
+  right: 25px;
+  left: auto;
+}
+.recent-notifications-box ul li .close {
+  left: 20px;
+  right: auto;
+}
+
+.single-applicants-card .image {
+  right: 20px;
+  left: auto;
+}
+.single-applicants-card .content {
+  padding: 0 110px 0 180px;
+}
+.single-applicants-card .content .applicants-footer {
+  left: 0;
+  right: auto;
+}
+.single-applicants-card .content .applicants-footer .option-list li {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.single-applicants-card .content .applicants-footer .option-list li:last-child {
+  margin-left: 0;
+}
+.single-applicants-card .content .job-info li {
+  margin-left: 10px;
+  margin-right: 0;
+  padding-right: 18px;
+  padding-left: 0;
+}
+.single-applicants-card .content .job-info li:last-child {
+  margin-left: 0;
+}
+.single-applicants-card .content .job-info li i {
+  right: 0;
+  left: auto;
+}
+
+.text-end {
+  text-align: left !important;
+}
+
+.my-profile-box .profile-box .text {
+  margin-right: 30px;
+  margin-left: 0;
+}
+.my-profile-box .profile-box .file-upload {
+  right: 15px;
+  left: auto;
+}
+.my-profile-box form .form-group .selectize-input:after {
+  left: 16px !important;
+  right: auto !important;
+}
+
+.post-a-new-job-box form .form-group .selectize-input:after {
+  left: 16px !important;
+  right: auto !important;
+}
+
+.manage-jobs-box .manage-jobs-table table tbody tr td span {
+  padding-left: 0;
+}
+.manage-jobs-box .manage-jobs-table table tbody tr td span i {
+  position: relative;
+  float: right;
+  top: 9px;
+  margin-left: 5px;
+}
+.manage-jobs-box .manage-jobs-table table tbody tr td .option-list li {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.manage-jobs-box .manage-jobs-table table tbody tr td .option-list li:last-child {
+  margin-left: 0;
+}
+
+.me-3 {
+  margin-left: 1rem !important;
+  margin-right: 0 !important;
+}
+
+.chat-content-area .sidebar-left .sidebar .chat-sidebar-header form label {
+  right: 15px;
+  left: auto;
+}
+.chat-content-area .sidebar-left .sidebar .chat-sidebar-header form .form-control {
+  padding: 0 40px 0 15px;
+}
+.chat-content-area .sidebar-left .sidebar .sidebar-content .chat-menu .list-group-label::before {
+  right: 0;
+  left: auto;
+}
+.chat-content-area .sidebar-left .sidebar .sidebar-content .chat-menu .list-group-user li .avatar [class*=status-] {
+  right: 1px;
+  left: auto;
+}
+.chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-left .avatar [class*=status-] {
+  right: -1px;
+  left: auto;
+}
+.chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-right ul li {
+  margin-right: 5px;
+  margin-left: 0;
+}
+.chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-right ul li:first-child {
+  margin-right: 0;
+}
+
+.list-group {
+  padding-right: 0;
+}
+
+.me-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0 !important;
+}
+
+.resume-alerts-table table tbody tr td .option-list li {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.resume-alerts-table table tbody tr td .option-list li:last-child {
+  margin-left: 0;
+}
+
+.dashboard-jobs-box .dashboard-job-card .job-content {
+  padding-right: 75px;
+  padding-left: 35px;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .company-logo {
+  right: 0;
+  left: auto;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .bookmark-btn {
+  left: 0;
+  right: auto;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .hover-bookmark-btn {
+  left: 0;
+  right: auto;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .location-information li {
+  margin-left: 15px;
+  margin-right: 0;
+  padding-right: 20px;
+  padding-left: 0;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .location-information li:last-child {
+  margin-left: 0;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .location-information li i {
+  right: 0;
+  left: auto;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .job-tag-list li {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .job-tag-list li:last-child {
+  margin-left: 0;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .option-list li {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.dashboard-jobs-box .dashboard-job-card .job-content .option-list li:last-child {
+  margin-left: 0;
+}
+
+.submit-resumes-box form .form-group .selectize-input:after {
+  left: 16px !important;
+  right: auto !important;
+}
+
+.job-alerts-table table tbody tr td .option-list li {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.job-alerts-table table tbody tr td .option-list li:last-child {
+  margin-left: 0;
+}
+
+.candidates-job-alerts-card .delete-btn {
+  float: left;
+}
+
+.profile-outer .text {
+  padding-right: 25px;
+  padding-left: 0;
+}
+
+.change-password-box .bar {
+  margin-right: 20px;
+  margin-left: unset;
+}
+
+/*=================================
+Responsive Css 
+====================================*/
+@media only screen and (max-width: 767px) {
+  .pl-20 {
+    padding-left: unset;
+    padding-right: 0;
+  }
+  .pr-20 {
+    padding-left: 0;
+    padding-right: unset;
+  }
+  .ml-20 {
+    margin-right: 0;
+    margin-left: unset;
+  }
+  .ps-2 {
+    padding-right: 0 !important;
+    padding-left: unset;
+  }
+  .ps-3 {
+    padding-right: 0 !important;
+    padding-left: unset;
+  }
+  .ps-5 {
+    padding-right: 0 !important;
+    padding-left: unset;
+  }
+  .banner-content .popular-searches-tag .title {
+    margin-left: 10px;
+    margin-right: unset;
+  }
+  .banner-form .form-group {
+    border-left: none;
+    padding-left: 0;
+  }
+  .banner-form .form-group.select-group {
+    border: none;
+    padding-left: 0;
+  }
+  .banner-form .form-group i {
+    right: 10px;
+    left: auto;
+  }
+  .banner-form .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .banner-form .form-group .form-control.form-select {
+    padding: 15px 15px 15px 40px;
+  }
+  .banner-content-two {
+    max-width: 100%;
+  }
+  .banner-content-two .popular-searches-tag .title {
+    margin-left: 10px;
+    margin-right: unset;
+  }
+  .banner-img-two {
+    max-width: 100%;
+  }
+  .banner-form-two .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .banner-form-two .form-group i {
+    right: 10px;
+  }
+  .banner-form-two .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .browse-jobs-card {
+    padding: 20px 75px 20px 20px;
+  }
+  .browse-jobs-card .more-btn {
+    left: 10px;
+    right: auto;
+  }
+  .browse-jobs-card .icon {
+    right: 10px;
+    left: auto;
+  }
+  .banner-area-three::after {
+    display: none;
+  }
+  .banner-form-three .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .banner-form-three .form-group i {
+    right: 10px;
+  }
+  .banner-form-three .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .candidates-details-content .candidates-details-experience .experience-card {
+    padding-right: 0;
+    padding-left: unset;
+  }
+  .candidates-details-content .candidates-education .education-card {
+    padding-right: 0;
+    padding-left: unset;
+  }
+  .services-card {
+    padding: 25px 80px 25px 15px;
+  }
+  .services-card i {
+    right: 15px;
+    left: auto;
+  }
+  .browse-jobs-item {
+    padding: 25px 85px 25px 18px;
+  }
+  .recent-job-item {
+    padding: 20px 90px 20px 15px;
+  }
+  .job-listing-form .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .job-listing-form .form-group i {
+    right: 10px;
+  }
+  .job-listing-form .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .job-listing-form .form-group .form-control.form-select {
+    padding: 15px 15px 15px 40px;
+  }
+  .recent-job-card .download-btn {
+    left: 0;
+    right: auto;
+  }
+  .job-post-card {
+    padding: 25px 15px 15px;
+  }
+  .job-post-card .job-post-img {
+    left: auto;
+    right: 0;
+  }
+  .job-post-card .content .content-item span {
+    margin-right: 0;
+  }
+  .company-card {
+    padding: 25px 80px 25px 25px;
+  }
+  .recent-job-card .content {
+    padding-right: 0;
+    padding-left: unset;
+  }
+  .recent-job-card .job-sub-content .job-list2 li {
+    margin-left: 5px;
+  }
+  .career-content ul li.title {
+    margin-right: 0;
+    margin-left: unset;
+  }
+  .contact-info-item {
+    padding: 25px 75px 25px 15px;
+  }
+  .contact-info-item i {
+    right: 15px;
+    left: auto;
+  }
+  .find-jobs-card .find-jobs-btn {
+    right: auto;
+    left: 0;
+  }
+  .pricing-content ul li.title {
+    margin-right: 0;
+    margin-left: unset;
+  }
+  .employers-cv-btn {
+    float: none;
+  }
+  .copy-right-text {
+    text-align: center;
+  }
+  .copy-right-social-link {
+    text-align: center;
+  }
+  .sidemenu-area {
+    right: -100%;
+    left: auto;
+  }
+  .sidemenu-area.active-sidemenu-area {
+    right: 0;
+    left: auto;
+  }
+  .main-dashboard-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .main-dashboard-content .navbar-area {
+    right: 0;
+    left: auto;
+    width: calc(100% - 0px);
+  }
+  .main-dashboard-content .others-option-for-responsive .dot-menu {
+    left: 40px;
+    right: auto;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .menu-profile img {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle::before {
+    left: 0;
+    right: auto;
+  }
+  .stats-fun-fact-box {
+    padding: 35px 95px 34px 25px;
+  }
+  .invoices-box ul li {
+    padding-left: 25px;
+  }
+  .invoices-box ul li .default-btn {
+    left: 0;
+  }
+  .single-applicants-card .image {
+    right: 0;
+  }
+  .single-applicants-card .content {
+    padding: 0;
+  }
+  .text-end {
+    text-align: center !important;
+  }
+  .breadcrumb-area .breadcrumb {
+    padding-right: 0;
+  }
+  .my-profile-box .profile-box .text {
+    margin-right: 0;
+  }
+  .dashboard-jobs-box .dashboard-job-card .job-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .candidates-job-alerts-card .delete-btn {
+    float: none;
+  }
+  .profile-outer .text {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .blog-details-content .content ul li {
+    margin-left: 30px;
+    margin-right: unset;
+  }
+  .blog-details-content .content ul li.images {
+    margin-left: 10px;
+    margin-right: unset;
+  }
+  .blog-details-content .blockquote .line1 {
+    left: 55px;
+    right: auto;
+  }
+  .blog-details-content .blockquote .line2 {
+    left: 40px;
+    right: auto;
+  }
+  .blog-details-content .blog-details-list ul li {
+    padding-right: 35px;
+    padding-left: unset;
+  }
+  .blog-details-content .blog-details-list ul li i {
+    right: 0;
+    left: auto;
+  }
+  .blog-details-content .blog-details-list-two ul li {
+    padding-left: unset;
+    padding-right: 15px;
+  }
+  .blog-details-content .blog-details-list-two ul li::before {
+    right: 0;
+    left: auto;
+  }
+  .blog-details-content .article-share-area .article-social-icon .social-icon li {
+    margin-left: 5px;
+    margin-right: unset;
+  }
+  .blog-details-content .article-share-area .article-social-icon .social-icon li:last-child {
+    margin-left: 0;
+  }
+  .blog-details-content .article-share-area .tag {
+    float: none;
+  }
+}
+@media only screen and (min-width: 520px) and (max-width: 767px) {
+  .browse-jobs-item {
+    padding: 25px 65px 25px 10px;
+  }
+  .browse-jobs-item i {
+    right: 10px;
+    left: auto;
+  }
+  .company-card {
+    padding: 20px 74px 20px 15px;
+  }
+  .company-card img {
+    right: 10px;
+    left: auto;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .browse-jobs-card {
+    padding: 20px 10px 20px 10px;
+  }
+  .browse-jobs-card .icon {
+    right: 0;
+    left: auto;
+  }
+  .career-content ul li.title {
+    margin-right: 25px;
+    margin-left: unset;
+  }
+  .pricing-content ul li.title {
+    margin-right: 25px;
+    margin-left: unset;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .pl-20 {
+    padding-left: unset;
+    padding-right: 0;
+  }
+  .pr-20 {
+    padding-left: 0;
+    padding-right: unset;
+  }
+  .ml-20 {
+    margin-right: 0;
+    margin-left: unset;
+  }
+  .ps-2 {
+    padding-right: 0 !important;
+    padding-left: unset;
+  }
+  .ps-3 {
+    padding-right: 0 !important;
+    padding-left: unset;
+  }
+  .ps-5 {
+    padding-right: 0 !important;
+    padding-left: unset;
+  }
+  .banner-content h1 {
+    max-width: 500px;
+  }
+  .banner-content .popular-searches-tag .title {
+    margin-left: 10px;
+    margin-right: unset;
+  }
+  .candidates-job-alerts-card .delete-btn {
+    float: none;
+  }
+  .banner-form .form-group {
+    border-left: none;
+    padding-left: 0;
+  }
+  .banner-form .form-group.select-group {
+    border: none;
+    padding-left: 0;
+  }
+  .banner-form .form-group i {
+    right: 10px;
+    left: auto;
+  }
+  .banner-form .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .banner-form .form-group .form-control.form-select {
+    padding: 15px 15px 15px 40px;
+  }
+  .banner-content-two {
+    max-width: 100%;
+  }
+  .banner-content-two .popular-searches-tag .title {
+    margin-left: 10px;
+    margin-right: unset;
+  }
+  .banner-img-two {
+    max-width: 100%;
+  }
+  .banner-form-two .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .banner-form-two .form-group i {
+    right: 10px;
+  }
+  .banner-form-two .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .browse-jobs-item {
+    padding: 25px 80px 25px 18px;
+  }
+  .banner-form-three .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .banner-form-three .form-group i {
+    right: 10px;
+  }
+  .banner-form-three .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .browse-jobs-card {
+    padding: 20px 75px 20px 20px;
+  }
+  .browse-jobs-card .more-btn {
+    left: 10px;
+    right: auto;
+  }
+  .browse-jobs-card .icon {
+    right: 10px;
+    left: auto;
+  }
+  .freelancers-card .sub-title .sub-title2 {
+    margin-left: unset;
+    margin-right: 12px;
+  }
+  .recent-job-item {
+    padding: 20px 75px 20px 15px;
+  }
+  .job-listing-form .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .job-listing-form .form-group i {
+    right: 10px;
+  }
+  .job-listing-form .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .job-listing-form .form-group .form-control.form-select {
+    padding: 15px 15px 15px 40px;
+  }
+  .sidemenu-area {
+    right: -100%;
+    left: auto;
+  }
+  .sidemenu-area.active-sidemenu-area {
+    right: 0;
+    left: auto;
+  }
+  .main-dashboard-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .main-dashboard-content .navbar-area {
+    right: 0;
+    left: auto;
+    width: calc(100% - 0px);
+  }
+  .main-dashboard-content .others-option-for-responsive .dot-menu {
+    left: 40px;
+    right: auto;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .menu-profile img {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle::before {
+    left: 0;
+    right: auto;
+  }
+  .sidemenu-area {
+    right: -100%;
+    left: auto;
+  }
+  .sidemenu-area.active-sidemenu-area {
+    right: 0;
+    left: auto;
+  }
+  .main-dashboard-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .main-dashboard-content .navbar-area {
+    right: 0;
+    left: auto;
+    width: calc(100% - 0px);
+  }
+  .main-dashboard-content .others-option-for-responsive .dot-menu {
+    left: 40px;
+    right: auto;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .menu-profile img {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle::before {
+    left: 0;
+    right: auto;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .banner-form {
+    padding: 10px;
+  }
+  .banner-form .form-group {
+    padding-left: 7px;
+    padding-right: unset;
+  }
+  .banner-form .form-group.select-group {
+    padding-left: 0;
+  }
+  .side-nav-responsive .dot-menu {
+    left: 10px;
+    right: auto;
+  }
+  .banner-img-two .shape3 {
+    top: 28.5%;
+  }
+  .banner-form-two {
+    margin-right: 0;
+  }
+  .browse-jobs-card {
+    padding: 20px 70px 20px 10px;
+  }
+  .browse-jobs-card .icon {
+    right: 10px;
+  }
+  .browse-jobs-item {
+    padding: 25px 80px 25px 18px;
+  }
+  .freelancers-card .sub-title .sub-title2 {
+    margin-left: unset;
+    margin-right: 12px;
+  }
+  .recent-job-card {
+    padding: 25px 10px;
+  }
+  .recent-job-card .content {
+    padding-right: 85px;
+  }
+  .recent-job-card .content .job-list1 li {
+    margin-left: 70px;
+  }
+  .recent-job-card .bookmark-btn {
+    left: 20px;
+    right: auto;
+  }
+  .recent-job-card .job-sub-content .job-list2 li {
+    margin-left: 0;
+    margin-right: unset;
+  }
+  .recent-job-card .job-sub-content .job-list2 li:last-child {
+    margin-left: 0;
+  }
+  .recent-job-card .download-btn {
+    left: 0;
+    right: auto;
+  }
+  .browse-jobs-item {
+    padding: 25px 15px;
+    margin-top: 0;
+  }
+  .browse-jobs-item i {
+    position: inherit;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 75px;
+    line-height: 75px;
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .browse-jobs-item h3 {
+    font-size: 18px;
+  }
+  .contact-info-item {
+    padding: 25px 15px;
+  }
+  .company-card {
+    padding: 25px 66px 25px 12px;
+  }
+  .company-card img {
+    right: 12px;
+    left: auto;
+  }
+  .contact-info-item i {
+    right: 0;
+    left: auto;
+  }
+  .job-listing-form .form-group {
+    border: none;
+    padding-left: 0;
+  }
+  .job-listing-form .form-group i {
+    right: 10px;
+  }
+  .job-listing-form .form-group .form-control {
+    padding: 15px 35px 15px 10px;
+  }
+  .job-listing-form .form-group .form-control.form-select {
+    padding: 15px 15px 15px 40px;
+  }
+  .sidemenu-area {
+    right: -100%;
+    left: auto;
+  }
+  .sidemenu-area.active-sidemenu-area {
+    right: 0;
+    left: auto;
+  }
+  .main-dashboard-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .main-dashboard-content .navbar-area {
+    right: 0;
+    left: auto;
+    width: calc(100% - 0px);
+  }
+  .main-dashboard-content .others-option-for-responsive .dot-menu {
+    left: 40px;
+    right: auto;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .menu-profile img {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+  .main-dashboard-content .others-option-for-responsive .others-options .profile-nav-item .dropdown-bs-toggle::before {
+    left: 0;
+    right: auto;
+  }
+  .main-dashboard-content .mobile-responsive-nav {
+    display: block;
+  }
+  .main-dashboard-content .mobile-responsive-nav .mobile-responsive-menu {
+    position: relative;
+  }
+  .main-dashboard-content .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a {
+    float: right;
+    text-align: right;
+  }
+  .main-dashboard-content .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a.mean-expand {
+    text-align: left;
+    left: 0;
+    right: auto;
+  }
+  .main-dashboard-content .mobile-responsive-nav .mean-container a.meanmenu-reveal {
+    left: 0 !important;
+    right: auto !important;
+    padding-top: 6px;
+  }
+  .main-dashboard-content .mobile-responsive-nav .mean-container a.meanmenu-reveal span {
+    height: 4px;
+    margin-top: -6px;
+    border-radius: 3px;
+    position: relative;
+    top: 8px;
+  }
+  .main-dashboard-content .mobile-responsive-nav .mean-container .mean-bar {
+    background: transparent;
+    position: absolute;
+    z-index: 999;
+    padding: 0;
+  }
+  .main-dashboard-content .side-nav-responsive .dot-menu {
+    left: 60px;
+    right: auto;
+  }
+  .main-dashboard-content .side-nav-responsive .container-max .container {
+    left: 0;
+    right: auto;
+  }
+  .single-applicants-card .content {
+    padding: 0 70px 0 150px;
+  }
+  .invoices-box ul li {
+    padding-right: 77px;
+    padding-left: 70px;
+  }
+  .invoices-box ul li .default-btn {
+    left: 10px;
+    top: 65%;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1299px) {
+  .banner-form-two {
+    margin-right: 0;
+  }
+  .browse-jobs-card {
+    padding: 20px 75px 20px 10px;
+  }
+  .browse-jobs-card .icon {
+    right: 10px;
+  }
+  .recent-job-item {
+    padding: 20px 80px 20px 10px;
+  }
+  .company-card {
+    padding: 25px 80px 25px 25px;
+  }
+  .browse-jobs-item {
+    padding: 25px 75px 25px 10px;
+  }
+  .browse-jobs-item i {
+    right: 10px;
+    left: auto;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .main-dashboard-content {
+    padding-left: 30px;
+    padding-right: 250px;
+  }
+  .main-dashboard-content .navbar-area {
+    right: 220px;
+    left: auto;
+    width: calc(100% - 220px);
+  }
+  .main-dashboard-content .navbar-area.is-sticky .desktop-nav {
+    right: 220px;
+    left: auto;
+    width: calc(100% - 220px);
+  }
+  .single-applicants-card .content {
+    padding: 0 70px 0 150px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .mobile-responsive-nav {
+    display: block;
+  }
+  .mobile-responsive-nav .mobile-responsive-menu {
+    position: relative;
+  }
+  .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a {
+    float: right;
+    text-align: right;
+  }
+  .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a.mean-expand {
+    text-align: left;
+    left: 0;
+    right: auto;
+  }
+  .mobile-responsive-nav .mean-container a.meanmenu-reveal {
+    left: 0 !important;
+    right: auto !important;
+    padding-top: 6px;
+  }
+  .mobile-responsive-nav .mean-container a.meanmenu-reveal span {
+    height: 4px;
+    margin-top: -6px;
+    border-radius: 3px;
+    position: relative;
+    top: 8px;
+  }
+  .mobile-responsive-nav .mean-container .mean-bar {
+    background: transparent;
+    position: absolute;
+    z-index: 999;
+    padding: 0;
+  }
+}/*# sourceMappingURL=rtl.css.map */

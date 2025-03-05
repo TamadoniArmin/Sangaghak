@@ -20,10 +20,12 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken);
         public Task<List<SubCategoryDTO>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken);
         public Task<CategoryDTO> GetCategoryByIdAysnc(int Id,CancellationToken cancellationToken);
+        public Task<SubCategoryDTO> GetSubCategoryByIdAysnc(int Id,CancellationToken cancellationToken);
         public Task<string> GetSubCategoryNameByIdAysnc(int Id,CancellationToken cancellationToken);
         #endregion
         #region Update
-        public Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken);
+        public Task<bool> UpdateSubCategory(SubCategoryDTO Model, int SubCategoryId, CancellationToken cancellationToken);
+        public Task<bool> UpdateCategory(CategoryDTO Model, int CategoryId, CancellationToken cancellationToken);
         #endregion
         #region Delete
         public Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken);

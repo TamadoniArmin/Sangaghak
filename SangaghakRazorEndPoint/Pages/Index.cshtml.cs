@@ -12,9 +12,9 @@ namespace SangaghakRazorEndPoint.Pages
             _logger = logger;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return RedirectToPage("Admin/index");
+            
         }
     }
 }

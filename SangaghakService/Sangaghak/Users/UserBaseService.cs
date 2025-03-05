@@ -49,6 +49,11 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.GetCountByRoleAsync(role, cancellationToken);
         }
 
+        public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
             return await _repository.GetCustomerByCustomerIdAsync(CustomerId, cancellationToken);

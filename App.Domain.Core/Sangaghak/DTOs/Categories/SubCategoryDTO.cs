@@ -1,4 +1,6 @@
-﻿namespace App.Domain.Core.Sangaghak.DTOs.Categories
+﻿using Microsoft.AspNetCore.Http;
+
+namespace App.Domain.Core.Sangaghak.DTOs.Categories
 {
     public class SubCategoryDTO
     {
@@ -9,5 +11,6 @@
         public int ParentId { get; set; }
         public string? ParentName { get; set; }
         public string? ImagePath { get; set; }
+        public IFormFile? ImageFile { get; set; }
     }
 }

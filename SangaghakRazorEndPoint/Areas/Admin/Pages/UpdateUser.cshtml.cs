@@ -13,14 +13,18 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Users
         public UserBaseDTO UserToUpdate { get; set; }
         [BindProperty]
         public List<CityDTO> Cities { get; set; }
+        [BindProperty]
+        public GetUserBaseForViewPage PriorUserinfo { get; set; }
+        public int WantedUserId { get; set; }
         public async void OnGet(int UserId,CancellationToken cancellationToken)
         {
-            UserToUpdate.Id = UserId;
+            WantedUserId = UserId;
             Cities = await cityService.GetAllCities(cancellationToken);
+            PriorUserinfo = await userBaseAppService.GetByIdAsync(UserId, cancellationToken);
         }
         public async Task<IActionResult> OnPost( CancellationToken cancellationToken)
         {
-            var Result = await userBaseAppService.UpdateUserInfoAsync(UserToUpdate,UserToUpdate.Id.Value ,cancellationToken);
+            var Result = await userBaseAppService.UpdateUserInfoAsync(UserToUpdate, WantedUserId, cancellationToken);
             if(!Result)
             {
                 TempData["Error On Update User Info"] = "موقع آپدیت خطایی رخ داد لطفا با پشتیانی تماس حاصل فرمایید";

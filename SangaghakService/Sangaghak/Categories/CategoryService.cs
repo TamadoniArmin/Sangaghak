@@ -65,14 +65,24 @@ namespace SangaghakService.Sangaghak.Categories
             return await _categoryRepository.GetSubCategoriesByParentId(ParentCategoryId, cancellationToken);
         }
 
+        public async Task<SubCategoryDTO> GetSubCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.GetSubCategoryByIdAysnc(Id, cancellationToken);
+        }
+
         public async Task<string> GetSubCategoryNameByIdAysnc(int Id, CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetSubCategoryNameByIdAysnc(Id, cancellationToken);
         }
 
-        public async Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken)
+        public async Task<bool> UpdateCategory(CategoryDTO Model, int CategoryId, CancellationToken cancellationToken)
         {
-            return await _categoryRepository.UpdateCategory(Model, PriorTitle, cancellationToken);
+            return await _categoryRepository.UpdateCategory(Model, CategoryId, cancellationToken);
+        }
+
+        public async Task<bool> UpdateSubCategory(SubCategoryDTO Model, int SubCategoryId, CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.UpdateSubCategory(Model, SubCategoryId, cancellationToken);
         }
     }
 }

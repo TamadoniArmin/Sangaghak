@@ -5,9 +5,6 @@
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    Layout = "_Layout";
-}
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-menu-size="sm-hover">
@@ -22,182 +19,183 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
 
-    <link rel="stylesheet" href="assets/libs/nouislider/nouislider.min.css">
-    <link rel="stylesheet" href="assets/libs/choices.js/public/assets/styles/choices.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/icons.css">
-    <link rel="stylesheet" href="assets/css/fontiran.min.css">
-    <script src="assets/js/config.js"></script>
+    <link rel="stylesheet" href="~/AdminTemplate/libs/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="~/AdminTemplate/libs/choices.js/public/~/AdminTemplate/styles/choices.min.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/app.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
+    <script src="~/AdminTemplate/js/config.js"></script>
 
 </head>
 
 <body>
-        <div class="page-content">
-            <div class="container-fluid">
-                <div class="row">
-  
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
 
-                    <div class="col-xl-9 col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">اضافه کردن لوگوی برند</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="dropzone bg-light-subtle py-5">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple="multiple" />
-                                    </div>
-                                    <div class="dz-message needsclick">
-                                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
-                                        <h3 class="mt-4">
-                                            تصاویر خود را اینجا رها کنید، یا
-                                            <span class="text-primary">برای مرور کلیک کنید</span>
-                                        </h3>
-                                        <span class="text-muted fs-13">
-                                            1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
-                                        </span>
-                                    </div>
+
+                <div class="col-xl-9 col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">اضافه کردن لوگوی برند</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="dropzone bg-light-subtle py-5">
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple="multiple" />
                                 </div>
+                                <div class="dz-message needsclick">
+                                    <i class="bx bx-cloud-upload fs-48 text-primary"></i>
+                                    <h3 class="mt-4">
+                                        تصاویر خود را اینجا رها کنید، یا
+                                        <span class="text-primary">برای مرور کلیک کنید</span>
+                                    </h3>
+                                    <span class="text-muted fs-13">
+                                        1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
+                                    </span>
+                                </div>
+                            </div>
 
 
-                                <ul class="list-unstyled mb-0" id="dropzone-preview">
-                                    <li class="mt-2" id="dropzone-preview-list">
-                                        <div class="border rounded">
-                                            <div class="d-flex p-2">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar-sm bg-light rounded">
-                                                        <img data-dz-thumbnail
-                                                             class="img-fluid rounded d-block"
-                                                             src="#"
-                                                             alt="تصویر دراپ زون" />
-                                                    </div>
+                            <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                <li class="mt-2" id="dropzone-preview-list">
+                                    <div class="border rounded">
+                                        <div class="d-flex p-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm bg-light rounded">
+                                                    <img data-dz-thumbnail
+                                                         class="img-fluid rounded d-block"
+                                                         src="#"
+                                                         alt="تصویر دراپ زون" />
                                                 </div>
-                                                <div class="flex-grow-1">
-                                                    <div class="pt-1">
-                                                        <h5 class="fs-14 mb-1" data-dz-name>&</h5>
-                                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                                        <strong class="error text-primary"
-                                                                data-dz-errormessage></strong>
-                                                    </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="pt-1">
+                                                    <h5 class="fs-14 mb-1" data-dz-name>&</h5>
+                                                    <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                    <strong class="error text-primary"
+                                                            data-dz-errormessage></strong>
                                                 </div>
-                                                <div class="flex-shrink-0 ms-3">
-                                                    <button data-dz-remove class="btn btn-sm btn-primary">
-                                                        حذف
-                                                    </button>
+                                            </div>
+                                            <div class="flex-shrink-0 ms-3">
+                                                <button data-dz-remove class="btn btn-sm btn-primary">
+                                                    حذف
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- پایان پیش نمایش دراپ زون -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">اطلاعات فروشنده</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <form>
+                                    <div class="col-lg-6">
+
+                                        <div class="mb-3">
+                                            <label for="brand-title" class="form-label">نام</label>
+                                            <input asp-for="@Model.UserToUpdate.FirstName" type="text"
+                                                   id="brand-title"
+                                                   class="form-control"
+                                                   placeholder="نام"
+                                                   value="@Model.PriorUserinfo.FirstName" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <div class="mb-3">
+                                            <label for="brand-title" class="form-label"> نام خانوادگی</label>
+                                            <input asp-for="@Model.UserToUpdate.LastName" type="text"
+                                                   id="brand-title"
+                                                   class="form-control"
+                                                   placeholder="نام خانوادگی"
+                                                   value="@Model.PriorUserinfo.LastName" />
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <label for="product-categories" class="form-label">شهر</label>
+                                        <select asp-for="@Model.UserToUpdate.CityId" class="form-control"
+                                                id="product-categories"
+                                                data-choices
+                                                data-choices-groups
+                                                data-placeholder="یک شهر انتخاب کیند"
+                                                name="choices-single-groups">
+                                            <option value="@Model.PriorUserinfo.CityId">یک شهر انتخاب کنید</option>
+                                            @foreach (var city in Model.Cities)
+                                            {
+                                                <option value="@city.Id">@city.Title</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="seller-number" class="form-label">شماره تلفن</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text fs-20">
+                                                <iconify-icon icon="solar:outgoing-call-rounded-bold-duotone"
+                                                              class="fs-20"></iconify-icon>
+                                            </span>
+                                            <input asp-for="@Model.UserToUpdate.Mobile" type="text"
+                                                   id="seller-number"
+                                                   class="form-control"
+                                                   placeholder="09*********"
+                                                   value="@Model.PriorUserinfo.Mobile" />
+                                        </div>
+                                        <div class="p-3 bg-light mb-3 rounded">
+                                            <div class="row justify-content-end g-2">
+                                                <div class="col-lg-2">
+                                                    <button type="submit" class="btn btn-outline-secondary w-100">ذخیره تغییرات</button>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <a asp-page="SeeUserProfile" class="btn btn-primary w-100">لغو</a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
-                                <!-- پایان پیش نمایش دراپ زون -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">اطلاعات فروشنده</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <form method="post">
-                                            <div class="mb-3">
-                                                <label for="brand-title" class="form-label">نام</label>
-                                                <input type="text"
-                                                       id="brand-title"
-                                                       class="form-control"
-                                                       placeholder="نام"
-                                                       value="@Model.UserToUpdate.FirstName" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <form method="post">
-                                            <div class="mb-3">
-                                                <label for="brand-title" class="form-label"> نام خانوادگی</label>
-                                                <input asp-for="@Model.UserToUpdate.LastName" type="text"
-                                                       id="brand-title"
-                                                       class="form-control"
-                                                       placeholder="نام خانوادگی"
-                                                       value="@Model.UserToUpdate.LastName" />
-                                            </div>
-                                        </form>
-                                    </div>
 
-                                    <div class="col-lg-6">
-                                        <form method="post">
-                                            <label for="product-categories" class="form-label">شهر</label>
-                                            <select asp-for="@Model.UserToUpdate.CityId" class="form-control"
-                                                    id="product-categories"
-                                                    data-choices
-                                                    data-choices-groups
-                                                    data-placeholder="یک شهر انتخاب کیند"
-                                                    name="choices-single-groups">
-                                                <option value="">یک شهر انتخاب کنید</option>
-                                                @foreach(var city in Model.Cities)
-                                                {
-                                                    <option value="@city.Id">@city.Title</option>
-                                                }
-                                            </select>
-                                        </form>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <form method="post">
-                                            <label for="seller-number" class="form-label">شماره تلفن</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text fs-20">
-                                                    <iconify-icon icon="solar:outgoing-call-rounded-bold-duotone"
-                                                                  class="fs-20"></iconify-icon>
-                                                </span>
-                                                <input asp-for="@Model.UserToUpdate.Mobile" type="text"
-                                                       id="seller-number"
-                                                       class="form-control"
-                                                       placeholder="09*********"
-                                                       value="@Model.UserToUpdate.Mobile" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="p-3 bg-light mb-3 rounded">
-                            <div class="row justify-content-end g-2">
-                                <div class="col-lg-2">
-                                    <a href="#!" class="btn btn-outline-secondary w-100">ذخیره تغییرات</a>
-                                </div>
-                                <div class="col-lg-2">
-                                    <a href="#!" class="btn btn-primary w-100">لغو</a>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-            <!-- ========== Footer Start ========== -->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
-                            <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
-                            <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- ========== Footer End ========== -->
 
         </div>
 
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/layout.js"></script>
-    <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
-    <script src='assets/libs/nouislider/nouislider.min.js'></script>
-    <script src='assets/libs/wNumb/wNumb.min.js'></script>
-    <script src="assets/js/pages/app-ecommerce-seller-add.js"></script>
+        <!-- ========== Footer Start ========== -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
+                        <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
+                        <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- ========== Footer End ========== -->
+
+    </div>
+
+    <script src="~/AdminTemplate/js/app.js"></script>
+    <script src="~/AdminTemplate/js/layout.js"></script>
+    <script src="~/AdminTemplate/libs/dropzone/min/dropzone.min.js"></script>
+    <script src='~/AdminTemplate/libs/nouislider/nouislider.min.js'></script>
+    <script src='~/AdminTemplate/libs/wNumb/wNumb.min.js'></script>
+    <script src="~/AdminTemplate/js/pages/app-ecommerce-seller-add.js"></script>
 </body>
 
 </html>

@@ -18,10 +18,9 @@ namespace SangaghakAppService.Sangaghak.Users
         private readonly SignInManager<UserBase> _signInManager;
         private readonly IPasswordHasher<UserBase> _passwordHasher;
 
-        public UserBaseAppService(IUserBaseService userService, /*IBaseDataService baseDataService*/ UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService,ICityService cityService)
+        public UserBaseAppService(IUserBaseService userService, UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService,ICityService cityService)
         {
             _userService = userService;
-            //_baseDataService = baseDataService;
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
@@ -66,8 +65,12 @@ namespace SangaghakAppService.Sangaghak.Users
             var user = new UserBase
             {
                 UserName = model.UserName,
+                FirstName=model.FirstName,
+                LastName=model.LastName,
+                CityId=model.CityId,
                 Email = model.Email,
                 Mobile = model.Phone,
+                Role=model.Role,
                 Balance=1000000
             };
 

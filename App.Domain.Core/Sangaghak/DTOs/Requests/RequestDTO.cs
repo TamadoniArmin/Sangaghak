@@ -10,7 +10,7 @@ namespace App.Domain.Core.Sangaghak.DTOs.Requests
         public int WantedPrice { get; set; }
         public string Address { get; set; }
         public int CityId { get; set; }
-        public string CityTitle { get; set; }
+        public string? CityTitle { get; set; }
         public int CustomerId { get; set; }
         public string? CustomerEmail { get; set; }
         public string? CustomerPhone { get; set; }

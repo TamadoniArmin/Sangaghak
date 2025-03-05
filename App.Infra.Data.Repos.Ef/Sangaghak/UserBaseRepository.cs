@@ -116,6 +116,11 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return await _appDbContext.Users.Where(x=>x.Role== role && x.IsDeleted==false).CountAsync(cancellationToken);
         }
 
+        public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
             var Customer = await _appDbContext.Users.FirstOrDefaultAsync(x => x.CustomerId == CustomerId && x.IsDeleted == false, cancellationToken);

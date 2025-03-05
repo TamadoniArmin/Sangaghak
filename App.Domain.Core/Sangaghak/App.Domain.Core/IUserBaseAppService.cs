@@ -10,6 +10,7 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<IdentityResult> Register(UserForRegisterDTO model, CancellationToken cancellationToken);
         public Task<IdentityResult> Login(string username, string password, bool rememberMe);
         Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken);
+        //public async Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken);
         Task<int> GetBalance(int UserId, CancellationToken cancellationToken);
         Task<int> GetEachRoleCount(RoleEnum customer, CancellationToken cancellationToken);
         public Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken);

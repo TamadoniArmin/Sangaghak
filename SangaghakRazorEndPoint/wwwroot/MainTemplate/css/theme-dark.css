@@ -1,0 +1,557 @@
+:root {
+  --darkColor: #1d1d1d;
+  --bgColor: #252525;
+  --cardColor: #0e0e0e;
+}
+
+.switch-box {
+  position: fixed;
+  bottom: 15px;
+  right: 120px;
+  z-index: 9999;
+}
+.switch-box .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 1.5px solid var(--whiteColor);
+  transition: 0.4s;
+}
+.switch-box .slider::before {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 25px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px rgba(32, 32, 32, 0.2392156863);
+  background: white url("../images/night.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.switch-box .slider.round {
+  border-radius: 34px;
+}
+.switch-box .slider.round::before {
+  border-radius: 50%;
+}
+.switch-box .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+}
+.switch-box .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch-box input:checked + .slider {
+  background-color: transparent;
+  border: 1.5px solid var(--mainColor);
+}
+.switch-box input:focus + .slider {
+  box-shadow: 0 0 1px var(--mainColor);
+}
+.switch-box input:checked + .slider:before {
+  transform: translateX(24px);
+  background: white url("../images/sunny.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.theme-dark {
+  --titleColor: var(--whiteColor);
+  --bodyColor: var(--whiteColor);
+  /* Dashboard CSS */
+}
+.theme-dark .default-btn.two {
+  color: var(--cardColor) !important;
+}
+.theme-dark .default-btn:hover {
+  color: var(--cardColor) !important;
+}
+.theme-dark h1, .theme-dark h2, .theme-dark h3, .theme-dark h4, .theme-dark h5, .theme-dark h6 {
+  color: var(--whiteColor);
+}
+.theme-dark h3 {
+  color: var(--whiteColor);
+}
+.theme-dark h3 a {
+  color: var(--whiteColor);
+  transition: 0.7s;
+}
+.theme-dark p {
+  color: var(--whiteColor);
+}
+.theme-dark body {
+  background: var(--darkColor);
+  color: var(--whiteColor);
+}
+.theme-dark .desktop-nav .navbar .navbar-brand .logo-two {
+  display: inline-block;
+}
+.theme-dark .desktop-nav .navbar .navbar-brand .logo-one {
+  display: none;
+}
+.theme-dark .desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu {
+  background-color: var(--darkColor) !important;
+}
+.theme-dark .desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li a {
+  color: var(--whiteColor);
+}
+.theme-dark .desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li a.active {
+  color: var(--mainColor);
+}
+.theme-dark .desktop-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:hover {
+  color: var(--mainColor);
+}
+.theme-dark .navbar-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .navbar-area.is-sticky {
+  background-color: var(--bgColor) !important;
+}
+.theme-dark .navbar-area.is-sticky .desktop-nav {
+  background-color: var(--bgColor) !important;
+}
+.theme-dark .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav {
+  background-color: var(--bgColor);
+}
+.theme-dark .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a {
+  color: var(--whiteColor);
+}
+.theme-dark .mobile-responsive-nav .mobile-responsive-menu.mean-container .mean-nav ul li a.active {
+  color: var(--greenColor);
+}
+.theme-dark .mobile-responsive-nav .logo .logo-two {
+  display: inline-block;
+}
+.theme-dark .mobile-responsive-nav .logo .logo-one {
+  display: none;
+}
+.theme-dark .banner-area, .theme-dark .banner-area-two, .theme-dark .inner-banner {
+  background-color: var(--cardColor);
+}
+.theme-dark .banner-img::before {
+  background-color: var(--bgColor);
+  background-image: none;
+}
+.theme-dark .banner-form, .theme-dark .banner-form-two, .theme-dark .banner-form-three {
+  background-color: var(--bgColor);
+}
+.theme-dark .banner-form .form-group .form-control, .theme-dark .banner-form-two .form-group .form-control, .theme-dark .banner-form-three .form-group .form-control {
+  background-color: var(--bgColor);
+  color: var(--whiteColor);
+}
+.theme-dark .banner-form .submit-btn:hover, .theme-dark .banner-form-two .submit-btn:hover, .theme-dark .banner-form-three .submit-btn:hover {
+  color: var(--cardColor);
+}
+.theme-dark .banner-area-three {
+  background-color: var(--cardColor);
+}
+.theme-dark .banner-area-three::before {
+  opacity: 0.1;
+}
+.theme-dark .browse-jobs-card, .theme-dark .find-jobs-card, .theme-dark .freelancers-card, .theme-dark .recent-job-item, .theme-dark .recent-job-card, .theme-dark .job-post-card {
+  background-color: var(--cardColor);
+}
+.theme-dark .browse-jobs-card .bookmark-btn:hover, .theme-dark .find-jobs-card .bookmark-btn:hover, .theme-dark .freelancers-card .bookmark-btn:hover, .theme-dark .recent-job-item .bookmark-btn:hover, .theme-dark .recent-job-card .bookmark-btn:hover, .theme-dark .job-post-card .bookmark-btn:hover {
+  background-color: var(--bgColor);
+}
+.theme-dark .find-jobs-area, .theme-dark .company-area, .theme-dark .recent-job-area-two, .theme-dark .job-post-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-post-form .form-group .form-control {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+}
+.theme-dark .job-details-widget-side .job-details-widget {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-details-widget-side .job-details-widget .job-details-social .social-icon li a i {
+  color: var(--cardColor);
+}
+.theme-dark .job-details-widget-side .job-details-widget .job-details-web-btn a {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+  transition: 0.7s;
+}
+.theme-dark .job-details-widget-side .job-details-widget .job-details-web-btn a:hover {
+  background-color: var(--mainColor);
+}
+.theme-dark .job-post-widget-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-listing-top {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-listing-top .form-group .form-control {
+  background-color: var(--bgColor);
+  color: var(--whiteColor);
+}
+.theme-dark .job-listing-top .submit-btn:hover {
+  color: var(--cardColor);
+}
+.theme-dark .job-listing-topper .job-listing-category .form-group .form-control {
+  background-color: var(--bgColor);
+  color: var(--whiteColor);
+}
+.theme-dark .job-listing-side-bar-content {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-listing-side-bar-content .form-group .form-control {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+}
+.theme-dark .job-listing-widget {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-listing-widget .accordion-widget .accordion-widget-item {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-details-content .article-social-icon {
+  background-color: var(--bgColor);
+}
+.theme-dark .job-details-content .article-social-icon .social-icon li a i {
+  color: var(--cardColor);
+}
+.theme-dark .job-details-widget-side .job-details-widget .job-details-widget-tag li a {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+  transition: 0.7s;
+}
+.theme-dark .job-details-widget-side .job-details-widget .job-details-widget-tag li a:hover {
+  background-color: var(--mainColor);
+}
+.theme-dark .job-details-content .job-details-play .play-btn i:hover {
+  color: var(--cardColor);
+}
+.theme-dark .post-job-form {
+  background-color: var(--bgColor);
+}
+.theme-dark .company-details-card, .theme-dark .counter-item {
+  background-color: var(--cardColor);
+}
+.theme-dark .company-details-content .article-social-icon {
+  background-color: var(--cardColor);
+}
+.theme-dark .company-details-content .article-social-icon .social-icon li a i {
+  color: var(--cardColor);
+}
+.theme-dark .employers-details-content .article-social-icon {
+  background-color: var(--bgColor);
+}
+.theme-dark .employers-details-content .article-social-icon .social-icon li a i {
+  color: var(--cardColor);
+}
+.theme-dark .side-bar-widget-bg {
+  background-color: var(--bgColor);
+}
+.theme-dark .side-bar-widget-bg .side-bar-widget-tag li a {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+  transition: 0.7s;
+}
+.theme-dark .side-bar-widget-bg .side-bar-widget-tag li a:hover {
+  background-color: var(--mainColor);
+}
+.theme-dark .blog-details-content .blockquote {
+  background-color: var(--bgColor);
+}
+.theme-dark .blog-details-content .article-share-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .blog-details-content .article-share-area .social-icon li a i {
+  color: var(--cardColor);
+}
+.theme-dark .side-bar-widget {
+  background-color: var(--bgColor);
+}
+.theme-dark .side-bar-widget .search-form .form-control {
+  background-color: var(--cardColor);
+}
+.theme-dark .side-bar-widget .side-bar-widget-tag li a {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+  transition: 0.7s;
+}
+.theme-dark .side-bar-widget .side-bar-widget-tag li a:hover {
+  background-color: var(--mainColor);
+}
+.theme-dark .company-item, .theme-dark .company-card {
+  background-color: var(--cardColor);
+}
+.theme-dark .testimonials-widget-area {
+  background-color: var(--cardColor);
+}
+.theme-dark .testimonials-item {
+  background-color: var(--cardColor);
+}
+.theme-dark .recent-job-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .pricing-wraps .pricing-table table tbody tr td.pricing-name-list2, .theme-dark .pricing-wraps .pricing-table table tbody tr td.pricing-body-list2 {
+  background-color: var(--bgColor);
+}
+.theme-dark .pricing-card {
+  background-color: var(--cardColor);
+}
+.theme-dark .faq-accordion .accordion .accordion-item {
+  background-color: var(--bgColor);
+}
+.theme-dark .faq-accordion .accordion .accordion-title {
+  background-color: var(--bgColor);
+}
+.theme-dark .freelancer-details-profile {
+  background-color: var(--cardColor);
+}
+.theme-dark .candidates-details-content .candidates-skill .candidates-skill-tag li a {
+  background-color: var(--bgColor);
+  color: var(--whiteColor);
+  transition: 0.7s;
+}
+.theme-dark .candidates-details-content .candidates-skill .candidates-skill-tag li a:hover {
+  background-color: var(--mainColor);
+}
+.theme-dark .candidates-topper .candidates-category-form .form-group .form-control {
+  background-color: var(--bgColor);
+  color: var(--whiteColor);
+}
+.theme-dark .candidates-widget {
+  background-color: var(--bgColor);
+}
+.theme-dark .candidates-widget .form-group .form-control {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+}
+.theme-dark .candidates-details-right {
+  background-color: var(--bgColor);
+}
+.theme-dark .candidates-details-right .content-profile .social-icon li a i {
+  color: var(--cardColor);
+}
+.theme-dark .content-widget-right {
+  background-color: var(--bgColor);
+}
+.theme-dark .content-widget-right .download-btn {
+  color: var(--cardColor);
+}
+.theme-dark .other-candidates-list {
+  background-color: var(--bgColor);
+}
+.theme-dark .services-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .services-card {
+  background-color: var(--cardColor);
+}
+.theme-dark .employers-cv-area::before {
+  background-color: var(--darkColor);
+}
+.theme-dark .employers-cv-area::after {
+  background-color: var(--cardColor);
+}
+.theme-dark .employers-cv-bg {
+  background-color: var(--bgColor);
+}
+.theme-dark .employers-cv-btn .employersButton-button {
+  color: var(--cardColor);
+}
+.theme-dark .footer-area {
+  background-color: var(--cardColor);
+}
+.theme-dark .footer-widget .footer-logo .footer-logo1 {
+  display: none;
+}
+.theme-dark .footer-widget .footer-logo .footer-logo2 {
+  display: inline-block;
+}
+.theme-dark .contact-form {
+  background-color: var(--bgColor);
+}
+.theme-dark .contact-form .form-group .form-control {
+  background-color: var(--cardColor);
+  color: var(--whiteColor);
+}
+.theme-dark .user-all-form .contact-form .sub-title span {
+  background-color: var(--bgColor);
+}
+.theme-dark .coming-soon-area .coming-soon-content .newsletter-form .input-newsletter {
+  background-color: var(--bgColor);
+  color: var(--whiteColor);
+}
+.theme-dark .go-top:hover {
+  color: var(--cardColor);
+}
+.theme-dark .sidemenu-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .sidemenu-area .sidemenu-header {
+  background-color: var(--bgColor);
+}
+.theme-dark .sidemenu-area .sidemenu-header .responsive-burger-menu {
+  cursor: pointer;
+  transition: var(--transition);
+}
+.theme-dark .sidemenu-area .sidemenu-header .navbar-brand .logo-two {
+  display: inline-block;
+}
+.theme-dark .sidemenu-area .sidemenu-header .navbar-brand .logo-one {
+  display: none;
+}
+.theme-dark .sidemenu-area .sidemenu-body {
+  background-color: var(--darkColor);
+}
+.theme-dark .sidemenu-area .sidemenu-body .sidemenu-nav .nav-item .nav-link {
+  color: var(--whiteColor);
+}
+.theme-dark .sidemenu-area .sidemenu-body .sidemenu-nav .nav-item .nav-link:hover {
+  background-color: var(--mainColor);
+}
+.theme-dark .sidemenu-area .sidemenu-body .sidemenu-nav .nav-item .nav-link:hover .icon {
+  color: var(--whiteColor);
+}
+.theme-dark .sidemenu-area .sidemenu-body .sidemenu-nav .nav-item.active .nav-link {
+  background-color: var(--mainColor);
+}
+.theme-dark .sidemenu-area .sidemenu-body .sidemenu-nav .nav-item.active .nav-link .icon {
+  color: var(--whiteColor);
+}
+.theme-dark .main-dashboard-content {
+  background-color: var(--darkColor);
+}
+.theme-dark .main-dashboard-content .navbar-area .desktop-nav {
+  background-color: var(--bgColor);
+}
+.theme-dark .main-dashboard-content .navbar-area .desktop-nav .navbar .others-options {
+  margin-left: auto;
+}
+.theme-dark .main-dashboard-content .navbar-area .desktop-nav .navbar .others-options .profile-nav-item.dropdown .dropdown-menu {
+  background-color: var(--cardColor);
+}
+.theme-dark .recent-notifications-box, .theme-dark .invoices-box {
+  background-color: var(--cardColor);
+}
+.theme-dark .recent-notifications-box ul li:hover, .theme-dark .invoices-box ul li:hover {
+  background-color: var(--bgColor);
+}
+.theme-dark .recent-notifications-box ul li .default-btn, .theme-dark .invoices-box ul li .default-btn {
+  background-color: var(--mainColor);
+}
+.theme-dark .recent-notifications-box ul li .default-btn:hover, .theme-dark .invoices-box ul li .default-btn:hover {
+  color: var(--cardColor) !important;
+}
+.theme-dark .my-profile-box, .theme-dark .post-a-new-job-box, .theme-dark .submit-resumes-box {
+  background-color: var(--bgColor);
+}
+.theme-dark .my-profile-box .form-group .form-control, .theme-dark .post-a-new-job-box .form-group .form-control, .theme-dark .submit-resumes-box .form-group .form-control {
+  color: var(--whiteColor);
+  background-color: var(--cardColor);
+}
+.theme-dark .my-profile-box .form-group .form-select, .theme-dark .post-a-new-job-box .form-group .form-select, .theme-dark .submit-resumes-box .form-group .form-select {
+  color: var(--whiteColor);
+  background-color: var(--cardColor);
+}
+.theme-dark .my-profile-box .form-select, .theme-dark .post-a-new-job-box .form-select, .theme-dark .submit-resumes-box .form-select {
+  background-color: var(--cardColor);
+}
+.theme-dark .my-profile-box .form-select:focus, .theme-dark .post-a-new-job-box .form-select:focus, .theme-dark .submit-resumes-box .form-select:focus {
+  background-color: var(--cardColor);
+}
+.theme-dark .manage-jobs-box {
+  background-color: var(--bgColor);
+}
+.theme-dark .manage-jobs-box .manage-jobs-table table thead {
+  background-color: var(--cardColor);
+}
+.theme-dark .all-applicants-box, .theme-dark .packages-box {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .sidebar-left .sidebar {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .content-right .chat-list-wrapper .chat-list {
+  background-color: var(--cardColor);
+}
+.theme-dark .chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-right ul li .dropdown .dropdown-menu {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .content-right .chat-list-wrapper .chat-list .chat-list-header .header-right ul li .dropdown .dropdown-menu .dropdown-item:hover {
+  background-color: var(--cardColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-header {
+  background-color: var(--cardColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-container {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-container .chat-content .chat.chat-left .chat-avatar {
+  float: left;
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-container .chat-content .chat.chat-left .chat-body .chat-message {
+  background-color: var(--darkColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-container .chat-content .badge-light {
+  padding: 8px 20px 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--mainColor);
+  background-color: var(--whiteColor);
+  border-radius: 30px;
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer {
+  background-color: var(--cardColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer .file-attachment-btn {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer .file-attachment-btn:hover, .theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer .file-attachment-btn:focus {
+  background-color: var(--mainColor);
+  color: var(--whiteColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer form .form-control {
+  background-color: var(--bgColor);
+  color: var(--titleColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer form .form-control:focus {
+  border-color: var(--mainColor);
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer form .send-btn {
+  background-color: var(--bgColor);
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer form .send-btn i {
+  position: relative;
+  top: 2px;
+}
+.theme-dark .chat-content-area .chat-list-wrapper .chat-list .chat-list-footer form .send-btn:hover {
+  box-shadow: 0 4px 12px 0 rgba(8, 141, 211, 0.6);
+}
+.theme-dark .invoice-area {
+  background-color: var(--bgColor);
+}
+.theme-dark .invoice-table table thead th {
+  color: var(--whiteColor);
+}
+.theme-dark .resume-alerts-table {
+  background-color: var(--bgColor);
+}
+.theme-dark .change-password-box {
+  background-color: var(--bgColor);
+}
+.theme-dark .change-password-box .form-group .form-control {
+  color: var(--whiteColor);
+  background-color: var(--cardColor);
+}/*# sourceMappingURL=theme-dark.css.map */

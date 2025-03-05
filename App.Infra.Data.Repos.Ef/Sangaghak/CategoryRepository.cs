@@ -193,17 +193,45 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             if (Category is null) return string.Empty;
             else return Category.Title;
         }
+        public async Task<SubCategoryDTO> GetSubCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
+        {
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == Id, cancellationToken);
+            if (Category is null) return null;
+            else
+            {
+                SubCategoryDTO categoryDTO = new SubCategoryDTO()
+                {
+                    Id = Category.Id,
+                    Title = Category.Title,
+                    Description = Category.Description,
+                    ImagePath = Category.ImagePath ?? string.Empty,
+                    BasePrice=Category.BasePrice,
+                    ParentId=Category.ParentId??0
+                };
+                return categoryDTO;
+            }
+        }
         #endregion
         #region Update
-        public async Task<bool> UpdateCategory(SubCategoryDTO Model, string PriorTitle, CancellationToken cancellationToken)
+        public async Task<bool> UpdateSubCategory(SubCategoryDTO Model, int SubCategoryId, CancellationToken cancellationToken)
         {
-            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == PriorTitle, cancellationToken);
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == SubCategoryId, cancellationToken);
             if (Category == null) return false;
             Category.Title = Model.Title;
             Category.Description = Model.Description;
             Category.BasePrice = Model.BasePrice;
             Category.ImagePath = Model.ImagePath;
             Category.ParentId = Model.ParentId;
+            await _appDbContext.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+        public async Task<bool> UpdateCategory(CategoryDTO Model, int CategoryId, CancellationToken cancellationToken)
+        {
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == CategoryId, cancellationToken);
+            if (Category == null) return false;
+            Category.Title = Model.Title;
+            Category.Description = Model.Description;
+            Category.ImagePath = Model.ImagePath;
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;
         }

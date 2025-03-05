@@ -9,7 +9,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Users
     {
         [BindProperty]
         public GetUserBaseForViewPage UserInfo { get; set; }
-        public async void OnGet(CancellationToken  cancellationToken)
+        public async Task OnGet(CancellationToken  cancellationToken)
         {
             int userid = int.Parse(User.FindFirst(u => u.Type.Contains("nameidentifier"))?.Value);
             UserInfo = await userBaseAppService.GetByIdAsync(userid, cancellationToken);

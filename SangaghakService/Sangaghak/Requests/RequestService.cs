@@ -49,6 +49,11 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetCurrentRequestsCountAsync(cancellationToken);
         }
 
+        public async Task<int> GetCustomerCompletedRequestsCount(int CustomerId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCustomerCompletedRequestsCount(CustomerId, cancellationToken);
+        }
+
         public async Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
             return await _repository.GetRequestByIdAysnc(RequestId, cancellationToken);

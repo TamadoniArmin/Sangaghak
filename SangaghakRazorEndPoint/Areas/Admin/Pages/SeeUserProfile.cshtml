@@ -2,6 +2,9 @@
 @model SangaghakRazorEndPoint.Areas.Admin.Users.SeeUserProfileModel
 @{
 }
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-menu-size="sm-hover">
 
@@ -15,12 +18,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
 
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/icons.css">
-    <link rel="stylesheet" href="assets/css/fontiran.min.css">
-    <script src="assets/js/config.js"></script>
+    <link rel="stylesheet" href="~/AdminTemplate/css/app.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
+    <script src="~/AdminTemplate/js/config.js"></script>
 
 </head>
 
@@ -435,7 +438,7 @@
                                         <p class="mb-0 fs-14">وضعیت: <span class="badge bg-success-subtle text-success ms-1">فعال</span></p>
                                     </div>
                                     <div class="mt-2">
-                                        <a href="#!" class="text-primary">ویرایش اطلاعات</a>
+                                        <a asp-page="UpdateUser" asp-route-UserId="@Model.UserInfo.Id" class="text-primary">ویرایش اطلاعات</a>
                                     </div>
                                 </div>
                             </div>
@@ -572,8 +575,8 @@
 
 
 
-        <script src="assets/js/app.js"></script>
-        <script src="assets/js/layout.js"></script>
+        <script src="~/AdminTemplate/js/app.js"></script>
+        <script src="~/AdminTemplate/js/layout.js"></script>
 </body>
 
 </html>
