@@ -6,7 +6,7 @@ namespace App.Domain.Core.Sangaghak.DTOs.Users
     public class UserBaseDTO
     {
         #region Properties
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string UserName { get; set; }

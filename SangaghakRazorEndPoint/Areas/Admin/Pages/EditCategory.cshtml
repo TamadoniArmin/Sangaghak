@@ -401,7 +401,7 @@
 							<div class="card-body">
 							</div>
 						</div>
-						<form method="post" asp-page-handler="CreateCategory">
+						<form enctype="multipart/form-data" role="form" method="post" asp-page-handler="CreateCategory">
 							<input type="hidden" asp-for="@Model.UpdateCategory.Id" value="@Model.WantedCategory.Id" />
 							<div class="card">
 								<div class="card-header">

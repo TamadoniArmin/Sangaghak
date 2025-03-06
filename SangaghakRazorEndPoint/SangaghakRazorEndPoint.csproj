@@ -33,6 +33,7 @@
     <Compile Include="Areas\Admin\Pages\UpdateUser.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\UserRegister.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\CustomerProfile.cshtml.cs" />
+    <Compile Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,10 @@
     <Content Include="Areas\Admin\Pages\SeeUserProfile.cshtml" />
     <Content Include="Areas\Admin\Pages\UpdateUser.cshtml" />
     <Content Include="Areas\Admin\Pages\UserRegister.cshtml" />
+    <Content Include="Areas\Customer\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -70,6 +75,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Public\Pages\" />
     <Folder Include="Pages\Account\" />
     <Folder Include="wwwroot\AdminTemplate\libs\chart.js\docs\" />
     <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\e2e\" />
@@ -92,6 +98,8 @@
     <Folder Include="wwwroot\AdminTemplate\libs\swiper\types\modules\" />
     <Folder Include="wwwroot\AdminTemplate\libs\toastify-js\example\" />
     <Folder Include="wwwroot\AdminTemplate\libs\toastify-js\src\" />
+    <Folder Include="wwwroot\Images\Categories\" />
+    <Folder Include="wwwroot\Images\SubCategories\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -104,6 +112,7 @@
     <None Include="Areas\Admin\Pages\EditSubCategory.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml" />
     <None Include="Areas\Customer\Pages\CustomerProfile.cshtml" />
+    <None Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml" />
   </ItemGroup>
 
 </Project>

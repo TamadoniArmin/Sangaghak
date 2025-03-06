@@ -394,40 +394,7 @@
 				<div class="row">
 
 					<div class="col-xl-9 col-lg-8">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">افزودن تصویر شاخص</h4>
-							</div>
-							<div class="card-body">
-
-								@*                                 <ul class="list-unstyled mb-0" id="dropzone-preview">
-                                    <li class="mt-2" id="dropzone-preview-list">
-                                        <!-- این به عنوان الگوی پیش‌نمایش فایل استفاده می‌شود -->
-                                        <div class="border rounded">
-                                            <div class="d-flex p-2">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar-sm bg-light rounded">
-                                                        <img data-dz-thumbnail class="img-fluid rounded d-block" src="#" alt="Dropzone-Image" />
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <div class="pt-1">
-                                                        <h5 class="fs-14 mb-1" data-dz-name>&</h5>
-                                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                                        <strong class="error text-primary" data-dz-errormessage></strong>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-shrink-0 ms-3">
-                                                    <button data-dz-remove class="btn btn-sm btn-primary">حذف</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul> *@
-								<!-- پایان پیش‌نمایش dropzone -->
-							</div>
-						</div>
-						<form method="post" asp-page-handler="CreateCategory">
+						<form enctype="multipart/form-data" role="form" method="post" asp-page-handler="CreateCategory">
 							<div class="card">
 								<div class="card-header">
 									<h4 class="card-title">اطلاعات عمومی</h4>

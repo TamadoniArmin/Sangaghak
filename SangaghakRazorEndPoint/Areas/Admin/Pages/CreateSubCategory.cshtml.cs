@@ -22,7 +22,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin
                 TempData["Fail to Create Cagegory"] = "درخواست یجاد این زیرکتگوری با شکست مواجه شد";
                 return Page();
             }
-            return RedirectToPage("SeeAllCategories");
+            return RedirectToPage("SeeAllSubCategories");
         }
     }
 }

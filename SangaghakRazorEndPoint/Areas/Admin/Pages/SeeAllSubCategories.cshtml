@@ -434,7 +434,14 @@
                                             <td>
                                                 <div class="d-flex align-items-center gap-2">
                                                     <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                                                        <img src="/images/product/p-1.png" alt="" class="avatar-md">
+                                                        @if (category.ImagePath != null)
+                                                        {
+                                                            <img src="@category.ImagePath" alt="" class="avatar-md">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="/images/Categories/83863285-b09c-471c-9527-c89e11eb7007img-3.jpg" alt="" class="avatar-md">
+                                                        }
                                                     </div>
                                                     <p class="text-dark fw-medium fs-15 mb-0">@category.Title</p>
                                                 </div>
@@ -447,7 +454,7 @@
                                                 <div class="d-flex gap-2">
                                                     <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
                                                     <a asp-page="EditSubCategory" asp-route-SubCategoryId="@category.Id" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                    <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                                    <a asp-page-handler="Delete" asp-route-subCategoryId="@category.Id" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
                                                 </div>
                                             </td>
                                         </tr>

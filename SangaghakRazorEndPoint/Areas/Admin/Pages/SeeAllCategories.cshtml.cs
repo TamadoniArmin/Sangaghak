@@ -11,28 +11,21 @@ namespace SangaghakRazorEndPoint.Areas.Admin
     {
         [BindProperty]
         public List<CategoryDTO> Parents { get; set; }
-        //[BindProperty]
-        //public List<SubCategoryDTO> Childs { get; set; }
-        //[BindProperty]
-        //public int ChildCategoryId { get; set; }
         [BindProperty]
         public int ParentId { get; set; }
 
         public async Task OnGet(int parentId, int childCategoryId,CancellationToken  cancellationToken)
         {
             Parents = await categoryAppService.GetAllParentsCategory(cancellationToken);
-            //if (parentId > 0)
-            //{
-            //    Childs = await categoryAppService.GetSubCategoriesByParentId(parentId,cancellationToken);
-            //}
-            //else
-            //{
-            //    var firstParentId = Parents.First().Id;
-            //    Childs = await categoryAppService.GetSubCategoriesByParentId(firstParentId,cancellationToken);
-
-            //}
-            //ParentId = parentId;
-            //ChildCategoryId = childCategoryId;
+        }
+        public async Task<IActionResult> OnGetDelete(int categoryId, CancellationToken cancellationToken)
+        {
+            var result = await categoryAppService.DeleteCategory(categoryId, cancellationToken);
+            if (result)
+            {
+                return RedirectToPage("SeeAllCategories");
+            }
+            return RedirectToPage("SeeAllCategories");
         }
     }
 }

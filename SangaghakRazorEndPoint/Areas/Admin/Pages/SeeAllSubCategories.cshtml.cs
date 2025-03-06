@@ -15,5 +15,14 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
         {
             Childs = await categoryAppService.GetAllSubCategories(cancellationToken);
         }
+        public async Task<IActionResult> OnGetDelete(int subCategoryId, CancellationToken cancellationToken)
+        {
+            var result = await categoryAppService.DeleteCategory(subCategoryId, cancellationToken);
+            if (result)
+            {
+                return RedirectToPage("SeeAllSubCategories");
+            }
+            return RedirectToPage("SeeAllSubCategories");
+        }
     }
 }

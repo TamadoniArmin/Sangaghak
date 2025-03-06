@@ -2,9 +2,6 @@
 @model SangaghakRazorEndPoint.Areas.Customer.Pages.CustomerProfileModel
 @{
 }
-@using SangaghakRazorEndPoint
-@namespace SangaghakRazorEndPoint.Pages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using App.Domain.Core.Sangaghak.Enum
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" data-menu-size="sm-hover">
@@ -408,7 +405,7 @@
                                 </div>
                             </div>
                             <div class="card-footer border-top gap-1 hstack">
-                                <a href="#!" class="btn btn-soft-dark d-inline-flex align-items-center justify-content-center rounded avatar-sm"><i class='bx bx-edit-alt fs-18'></i></a>
+                                <a asp-page="UpdateCustomerInfo" asp-route-UserId="@Model.WantedUser.Id" class="btn btn-soft-dark d-inline-flex align-items-center justify-content-center rounded avatar-sm"><i class='bx bx-edit-alt fs-18'></i></a>
                             </div>
                         </div>
 
@@ -478,136 +475,72 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">تاریخچه تراکنش‌ها</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table align-middle mb-0 table-hover table-centered">
-                                        <thead class="bg-light-subtle">
-                                            <tr>
-                                                <th>وضعیت</th>
-                                                <th>قیمت خواسته شده</th>
-                                                <th>تاریخ ثبت</th>
-                                                <th>دسته بندی</th>
-                                                <th>مشاهده</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @foreach(var Request in Model.UserRequets)
-                                            {
+                        @if (Model.CustomerHasRequest == true)
+                        {
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">تاریخچه تراکنش‌ها</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle mb-0 table-hover table-centered">
+                                            <thead class="bg-light-subtle">
                                                 <tr>
-                                                    @if(Request.Status==RequestStatusEnum.Complited)
-                                                    {
-                                                        <td> <span class="badge bg-success-subtle text-success py-1 px-2">تکمیل شده</span> </td>
-                                                    }
-                                                    @if (Request.Status ==RequestStatusEnum.Cancelled)
-                                                    {
-                                                        <td> <span class="badge bg-danger-subtle text-danger py-1 px-2">لغو شده</span> </td>
-                                                    }
-                                                    @if (Request.Status != RequestStatusEnum.Complited && Request.Status == RequestStatusEnum.Cancelled)
-                                                    {
-                                                        <td> <span class="badge bg-warning-subtle text-warning py-1 px-2">@Request.Status</span> </td>
-                                                    }
-                                                    <td> @Request.WantedPrice </td>
-                                                    <td> @Request.SetAt</td>
-                                                    <td> @Request.CategoryTitle </td>
-                                                    <td></td>
+                                                    <th>وضعیت</th>
+                                                    <th>قیمت خواسته شده</th>
+                                                    <th>تاریخ ثبت</th>
+                                                    <th>دسته بندی</th>
+                                                    <th>مشاهده</th>
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer border-top">
-                                <ul class="pagination pagination-rounded m-0 justify-content-end">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link"><i class="bx bx-right-arrow-alt"></i></a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link"><i class="bx bx-left-arrow-alt"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <img src="/images/user-profile.png" alt="" class="img-fluid">
-                                        <h4><i class='bx bxs-coin-stack text-primary'></i> 3,764 <span class="text-muted fw-medium">امتیاز کسب شده</span> </h4>
-                                        <p class="mb-0">با هر خرید امتیاز پاداش جمع کنید.</p>
-                                    </div>
-                                    <div class="card-footer border-top gap-1 hstack">
-                                        <a href="#!" class="btn btn-primary w-100">کسب امتیاز</a>
-                                        <a href="#!" class="btn btn-light w-100">مشاهده آیتم‌ها</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-3">
-                                            <div class="avatar bg-light d-flex align-items-center justify-content-center rounded-circle">
-                                                <i class="bx bx-down-arrow-alt fs-30"></i>
-                                            </div>
-                                            <div class="d-block">
-                                                <h4 class="text-dark fw-medium mb-1">پرداخت واریز شد</h4>
-                                                <p class="mb-0 text-muted">23 دقیقه پیش</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <h4 class="text-dark fw-medium mb-1"> 1,340</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center gap-2">
+                                            </thead>
+                                            <tbody>
 
-                                            <img src="/images/users/avatar-2.jpg" alt="avatar-3" class="avatar rounded-circle">
-
-                                            <div class="d-block">
-                                                <h4 class="text-dark fw-medium mb-1">میخائیل آ. مینر</h4>
-                                                <p class="mb-0 text-muted">خوش آمدید</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <span class="text-muted">
-                                                    <a href="#!" class="link-reset fs-3"><iconify-icon icon="solar:settings-bold"></iconify-icon></a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <div class="d-flex align-items-center">
-                                                <h5 class="text-dark mb-0">تمام حساب‌ها <span class="text-muted fw-normal ms-1"><i class="bx bxs-circle fs-10"></i></span><span class="text-muted fw-normal ms-1">مجموع موجودی</span></h5>
-                                                <div class="ms-auto">
-                                                    <a href="#!" class="link-reset fw-medium">UTS <i class="bx bx-down-arrow-alt text-danger"></i></a>
-                                                </div>
-                                            </div>
-                                            <h3 class="fw-semibold mt-2 mb-0">4,700 <span class="fs-5 text-muted ms-1">+232</span></h3>
-                                            <div id="chart2" class="apex-charts mt-3"></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer border-top gap-1 hstack">
-                                        <a href="#!" class="btn btn-primary w-100">ارسال</a>
-                                        <a href="#!" class="btn btn-light w-100">دریافت</a>
-                                        <a href="#!" class="btn btn-soft-dark d-inline-flex align-items-center justify-content-center rounded avatar-sm"><i class="bx bx-plus fs-18"></i></a>
+                                                @foreach (var Request in Model.UserRequets)
+                                                {
+                                                    <tr>
+                                                        @if (Request.Status == RequestStatusEnum.Complited)
+                                                        {
+                                                            <td> <span class="badge bg-success-subtle text-success py-1 px-2">تکمیل شده</span> </td>
+                                                        }
+                                                        @if (Request.Status == RequestStatusEnum.Cancelled)
+                                                        {
+                                                            <td> <span class="badge bg-danger-subtle text-danger py-1 px-2">لغو شده</span> </td>
+                                                        }
+                                                        @if (Request.Status != RequestStatusEnum.Complited && Request.Status == RequestStatusEnum.Cancelled)
+                                                        {
+                                                            <td> <span class="badge bg-warning-subtle text-warning py-1 px-2">@Request.Status</span> </td>
+                                                        }
+                                                        <td> @Request.WantedPrice </td>
+                                                        <td> @Request.SetAt</td>
+                                                        <td> @Request.CategoryTitle </td>
+                                                        <td></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+                                <div class="card-footer border-top">
+                                    <ul class="pagination pagination-rounded m-0 justify-content-end">
+                                        <li class="page-item">
+                                            <a href="#" class="page-link"><i class="bx bx-right-arrow-alt"></i></a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a href="#" class="page-link">1</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link">2</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link">3</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link"><i class="bx bx-left-arrow-alt"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
 

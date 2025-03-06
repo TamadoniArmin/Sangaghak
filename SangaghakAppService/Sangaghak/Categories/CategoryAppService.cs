@@ -28,7 +28,7 @@ namespace SangaghakAppService.Sangaghak.Categories
         {
             if (Model.ImageFile is not null)
             {
-                Model.ImagePath = await _generalService.UploadImage(Model.ImageFile!, "Categories", cancellationToken);
+                Model.ImagePath = await _generalService.UploadImage(Model.ImageFile!, "SubCategories", cancellationToken);
             }
             return await _categoryService.CreateSubCategory(Model, cancellationToken);
         }
@@ -85,11 +85,19 @@ namespace SangaghakAppService.Sangaghak.Categories
 
         public async Task<bool> UpdateCategory(CategoryDTO Model, int CategoryId, CancellationToken cancellationToken)
         {
+            if (Model.ImgFile is not null)
+            {
+                Model.ImagePath = await _generalService.UploadImage(Model.ImgFile!, "Categories", cancellationToken);
+            }
             return await _categoryService.UpdateCategory(Model, CategoryId, cancellationToken);
         }
 
         public async Task<bool> UpdateSubCategory(SubCategoryDTO Model, int SubCategoryId, CancellationToken cancellationToken)
         {
+            if (Model.ImageFile is not null)
+            {
+                Model.ImagePath = await _generalService.UploadImage(Model.ImageFile!, "SubCategories", cancellationToken);
+            }
             return await _categoryService.UpdateSubCategory(Model, SubCategoryId, cancellationToken);
         }
     }

@@ -47,7 +47,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Read
         public async Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
-            var Request=await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted==false);
+            var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted == false);
             if (Request == null) return null;
             else
             {
@@ -60,8 +60,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 requestDTO.Address = Request.Address;
                 requestDTO.CustomerId = Request.CustomerId;
                 requestDTO.AcceptedOfferId = Request.AcceptedOfferId;
-                requestDTO.SetAt= Request.SetAt;
-                requestDTO.Status= Request.Status;
+                requestDTO.SetAt = Request.SetAt;
+                requestDTO.Status = Request.Status;
                 return requestDTO;
             }
         }
@@ -113,59 +113,68 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<List<RequestDTO>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken)
         {
-             return await _context
-            .Requests
-            .Include(x=>x.Category)
-            .AsNoTracking()
-            .Where(x => x.Category.Id == subCategoryId && x.IsDeleted == false)
-            .Select(x => new RequestDTO()
-            {
-                Id = x.Id,
-                Description = x.Description,
-                WantedPrice = x.WantedPrice,
-                Address = x.Address,
-                CityId = x.CityId,
-                CustomerId = x.CustomerId,
-                CategoryId = x.CategoryId,
-                MaxTime = x.MaxTime,
-                Status = x.Status,
-                SetAt = x.SetAt,
-                AcceptedOfferId = x.AcceptedOfferId
-            }
-            ).ToListAsync(cancellationToken);
+            return await _context
+           .Requests
+           .Include(x => x.Category)
+           .AsNoTracking()
+           .Where(x => x.Category.Id == subCategoryId && x.IsDeleted == false)
+           .Select(x => new RequestDTO()
+           {
+               Id = x.Id,
+               Description = x.Description,
+               WantedPrice = x.WantedPrice,
+               Address = x.Address,
+               CityId = x.CityId,
+               CustomerId = x.CustomerId,
+               CategoryId = x.CategoryId,
+               MaxTime = x.MaxTime,
+               Status = x.Status,
+               SetAt = x.SetAt,
+               AcceptedOfferId = x.AcceptedOfferId
+           }
+           ).ToListAsync(cancellationToken);
         }
 
         public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
-            return await _context
-            .Requests
-            .Include (x=>x.CustomerId)
-            .AsNoTracking()
-            .Where(x => x.Customer.Id == customerId && x.IsDeleted == false)
-            .Select(x => new RequestDTO()
+            var Result = await _context.Requests.AnyAsync(x => x.CustomerId == customerId && x.IsDeleted == false);
+            if (Result == false)
             {
-                Id = x.Id,
-                Description = x.Description,
-                WantedPrice = x.WantedPrice,
-                Address = x.Address,
-                CityId = x.CityId,
-                CustomerId = x.CustomerId,
-                CategoryId = x.CategoryId,
-                MaxTime = x.MaxTime,
-                Status = x.Status,
-                SetAt = x.SetAt,
-                AcceptedOfferId = x.AcceptedOfferId
+                return null;
             }
-            ).ToListAsync(cancellationToken);
+            else
+            {
+                return await _context
+                .Requests
+                .Include(x => x.CustomerId)
+                .AsNoTracking()
+                .Where(x => x.Customer.Id == customerId && x.IsDeleted == false)
+                .Select(x => new RequestDTO()
+                {
+                    Id = x.Id,
+                    Description = x.Description,
+                    WantedPrice = x.WantedPrice,
+                    Address = x.Address,
+                    CityId = x.CityId,
+                    CustomerId = x.CustomerId,
+                    CategoryId = x.CategoryId,
+                    MaxTime = x.MaxTime,
+                    Status = x.Status,
+                    SetAt = x.SetAt,
+                    AcceptedOfferId = x.AcceptedOfferId
+                }
+                ).ToListAsync(cancellationToken);
+            }
+
         }
         public async Task<int> GetAllRequestsCountAsync(CancellationToken cancellationToken)
         {
-            return await _context.Requests.Where(x=>x.IsDeleted==false).CountAsync(cancellationToken);
+            return await _context.Requests.Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken)
         {
-            return await _context.Requests.Where(x=>x.Status!= RequestStatusEnum.Complited && x.IsDeleted==false).CountAsync(cancellationToken);
+            return await _context.Requests.Where(x => x.Status != RequestStatusEnum.Complited && x.IsDeleted == false).CountAsync(cancellationToken);
         }
         public async Task<int> GetComplitedRequestsCountAsync(CancellationToken cancellationToken)
         {

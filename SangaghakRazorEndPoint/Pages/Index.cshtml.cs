@@ -1,5 +1,7 @@
+using App.Domain.Core.Sangaghak.App.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SangaghakAppService.Sangaghak.Categories;
 
 namespace SangaghakRazorEndPoint.Pages
 {
@@ -14,7 +16,7 @@ namespace SangaghakRazorEndPoint.Pages
 
         public void OnGet()
         {
-            
+
         }
     }
 }

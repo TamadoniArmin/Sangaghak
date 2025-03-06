@@ -14,7 +14,7 @@ namespace SangaghakService.Sangaghak.BaseEntities
             {
                 fileName = Guid.NewGuid().ToString() +
                            ContentDispositionHeaderValue.Parse(FormFile.ContentDisposition).FileName.Trim('"');
-                filePath = Path.Combine($"wwwroot/~/UserTemplate/images/{folderName}", fileName);
+                filePath = Path.Combine($"wwwroot/images/{folderName}", fileName);
                 try
                 {
                     using (var stream = System.IO.File.Create(filePath))
@@ -26,7 +26,7 @@ namespace SangaghakService.Sangaghak.BaseEntities
                 {
                     throw new Exception("Upload files operation failed");
                 }
-                return $"/~/UserTemplate/images/{folderName}/{fileName}";//اینو بعدا درستش کن
+                return $"/images/{folderName}/{fileName}";//اینو بعدا درستش کن
             }
             else
                 fileName = "";

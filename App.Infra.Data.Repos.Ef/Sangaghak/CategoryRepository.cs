@@ -220,7 +220,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             Category.Title = Model.Title;
             Category.Description = Model.Description;
             Category.BasePrice = Model.BasePrice;
-            Category.ImagePath = Model.ImagePath;
+            if(Model.ImagePath is not null)
+                Category.ImagePath = Model.ImagePath;
             Category.ParentId = Model.ParentId;
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;
@@ -231,7 +232,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             if (Category == null) return false;
             Category.Title = Model.Title;
             Category.Description = Model.Description;
-            Category.ImagePath = Model.ImagePath;
+            if(Model.ImagePath is not null)
+                Category.ImagePath = Model.ImagePath;
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;
         }
