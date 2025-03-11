@@ -166,34 +166,6 @@ namespace Connection.Migrations
                         });
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.BaseEntities.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RequestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequestId");
-
-                    b.ToTable("Imagies");
-                });
-
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Categories.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -201,9 +173,6 @@ namespace Connection.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BasePrice")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -232,7 +201,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 1,
-                            BasePrice = 0,
                             Description = "بنایی",
                             IsDeleted = false,
                             Title = "بنایی"
@@ -240,7 +208,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 2,
-                            BasePrice = 0,
                             Description = "برقکاری",
                             IsDeleted = false,
                             Title = "برقکاری"
@@ -248,7 +215,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 3,
-                            BasePrice = 0,
                             Description = "نقاشی",
                             IsDeleted = false,
                             Title = "نقاشی"
@@ -256,7 +222,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 4,
-                            BasePrice = 0,
                             Description = "لوله کشی",
                             IsDeleted = false,
                             Title = "لوله کشی"
@@ -264,7 +229,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 5,
-                            BasePrice = 0,
                             Description = "دکوراسیون داخلی",
                             IsDeleted = false,
                             Title = "دکوراسیون داخلی"
@@ -272,7 +236,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 6,
-                            BasePrice = 0,
                             Description = "گچ کاری",
                             IsDeleted = false,
                             ParentId = 1,
@@ -281,7 +244,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 7,
-                            BasePrice = 0,
                             Description = "آجرچینی",
                             IsDeleted = false,
                             ParentId = 1,
@@ -290,7 +252,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 8,
-                            BasePrice = 0,
                             Description = "رنگزنی",
                             IsDeleted = false,
                             ParentId = 3,
@@ -299,7 +260,6 @@ namespace Connection.Migrations
                         new
                         {
                             Id = 9,
-                            BasePrice = 0,
                             Description = "کاغذ دیواری",
                             IsDeleted = false,
                             ParentId = 5,
@@ -350,20 +310,6 @@ namespace Connection.Migrations
                         .IsUnique();
 
                     b.ToTable("Comments");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            CustomerId = 1,
-                            Description = "بسیار عالی و وقت شناس",
-                            ExpertId = 1,
-                            IsDeleted = false,
-                            Rate = 4,
-                            RequestId = 1,
-                            SetAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Offer", b =>
@@ -409,21 +355,6 @@ namespace Connection.Migrations
                     b.HasIndex("RequestId");
 
                     b.ToTable("Offers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AcceptedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "من از در سریع ترین زمان ممکن برای شما این کار را انجام میدهدم",
-                            ExpertId = 1,
-                            IsDeleted = false,
-                            OfferedPrice = 1,
-                            OfferedTime = new DateTime(2646, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RequestId = 1,
-                            SetAt = new DateTime(2645, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Request", b =>
@@ -441,9 +372,6 @@ namespace Connection.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -454,11 +382,20 @@ namespace Connection.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePath1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath2")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("MaxTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ServicePackageId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("SetAt")
                         .HasColumnType("datetime2");
@@ -475,29 +412,48 @@ namespace Connection.Migrations
                         .IsUnique()
                         .HasFilter("[AcceptedOfferId] IS NOT NULL");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("CityId");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Requests");
+                    b.HasIndex("ServicePackageId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "خیابانی از خیابان های تهران",
-                            CategoryId = 9,
-                            CityId = 3,
-                            CustomerId = 1,
-                            Description = "درخواست برای کاغذ دیواری خانه",
-                            IsDeleted = false,
-                            MaxTime = new DateTime(2647, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SetAt = new DateTime(2645, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 2,
-                            WantedPrice = 10000
-                        });
+                    b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.ServicePackages.ServicePackage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MinPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tiltle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.ToTable("Packages");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Admin", b =>
@@ -956,17 +912,6 @@ namespace Connection.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.BaseEntities.Image", b =>
-                {
-                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Requests.Request", "Request")
-                        .WithMany("Images")
-                        .HasForeignKey("RequestId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Request");
-                });
-
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Categories.Category", b =>
                 {
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Categories.Category", "ParentCategory")
@@ -1030,12 +975,6 @@ namespace Connection.Migrations
                         .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Requests.Request", "AcceptedOfferId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Categories.Category", "Category")
-                        .WithMany("Requests")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.BaseEntities.City", "City")
                         .WithMany("Requests")
                         .HasForeignKey("CityId")
@@ -1048,13 +987,30 @@ namespace Connection.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AcceptedOffer");
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.ServicePackages.ServicePackage", "ServicePackage")
+                        .WithMany("Requests")
+                        .HasForeignKey("ServicePackageId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("AcceptedOffer");
 
                     b.Navigation("City");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("ServicePackage");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.ServicePackages.ServicePackage", b =>
+                {
+                    b.HasOne("App.Domain.Core.Sangaghak.Entities.Categories.Category", "SubCategory")
+                        .WithMany("Packages")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.UserBase", b =>
@@ -1161,7 +1117,7 @@ namespace Connection.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Categories.Category", b =>
                 {
-                    b.Navigation("Requests");
+                    b.Navigation("Packages");
 
                     b.Navigation("Subcategories");
                 });
@@ -1176,9 +1132,12 @@ namespace Connection.Migrations
                     b.Navigation("Comment")
                         .IsRequired();
 
-                    b.Navigation("Images");
-
                     b.Navigation("Offers");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.ServicePackages.ServicePackage", b =>
+                {
+                    b.Navigation("Requests");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Customer", b =>

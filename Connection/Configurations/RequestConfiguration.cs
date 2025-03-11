@@ -27,31 +27,26 @@ namespace Connection.Configurations
                 .HasForeignKey(x => x.CityId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.Category)
-                .WithMany(x => x.Requests)
-                .HasForeignKey(x => x.CategoryId)
-                .OnDelete(DeleteBehavior.NoAction);
-
             builder.HasOne(x => x.AcceptedOffer)
                 .WithOne(x => x.AcceptedRequest)
                 .HasForeignKey<Request>(x => x.AcceptedOfferId)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
-            builder.HasData(new List<Request>
-            { new Request {
-            Id = 1,
-            CustomerId = 1,
-            Description="درخواست برای کاغذ دیواری خانه",
-            WantedPrice=10000,
-            Address="خیابانی از خیابان های تهران",
-            MaxTime=DateTime.Parse("2025-12-01"),
-            Status=RequestStatusEnum.WatingForCustomerComfimation,
-            CityId=3,
-            CategoryId=9,
-            SetAt=DateTime.Parse("2024-09-01")
-            }
-            });
+            //builder.HasData(new List<Request>
+            //{ new Request {
+            //Id = 1,
+            //CustomerId = 1,
+            //Description="درخواست برای کاغذ دیواری خانه",
+            //WantedPrice=10000,
+            //Address="خیابانی از خیابان های تهران",
+            //MaxTime=DateTime.Parse("2025-12-01"),
+            //Status=RequestStatusEnum.WatingForCustomerComfimation,
+            //CityId=3,
+            //ServicePackageId=1,
+            //SetAt=DateTime.Parse("2024-09-01")
+            //}
+            //});
         }
     }
 }

@@ -23,6 +23,7 @@ namespace SangaghakRazorEndPoint.Pages
         public async Task<IActionResult> OnPost()
         {
             var Result=await userAppService.Login(Username, Password, true);
+            var X= User.Claims;
             var userid = User.FindFirst(u => u.Type.Contains("nameidentifier"))?.Value;
             if(Result==IdentityResult.Success)
             {

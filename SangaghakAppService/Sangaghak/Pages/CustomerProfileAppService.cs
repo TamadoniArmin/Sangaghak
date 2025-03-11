@@ -12,14 +12,14 @@ namespace SangaghakAppService.Sangaghak.Pages
     {
         private readonly IUserBaseService _userBaseService;
         private readonly IRequestService _requestService;
-        private readonly ICategoryService _categoryService;
+        private readonly IServicePackageService _servicePackageService;
         private readonly ICityService _cityService;
         private readonly UserManager<UserBase> _userManager;
-        public CustomerProfileAppService(IUserBaseService userBaseService, IRequestService requestService, ICategoryService categoryService, ICityService cityService, UserManager<UserBase> userManager)
+        public CustomerProfileAppService(IUserBaseService userBaseService, IRequestService requestService, IServicePackageService servicePackageService, ICityService cityService, UserManager<UserBase> userManager)
         {
             _userBaseService = userBaseService;
             _requestService = requestService;
-            _categoryService = categoryService;
+            _servicePackageService = servicePackageService;
             _cityService = cityService;
             _userManager = userManager;
         }
@@ -67,7 +67,7 @@ namespace SangaghakAppService.Sangaghak.Pages
             {
                 foreach (var request in Requests)
                 {
-                    request.CategoryTitle = await _categoryService.GetSubCategoryNameByIdAysnc(request.CategoryId, cancellationToken);
+                    request.ServicePackageTiltle = await _servicePackageService.GetPackageTiltleById(request.ServicePackageId, cancellationToken);
                 }
                 return Requests;
             }

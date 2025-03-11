@@ -78,7 +78,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     ExpertId = x.ExpertId,
                     RequestId = x.RequestId,
                     CustomerId = x.CustomerId,
-                    JobCategory=x.Request.Category.Title,
                 }
                 ).ToListAsync(cancellationToken);
         }
@@ -97,7 +96,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     ExpertId = x.ExpertId,
                     RequestId = x.RequestId,
                     CustomerId = x.CustomerId,
-                    JobCategory = x.Request.Category.Title,
                 }
                 ).ToListAsync(cancellationToken);
         }
@@ -115,7 +113,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 ExpertId = x.ExpertId,
                 RequestId = x.RequestId,
                 CustomerId = x.CustomerId,
-                JobCategory = x.Request.Category.Title,
                 Status = x.Status,
                 SetAt = x.SetAt
             }

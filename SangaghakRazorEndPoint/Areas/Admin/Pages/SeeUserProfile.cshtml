@@ -44,6 +44,9 @@
                         <div class="topbar-item">
                             <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">پروفایل</h4>
                         </div>
+                        <div class="topbar-item">
+                            <a asp-page="index"> خانه</a>
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center gap-1">
@@ -395,7 +398,18 @@
                         <div class="card overflow-hidden">
                             <div class="card-body">
                                 <div class="bg-primary profile-bg rounded-top position-relative mx-n3 mt-n3">
-                                    <img src="/images/users/avatar-1.jpg" alt="" class="avatar-xl border border-light border-3 rounded-circle position-absolute top-100 start-0 translate-middle ms-5">
+
+                                    <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
+                                        @if (@Model.UserInfo.ProfileImgFile != null)
+                                        {
+                                            <img src="@Model.UserInfo.ProfileImgFile" alt="" class="avatar-md">
+                                        }
+                                        else
+                                        {
+                                            <img src="/images/Categories/e8886c2a-a725-4058-9cbc-319b66588bf5dummy-avatar.jpg" alt="" class="avatar-md">
+                                        }
+
+                                    </div>
                                 </div>
                                 <div class="mt-5 d-flex flex-wrap align-items-center justify-content-between">
                                     <div>

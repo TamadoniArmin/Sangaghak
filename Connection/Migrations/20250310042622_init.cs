@@ -48,7 +48,6 @@ namespace Connection.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BasePrice = table.Column<int>(type: "int", nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: true),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -124,6 +123,29 @@ namespace Connection.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Packages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tiltle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MinPrice = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Packages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Packages_Categories_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -326,22 +348,6 @@ namespace Connection.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Imagies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    RequestId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Imagies", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Offers",
                 columns: table => new
                 {
@@ -380,19 +386,16 @@ namespace Connection.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ServicePackageId = table.Column<int>(type: "int", nullable: false),
                     AcceptedOfferId = table.Column<int>(type: "int", nullable: true),
                     SetAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ImagePath1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImagePath2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Requests", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Requests_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Requests_Cities_CityId",
                         column: x => x.CityId,
@@ -408,6 +411,11 @@ namespace Connection.Migrations
                         name: "FK_Requests_Offers_AcceptedOfferId",
                         column: x => x.AcceptedOfferId,
                         principalTable: "Offers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Requests_Packages_ServicePackageId",
+                        column: x => x.ServicePackageId,
+                        principalTable: "Packages",
                         principalColumn: "Id");
                 });
 
@@ -428,14 +436,14 @@ namespace Connection.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "BasePrice", "Description", "ImagePath", "IsDeleted", "ParentId", "Title" },
+                columns: new[] { "Id", "Description", "ImagePath", "IsDeleted", "ParentId", "Title" },
                 values: new object[,]
                 {
-                    { 1, 0, "بنایی", null, false, null, "بنایی" },
-                    { 2, 0, "برقکاری", null, false, null, "برقکاری" },
-                    { 3, 0, "نقاشی", null, false, null, "نقاشی" },
-                    { 4, 0, "لوله کشی", null, false, null, "لوله کشی" },
-                    { 5, 0, "دکوراسیون داخلی", null, false, null, "دکوراسیون داخلی" }
+                    { 1, "بنایی", null, false, null, "بنایی" },
+                    { 2, "برقکاری", null, false, null, "برقکاری" },
+                    { 3, "نقاشی", null, false, null, "نقاشی" },
+                    { 4, "لوله کشی", null, false, null, "لوله کشی" },
+                    { 5, "دکوراسیون داخلی", null, false, null, "دکوراسیون داخلی" }
                 });
 
             migrationBuilder.InsertData(
@@ -492,13 +500,13 @@ namespace Connection.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "BasePrice", "Description", "ImagePath", "IsDeleted", "ParentId", "Title" },
+                columns: new[] { "Id", "Description", "ImagePath", "IsDeleted", "ParentId", "Title" },
                 values: new object[,]
                 {
-                    { 6, 0, "گچ کاری", null, false, 1, "گچ کاری" },
-                    { 7, 0, "آجرچینی", null, false, 1, "آجرچینی" },
-                    { 8, 0, "رنگزنی", null, false, 3, "رنگزنی دیوار و سقف" },
-                    { 9, 0, "کاغذ دیواری", null, false, 5, "کاغذ دیواری" }
+                    { 6, "گچ کاری", null, false, 1, "گچ کاری" },
+                    { 7, "آجرچینی", null, false, 1, "آجرچینی" },
+                    { 8, "رنگزنی", null, false, 3, "رنگزنی دیوار و سقف" },
+                    { 9, "کاغذ دیواری", null, false, 5, "کاغذ دیواری" }
                 });
 
             migrationBuilder.InsertData(
@@ -510,21 +518,6 @@ namespace Connection.Migrations
                     { 2, 2 },
                     { 3, 3 }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Requests",
-                columns: new[] { "Id", "AcceptedOfferId", "Address", "CategoryId", "CityId", "CustomerId", "Description", "IsDeleted", "MaxTime", "SetAt", "Status", "WantedPrice" },
-                values: new object[] { 1, null, "خیابانی از خیابان های تهران", 9, 3, 1, "درخواست برای کاغذ دیواری خانه", false, new DateTime(2647, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2645, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 10000 });
-
-            migrationBuilder.InsertData(
-                table: "Comments",
-                columns: new[] { "id", "CustomerId", "Description", "ExpertId", "IsDeleted", "Rate", "RequestId", "SetAt", "Status" },
-                values: new object[] { 1, 1, "بسیار عالی و وقت شناس", 1, false, 4, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 });
-
-            migrationBuilder.InsertData(
-                table: "Offers",
-                columns: new[] { "Id", "AcceptedAt", "Description", "ExpertId", "IsDeleted", "OfferedPrice", "OfferedTime", "RequestId", "SetAt", "Status" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "من از در سریع ترین زمان ممکن برای شما این کار را انجام میدهدم", 1, false, 1, new DateTime(2646, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2645, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -612,11 +605,6 @@ namespace Connection.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Imagies_RequestId",
-                table: "Imagies",
-                column: "RequestId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Offers_ExpertId",
                 table: "Offers",
                 column: "ExpertId");
@@ -627,16 +615,16 @@ namespace Connection.Migrations
                 column: "RequestId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Packages_SubCategoryId",
+                table: "Packages",
+                column: "SubCategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Requests_AcceptedOfferId",
                 table: "Requests",
                 column: "AcceptedOfferId",
                 unique: true,
                 filter: "[AcceptedOfferId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Requests_CategoryId",
-                table: "Requests",
-                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requests_CityId",
@@ -648,16 +636,14 @@ namespace Connection.Migrations
                 table: "Requests",
                 column: "CustomerId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_ServicePackageId",
+                table: "Requests",
+                column: "ServicePackageId");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_Comments_Requests_RequestId",
                 table: "Comments",
-                column: "RequestId",
-                principalTable: "Requests",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Imagies_Requests_RequestId",
-                table: "Imagies",
                 column: "RequestId",
                 principalTable: "Requests",
                 principalColumn: "Id");
@@ -686,8 +672,8 @@ namespace Connection.Migrations
                 table: "Offers");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Requests_Categories_CategoryId",
-                table: "Requests");
+                name: "FK_Packages_Categories_SubCategoryId",
+                table: "Packages");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Offers_Requests_RequestId",
@@ -715,9 +701,6 @@ namespace Connection.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Imagies");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -743,6 +726,9 @@ namespace Connection.Migrations
 
             migrationBuilder.DropTable(
                 name: "Offers");
+
+            migrationBuilder.DropTable(
+                name: "Packages");
         }
     }
 }

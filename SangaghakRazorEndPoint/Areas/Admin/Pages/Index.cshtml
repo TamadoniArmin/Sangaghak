@@ -44,11 +44,20 @@
                             <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">داشبورد</h4>
                         </div>
                         <div class="topbar-item">
+                            <a asp-page="index"> خانه</a>
+                        </div>
+                        <div class="topbar-item">
                             <a asp-page="SeeAllCategories"> دسته بندی ها</a>
                         </div>
 
                         <div class="topbar-item">
                             <a asp-page="SeeAllSubCategories"> زیر دسته بندی ها</a>
+                        </div>
+                        <div class="topbar-item">
+                            <a asp-page="CommentManager"> مدیریت کامنت ها</a>
+                        </div>
+                        <div class="topbar-item">
+                            <a asp-page="LoginUser"> لاگین</a>
                         </div>
 
                     </div>
@@ -200,7 +209,7 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- آیتم-->
                                 <h6 class="dropdown-header">به گاستون خوش آمدید!</h6>
-                                <a class="dropdown-item" asp-page="SeeUserPorfile">
+                                <a class="dropdown-item" asp-page="SeeUserProfile">
                                     <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">پروفایل</span>
                                 </a>
                                 <a class="dropdown-item" href="chat.html">
@@ -428,7 +437,7 @@
                                                 تاریخ
                                             </th>
                                             <th>
-                                                دسته بندی
+                                                سرویس
                                             </th>
                                             <th>
                                                 نام مشتری
@@ -459,10 +468,6 @@
                                                     <a href="apps-ecommerce-order-detail.html">@Request.Id</a>
                                                 </td>
                                                 <td>@Request.SetAt</td>
-                                                <td>
-                                                    <img src="/images/products/product-1(1).png" alt="product-1(1)"
-                                                         class="img-fluid avatar-sm">
-                                                </td>
                                                 <td>
                                                     <a href="#!">@Request.CustomerFullName</a>
                                                 </td>

@@ -1,10 +1,13 @@
-﻿using System.Security.Claims;
-using App.Domain.Core.Sangaghak.App.Domain.Core;
+﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Users;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace SangaghakAppService.Sangaghak.Users
 {
@@ -17,8 +20,10 @@ namespace SangaghakAppService.Sangaghak.Users
         private readonly UserManager<UserBase> _userManager;
         private readonly SignInManager<UserBase> _signInManager;
         private readonly IPasswordHasher<UserBase> _passwordHasher;
+        private readonly ILogger<UserBaseAppService> _logger;
+        private readonly IMemoryCache _memoryCache;
 
-        public UserBaseAppService(IUserBaseService userService, UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService,ICityService cityService)
+        public UserBaseAppService(IUserBaseService userService, UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService,ICityService cityService, ILogger<UserBaseAppService> logger, IMemoryCache memoryCache)
         {
             _userService = userService;
             _userManager = userManager;
@@ -26,16 +31,37 @@ namespace SangaghakAppService.Sangaghak.Users
             _passwordHasher = passwordHasher;
             _generalService = generalService;
             _cityService = cityService;
+            _logger = logger;
+            _memoryCache = memoryCache;
         }
 
         public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
-            var WantedUsers = await _userService.GetAllAsync(cancellationToken);
-            var Name=await _cityService.GetNameOfCity(3,cancellationToken);
-            foreach (var WantedUser in WantedUsers)
+            List<GetUserBaseForViewPage> WantedUsers;
+            if (_memoryCache.Get("AllUsers") is not null)
             {
-                var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
-                WantedUser.CityName = cityName;
+                WantedUsers = _memoryCache.Get<List<GetUserBaseForViewPage>>("AllUsers");
+                foreach (var WantedUser in WantedUsers)
+                {
+                    var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
+                    WantedUser.CityName = cityName;
+                }
+            }
+            else
+            {
+                WantedUsers = await _userService.GetAllAsync(cancellationToken);
+                var Name = await _cityService.GetNameOfCity(3, cancellationToken);
+                foreach (var WantedUser in WantedUsers)
+                {
+                    var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
+                    WantedUser.CityName = cityName;
+                }
+                _memoryCache.Set("AllUsers", WantedUsers,
+                    new MemoryCacheEntryOptions
+                    {
+                        SlidingExpiration = TimeSpan.FromSeconds(10)
+                    }
+                    );
             }
             return WantedUsers;
         }
@@ -129,7 +155,7 @@ namespace SangaghakAppService.Sangaghak.Users
         public async Task<IdentityResult> Login(string username, string password, bool rememberMe)
         {
             var result = await _signInManager.PasswordSignInAsync(username, password, rememberMe, false);
-
+            _logger.Log(logLevel: LogLevel.Warning , "User Logged In");
             return result.Succeeded ? IdentityResult.Success : IdentityResult.Failed();
         }
     }

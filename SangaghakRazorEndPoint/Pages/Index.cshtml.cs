@@ -14,9 +14,9 @@ namespace SangaghakRazorEndPoint.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
-
+            return LocalRedirect("/Public/Index");
         }
     }
 }

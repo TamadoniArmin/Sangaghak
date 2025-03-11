@@ -30,18 +30,20 @@ namespace Connection.Configurations
                 .WithOne(x => x.Comment)
                 .HasForeignKey<Comment>(x => x.RequestId)
                 .OnDelete(DeleteBehavior.NoAction);
-            builder.HasData(new List<Comment>()
-            {
-                new Comment
-                {
-                    id = 1,
-                    Description="بسیار عالی و وقت شناس",
-                    Rate=4,
-                    CustomerId=1,
-                    ExpertId=1,
-                    RequestId=1,
-                }
-            });
+
+
+            //builder.HasData(new List<Comment>()
+            //{
+            //    new Comment
+            //    {
+            //        id = 1,
+            //        Description="بسیار عالی و وقت شناس",
+            //        Rate=4,
+            //        CustomerId=1,
+            //        ExpertId=1,
+            //        RequestId=1,
+            //    }
+            //});
         }
     }
 }

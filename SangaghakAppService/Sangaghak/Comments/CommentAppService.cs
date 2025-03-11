@@ -12,14 +12,14 @@ namespace SangaghakAppService.Sangaghak.Comments
         private readonly IRequestService _requestService;
         private readonly ICityService _cityService;
         private readonly IUserBaseService _userBaseService;
-        private readonly ICategoryService _categoryService;
-        public CommentAppService(ICommentService commentService, IRequestService requestService, ICityService cityService, IUserBaseService userBaseService, ICategoryService categoryService)
+        private readonly IServicePackageService _servicePackageService;
+        public CommentAppService(ICommentService commentService, IRequestService requestService, ICityService cityService, IUserBaseService userBaseService, IServicePackageService servicePackageService)
         {
             _commentService = commentService;
             _requestService = requestService;
             _cityService = cityService;
             _userBaseService = userBaseService;
-            _categoryService = categoryService;
+            _servicePackageService = servicePackageService;
         }
 
         public Task<bool> CreateCommentAsync(CommentForCreateDTO comment, CancellationToken cancellationToken)
@@ -39,8 +39,8 @@ namespace SangaghakAppService.Sangaghak.Comments
             {
                 comment.CustomerName = await _userBaseService.GetCustomerNameByCustomerIdAsync(comment.CustomerId, cancellationToken);
                 comment.ExpertName=await _userBaseService.GetExpertNameByExpertIdAsync(comment.ExpertId, cancellationToken);
-                comment.CategoryId=await _requestService.GetRequestCategoryIdAsync(comment.RequestId, cancellationToken);
-                comment.JobCategory=await _categoryService.GetSubCategoryNameByIdAysnc(comment.CategoryId,cancellationToken);
+                comment.PackageId=await _requestService.GetRequestPackageIdAsync(comment.RequestId, cancellationToken);
+                comment.PackageTiltle=await _servicePackageService.GetPackageTiltleById(comment.PackageId,cancellationToken);
                 comment.CityId=await _requestService.GetRequestCityIdAsync(comment.RequestId, cancellationToken);
                 comment.CityName=await _cityService.GetNameOfCity(comment.CityId,cancellationToken);
             }
@@ -64,8 +64,8 @@ namespace SangaghakAppService.Sangaghak.Comments
             {
                 comment.CustomerName = await _userBaseService.GetCustomerNameByCustomerIdAsync(comment.CustomerId, cancellationToken);
                 comment.ExpertName = await _userBaseService.GetExpertNameByExpertIdAsync(comment.ExpertId, cancellationToken);
-                comment.CategoryId = await _requestService.GetRequestCategoryIdAsync(comment.RequestId, cancellationToken);
-                comment.JobCategory = await _categoryService.GetSubCategoryNameByIdAysnc(comment.CategoryId, cancellationToken);
+                comment.PackageId = await _requestService.GetRequestPackageIdAsync(comment.RequestId, cancellationToken);
+                comment.PackageTiltle = await _servicePackageService.GetPackageTiltleById(comment.PackageId, cancellationToken);
                 comment.CityId = await _requestService.GetRequestCityIdAsync(comment.RequestId, cancellationToken);
                 comment.CityName = await _cityService.GetNameOfCity(comment.CityId, cancellationToken);
             }

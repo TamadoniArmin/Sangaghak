@@ -39,7 +39,7 @@ namespace SangaghakAppService.Sangaghak.Requests
             {
                 request.CityTitle = await _cityService.GetNameOfCity(request.CityId, cancellationToken);
                 request.CustomerFullName=await _userBaseService.GetCustomerNameByCustomerIdAsync(request.CustomerId, cancellationToken);
-                request.CategoryTitle=await _categoryService.GetSubCategoryNameByIdAysnc(request.CategoryId, cancellationToken);
+                request.ServicePackageTiltle=await _categoryService.GetSubCategoryNameByIdAysnc(request.ServicePackageId, cancellationToken);
             }
             return Requests;
         }

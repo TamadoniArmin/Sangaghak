@@ -2,6 +2,7 @@
 using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using App.Domain.Core.Sangaghak.Entities.Requests;
+using App.Domain.Core.Sangaghak.Entities.ServicePackages;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using Connection.Configurations;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +27,7 @@ namespace Connection.Common
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new ExpertConfiguration());
-            modelBuilder.ApplyConfiguration(new ImageConfiguration());
+            modelBuilder.ApplyConfiguration(new ServicePackageConfiguration());
             modelBuilder.ApplyConfiguration(new RequestConfiguration());
             modelBuilder.ApplyConfiguration(new OfferConfiguration());
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
@@ -42,7 +43,7 @@ namespace Connection.Common
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Expert> Experts { get; set; }
-        public DbSet<Image> Imagies { get; set; }
+        public DbSet<ServicePackage> Packages { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<UserBase> Users { get; set; }

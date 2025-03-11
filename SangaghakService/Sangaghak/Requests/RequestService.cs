@@ -69,9 +69,9 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetRequestBySubCategoryAsync(subCategoryId, cancellationToken);
         }
 
-        public async Task<int> GetRequestCategoryIdAsync(int RequestId, CancellationToken cancellationToken)
+        public async Task<int> GetRequestPackageIdAsync(int RequestId, CancellationToken cancellationToken)
         {
-            return await _repository.GetRequestCategoryIdAsync(RequestId, cancellationToken);
+            return await _repository.GetRequestPackageIdAsync(RequestId, cancellationToken);
         }
 
         public async Task<int> GetRequestCityIdAsync(int RequestId, CancellationToken cancellationToken)

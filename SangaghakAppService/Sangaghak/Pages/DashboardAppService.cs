@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SangaghakAppService.Sangaghak.Pages
 {
-    public class DashboardAppService(IUserBaseService userBaseService, IRequestService requestService, ICommentService commentService, IOfferService offerService, ICategoryService categoryService, ICityService cityService, UserManager<UserBase> userManager) : IDashboardAppService
+    public class DashboardAppService(IUserBaseService userBaseService, IRequestService requestService, ICommentService commentService, IOfferService offerService, ICategoryService categoryService, ICityService cityService, UserManager<UserBase> userManager,IServicePackageService servicePackageService) : IDashboardAppService
     {
         public async Task<int> GetAllUsersCount(CancellationToken cancellationToken)
         {
@@ -71,8 +71,7 @@ namespace SangaghakAppService.Sangaghak.Pages
                 Request.CustomerFullName = Customer.FullName??string.Empty;
                 Request.CustomerEmail = Customer.Email;
                 Request.CustomerPhone = Customer.Phone;
-                var Category = await categoryService.GetCategoryByIdAysnc(Request.CategoryId, cancellationToken);
-                Request.CategoryTitle = Category.Title;
+                Request.ServicePackageTiltle = await servicePackageService.GetPackageTiltleById(Request.ServicePackageId, cancellationToken);
                 var City = await cityService.GetCityById(Request.CityId, cancellationToken);
                 Request.CityTitle = City.Title;
                 if (Request.AcceptedOfferId != 0 && Request.AcceptedOfferId is not null)

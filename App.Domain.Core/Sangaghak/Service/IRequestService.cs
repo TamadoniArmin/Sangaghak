@@ -19,7 +19,7 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetComplitedRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetCancelledRequestsCountAsync(CancellationToken cancellationToken);
-        public Task<int> GetRequestCategoryIdAsync(int RequestId, CancellationToken cancellationToken);
+        public Task<int> GetRequestPackageIdAsync(int RequestId, CancellationToken cancellationToken);
         public Task<int> GetRequestCityIdAsync(int RequestId, CancellationToken cancellationToken);
         public Task<int> GetCustomerCompletedRequestsCount(int CustomerId, CancellationToken cancellationToken);
         #endregion

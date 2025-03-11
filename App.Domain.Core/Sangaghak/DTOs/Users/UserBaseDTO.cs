@@ -16,6 +16,7 @@ namespace App.Domain.Core.Sangaghak.DTOs.Users
         public string? Email { get; set; }
         public string? Address { get; set; }
         public int CityId { get; set; }
+        public string? CityName { get; set; }
         public RoleEnum Role { get; set; }
         public IFormFile? ProfileImgFile { get; set; }
         public string? ImagePath { get; set; }

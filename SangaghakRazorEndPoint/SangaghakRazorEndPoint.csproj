@@ -17,7 +17,9 @@
     <Compile Include="Areas\Account\Pages\AccessDenied.cshtml.cs" />
     <Compile Include="Areas\Account\Pages\Logout.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CommentManager.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\CreatePackage.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\EditCategory.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\EditPackage.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\EditSubCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllComments.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
@@ -25,6 +27,7 @@
     <Compile Include="Areas\Admin\Pages\Index.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\LoginUser.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllCategories.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAllPackages.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllRequests.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllUsers.cshtml.cs" />
@@ -33,7 +36,12 @@
     <Compile Include="Areas\Admin\Pages\UpdateUser.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\UserRegister.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\CustomerProfile.cshtml.cs" />
+    <Compile Include="Areas\Customer\Pages\PostRequest.cshtml.cs" />
+    <Compile Include="Areas\Customer\Pages\RequestDetails.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml.cs" />
+    <Compile Include="Areas\Public\Pages\Index.cshtml.cs" />
+    <Compile Include="Areas\Public\Pages\SeeCategoryDetails.cshtml.cs" />
+    <Compile Include="Areas\Public\Pages\SeeSubCategoryDetails.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +61,22 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="Areas\Public\Pages\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Public\Pages\Shared\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Public\Pages\Shared\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Public\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +88,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,7 +102,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Public\Pages\" />
     <Folder Include="Pages\Account\" />
     <Folder Include="wwwroot\AdminTemplate\libs\chart.js\docs\" />
     <Folder Include="wwwroot\AdminTemplate\libs\choices.js\public\types\cypress\e2e\" />
@@ -99,6 +125,7 @@
     <Folder Include="wwwroot\AdminTemplate\libs\toastify-js\example\" />
     <Folder Include="wwwroot\AdminTemplate\libs\toastify-js\src\" />
     <Folder Include="wwwroot\Images\Categories\" />
+    <Folder Include="wwwroot\Images\Packages\" />
     <Folder Include="wwwroot\Images\SubCategories\" />
   </ItemGroup>
 
@@ -108,11 +135,24 @@
     <None Include="Areas\Account\Pages\_ViewImports.cshtml" />
     <None Include="Areas\Account\Pages\_ViewStart.cshtml" />
     <None Include="Areas\Admin\Pages\CommentManager.cshtml" />
+    <None Include="Areas\Admin\Pages\CreatePackage.cshtml" />
     <None Include="Areas\Admin\Pages\EditCategory.cshtml" />
+    <None Include="Areas\Admin\Pages\EditPackage.cshtml" />
     <None Include="Areas\Admin\Pages\EditSubCategory.cshtml" />
+    <None Include="Areas\Admin\Pages\SeeAllPackages.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml" />
     <None Include="Areas\Customer\Pages\CustomerProfile.cshtml" />
+    <None Include="Areas\Customer\Pages\PostRequest.cshtml" />
+    <None Include="Areas\Customer\Pages\RequestDetails.cshtml" />
     <None Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml" />
+    <None Include="Areas\Public\Pages\Index.cshtml" />
+    <None Include="Areas\Public\Pages\SeeCategoryDetails.cshtml" />
+    <None Include="Areas\Public\Pages\SeeSubCategoryDetails.cshtml" />
+    <None Include="Areas\Public\Pages\Shared\_Footer.cshtml" />
+    <None Include="Areas\Public\Pages\Shared\_Header.cshtml" />
+    <None Include="Areas\Public\Pages\Shared\_Layout.cshtml.css" />
+    <None Include="Areas\Public\Pages\Shared\_Navbar.cshtml" />
+    <None Include="Areas\Public\Pages\Shared\_SideNavBar.cshtml" />
   </ItemGroup>
 
 </Project>

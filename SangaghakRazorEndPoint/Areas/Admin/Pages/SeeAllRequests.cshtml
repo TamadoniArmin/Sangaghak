@@ -44,6 +44,9 @@
                         <div class="topbar-item">
                             <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">لیست فاکتور ها</h4>
                         </div>
+                        <div class="topbar-item">
+                            <a asp-page="index"> خانه</a>
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center gap-1">
@@ -1326,7 +1329,7 @@
                                                     <td><a href="javascript: void(0);" class="text-body">@Request.Id</a> </td>
                                                     <td><img src="/images/users/avatar-2.jpg" class="avatar-sm rounded-circle me-2" alt="..."> @Request.CustomerFullName</td>
                                                     <td>@Request.SetAt</td>
-                                                    <td> @Request.CategoryTitle </td>
+@*                                                     <td> @Request.CategoryTitle </td> *@
                                                     <td> @Request.CityTitle </td>
                                                     <td> <span class="badge bg-success-subtle text-success py-1 px-2">@Request.Status</span> </td>
                                                     <td>

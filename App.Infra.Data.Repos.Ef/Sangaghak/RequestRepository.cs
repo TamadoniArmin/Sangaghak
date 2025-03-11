@@ -28,7 +28,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Address = request.Address,
                     CityId = request.CityId,
                     CustomerId = request.CustomerId,
-                    CategoryId = request.CategoryId,
                     MaxTime = request.MaxTime,
                     Status = RequestStatusEnum.WatingForExpertsOffers,
                     SetAt = DateTime.Now,
@@ -79,7 +78,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Address = x.Address,
                     CityId = x.CityId,
                     CustomerId = x.CustomerId,
-                    CategoryId = x.CategoryId,
+                    ServicePackageId=x.ServicePackageId,
                     MaxTime = x.MaxTime,
                     Status = x.Status,
                     SetAt = x.SetAt,
@@ -102,7 +101,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Address = x.Address,
                 CityId = x.CityId,
                 CustomerId = x.CustomerId,
-                CategoryId = x.CategoryId,
                 MaxTime = x.MaxTime,
                 Status = x.Status,
                 SetAt = x.SetAt,
@@ -115,9 +113,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             return await _context
            .Requests
-           .Include(x => x.Category)
            .AsNoTracking()
-           .Where(x => x.Category.Id == subCategoryId && x.IsDeleted == false)
+           .Where(x => x.ServicePackage.Id == subCategoryId && x.IsDeleted == false)
            .Select(x => new RequestDTO()
            {
                Id = x.Id,
@@ -126,7 +123,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                Address = x.Address,
                CityId = x.CityId,
                CustomerId = x.CustomerId,
-               CategoryId = x.CategoryId,
+               ServicePackageId = x.ServicePackageId,
                MaxTime = x.MaxTime,
                Status = x.Status,
                SetAt = x.SetAt,
@@ -157,7 +154,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Address = x.Address,
                     CityId = x.CityId,
                     CustomerId = x.CustomerId,
-                    CategoryId = x.CategoryId,
+                    ServicePackageId = x.ServicePackageId,
                     MaxTime = x.MaxTime,
                     Status = x.Status,
                     SetAt = x.SetAt,
@@ -185,13 +182,13 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             return await _context.Requests.Where(x => x.Status == RequestStatusEnum.Cancelled && x.IsDeleted == false).CountAsync(cancellationToken);
         }
-        public async Task<int> GetRequestCategoryIdAsync(int RequestId, CancellationToken cancellationToken)
+        public async Task<int> GetRequestPackageIdAsync(int RequestId, CancellationToken cancellationToken)
         {
             var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted == false);
             if (Request == null) return 0;
             else
             {
-                return Request.CategoryId;
+                return Request.ServicePackageId;
             }
         }
         public async Task<int> GetRequestCityIdAsync(int RequestId, CancellationToken cancellationToken)

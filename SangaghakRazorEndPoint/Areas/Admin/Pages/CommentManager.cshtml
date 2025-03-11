@@ -44,6 +44,9 @@
                         <div class="topbar-item">
                             <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">دیدگاه ها</h4>
                         </div>
+                        <div class="topbar-item">
+                            <a asp-page="index"> خانه</a>
+                        </div>
                     </div>
 
                     <div class="d-flex align-items-center gap-1">
@@ -446,7 +449,8 @@
                             </div>
                         </div>
                         <form method="post">
-                            <a class="btn btn-outline-success" asp-for=""></a>
+                            <button class="btn btn-outline-success" asp-route-CommentId="@comment.Id" asp-route-statusEnum="1">تایید</button>
+                            <button class="btn btn-outline-danger" asp-route-CommentId="@comment.Id" asp-route-statusEnum="2">رد</button>
                         </form>
                     }
                 </div>

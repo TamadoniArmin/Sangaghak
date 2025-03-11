@@ -21,8 +21,8 @@ namespace App.Domain.Core.Sangaghak.DTOs.Requests
         public string? ExpertPhone { get; set; }
         public int OfferPrice { get; set; }
         public DateTime? OfferDate { get; set; }
-        public int CategoryId { get; set; }
-        public string? CategoryTitle { get; set; }
+        public int ServicePackageId { get; set; }
+        public string? ServicePackageTiltle { get; set; }
         public DateTime MaxTime { get; set; }
         public int? AcceptedOfferId { get; set; }
         public DateTime SetAt { get; set; }
