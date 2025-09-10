@@ -7,130 +7,93 @@
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @inject ICityService cityService;
-<!DOCTYPE html>
-<html dir="rtl" lang="fa" class="h-100">
 
-<head>
-	<!-- Title Meta -->
-	<meta charset="utf-8" />
-	<title>ثبت نام | لارکن قالب مدیریتی</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="A fully responsive premium admin dashboard template" />
-	<meta name="author" content="Techzaa" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<div class="row h-100">
+    <div class="col-xxl-7">
+        <div class="row justify-content-center h-100">
+            <div class="col-lg-6 py-lg-5">
+                <div class="d-flex flex-column h-100 justify-content-center">
 
-	<!-- App favicon -->
-	<link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
+                    <h2 class="fw-bold fs-24">ثبت نام</h2>
 
-	<link rel="stylesheet" href="~/AdminTemplate/css/app.css">
-	<link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
-	<link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
-	<script src="~/AdminTemplate/js/config.js"></script>
+                    <p class="text-muted mt-1 mb-4">جدید به پلتفرم ما هستید؟ همین حالا ثبت نام کنید! این فقط یک دقیقه طول می‌کشد.</p>
 
-</head>
+                    <div>
+                        <form method="post">
+                            <div class="form-body">
+                                <div class="dropzone bg-light-subtle py-5">
+                                    <div class="fallback">
+                                        <input asp-for="@Model.ProfileImgFile" name="file" type="file" />
+                                    </div>
+                                    <div class="dz-message needsclick">
+                                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
+                                        <h3 class="mt-4">
+                                            تصاویر خود را اینجا رها کنید، یا
+                                            <span class="text-primary">برای مرور کلیک کنید</span>
+                                        </h3>
+                                        <span class="text-muted fs-13">
+                                            1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Email">Email</label>
+                                    <input asp-for="@Model.Email" type="email" class="form-control" id="Email" name="Email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Username">Username</label>
+                                    <input asp-for="@Model.UserName" type="text" class="form-control" id="Username" name="Username" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="FirstName">FirstName</label>
+                                    <input asp-for="@Model.FirstName" type="text" class="form-control" id="FirstName" name="FirstName" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="LastName">LastName</label>
+                                    <input asp-for="@Model.LastName" type="text" class="form-control" id="LastName" name="LastName" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="PhoneNumber">PhoneNumber</label>
+                                    <input asp-for="@Model.PhoneNumber" type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" required />
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select asp-for="@Model.CityId" class="form-select">
+                                            @foreach (var city in await cityService.GetAllCities(default))
+                                            {
+                                                <option value="@city.Id">@city.Title</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select asp-for="@Model.Role" class="form-select">
+                                            <option value="1">Admin</option>
+                                            <option value="2">Customer</option>
+                                            <option value="3">Expert</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password">Password</label>
+                                    <input asp-for="@Model.Password" type="password" class="form-control" id="Password" name="Password" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="RePassword">Password</label>
+                                    <input asp-for="@Model.RePassword" type="password" class="form-control" id="RePassword" name="RePassword" required />
+                                </div>
 
-<body class="h-100">
-	<div class="d-flex flex-column h-100 p-3">
-		<div class="d-flex flex-column flex-grow-1">
-			<div class="row h-100">
-				<div class="col-xxl-7">
-					<div class="row justify-content-center h-100">
-						<div class="col-lg-6 py-lg-5">
-							<div class="d-flex flex-column h-100 justify-content-center">
-								<div class="auth-logo mb-4">
-									<a href="index.html" class="logo-dark"> <img src="/images/logo-dark.png" height="24" alt="لوگوی تاریک"> </a>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </form>
 
-									<a href="index.html" class="logo-light">
-										<img src="/images/logo-light.png" height="24" alt="لوگوی روشن">
-									</a>
-								</div>
-
-								<h2 class="fw-bold fs-24">ثبت نام</h2>
-
-								<p class="text-muted mt-1 mb-4">جدید به پلتفرم ما هستید؟ همین حالا ثبت نام کنید! این فقط یک دقیقه طول می‌کشد.</p>
-
-								<div>
-									<form method="post">
-										<div class="form-body">
-											<div class="dropzone bg-light-subtle py-5">
-												<div class="fallback">
-													<input asp-for="@Model.ProfileImgFile" name="file" type="file" />
-												</div>
-												<div class="dz-message needsclick">
-													<i class="bx bx-cloud-upload fs-48 text-primary"></i>
-													<h3 class="mt-4">
-														تصاویر خود را اینجا رها کنید، یا
-														<span class="text-primary">برای مرور کلیک کنید</span>
-													</h3>
-													<span class="text-muted fs-13">
-														1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
-													</span>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="Email">Email</label>
-												<input asp-for="@Model.Email" type="email" class="form-control" id="Email" name="Email" required />
-											</div>
-											<div class="form-group">
-												<label for="Username">Username</label>
-												<input asp-for="@Model.UserName" type="text" class="form-control" id="Username" name="Username" required />
-											</div>
-											<div class="form-group">
-												<label for="FirstName">FirstName</label>
-												<input asp-for="@Model.FirstName" type="text" class="form-control" id="FirstName" name="FirstName" required />
-											</div>
-											<div class="form-group">
-												<label for="LastName">LastName</label>
-												<input asp-for="@Model.LastName" type="text" class="form-control" id="LastName" name="LastName" required />
-											</div>
-											<div class="form-group">
-												<label for="PhoneNumber">PhoneNumber</label>
-												<input asp-for="@Model.PhoneNumber" type="number" class="form-control" id="PhoneNumber" name="PhoneNumber" required />
-											</div>
-											<div class="form-group">
-												<div class="input-group">
-													<select asp-for="@Model.CityId" class="form-select">
-														@foreach (var city in await cityService.GetAllCities(default))
-														{
-															<option value="@city.Id">@city.Title</option>
-														}
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="input-group">
-													<select asp-for="@Model.Role" class="form-select">
-														<option value="1">Admin</option>
-														<option value="2">Customer</option>
-														<option value="3">Expert</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="Password">Password</label>
-												<input asp-for="@Model.Password" type="password" class="form-control" id="Password" name="Password" required />
-											</div>
-											<div class="form-group">
-												<label for="RePassword">Password</label>
-												<input asp-for="@Model.RePassword" type="password" class="form-control" id="RePassword" name="RePassword" required />
-											</div>
-											
-										</div>
-										<button type="submit" class="btn btn-primary">Continue</button>
-									</form>
-
-									<p class="mt-auto text-danger text-center pt-3">
-										من قبلاً یک حساب دارم <a asp-page="LoginUser" class="text-dark fw-bold ms-1">ورود</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script src="~/AdminTemplate/js/app.js"></script>
-		<script src="~/AdminTemplate/js/layout.js"></script>
-</body>
-
-</html>
+                        <p class="mt-auto text-danger text-center pt-3">
+                            من قبلاً یک حساب دارم <a asp-page="LoginUser" class="text-dark fw-bold ms-1">ورود</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

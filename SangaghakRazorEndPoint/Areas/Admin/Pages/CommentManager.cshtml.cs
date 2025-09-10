@@ -9,7 +9,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages.Edits
     public class CommentManagerModel(ICommentAppService commentAppService) : PageModel
     {
         [BindProperty]
-        public List<CommentDTO> Comments { get; set; }
+        public List<CommentDTO>? Comments { get; set; }
         [BindProperty]
         public CommentStatusEnum Status { get; set; }
         public async Task OnGet(CancellationToken cancellationToken)

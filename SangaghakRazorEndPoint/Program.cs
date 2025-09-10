@@ -39,7 +39,7 @@ namespace SangaghakRazorEndPoint
             }).UseSerilog((Context, Config) =>
             {
                 Config.WriteTo.Console();
-                Config.WriteTo.Seq("http://localhost:5341", apiKey: "oBiB44NLhrLpk7PEGaDF");
+                Config.WriteTo.Seq("http://localhost:5341", apiKey: "nKDiTm7QGqmr8z6Wg3Dg");
             });
 
             builder.Services.AddMemoryCache();
@@ -51,7 +51,7 @@ namespace SangaghakRazorEndPoint
 
                 // Add services to the container.
                 builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Data Source=DESKTOP-7D9S1GO;Initial Catalog=Sangaghak;Integrated Security=SSPI;TrustServerCertificate=True;"));
+                options.UseSqlServer("Server=.,1433;Initial Catalog=Sangaghak;User ID=sa;Password=1234;TrustServerCertificate=true"));
 
                 builder.Services.AddIdentity<UserBase, IdentityRole<int>>(options =>
                 {
@@ -145,11 +145,13 @@ namespace SangaghakRazorEndPoint
                 app.UseAuthorization();
 
                 app.MapStaticAssets();
-                app.MapRazorPages()
-                   .WithStaticAssets();
-                //app.MapControllerRoute(
-                //name: "default",
-                //pattern: "{}/{action=Index}/{id?}");
+                //app.MapRazorPages()
+                //   .WithStaticAssets();
+                app.MapRazorPages();
+                app.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 app.Run();
             }
             catch (Exception ex)

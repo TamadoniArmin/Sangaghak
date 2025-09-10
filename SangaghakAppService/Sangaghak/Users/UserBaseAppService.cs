@@ -145,7 +145,15 @@ namespace SangaghakAppService.Sangaghak.Users
 
                 await _signInManager.PasswordSignInAsync(user.UserName, model.Password, true, false);
             }
-            return result;
+            if (!result.Succeeded)
+            {
+                _logger.LogWarning("{Time}کاربری با نام کاربری{Usernam} نتوانست ثبتنام کند", DateTime.UtcNow.ToLongTimeString(), user.UserName);
+            }
+            else if (result.Succeeded)
+            {
+                _logger.LogInformation("کاربری با نام کاربری {Username} درساعت {Time} با موفقیت ثبتنام کرد", DateTime.UtcNow.ToLongTimeString(), user.UserName);
+            }
+                return result;
         }
 
         public async Task<bool> UpdateUserInfoAsync(UserBaseDTO user, int UserId, CancellationToken cancellationToken)

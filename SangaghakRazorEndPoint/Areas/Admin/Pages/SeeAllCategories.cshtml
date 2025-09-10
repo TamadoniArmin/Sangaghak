@@ -5,609 +5,89 @@
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<!DOCTYPE html>
-<html lang="fa" dir="rtl" data-menu-size="sm-hover">
 
-<head>
-    <!-- Title Meta -->
-    <meta charset="utf-8" />
-    <title>لیست دسته‌بندی‌ها | لارکن قالب مدیریتی</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully responsive premium admin dashboard template" />
-    <meta name="author" content="Techzaa" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center gap-1">
+                <h4 class="card-title flex-grow-1">لیست تمامی دسته‌بندی‌ها</h4>
 
-    <link rel="stylesheet" href="~/AdminTemplate/css/app.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
-    <script src="~/AdminTemplate/js/config.js"></script>
-
-</head>
-
-<body>
-    <div class="wrapper">
-        <header class="topbar">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <div class="d-flex align-items-center">
-                        <!-- دکمه toggle منو -->
-                        <div class="topbar-item">
-                            <button type="button" class="button-toggle-menu me-2">
-                                <iconify-icon icon="solar:hamburger-menu-broken" class="fs-24 align-middle"></iconify-icon>
-                            </button>
-                        </div>
-
-                        <!-- عنوان صفحه -->
-                        <div class="topbar-item">
-                            <h4 class="fw-bold topbar-button pe-none text-uppercase mb-0">لیست دسته‌بندی‌ها</h4>
-                        </div>
-                        <div class="topbar-item">
-                            <a asp-page="index"> خانه</a>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center gap-1">
-
-                        <!-- تم رنگ (روشن/تاریک) -->
-                        <div class="topbar-item">
-                            <button type="button" class="topbar-button" id="light-dark-mode">
-                                <iconify-icon icon="solar:moon-bold-duotone" class="fs-24 align-middle"></iconify-icon>
-                            </button>
-                        </div>
-
-                        <!-- اعلان‌ها -->
-                        <div class="dropdown topbar-item">
-                            <button type="button" class="topbar-button position-relative"
-                                    id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                <iconify-icon icon="solar:bell-bing-bold-duotone" class="fs-24 align-middle"></iconify-icon>
-                                <span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">
-                                    3<span class="visually-hidden">پیام‌های خوانده نشده</span>
-                                </span>
-                            </button>
-                            <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end"
-                                 aria-labelledby="page-header-notifications-dropdown">
-                                <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-0 fs-16 fw-semibold"> اعلان‌ها</h6>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="javascript: void(0);" class="text-dark text-decoration-underline">
-                                                <small>پاک کردن همه</small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-simplebar style="max-height: 280px;">
-                                    <!-- آیتم -->
-                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom text-wrap">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="/images/users/avatar-1.jpg"
-                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" />
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-0">
-                                                    <span class="fw-medium">جوزفین تامپسون </span>در مورد پنل مدیر نظر داده
-                                                    <span>" وای 😍! این پنل مدیر عالی و طراحی جذاب است"</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- آیتم -->
-                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <div class="avatar-sm me-2">
-                                                    <span class="avatar-title bg-soft-info text-info fs-20 rounded-circle">
-                                                        D
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-0 fw-semibold">دونوگویی سوزان</p>
-                                                <p class="mb-0 text-wrap">
-                                                    سلام، حال شما چطور است؟ جلسه بعدی ما چی؟
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- آیتم -->
-                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="/images/users/avatar-3.jpg"
-                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-3" />
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-0 fw-semibold">جیکوب گینس</p>
-                                                <p class="mb-0 text-wrap">پاسخ داد به کامنت شما در گراف پیش‌بینی جریان نقدی 🔔.</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- آیتم -->
-                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <div class="avatar-sm me-2">
-                                                    <span class="avatar-title bg-soft-warning text-warning fs-20 rounded-circle">
-                                                        <iconify-icon icon="iconamoon:comment-dots-duotone"></iconify-icon>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-0 fw-semibold text-wrap">شما <b>20</b> پیام جدید در مکالمه دریافت کرده‌اید</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- آیتم -->
-                                    <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="/images/users/avatar-5.jpg"
-                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-5" />
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <p class="mb-0 fw-semibold">شان بنچ</p>
-                                                <p class="mb-0 text-wrap">
-                                                    نظر داده در پنل مدیر
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="text-center py-3">
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm">
-                                        مشاهده تمامی اعلان‌ها <i class="bx bx-left-arrow-alt ms-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- تنظیمات تم -->
-                        <div class="topbar-item d-none d-md-flex">
-                            <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas"
-                                    data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
-                                <iconify-icon icon="solar:settings-bold-duotone" class="fs-24 align-middle"></iconify-icon>
-                            </button>
-                        </div>
-
-                        <!-- فعالیت -->
-                        <div class="topbar-item d-none d-md-flex">
-                            <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas"
-                                    data-bs-target="#theme-activity-offcanvas" aria-controls="theme-settings-offcanvas">
-                                <iconify-icon icon="solar:clock-circle-bold-duotone" class="fs-24 align-middle"></iconify-icon>
-                            </button>
-                        </div>
-
-                        <!-- کاربر -->
-                        <div class="dropdown topbar-item">
-                            <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <span class="d-flex align-items-center">
-                                    <img class="rounded-circle" width="32" src="/images/users/avatar-1.jpg"
-                                         alt="avatar-3">
-                                </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- آیتم-->
-                                <h6 class="dropdown-header">به گاستون خوش آمدید!</h6>
-                                <a class="dropdown-item" href="pages-profile.html">
-                                    <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">پروفایل</span>
-                                </a>
-                                <a class="dropdown-item" href="chat.html">
-                                    <i class="bx bx-message-dots text-muted fs-18 align-middle me-1"></i><span class="align-middle">پیام‌ها</span>
-                                </a>
-
-                                <a class="dropdown-item" href="pricing.html">
-                                    <i class="bx bx-wallet text-muted fs-18 align-middle me-1"></i><span class="align-middle">قیمت‌گذاری</span>
-                                </a>
-                                <a class="dropdown-item" href="faqs.html">
-                                    <i class="bx bx-help-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">راهنما</span>
-                                </a>
-                                <a class="dropdown-item" href="lock-screen.html">
-                                    <i class="bx bx-lock text-muted fs-18 align-middle me-1"></i><span class="align-middle">قفل صفحه</span>
-                                </a>
-
-                                <div class="dropdown-divider my-1"></div>
-
-                                <a class="dropdown-item text-danger" href="login.html">
-                                    <i class="bx bx-log-out fs-18 align-middle me-1"></i><span class="align-middle">خروج</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- جستجوی اپ -->
-                        <form class="app-search d-none d-md-block ms-2">
-                            <div class="position-relative">
-                                <input type="search" class="form-control" placeholder="جستجو..." autocomplete="off" value="">
-                                <iconify-icon icon="solar:magnifer-linear" class="search-widget-icon"></iconify-icon>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </header>
-
-        <!-- Activity Timeline -->
-        <div>
-            <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-activity-offcanvas"
-                 style="max-width: 450px; width: 100%;">
-                <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
-                    <h5 class="text-white m-0 fw-semibold">جریان فعالیت</h5>
-                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
-                            aria-label="بستن"></button>
-                </div>
-
-                <div class="offcanvas-body p-0">
-                    <div data-simplebar class="h-100 p-4">
-                        <div class="position-relative ms-2">
-                            <span class="position-absolute start-0  top-0 border border-dashed h-100"></span>
-                            <div class="position-relative ps-4">
-                                <div class="mb-4">
-                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-danger d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
-                                        <iconify-icon icon="iconamoon:folder-check-duotone"></iconify-icon>
-                                    </span>
-                                    <div class="ms-2">
-                                        <h5 class="mb-1 text-dark fw-semibold fs-15 lh-base">گزارش-اصلاح / به‌روزرسانی</h5>
-                                        <p class="d-flex align-items-center">
-                                            افزودن 3 فایل به <span class=" d-flex align-items-center text-primary ms-1">
-                                                <iconify-icon icon="iconamoon:file-light"></iconify-icon> وظایف
-                                            </span>
-                                        </p>
-                                        <div class="bg-light bg-opacity-50 rounded-2 p-2">
-                                            <div class="row">
-                                                <div class="col-lg-6 border-end border-light">
-                                                    <div class="d-flex align-items-center gap-2">
-                                                        <i class="bx bxl-figma fs-20 text-red"></i>
-                                                        <a href="#!" class="text-dark fw-medium">Concept.fig</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="d-flex align-items-center gap-2">
-                                                        <i class="bx bxl-file-doc fs-20 text-success"></i>
-                                                        <a href="#!" class="text-dark fw-medium">larkon.docs</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <h6 class="mt-2 text-muted">دوشنبه، ساعت ۴:۲۴ عصر</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="position-relative ps-4">
-                                <div class="mb-4">
-                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-success d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
-                                        <iconify-icon icon="iconamoon:check-circle-1-duotone"></iconify-icon>
-                                    </span>
-                                    <div class="ms-2">
-                                        <h5 class="mb-1 text-dark fw-semibold fs-15 lh-base">وضعیت پروژه</h5>
-                                        <p class="d-flex align-items-center mb-0">
-                                            علامت‌گذاری<span class=" d-flex align-items-center text-primary mx-1">
-                                                <iconify-icon icon="iconamoon:file-light"></iconify-icon> طراحی
-                                            </span> به عنوان <span class="badge bg-success-subtle text-success px-2 py-1 ms-1">تکمیل‌شده</span>
-                                        </p>
-                                        <div class="d-flex align-items-center gap-3 mt-1 bg-light bg-opacity-50 p-2 rounded-2">
-                                            <a href="#!" class="fw-medium text-dark">طراحی UI/UX فایگما</a>
-                                            <div class="ms-auto">
-                                                <a href="#!" class="fw-medium text-primary fs-18" data-bs-toggle="tooltip"
-                                                   data-bs-title="دانلود" data-bs-placement="bottom">
-                                                    <iconify-icon icon="iconamoon:cloud-download-duotone"></iconify-icon>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۳:۰۰ عصر</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="position-relative ps-4">
-                                <div class="mb-4">
-                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-primary d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-16">UI</span>
-                                    <div class="ms-2">
-                                        <h5 class="mb-1 text-dark fw-semibold fs-15">
-                                            نسخه جدید UI اپلیکیشن Larkon v2.0.0 <span class="badge bg-primary-subtle text-primary px-2 py-1 ms-1">جدیدترین</span>
-                                        </h5>
-                                        <p>دسترسی به بیش از ۲۰ صفحه شامل طراحی داشبورد، نمودارها، تابلو کانبان، تقویم و صفحات از پیش‌سفارش‌شده برای E-commerce و بازاریابی.</p>
-                                        <div class="mt-2">
-                                            <a href="#!" class="btn btn-light btn-sm">دانلود فایل زیپ</a>
-                                        </div>
-                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۲:۱۰ عصر</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="position-relative ps-4">
-                                <div class="mb-4">
-                                    <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
-                                        <img src="/images/users/avatar-7.jpg" alt="avatar-5"
-                                             class="avatar-sm rounded-circle">
-                                    </span>
-                                    <div class="ms-2">
-                                        <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">الکس اسمیت، عکس‌های پیوست‌شده</h5>
-                                        <div class="row g-2 mt-2">
-                                            <div class="col-lg-4">
-                                                <a href="#!">
-                                                    <img src="/images/small/img-6.jpg" alt="" class="img-fluid rounded">
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <a href="#!">
-                                                    <img src="/images/small/img-3.jpg" alt="" class="img-fluid rounded">
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <a href="#!">
-                                                    <img src="/images/small/img-4.jpg" alt="" class="img-fluid rounded">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۱:۰۰ عصر</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="position-relative ps-4">
-                                <div class="mb-4">
-                                    <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
-                                        <img src="/images/users/avatar-6.jpg" alt="avatar-5"
-                                             class="avatar-sm rounded-circle">
-                                    </span>
-                                    <div class="ms-2">
-                                        <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">ربکا جی. یک عضو جدید به تیم اضافه کرد</h5>
-                                        <p class="d-flex align-items-center gap-1">
-                                            <iconify-icon icon="iconamoon:check-circle-1-duotone"
-                                                          class="text-success"></iconify-icon>
-                                            یک عضو جدید به داشبورد جلو اضافه کرد
-                                        </p>
-                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۱۰:۰۰ صبح</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="position-relative ps-4">
-                                <div class="mb-4">
-                                    <span class="position-absolute start-0 avatar-sm translate-middle-x bg-warning d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
-                                        <iconify-icon icon="iconamoon:certificate-badge-duotone"></iconify-icon>
-                                    </span>
-                                    <div class="ms-2">
-                                        <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">دستاوردها</h5>
-                                        <p class="d-flex align-items-center gap-1 mt-1">
-                                            دریافت یک
-                                            <iconify-icon icon="iconamoon:certificate-badge-duotone"
-                                                          class="text-danger fs-20"></iconify-icon>
-                                            "جایزه بهترین محصول"
-                                        </p>
-                                        <h6 class="mt-3 text-muted">دوشنبه، ساعت ۹:۳۰ صبح</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#!" class="btn btn-outline-dark w-100">مشاهده همه</a>
-                    </div>
-                </div>
+                <a asp-page="CreateCategory" class="btn btn-sm btn-primary">
+                    افزودن دسته بندی
+                </a>
             </div>
 
-        </div>
+            <div>
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 table-hover table-centered">
+                        <thead class="bg-light-subtle">
+                            <tr>
+                                <th style="width: 20px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                        <label class="form-check-label" for="customCheck1"></label>
+                                    </div>
+                                </th>
+                                <th>دسته‌بندی‌ها</th>
+                                <th>شناسه</th>
+                                <th>توضیحات</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var category in Model.Parents)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="customCheck2">
+                                            <label class="form-check-label" for="customCheck2"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
+                                                @if (category.ImagePath != null)
+                                                {
+                                                    <img src="@category.ImagePath" alt="" class="avatar-md">
+                                                }
+                                                else
+                                                {
+                                                    <img src="/images/Categories/83863285-b09c-471c-9527-c89e11eb7007img-3.jpg" alt="" class="avatar-md">
+                                                }
 
-
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center gap-1">
-                        <h4 class="card-title flex-grow-1">لیست تمامی دسته‌بندی‌ها</h4>
-
-                        <a asp-page="CreateCategory" class="btn btn-sm btn-primary">
-                            افزودن دسته بندی
-                        </a>
-                    </div>
-
-                    <div>
-                        <div class="table-responsive">
-                            <table class="table align-middle mb-0 table-hover table-centered">
-                                <thead class="bg-light-subtle">
-                                    <tr>
-                                        <th style="width: 20px;">
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                <label class="form-check-label" for="customCheck1"></label>
                                             </div>
-                                        </th>
-                                        <th>دسته‌بندی‌ها</th>
-                                        <th>شناسه</th>
-                                        <th>توضیحات</th>
-                                        <th>عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach(var category in Model.Parents)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                    <label class="form-check-label" for="customCheck2"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                                                        @if (category.ImagePath != null)
-                                                        {
-                                                            <img src="@category.ImagePath" alt="" class="avatar-md">
-                                                        }
-                                                        else
-                                                        {
-                                                            <img src="/images/Categories/83863285-b09c-471c-9527-c89e11eb7007img-3.jpg" alt="" class="avatar-md">
-                                                        }
-                                                       
-                                                    </div>
-                                                    <p class="text-dark fw-medium fs-15 mb-0">@category.Title</p>
-                                                </div>
-                                            </td>
-                                            <td>@category.Id</td>
-                                            <td>@category.Description</td>
-                                            <td>
-                                                <div class="d-flex gap-2">
-                                                    <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                    <a asp-page="EditCategory" asp-route-CategoryId="@category.Id" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                    <a asp-page-handler="Delete" asp-route-categoryId="@category.Id" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end table-responsive -->
-                    </div>
-                    <div class="card-footer border-top">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end mb-0">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">قبلی</a></li>
-                                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">بعدی</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                                            <p class="text-dark fw-medium fs-15 mb-0">@category.Title</p>
+                                        </div>
+                                    </td>
+                                    <td>@category.Id</td>
+                                    <td>@category.Description</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
+                                            <a asp-page="EditCategory" asp-route-CategoryId="@category.Id" class="btn btn-soft-primary btn-sm"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                            <a asp-page-handler="Delete" asp-route-categoryId="@category.Id" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
+                <!-- end table-responsive -->
+            </div>
+            <div class="card-footer border-top">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end mb-0">
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">قبلی</a></li>
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">بعدی</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
-
-    <!-- ========== Footer Start ========== -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
-                    <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
-                    <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ========== Footer End ========== -->
-    </div>
-    </div>
-
-
-    <div>
-        <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
-            <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
-                <h5 class="text-white m-0">تنظیمات تم</h5>
-                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
-            </div>
-
-            <div class="offcanvas-body p-0">
-                <div data-simplebar class="h-100">
-                    <div class="p-3 settings-bar">
-
-                        <div>
-                            <h5 class="mb-3 font-16 fw-semibold">طرح رنگ</h5>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-light" value="light">
-                                <label class="form-check-label" for="layout-color-light">روشن</label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-dark" value="dark">
-                                <label class="form-check-label" for="layout-color-dark">تاریک</label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h5 class="my-3 font-16 fw-semibold">رنگ نوار بالایی</h5>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-light" value="light">
-                                <label class="form-check-label" for="topbar-color-light">روشن</label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-dark" value="dark">
-                                <label class="form-check-label" for="topbar-color-dark">تاریک</label>
-                            </div>
-                        </div>
-
-
-                        <div>
-                            <h5 class="my-3 font-16 fw-semibold">رنگ منو</h5>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-light" value="light">
-                                <label class="form-check-label" for="leftbar-color-light">
-                                    روشن
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-dark" value="dark">
-                                <label class="form-check-label" for="leftbar-color-dark">
-                                    تاریک
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h5 class="my-3 font-16 fw-semibold">اندازه سایدبار</h5>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-default" value="default">
-                                <label class="form-check-label" for="leftbar-size-default">
-                                    پیش‌فرض
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small" value="condensed">
-                                <label class="form-check-label" for="leftbar-size-small">
-                                    فشرده
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-hidden" value="hidden">
-                                <label class="form-check-label" for="leftbar-hidden">
-                                    پنهان
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover-active" value="sm-hover-active">
-                                <label class="form-check-label" for="leftbar-size-small-hover-active">
-                                    کوچک و فعال بر روی هاور
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover" value="sm-hover">
-                                <label class="form-check-label" for="leftbar-size-small-hover">
-                                    کوچک و هاور
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="offcanvas-footer border-top p-3 text-center">
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-danger w-100" id="reset-layout">بازنشانی</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script src="~/AdminTemplate/js/app.js"></script>
-    <script src="~/AdminTemplate/js/layout.js"></script>
-</body>
-
-</html>
+</div>

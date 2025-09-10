@@ -55,8 +55,16 @@
     <Content Include="Areas\Admin\Pages\SeeAllUsers.cshtml" />
     <Content Include="Areas\Admin\Pages\SeeRequestDetails.cshtml" />
     <Content Include="Areas\Admin\Pages\SeeUserProfile.cshtml" />
+    <Content Include="Areas\Admin\Pages\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Areas\Admin\Pages\UpdateUser.cshtml" />
     <Content Include="Areas\Admin\Pages\UserRegister.cshtml" />
+    <Content Include="Areas\Admin\Pages\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Areas\Customer\Pages\_ViewImports.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -80,6 +88,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
@@ -141,6 +150,7 @@
     <None Include="Areas\Admin\Pages\EditSubCategory.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllPackages.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml" />
+    <None Include="Areas\Admin\Pages\Shared\_Layout.cshtml.css" />
     <None Include="Areas\Customer\Pages\CustomerProfile.cshtml" />
     <None Include="Areas\Customer\Pages\PostRequest.cshtml" />
     <None Include="Areas\Customer\Pages\RequestDetails.cshtml" />
