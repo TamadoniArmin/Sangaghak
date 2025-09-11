@@ -1,13 +1,15 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.DTOs.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Security.Claims;
+using SangaghakAppService.Sangaghak.Pages;
 
 namespace SangaghakRazorEndPoint.Areas.Customer.Pages
 {
-    public class CustomerProfileModel(ICustomerProfileAppService customerProfileAppService) : PageModel
+    [Authorize]
+    public class IndexModel(ICustomerProfileAppService customerProfileAppService) : PageModel
     {
         [BindProperty]
         public GetUserBaseForViewPage WantedUser { get; set; }
@@ -29,9 +31,9 @@ namespace SangaghakRazorEndPoint.Areas.Customer.Pages
             int CustomerId = await customerProfileAppService.GetCustomerId(userid, cancellationToken);
 
             var requests = await customerProfileAppService.GetRequestsByCustomerIdAsync(CustomerId, cancellationToken);
-            if(requests is null)
+            if (requests is null)
             {
-                CustomerHasRequest=false;
+                CustomerHasRequest = false;
                 AllCustomerRequestsCount = 0;
                 CompletedRequests = 0;
                 //یه لاگ اینجا میزنی

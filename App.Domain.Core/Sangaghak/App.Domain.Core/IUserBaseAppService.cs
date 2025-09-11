@@ -15,5 +15,6 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         Task<int> GetEachRoleCount(RoleEnum customer, CancellationToken cancellationToken);
         public Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken);
         public Task<bool> UpdateUserInfoAsync(UserBaseDTO user, int UserId, CancellationToken cancellationToken);
+        public Task<IdentityResult> DeleteUser(int UserId, CancellationToken cancellationToken);
     }
 }

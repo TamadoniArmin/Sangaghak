@@ -15,5 +15,6 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<int> GetAllRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken);
+        public Task<int> GetAllPackagesCountAsync(CancellationToken cancellationToken);
     }
 }

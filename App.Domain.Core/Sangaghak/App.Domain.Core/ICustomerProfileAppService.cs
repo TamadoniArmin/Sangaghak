@@ -11,7 +11,7 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<int> GetUserBalance(int UserId, CancellationToken cancellationToken);
         public Task<int> GetCustomerId(int UserId, CancellationToken cancellationToken);
         public Task<bool> CheckCustomerHasRequest(int CustomerId, CancellationToken cancellationToken);
-        public Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
         public Task<int> GetCustomerCompletedRequestsCount(int CustomerId, CancellationToken cancellationToken);
     }
 }

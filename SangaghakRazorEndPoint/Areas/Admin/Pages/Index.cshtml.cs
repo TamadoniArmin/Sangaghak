@@ -29,7 +29,9 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
         [BindProperty]
         public int PendingCommentsCount { get; set; }//تعدادکانت های در انتظار تایید
         [BindProperty]
-        public List<RequestDTO> Requests { get; set; }
+        public List<RequestDTO>? Requests { get; set; }//لیست درخواست های ثبت شده
+        [BindProperty]
+        public int AllPackagesCount { get; set; }//تعداد پکیج های ثبت شده
         public async Task OnGet(CancellationToken cancellationToken)
         {
             var data = User;
@@ -42,6 +44,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
             CurrentRequestsCount = await dashboardAppService.GetCurrentRequestsCountAsync(cancellationToken);
             PendingCommentsCount = await dashboardAppService.GetPendingCommentCountAsync(cancellationToken);
             Requests = await dashboardAppService.GetAllRequests(cancellationToken);
+            AllPackagesCount= await dashboardAppService.GetAllPackagesCountAsync(cancellationToken);
         }
     }
 }

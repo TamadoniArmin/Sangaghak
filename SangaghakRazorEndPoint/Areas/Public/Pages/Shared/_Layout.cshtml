@@ -1,7 +1,52 @@
-﻿@await RenderSectionAsync("Scripts", required: false)
+﻿@* @await RenderSectionAsync("Scripts", required: false)
+@await Html.PartialAsync("_Header")
+@await Html.PartialAsync("_Navbar") *@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-@await Html.PartialAsync("_Header")
+    @* این بخش هدر است *@
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML5,CSS3,HTML,Template,multi-page,Zoben - Job Board HTML Template">
+    <meta name="description" content="Zoben - Job Board HTML Template">
+    <meta name="author" content="Barat Hadian">
+    <link rel="stylesheet" href="~/MainTemplate/css/bootstrap.rtl.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/animate.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/fonts/remixicon.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/MainTemplate/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/metismenu.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/simplebar.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/dropzone.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/magnific-popup.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/odometer.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/meanmenu.min.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/style.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/responsive.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/theme-dark.css">
+
+    <link rel="stylesheet" href="~/MainTemplate/css/rtl.css">
+
+    <title>Zoben - قالب HTML زوبن , پوسته سایت آگهی و کاریابی</title>
+
+    <link rel="icon" type="image/png" href="~/MainTemplate/images/favicon.png">
+</head>
+
+@* تا اینجا هدر است *@
 <body>
 
     <div class="preloader">
@@ -19,732 +64,256 @@
                 <div class="mobile-responsive-menu">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="assets/images/logo.png" class="logo-one" alt="logo"><img src="assets/images/logo-2.png" class="logo-two" alt="Logo">
+                            <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-
-@await Html.PartialAsync("_Navbar")
-
-
+        @await RenderSectionAsync("Header", required: false)
     </div>
 
+    @RenderBody()
 
-    <div class="banner-area-three">
+
+    <footer class="footer-area">
         <div class="container">
-            <div class="banner-content-three">
-                <h1 class="wow fadeInUp" data-wow-delay="000ms" data-wow-duration="1000ms">در جستجوی شغل؟ در جستجوی <b>بهترین شغل</b> نزدیکی شما.</h1>
-                <div class="banner-form-three wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1000ms">
-                    <form>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="کلمات کلیدی / عنوان شغلی">
-                                    <i class="ri-search-line"></i>
-                                </div>
+            <div class="footer-top pt-100 pb-70">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-md-6">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="~/MainTemplate/images/logo.png" class="footer-logo1" alt="Footer Logo"><img src="~/MainTemplate/images/logo-2.png" class="footer-logo2" alt="Footer Logo">
+                                </a>
                             </div>
-                            <div class="col-lg-4 col-md-4">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="شهر یا کد پستی">
+                            <ul class="footer-contact-list">
+                                <li>
                                     <i class="ri-map-pin-line"></i>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4">
-                                <button type="submit" class="submit-btn border-radius-5">
-                                    جستجوی شغل
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="popular-searches-tag wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1000ms">
-                    <span class="title">جستجوهای محبوب : </span>
-                    <a href="job-listing.html">طراح</a>،
-                    <a href="job-listing.html">توسعه دهنده</a>،
-                    <a href="job-listing.html">وب</a>،
-                    <a href="job-listing.html">آیفون</a>،
-                    <a href="job-listing.html">موسس</a>،
-                    <a href="job-listing.html">کارشناس</a>،
-                    <a href="job-listing.html">مهندس</a>
-                </div>
-                <div class="banner-three-other">
-                    <div class="other-content1 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/user2.jpg" alt="Images">
-                    </div>
-                    <div class="other-content2 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/home-three-icon2.png" alt="Images">
-                    </div>
-                    <div class="other-content3 wow fadeInDown" data-wow-delay="500ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/user1.jpg" alt="Images">
-                    </div>
-                    <div class="other-content4 wow fadeInDown" data-wow-delay="600ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/home-three-shape1.jpg" alt="Images">
-                    </div>
-                    <div class="other-content5 wow fadeInUp" data-wow-delay="700ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/home-three-icon4.png" alt="Images">
-                    </div>
-                    <div class="other-content6 wow fadeInDown" data-wow-delay="800ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/home-three-icon1.png" alt="Images">
-                    </div>
-                    <div class="other-content7 wow fadeInDown" data-wow-delay="900ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/home-three-shape2.jpg" alt="Images">
-                    </div>
-                    <div class="other-content8 wow fadeInDown" data-wow-delay="1000ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/user4.jpg" alt="Images">
-                    </div>
-                    <div class="other-content9 wow fadeInDown" data-wow-delay="1100ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/user3.jpg" alt="Images">
-                        <div class="other-into-content">
-                            <img src="assets/images/home-three/home-three-shape1.jpg" alt="Images">
-                        </div>
-                    </div>
-                    <div class="other-content10 wow fadeInDown" data-wow-delay="1200ms" data-wow-duration="1000ms">
-                        <img src="assets/images/home-three/home-three-icon3.png" alt="Images">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="browse-jobs-area-two pt-100 pb-70">
-        @RenderBody()
-    </div>
-
-
-    <div class="job-post-area pt-100 pb-70">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>شغل اخیر ارسال شده</h2>
-                <div class="bar m-auto"></div>
-                <p class="m-auto">ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظر صادقانه‌ای در مورد اینکه تجربه با وب‌سایت ما واقعاً چگونه است، دریافت کنید!</p>
-            </div>
-            <div class="row pt-45">
-                <div class="col-lg-12">
-                    <div class="job-post-form">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="کلمات کلیدی / عنوان شغلی">
-                                        <i class="ri-search-line"></i>
+                                    <div class="content">
+                                        <a href="https://goo.gl/maps/muUSCY6FnusqhrGK9">
+                                            ایران استان تهران میدان آزادی
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="شهر یا کد پستی">
-                                        <i class="ri-map-pin-line"></i>
+                                </li>
+                                <li>
+                                    <i class="ri-mail-line"></i>
+                                    <div class="content">
+                                        <a href="mailto: hello@zoben.com"> hello@zoben.com</a>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4">
-                                    <div class="form-group select-group">
-                                        <select class="form-select form-control">
-                                            <option data-display='Choose A Category'>یک دسته را انتخاب کنید</option>
-                                            <option value="1">طراحی سایت</option>
-                                            <option value="2">توسعه وب</option>
-                                            <option value="2">توسعه دهنده</option>
-                                            <option value="2">آژانس خلاق</option>
-                                            <option value="3">مهندسی</option>
-                                        </select>
+                                </li>
+                                <li>
+                                    <i class="ri-phone-line"></i>
+                                    <div class="content">
+                                        <a href="tel:+4471234567890">
+                                            +44 4325 9878 5875
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="col-lg-2 col-md-12">
-                                    <button type="submit" class="submit-btn">
-                                        شغل پیدا کنید
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="job-post-card job-post-card-ml">
-                        <div class="job-post-img">
-                            <a href="job-details.html">
-                                <img src="assets/images/recent-job/recent-job4.jpg" alt="Images">
-                            </a>
-                        </div>
-                        <h3><a href="job-details.html">طراح محصول</a></h3>
-                        <div class="content">
-                            <div class="content-item">
-                                <ul class="content-list">
-                                    <li><i class="ri-briefcase-line"></i> طراحی</li>
-                                    <li><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</li>
-                                    <li><i class="ri-time-line"></i> ارسالی 5 روز پیش</li>
-                                </ul>
-                                <span>120 تا 130 تومان <b> / هفتگی</b></span>
-                            </div>
-                            <ul class="content-list2">
-                                <li class="time">تمام وقت</li>
-                                <li class="freelance">آزاد</li>
-                                <li class="urgent">فوری</li>
+                                </li>
                             </ul>
                         </div>
-                        <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="job-post-card job-post-card-ml">
-                        <div class="job-post-img">
-                            <a href="job-details.html">
-                                <img src="assets/images/recent-job/recent-job10.jpg" alt="Images">
-                            </a>
-                        </div>
-                        <h3><a href="job-details.html">مدیر مالی و سلامت </a></h3>
-                        <div class="content">
-                            <div class="content-item">
-                                <ul class="content-list">
-                                    <li><i class="ri-briefcase-line"></i> طراحی</li>
-                                    <li><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</li>
-                                    <li><i class="ri-time-line"></i> ارسالی 5 روز پیش</li>
-                                </ul>
-                                <span>120 تا 130 تومان <b> / هفتگی</b></span>
-                            </div>
-                            <ul class="content-list2">
-                                <li class="time">تمام وقت</li>
-                                <li class="freelance">آزاد</li>
-                                <li class="urgent">فوری</li>
+                    <div class="col-lg-2 col-sm-6 col-md-6">
+                        <div class="footer-widget">
+                            <h3>کارفرما</h3>
+                            <ul class="footer-list">
+                                <li>
+                                    <a href="candidates-listing.html" target="_blank">
+                                        مرور کاندیداها
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="dashboard.html" target="_blank">
+                                        داشبورد کارفرمایان
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="dashboard-packages.html" target="_blank">
+                                        بسته های شغلی
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="job-listing.html" target="_blank">
+                                        مشاغل برجسته
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="post-job.html" target="_blank">
+                                        ارسال آگهی
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                        <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="job-post-card job-post-card-ml">
-                        <div class="job-post-img">
-                            <a href="job-details.html">
-                                <img src="assets/images/recent-job/recent-job11.jpg" alt="Images">
-                            </a>
-                        </div>
-                        <h3><a href="job-details.html">حسابدار دفتر کل</a></h3>
-                        <div class="content">
-                            <div class="content-item">
-                                <ul class="content-list">
-                                    <li><i class="ri-briefcase-line"></i> طراحی</li>
-                                    <li><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</li>
-                                    <li><i class="ri-time-line"></i> ارسالی 5 روز پیش</li>
-                                </ul>
-                                <span>120 تا 130 تومان <b> / هفتگی</b></span>
-                            </div>
-                            <ul class="content-list2">
-                                <li class="time">تمام وقت</li>
-                                <li class="freelance">آزاد</li>
-                                <li class="urgent">فوری</li>
+                    <div class="col-lg-3 col-sm-6 col-md-4">
+                        <div class="footer-widget ps-5">
+                            <h3>داوطلبان</h3>
+                            <ul class="footer-list">
+                                <li>
+                                    <a href="job-listing.html" target="_blank">
+                                        مرور مشاغل
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="candidate-dashboard-resume.html" target="_blank">
+                                        ارسال رزومه
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="dashboard.html" target="_blank">
+                                        داشبورد کاندیداها
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="job-listing.html" target="_blank">
+                                        مرور دسته بندی ها
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="candidates-listing.html" target="_blank">
+                                        فهرست داوطلبان
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                        <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="job-post-card job-post-card-ml">
-                        <div class="job-post-img">
-                            <a href="job-details.html">
-                                <img src="assets/images/recent-job/recent-job12.jpg" alt="Images">
-                            </a>
-                        </div>
-                        <h3><a href="job-details.html">مدیر بازاریابی گروه</a></h3>
-                        <div class="content">
-                            <div class="content-item">
-                                <ul class="content-list">
-                                    <li><i class="ri-briefcase-line"></i> طراحی</li>
-                                    <li><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</li>
-                                    <li><i class="ri-time-line"></i> ارسالی 5 روز پیش</li>
-                                </ul>
-                                <span>120 تا 130 تومان <b> / هفتگی</b></span>
-                            </div>
-                            <ul class="content-list2">
-                                <li class="time">تمام وقت</li>
-                                <li class="freelance">آزاد</li>
-                                <li class="urgent">فوری</li>
+                    <div class="col-lg-2 col-sm-6 col-md-4">
+                        <div class="footer-widget">
+                            <h3>شرکت</h3>
+                            <ul class="footer-list">
+                                <li>
+                                    <a href="about.html" target="_blank">
+                                        درباره ما
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html" target="_blank">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="terms-condition.html" target="_blank">
+                                        قوانین و ضوابط
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="privacy-policy.html" target="_blank">
+                                        حریم خصوصی
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="candidates-listing.html" target="_blank">
+                                        فهرست کاندیداها
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-                        <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="job-post-card job-post-card-ml">
-                        <div class="job-post-img">
-                            <a href="job-details.html">
-                                <img src="assets/images/recent-job/recent-job5.jpg" alt="Images">
-                            </a>
-                        </div>
-                        <h3><a href="job-details.html">توسعه اندروید</a></h3>
-                        <div class="content">
-                            <div class="content-item">
-                                <ul class="content-list">
-                                    <li><i class="ri-briefcase-line"></i> طراحی</li>
-                                    <li><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</li>
-                                    <li><i class="ri-time-line"></i> ارسالی 5 روز پیش</li>
-                                </ul>
-                                <span>50 تا 60 تومان <b> / هفتگی</b></span>
-                            </div>
-                            <ul class="content-list2">
-                                <li class="time">تمام وقت</li>
-                                <li class="freelance">آزاد</li>
-                                <li class="urgent">فوری</li>
+                    <div class="col-lg-2 col-sm-6 col-md-4">
+                        <div class="footer-widget">
+                            <h3>لینکهای سریع</h3>
+                            <ul class="footer-list">
+                                <li>
+                                    <a href="job-listing.html" target="_blank">
+                                        فهرست مشاغل
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="employers-listing.html" target="_blank">
+                                        لیست کارفرما
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="post-job.html" target="_blank">
+                                        ارسال شغل جدید
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="employers-listing.html" target="_blank">
+                                        همه کارفرمایان
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="job-listing.html" target="_blank">
+                                        مشاغل برجسته
+                                    </a>
+                                </li>
                             </ul>
-                        </div>
-                        <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                    </div>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <div class="browse-btn">
-                        <a href="job-listing.html"> همه پست های شغلی را مرور کنید <i class="ri-arrow-left-s-line"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="pricing-area pt-100 pb-70">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6">
-                    <div class="pricing-content pr-20">
-                        <div class="section-title">
-                            <h2>بهترین روش های <b>قیمت گذاری</b></h2>
-                            <div class="bar"></div>
-                            <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
-                        </div>
-                        <ul>
-                            <li><img src="assets/images/user-img/user-img1.jpg" alt="Images"></li>
-                            <li><img src="assets/images/user-img/user-img2.jpg" alt="Images"></li>
-                            <li><img src="assets/images/user-img/user-img3.jpg" alt="Images"></li>
-                            <li><img src="assets/images/user-img/user-img4.jpg" alt="Images"></li>
-                            <li><img src="assets/images/user-img/user-img5.jpg" alt="Images"></li>
-                            <li class="title"> 2000+ کارفرمای برتر </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="pricing-card">
-                        <div class="pricing-title">
-                            <h2>طرح توسعه</h2>
-                            <span class="sub-title">بسته ماهانه</span>
-                        </div>
-                        <h3>250 تومان<span>/ماه</span></h3>
-                        <ul>
-                            <li>8 شغل ویژه</li>
-                            <li>20 ماهنامه پست کاری</li>
-                            <li>نمایش به مدت 30 روز</li>
-                            <li>پشتیبانی 24/7</li>
-                            <li class="active">سرویس کامل</li>
-                        </ul>
-                        <div class="price-btn-area">
-                            <a href="pricing.html" class="price-btn">خرید کن <i class="ri-shopping-cart-2-line"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="pricing-card">
-                        <div class="pricing-title">
-                            <h2>طرح حق بیمه</h2>
-                            <span class="sub-title">بسته سالانه</span>
-                        </div>
-                        <h3>500 تومان<span>/سال</span></h3>
-                        <ul>
-                            <li>8 شغل ویژه</li>
-                            <li>20 ماهنامه پست کاری</li>
-                            <li>نمایش به مدت 30 روز</li>
-                            <li>پشتیبانی 24/7</li>
-                            <li class="active">سرویس کامل</li>
-                        </ul>
-                        <div class="price-btn-area">
-                            <a href="pricing.html" class="price-btn">خرید کن <i class="ri-shopping-cart-2-line"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="company-area pt-100 pb-70">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="section-title">
-                        <h2>شرکت برتر ثبت شده</h2>
-                        <div class="bar"></div>
-                        <p>ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظر صادقانه‌ای در مورد اینکه تجربه با وب‌سایت ما واقعاً چگونه است، دریافت کنید!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="browse-btn float-end">
-                        <a href="company-details.html"> همه دسته ها را مرور کنید <i class="ri-arrow-left-s-line"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row pt-45">
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img3.jpg" alt="Images">
-                        <h3><a href="company-details.html">تکنولوژی</a></h3>
-                        <p><i class="ri-map-pin-line"></i> تهران</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (40)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img2.jpg" alt="Images">
-                        <h3><a href="company-details.html">کد نویسی</a></h3>
-                        <p><i class="ri-map-pin-line"></i> نیویورک</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (20)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img5.jpg" alt="Images">
-                        <h3><a href="company-details.html">خانه گرادیان</a></h3>
-                        <p><i class="ri-map-pin-line"></i> دالاس</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (45)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img4.jpg" alt="Images">
-                        <h3><a href="company-details.html">توسعه دهنده</a></h3>
-                        <p><i class="ri-map-pin-line"></i> هوستون</p>
-                        <a href="jcompany-details.html" class="company-btn">مشاغل آزاد - (15)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img1.jpg" alt="Images">
-                        <h3><a href="company-details.html">طراحی</a></h3>
-                        <p><i class="ri-map-pin-line"></i> آتلانتا</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (45)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img6.jpg" alt="Images">
-                        <h3><a href="company-details.html">نیکسون</a></h3>
-                        <p><i class="ri-map-pin-line"></i> نیویورک</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (40)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img7.jpg" alt="Images">
-                        <h3><a href="company-details.html">شرکتی</a></h3>
-                        <p><i class="ri-map-pin-line"></i> دالاس</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (60)</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="company-card">
-                        <img src="assets/images/company/company-img8.jpg" alt="Images">
-                        <h3><a href="company-details.html">آموزش</a></h3>
-                        <p><i class="ri-map-pin-line"></i> تهران</p>
-                        <a href="company-details.html" class="company-btn">مشاغل آزاد - (20)</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="testimonials-area pt-100 pb-100">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>نظرات کاربران ما</h2>
-                <div class="bar m-auto"></div>
-                <p class="m-auto">ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظر صادقانه‌ای در مورد اینکه تجربه با وب‌سایت ما واقعاً چگونه است، دریافت کنید!</p>
-            </div>
-            <div class="testimonials-slider owl-carousel owl-theme pt-45">
-                <div class="testimonials-item">
-                    <div class="content">
-                        <div class="content-img">
-                            <img src="assets/images/testimonials/testimonials-img1.jpg" alt="Images">
-                            <div class="line1"></div>
-                            <div class="line2"></div>
-                        </div>
-                        <h3>توماس آبدین</h3>
-                        <span>مدیر شبکه</span>
-                    </div>
-                    <P>ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظری صادقانه در مورد تجربه واقعی وب‌سایت ما داشته باشید. ما نظرات کاربران خود را جمع‌آوری می‌کنیم، بنابراین می‌توانید نظر صادقانه‌ای در مورد تجربه اینجا لورم ایپسوم دریافت کنید.</P>
-                    <div class="rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                </div>
-                <div class="testimonials-item">
-                    <div class="content">
-                        <div class="content-img">
-                            <img src="assets/images/testimonials/testimonials-img2.jpg" alt="Images">
-                            <div class="line1"></div>
-                            <div class="line2"></div>
-                        </div>
-                        <h3>توماس آبدین</h3>
-                        <span>مدیر شبکه</span>
-                    </div>
-                    <P>ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظری صادقانه در مورد تجربه واقعی وب‌سایت ما داشته باشید. ما نظرات کاربران خود را جمع‌آوری می‌کنیم، بنابراین می‌توانید نظر صادقانه‌ای در مورد تجربه اینجا لورم ایپسوم دریافت کنید.</P>
-                    <div class="rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                </div>
-                <div class="testimonials-item">
-                    <div class="content">
-                        <div class="content-img">
-                            <img src="assets/images/testimonials/testimonials-img3.jpg" alt="Images">
-                            <div class="line1"></div>
-                            <div class="line2"></div>
-                        </div>
-                        <h3>توماس آبدین</h3>
-                        <span>مدیر شبکه</span>
-                    </div>
-                    <P>ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظری صادقانه در مورد تجربه واقعی وب‌سایت ما داشته باشید. ما نظرات کاربران خود را جمع‌آوری می‌کنیم، بنابراین می‌توانید نظر صادقانه‌ای در مورد تجربه اینجا لورم ایپسوم دریافت کنید.</P>
-                    <div class="rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="recent-job-area ptb-100">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>شغل اخیر ارسال شده</h2>
-                <div class="bar m-auto"></div>
-                <p class="m-auto">ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظر صادقانه‌ای در مورد تجربه واقعی وب‌سایت ما داشته باشید!</p>
-            </div>
-            <div class="recent-job-slider owl-carousel owl-theme pt-45">
-                <div class="recent-job-item">
-                    <div class="recent-job-img">
-                        <a href="job-details.html">
-                            <img src="assets/images/recent-job/recent-job1.jpg" alt="Images">
-                        </a>
-                    </div>
-                    <h3><a href="job-details.html">کپی رایتر حرفه ای برای کسب تبلیغات</a></h3>
-                    <ul class="job-list1">
-                        <li><i class="ri-briefcase-line"></i> اکانتینگ </li>
-                        <li><i class="ri-map-pin-line"></i> نیویورک</li>
-                    </ul>
-                    <ul class="job-list2">
-                        <li class="full-time">تمام وقت</li>
-                    </ul>
-                    <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                </div>
-                <div class="recent-job-item">
-                    <div class="recent-job-img">
-                        <a href="job-details.html">
-                            <img src="assets/images/recent-job/recent-job2.jpg" alt="Images">
-                        </a>
-                    </div>
-                    <h3><a href="job-details.html">کپی رایتر حرفه ای برای کسب تبلیغات</a></h3>
-                    <ul class="job-list1">
-                        <li><i class="ri-briefcase-line"></i> اکانتینگ </li>
-                        <li><i class="ri-map-pin-line"></i> نیویورک</li>
-                    </ul>
-                    <ul class="job-list2">
-                        <li class="full-time">تمام وقت</li>
-                        <li class="part-time">پاره وقت</li>
-                    </ul>
-                    <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                </div>
-                <div class="recent-job-item">
-                    <div class="recent-job-img">
-                        <a href="job-details.html">
-                            <img src="assets/images/recent-job/recent-job3.jpg" alt="Images">
-                        </a>
-                    </div>
-                    <h3><a href="job-details.html">کپی رایتر حرفه ای برای کسب تبلیغات</a></h3>
-                    <ul class="job-list1">
-                        <li><i class="ri-briefcase-line"></i> اکانتینگ </li>
-                        <li><i class="ri-map-pin-line"></i> نیویورک</li>
-                    </ul>
-                    <ul class="job-list2">
-                        <li class="full-time">تمام وقت</li>
-                        <li class="part-time">پاره وقت</li>
-                    </ul>
-                    <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                </div>
-                <div class="recent-job-item">
-                    <div class="recent-job-img">
-                        <a href="job-details.html">
-                            <img src="assets/images/recent-job/recent-job1.jpg" alt="Images">
-                        </a>
-                    </div>
-                    <h3><a href="job-details.html">کپی رایتر حرفه ای برای کسب تبلیغات</a></h3>
-                    <ul class="job-list1">
-                        <li><i class="ri-briefcase-line"></i> اکانتینگ </li>
-                        <li><i class="ri-map-pin-line"></i> نیویورک</li>
-                    </ul>
-                    <ul class="job-list2">
-                        <li class="full-time">تمام وقت</li>
-                    </ul>
-                    <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="blog-area pt-100 pb-70">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="section-title">
-                        <h2>از وبلاگ های ما</h2>
-                        <div class="bar"></div>
-                        <p>ما نظرات کاربران خود را جمع‌آوری می‌کنیم تا بتوانید نظر صادقانه‌ای در مورد اینکه تجربه با وب‌سایت ما واقعاً چگونه است، دریافت کنید!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="browse-btn float-end">
-                        <a href="blog-1.html"> وبلاگ بیشتر را مرور کنید <i class="ri-arrow-left-s-line"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row pt-45 justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-card">
-                        <div class="blog-img">
-                            <a href="blog-details.html">
-                                <img src="assets/images/blog/blog-img1.jpg" alt="Blog Images">
-                            </a>
-                            <div class="tag">
-                                هیئت مدیره کار
-                            </div>
-                        </div>
-                        <div class="content">
-                            <ul>
-                                <li>
-                                    <i class="ri-time-line"></i> تاریخ: 14 دی 1400
-                                </li>
-                                <li>
-                                    <i class="ri-mail-line"></i> نظر: 2
-                                </li>
-                            </ul>
-                            <h3><a href="blog-details.html">چگونه یک روزمه کامل بسازیم که توجه را به خود جلب کند</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-card">
-                        <div class="blog-img">
-                            <a href="blog-details.html">
-                                <img src="assets/images/blog/blog-img2.jpg" alt="Blog Images">
-                            </a>
-                            <div class="tag">
-                                هیئت مدیره کار
-                            </div>
-                        </div>
-                        <div class="content">
-                            <ul>
-                                <li>
-                                    <i class="ri-time-line"></i> تاریخ: 14 دی 1400
-                                </li>
-                                <li>
-                                    <i class="ri-mail-line"></i> نظر: 2
-                                </li>
-                            </ul>
-                            <h3><a href="blog-details.html">چگونه یک روزمه کامل بسازیم که توجه را به خود جلب کند</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-card">
-                        <div class="blog-img">
-                            <a href="blog-details.html">
-                                <img src="assets/images/blog/blog-img3.jpg" alt="Blog Images">
-                            </a>
-                            <div class="tag">
-                                هیئت مدیره کار
-                            </div>
-                        </div>
-                        <div class="content">
-                            <ul>
-                                <li>
-                                    <i class="ri-time-line"></i> تاریخ: 14 دی 1400
-                                </li>
-                                <li>
-                                    <i class="ri-mail-line"></i> نظر: 2
-                                </li>
-                            </ul>
-                            <h3><a href="blog-details.html">چگونه یک روزمه کامل بسازیم که توجه را به خود جلب کند</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="employers-cv-area">
-        <div class="container">
-            <div class="employers-cv-bg">
+        <div class="copyright-area">
+            <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <div class="employers-cv-content">
-                            <h2>اجازه دهید کارفرمایان شما را پیدا کنند</h2>
-                            <div class="bar"></div>
-                            <p>مشاغل خود را برای میلیون ها کاربر ماهانه تبلیغ کنید و 15.8 میلیون رزومه را در پایگاه داده ما جستجو کنید.</p>
+                    <div class="col-lg-6 col-md-7">
+                        <div class="copy-right-text">
+                            <p>کپی رایت © 1403 زوبن. تمام حقوق قالب محفوظ است. طراحی توسط <a href="#" target="_blank">Barat Hadian</a></p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="employers-cv-btn">
-                            <a href="mailto: hello@zoben.com">بارگذاری رزومه</a>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="copy-right-social-link">
+                            <ul class="social-link">
+                                <li>
+                                    <a href="https://www.facebook.com/" target="_blank">
+                                        <i class="ri-facebook-fill"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/" target="_blank">
+                                        <i class="ri-instagram-fill"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/" target="_blank">
+                                        <i class="ri-twitter-fill"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/" target="_blank">
+                                        <i class="ri-linkedin-fill"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
 
 
-@await Html.PartialAsync("_Footer")
+    <script src="~/MainTemplate/js/jquery.min.js"></script>
 
+    <script src="~/MainTemplate/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="~/MainTemplate/js/jquery.magnific-popup.min.js"></script>
 
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/MainTemplate/js/odometer.min.js"></script>
 
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/MainTemplate/js/jquery.appear.min.js"></script>
 
-    <script src="assets/js/odometer.min.js"></script>
+    <script src="~/MainTemplate/js/meanmenu.min.js"></script>
 
-    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="~/MainTemplate/js/metismenu.min.js"></script>
 
-    <script src="assets/js/meanmenu.min.js"></script>
+    <script src="~/MainTemplate/js/simplebar.min.js"></script>
 
-    <script src="assets/js/metismenu.min.js"></script>
+    <script src="~/MainTemplate/js/dropzone.min.js"></script>
 
-    <script src="assets/js/simplebar.min.js"></script>
+    <script src="~/MainTemplate/js/sticky-sidebar.min.js"></script>
 
-    <script src="assets/js/dropzone.min.js"></script>
+    <script src="~/MainTemplate/js/tweenMax.min.js"></script>
 
-    <script src="assets/js/sticky-sidebar.min.js"></script>
+    <script src="~/MainTemplate/js/owl.carousel.min.js"></script>
 
-    <script src="assets/js/tweenMax.min.js"></script>
+    <script src="~/MainTemplate/js/jquery.ajaxchimp.min.js"></script>
 
-    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="~/MainTemplate/js/form-validator.min.js"></script>
 
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/MainTemplate/js/contact-form-script.js"></script>
 
-    <script src="assets/js/form-validator.min.js"></script>
-
-    <script src="assets/js/contact-form-script.js"></script>
-
-    <script src="assets/js/custom.js"></script>
+    <script src="~/MainTemplate/js/custom.js"></script>
 </body>
 </html>

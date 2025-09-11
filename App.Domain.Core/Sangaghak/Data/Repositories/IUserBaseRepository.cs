@@ -21,5 +21,6 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<bool> IncreaseBalance(int UserId,int money ,CancellationToken cancellationToken);
         public Task<bool> DecreaseBalanceAsync(int UserId,int money ,CancellationToken cancellationToken);
         public Task<bool> UpdateUserInfo(UserBaseDTO user,int UserId,CancellationToken cancellationToken);
+        public Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken);
     }
 }

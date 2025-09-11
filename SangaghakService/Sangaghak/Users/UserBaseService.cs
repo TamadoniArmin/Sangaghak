@@ -19,6 +19,11 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.DecreaseBalanceAsync(UserId, money, cancellationToken);
         }
 
+        public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
+        {
+            return await _repository.DeleteUser(UserId, cancellationToken);
+        }
+
         public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await _repository.GetAllAsync(cancellationToken);

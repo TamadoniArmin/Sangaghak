@@ -65,7 +65,19 @@ namespace SangaghakAppService.Sangaghak.Users
             }
             return WantedUsers;
         }
+        public async Task<IdentityResult> DeleteUser(int UserId,CancellationToken cancellationToken)
+        {
+            var StringId=  Convert.ToString(UserId);
+            var user = await _userManager.FindByIdAsync(StringId);
+            if (user == null)
+            {
+                return IdentityResult.Failed(new IdentityError { Description = "کاربر یافت نشد." });
+            }
 
+            user.IsDeleted = true;
+            var result = await _userManager.UpdateAsync(user);
+            return result;
+        }
         public Task<int> GetBalance(int UserId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

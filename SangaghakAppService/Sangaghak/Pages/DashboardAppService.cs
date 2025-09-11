@@ -10,7 +10,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SangaghakAppService.Sangaghak.Pages
 {
-    public class DashboardAppService(IUserBaseService userBaseService, IRequestService requestService, ICommentService commentService, IOfferService offerService, ICategoryService categoryService, ICityService cityService, UserManager<UserBase> userManager,IServicePackageService servicePackageService) : IDashboardAppService
+    public class DashboardAppService(IUserBaseService userBaseService, 
+        IRequestService requestService, ICommentService commentService, 
+        IOfferService offerService, ICategoryService categoryService, 
+        ICityService cityService, UserManager<UserBase> userManager,
+        IServicePackageService servicePackageService) : IDashboardAppService
     {
         public async Task<int> GetAllUsersCount(CancellationToken cancellationToken)
         {
@@ -96,6 +100,11 @@ namespace SangaghakAppService.Sangaghak.Pages
         public async Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
         {
             return await commentService.GetPendingCommentCountAsync(cancellationToken);
+        }
+
+        public async Task<int> GetAllPackagesCountAsync(CancellationToken cancellationToken)
+        {
+            return await servicePackageService.GetAllPackageCount(cancellationToken);
         }
     }
 }

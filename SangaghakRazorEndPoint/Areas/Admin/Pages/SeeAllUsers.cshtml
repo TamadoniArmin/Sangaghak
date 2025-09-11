@@ -56,9 +56,9 @@
                                     <td> @User.CityName </td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
-                                            <a href="#!" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
-                                            <a href="#!" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                            <a asp-page="SeeUserProfile" asp-route-UserId="@User.Id" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
+                                            <a asp-page="UpdateUser" asp-route-UserId="@User.Id" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon></a>
+                                            <a asp-page-handler="Delete" asp-route-UserId="@User.Id" class="btn btn-soft-danger btn-sm"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -69,7 +69,8 @@
                 </div>
                 <!-- end table-responsive -->
             </div>
-            <div class="card-footer border-top">
+            <!--نوار پاین صفحه برای نمایش صفحات-->
+@*             <div class="card-footer border-top">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end mb-0">
                         <li class="page-item"><a class="page-link" href="javascript:void(0);">قبلی</a></li>
@@ -79,7 +80,8 @@
                         <li class="page-item"><a class="page-link" href="javascript:void(0);">بعدی</a></li>
                     </ul>
                 </nav>
-            </div>
+            </div> *@
+            <!--پایان نوار شمارنده ی صفحه ی لیست-->
         </div>
     </div>
 

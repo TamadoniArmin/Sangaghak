@@ -1,5 +1,5 @@
 ﻿@page
-@model SangaghakRazorEndPoint.Areas.Customer.Pages.CustomerProfileModel
+@model SangaghakRazorEndPoint.Areas.Customer.Pages.IndexModel
 @{
 }
 @using App.Domain.Core.Sangaghak.Enum
@@ -56,15 +56,15 @@
                         <!-- اعلان‌ها -->
                         <div class="dropdown topbar-item">
                             <button type="button" class="topbar-button position-relative"
-                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                                    id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                 <iconify-icon icon="solar:bell-bing-bold-duotone" class="fs-24 align-middle"></iconify-icon>
                                 <span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">
                                     3<span class="visually-hidden">پیام‌های خوانده نشده</span>
                                 </span>
                             </button>
                             <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end"
-                            aria-labelledby="page-header-notifications-dropdown">
+                                 aria-labelledby="page-header-notifications-dropdown">
                                 <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
                                     <div class="row align-items-center">
                                         <div class="col">
@@ -83,7 +83,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0">
                                                 <img src="/images/users/avatar-1.jpg"
-                                                class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" />
+                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" />
                                             </div>
                                             <div class="flex-grow-1">
                                                 <p class="mb-0">
@@ -116,7 +116,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0">
                                                 <img src="/images/users/avatar-3.jpg"
-                                                class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-3" />
+                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-3" />
                                             </div>
                                             <div class="flex-grow-1">
                                                 <p class="mb-0 fw-semibold">جیکوب گینس</p>
@@ -144,7 +144,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0">
                                                 <img src="/images/users/avatar-5.jpg"
-                                                class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-5" />
+                                                     class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-5" />
                                             </div>
                                             <div class="flex-grow-1">
                                                 <p class="mb-0 fw-semibold">شان بنچ</p>
@@ -166,7 +166,7 @@
                         <!-- تنظیمات تم -->
                         <div class="topbar-item d-none d-md-flex">
                             <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas"
-                            data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+                                    data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
                                 <iconify-icon icon="solar:settings-bold-duotone" class="fs-24 align-middle"></iconify-icon>
                             </button>
                         </div>
@@ -174,7 +174,7 @@
                         <!-- فعالیت -->
                         <div class="topbar-item d-none d-md-flex">
                             <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas"
-                            data-bs-target="#theme-activity-offcanvas" aria-controls="theme-settings-offcanvas">
+                                    data-bs-target="#theme-activity-offcanvas" aria-controls="theme-settings-offcanvas">
                                 <iconify-icon icon="solar:clock-circle-bold-duotone" class="fs-24 align-middle"></iconify-icon>
                             </button>
                         </div>
@@ -182,10 +182,10 @@
                         <!-- کاربر -->
                         <div class="dropdown topbar-item">
                             <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                               aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
                                     <img class="rounded-circle" width="32" src="/images/users/avatar-1.jpg"
-                                    alt="avatar-3">
+                                         alt="avatar-3">
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
@@ -232,11 +232,11 @@
         <!-- Activity Timeline -->
         <div>
             <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-activity-offcanvas"
-            style="max-width: 450px; width: 100%;">
+                 style="max-width: 450px; width: 100%;">
                 <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
                     <h5 class="text-white m-0 fw-semibold">جریان فعالیت</h5>
                     <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
-                    aria-label="بستن"></button>
+                            aria-label="بستن"></button>
                 </div>
 
                 <div class="offcanvas-body p-0">
@@ -291,7 +291,7 @@
                                             <a href="#!" class="fw-medium text-dark">طراحی UI/UX فایگما</a>
                                             <div class="ms-auto">
                                                 <a href="#!" class="fw-medium text-primary fs-18" data-bs-toggle="tooltip"
-                                                data-bs-title="دانلود" data-bs-placement="bottom">
+                                                   data-bs-title="دانلود" data-bs-placement="bottom">
                                                     <iconify-icon icon="iconamoon:cloud-download-duotone"></iconify-icon>
                                                 </a>
                                             </div>
@@ -319,7 +319,7 @@
                                 <div class="mb-4">
                                     <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
                                         <img src="/images/users/avatar-7.jpg" alt="avatar-5"
-                                        class="avatar-sm rounded-circle">
+                                             class="avatar-sm rounded-circle">
                                     </span>
                                     <div class="ms-2">
                                         <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">الکس اسمیت، عکس‌های پیوست‌شده</h5>
@@ -348,13 +348,13 @@
                                 <div class="mb-4">
                                     <span class="position-absolute start-0 translate-middle-x bg-success bg-gradient d-inline-flex align-items-center justify-content-center rounded-circle text-light fs-20">
                                         <img src="/images/users/avatar-6.jpg" alt="avatar-5"
-                                        class="avatar-sm rounded-circle">
+                                             class="avatar-sm rounded-circle">
                                     </span>
                                     <div class="ms-2">
                                         <h5 class="mb-0 text-dark fw-semibold fs-15 lh-base">ربکا جی. یک عضو جدید به تیم اضافه کرد</h5>
                                         <p class="d-flex align-items-center gap-1">
                                             <iconify-icon icon="iconamoon:check-circle-1-duotone"
-                                            class="text-success"></iconify-icon>
+                                                          class="text-success"></iconify-icon>
                                             یک عضو جدید به داشبورد جلو اضافه کرد
                                         </p>
                                         <h6 class="mt-3 text-muted">دوشنبه، ساعت ۱۰:۰۰ صبح</h6>
@@ -371,7 +371,7 @@
                                         <p class="d-flex align-items-center gap-1 mt-1">
                                             دریافت یک
                                             <iconify-icon icon="iconamoon:certificate-badge-duotone"
-                                            class="text-danger fs-20"></iconify-icon>
+                                                          class="text-danger fs-20"></iconify-icon>
                                             "جایزه بهترین محصول"
                                         </p>
                                         <h6 class="mt-3 text-muted">دوشنبه، ساعت ۹:۳۰ صبح</h6>
@@ -494,27 +494,29 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                @foreach (var Request in Model.UserRequets)
+                                                @if (Model.UserRequets is not null)
                                                 {
-                                                    <tr>
-                                                        @if (Request.Status == RequestStatusEnum.Complited)
-                                                        {
-                                                            <td> <span class="badge bg-success-subtle text-success py-1 px-2">تکمیل شده</span> </td>
-                                                        }
-                                                        @if (Request.Status == RequestStatusEnum.Cancelled)
-                                                        {
-                                                            <td> <span class="badge bg-danger-subtle text-danger py-1 px-2">لغو شده</span> </td>
-                                                        }
-                                                        @if (Request.Status != RequestStatusEnum.Complited && Request.Status == RequestStatusEnum.Cancelled)
-                                                        {
-                                                            <td> <span class="badge bg-warning-subtle text-warning py-1 px-2">@Request.Status</span> </td>
-                                                        }
-                                                        <td> @Request.WantedPrice </td>
-                                                        <td> @Request.SetAt</td>
-                                                        <td> @Request.CategoryTitle </td>
-                                                        <td></td>
-                                                    </tr>
+                                                    @foreach (var Request in Model.UserRequets)
+                                                    {
+                                                        <tr>
+                                                            @if (Request.Status == RequestStatusEnum.Complited)
+                                                            {
+                                                                <td> <span class="badge bg-success-subtle text-success py-1 px-2">تکمیل شده</span> </td>
+                                                            }
+                                                            @if (Request.Status == RequestStatusEnum.Cancelled)
+                                                            {
+                                                                <td> <span class="badge bg-danger-subtle text-danger py-1 px-2">لغو شده</span> </td>
+                                                            }
+                                                            @if (Request.Status != RequestStatusEnum.Complited && Request.Status == RequestStatusEnum.Cancelled)
+                                                            {
+                                                                <td> <span class="badge bg-warning-subtle text-warning py-1 px-2">@Request.Status</span> </td>
+                                                            }
+                                                            <td> @Request.WantedPrice </td>
+                                                            <td> @Request.SetAt</td>
+                                                            <td> @Request.ServicePackageTiltle </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    }
                                                 }
                                             </tbody>
                                         </table>

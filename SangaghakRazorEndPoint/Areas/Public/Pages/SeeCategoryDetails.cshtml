@@ -2,673 +2,166 @@
 @model SangaghakRazorEndPoint.Areas.Public.Pages.SeeCategoryDetailsModel
 @{
 }
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="HTML5,CSS3,HTML,Template,multi-page,Zoben - Job Board HTML Template">
-    <meta name="description" content="Zoben - Job Board HTML Template">
-    <meta name="author" content="Barat Hadian">
+@section Header
+{
+    <div class="desktop-nav desktop-nav-one nav-area">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md navbar-light ">
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
+                </a>
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active">
+                                خانه
+                                <i class="ri-arrow-down-s-line"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a asp-page="Index" class="nav-link">
+                                        خانه
+                                    </a>
+                                </li>
+                            </ul>
 
-    <link rel="stylesheet" href="~/MainTemplate/css/bootstrap.rtl.min.css">
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a asp-area="Customer" asp-page="CustomerProfile" class="nav-link">
+                                        پروفایل کاربری
+                                    </a>
+                                </li>
+                            </ul>
 
-    <link rel="stylesheet" href="~/MainTemplate/css/animate.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/fonts/remixicon.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/MainTemplate/css/owl.theme.default.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/metismenu.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/simplebar.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/dropzone.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/magnific-popup.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/odometer.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/meanmenu.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/style.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/responsive.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/theme-dark.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/rtl.css">
-
-    <title>Zoben - قالب HTML زوبن , پوسته سایت آگهی و کاریابی</title>
-
-    <link rel="icon" type="image/png" href="~/MainTemplate/images/favicon.png">
-</head>
-<body>
-
-    <div class="preloader">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="spinner"></div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="navbar-area">
-        <div class="mobile-responsive-nav">
-            <div class="container-fluid">
-                <div class="mobile-responsive-menu">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="desktop-nav desktop-nav-one nav-area">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-md navbar-light ">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
-                    </a>
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    خانه
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="index.html" class="nav-link">
-                                            صفحه اصلی - 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-2.html" class="nav-link">
-                                            صفحه اصلی - 2
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-3.html" class="nav-link">
-                                            صفحه اصلی - 3
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                    شغل ها
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="job-listing.html" class="nav-link">فهرست مشاغل</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="post-job.html" class="nav-link">ارسال آگهی شغلی</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="job-details.html" class="nav-link active">جزئیات مشاغل</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    کارفرمایان
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="employers-listing.html" class="nav-link">
-                                            لیست کارفرمایان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="employers-details.html" class="nav-link">
-                                            جزئیات کارفرمایان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard.html" class="nav-link">
-                                            داشبورد کارفرمایان
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    داوطلبان
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="candidates-listing.html" class="nav-link">
-                                            فهرست داوطلبان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="candidates-details.html" class="nav-link">
-                                            جزئیات داوطلبان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="candidates-dashboard.html" class="nav-link">
-                                            داشبورد داوطلبان
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    وبلاگ
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="blog-1.html" class="nav-link">
-                                            وبلاگ شبکه ای
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-2.html" class="nav-link">
-                                            وبلاگ سایدبار - 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-3.html" class="nav-link">
-                                            وبلاگ سایدبار - 2
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-details.html" class="nav-link">
-                                            جزئیات وبلاگ
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    صفحات
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="about.html" class="nav-link">
-                                            درباره ما
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="contact.html" class="nav-link">
-                                            تماس با ما
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="testimonials.html" class="nav-link">
-                                            بازخورد مشتریان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="freelancer.html" class="nav-link">
-                                            فریلنسر
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-invoice.html" class="nav-link">
-                                            صورتحساب ها
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            شرکت ها
-                                            <i class="ri-arrow-down-s-line"></i>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="company.html" class="nav-link">
-                                                    فهرست شرکت ها
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="company-details.html" class="nav-link">
-                                                    جزئیات شرکت
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="search-job.html" class="nav-link">
-                                                    جستجوی شغل
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pricing.html" class="nav-link">
-                                            پلن قیمت گذاری
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pricing.html" class="nav-link">
-                                            پلن قیمت گذاری
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="faq.html" class="nav-link">
-                                            سوالات متداول
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="log-in-register.html" class="nav-link">
-                                            ورود / ثبت نام
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="forgot-password.html" class="nav-link">
-                                            فراموشی گذرواژه
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="terms-condition.html" class="nav-link">
-                                            قوانین و ضوابط
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="privacy-policy.html" class="nav-link">
-                                            حریم خصوصی
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="404.html" class="nav-link">
-                                            صفحه 404
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="coming-soon.html" class="nav-link">
-                                            صفحه به زودی
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="others-options d-flex align-items-center">
-                            <div class="optional-item">
-                                <a href="log-in-register.html" class="default-btn two border-radius-5">ورود / ثبت نام <i class="ri-user-3-line"></i></a>
-                            </div>
-                            <div class="optional-item">
-                                <a href="post-job.html" class="default-btn border-radius-5">ارسال آگهی <i class="ri-briefcase-2-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <div class="side-nav-responsive">
-            <div class="container-max">
-                <div class="dot-menu">
-                    <div class="circle-inner">
-                        <div class="circle circle-one"></div>
-                        <div class="circle circle-two"></div>
-                        <div class="circle circle-three"></div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="side-nav-inner">
-                        <div class="side-nav justify-content-center align-items-center">
-                            <div class="side-nav-item">
-                                <a href="log-in-register.html" class="default-btn two">
-                                    ورود / ثبت نام <i class="ri-user-3-line"></i>
-                                </a>
-                            </div>
-                            <div class="side-nav-item">
-                                <a href="post-job.html" class="default-btn">
-                                    ارسال آگهی <i class="ri-briefcase-2-line"></i>
-                                </a>
-                            </div>
+                        </li>
+                    </ul>
+                    <div class="others-options d-flex align-items-center">
+                        <div class="optional-item">
+                            <a asp-page="Login" class="default-btn two border-radius-5">ورود / ثبت نام <i class="ri-user-3-line"></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
         </div>
     </div>
-
-
-    <div class="inner-banner">
-        <div class="container">
-            <div class="inner-title text-center">
-                <h3>جزئیات مشاغل</h3>
-                <ul>
-                    <li>
-                        <a href="index.html">خانه</a>
-                    </li>
-                    <li>جزئیات مشاغل</li>
-                </ul>
+    <div class="side-nav-responsive">
+        <div class="container-max">
+            <div class="dot-menu">
+                <div class="circle-inner">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="circle circle-three"></div>
+                </div>
             </div>
-        </div>
-    </div>
-
-
-    <div class="job-details-area pt-100 pb-70">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="find-jobs-card d-flex align-items-center box-shadow">
-                        <div class="find-jobs-img">
-                            <a href="job-details.html">
-                                @if (Model.Category.ImagePath != null)
-                                {
-                                    <img src="@Model.Category.ImagePath" alt="Images">
-                                }
-                                else
-                                {
-                                    <img src="~/MainTemplate/images/find-jobs/find-jobs3.jpg" alt="Images">
-                                }
+            <div class="container">
+                <div class="side-nav-inner">
+                    <div class="side-nav justify-content-center align-items-center">
+                        <div class="side-nav-item">
+                            <a asp-page="Login" class="default-btn two">
+                                ورود / ثبت نام <i class="ri-user-3-line"></i>
                             </a>
                         </div>
-                        <div class="content">
-                            <h3>@Model.Category.Title</h3>
-                            <ul class="content-list2">
-                                <li class="list-one">دسته بندی اصلی</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="job-details-widget-side pr-20">
-                        <div class="job-details-widget">
-                            <h3 class="title">بررسی اجمالی شغل</h3>
-                            <div class="bar"></div>
-                            <ul class="job-details-category">
-                                <li>نام دسته بندی: <span>@Model.Category.Title</span></li>
-                                <li>تعداد زیر دسته بندی: <span>@Model.Category.SubCategoryCount</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="job-details-content">
-                        <div class="content mb-30">
-                            <h3>شرح شغل</h3>
-                            <div class="bar"></div>
-                            <p>@Model.Category.Description</p>
-                        </div>
-                        <h3>زیر دسته بندی ها</h3>
-                        <div class="bar"></div>
-                        <div class="col-lg-12">
-                            @foreach (var subCategory in Model.SubCategories)
-                            {
-                                <div class="recent-job-card box-shadow">
-                                    <div class="content">
-                                        <div class="recent-job-img">
-                                            <a href="job-details.html">
-                                                @if (subCategory.ImagePath != null)
-                                                {
-                                                    <img src="@subCategory.ImagePath" alt="Images">
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/MainTemplate/images/recent-job/recent-job5.jpg" alt="Images">
-                                                }
-                                            </a>
-                                        </div>
-                                        <h3><a href="job-details.html">@subCategory.Title</a></h3>
-                                    </div>
-                                    <div class="job-sub-content">
-                                        <div class="price">@subCategory.BasePrice<b>/حداقل قیمت</b></div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+}
+
+<div class="inner-banner">
+    <div class="container">
+        <div class="inner-title text-center">
+            <h3>جزئیات مشاغل</h3>
+            <ul>
+                <li>
+                    <a href="index.html">خانه</a>
+                </li>
+                <li>جزئیات مشاغل</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
-    <footer class="footer-area">
-        <div class="container">
-            <div class="footer-top pt-100 pb-70">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-md-6">
-                        <div class="footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="~/MainTemplate/images/logo.png" class="footer-logo1" alt="Footer Logo"><img src="~/MainTemplate/images/logo-2.png" class="footer-logo2" alt="Footer Logo">
-                                </a>
+<div class="job-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="find-jobs-card d-flex align-items-center box-shadow">
+                    <div class="find-jobs-img">
+                        <a href="job-details.html">
+                            @if (Model.Category.ImagePath != null)
+                            {
+                                <img src="@Model.Category.ImagePath" alt="Images">
+                            }
+                            else
+                            {
+                                <img src="~/MainTemplate/images/find-jobs/find-jobs3.jpg" alt="Images">
+                            }
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h3>@Model.Category.Title</h3>
+                        <ul class="content-list2">
+                            <li class="list-one">دسته بندی اصلی</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="job-details-widget-side pr-20">
+                    <div class="job-details-widget">
+                        <h3 class="title">بررسی اجمالی شغل</h3>
+                        <div class="bar"></div>
+                        <ul class="job-details-category">
+                            <li>نام دسته بندی: <span>@Model.Category.Title</span></li>
+                            <li>تعداد زیر دسته بندی: <span>@Model.Category.SubCategoryCount</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="job-details-content">
+                    <div class="content mb-30">
+                        <h3>شرح شغل</h3>
+                        <div class="bar"></div>
+                        <p>@Model.Category.Description</p>
+                    </div>
+                    <h3>زیر دسته بندی ها</h3>
+                    <div class="bar"></div>
+                    <div class="col-lg-12">
+                        @foreach (var subCategory in Model.SubCategories)
+                        {
+                            <div class="recent-job-card box-shadow">
+                                <div class="content">
+                                    <div class="recent-job-img">
+                                        <a href="job-details.html">
+                                            @if (subCategory.ImagePath != null)
+                                            {
+                                                <img src="@subCategory.ImagePath" alt="Images">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/MainTemplate/images/recent-job/recent-job5.jpg" alt="Images">
+                                            }
+                                        </a>
+                                    </div>
+                                    <h3><a href="job-details.html">@subCategory.Title</a></h3>
+                                </div>
+                                @*                                     <div class="job-sub-content">
+                                        <div class="price">@subCategory.BasePrice<b>/حداقل قیمت</b></div>
+                                    </div> *@
                             </div>
-                            <ul class="footer-contact-list">
-                                <li>
-                                    <i class="ri-map-pin-line"></i>
-                                    <div class="content">
-                                        <a href="https://goo.gl/maps/muUSCY6FnusqhrGK9">
-                                            ایران استان تهران میدان آزادی
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="ri-mail-line"></i>
-                                    <div class="content">
-                                        <a href="mailto: hello@zoben.com"> hello@zoben.com</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="ri-phone-line"></i>
-                                    <div class="content">
-                                        <a href="tel:+4471234567890">
-                                            +44 4325 9878 5875
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-6">
-                        <div class="footer-widget">
-                            <h3>کارفرما</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        مرور کاندیداها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard.html" target="_blank">
-                                        داشبورد کارفرمایان
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard-packages.html" target="_blank">
-                                        بسته های شغلی
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مشاغل برجسته
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post-job.html" target="_blank">
-                                        ارسال آگهی
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4">
-                        <div class="footer-widget ps-5">
-                            <h3>داوطلبان</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مرور مشاغل
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidate-dashboard-resume.html" target="_blank">
-                                        ارسال رزومه
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard.html" target="_blank">
-                                        داشبورد کاندیداها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مرور دسته بندی ها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        فهرست داوطلبان
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-4">
-                        <div class="footer-widget">
-                            <h3>شرکت</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="about.html" target="_blank">
-                                        درباره ما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contact.html" target="_blank">
-                                        تماس با ما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="terms-condition.html" target="_blank">
-                                        قوانین و ضوابط
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="privacy-policy.html" target="_blank">
-                                        حریم خصوصی
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        فهرست کاندیداها
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-4">
-                        <div class="footer-widget">
-                            <h3>لینکهای سریع</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        فهرست مشاغل
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="employers-listing.html" target="_blank">
-                                        لیست کارفرما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post-job.html" target="_blank">
-                                        ارسال شغل جدید
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="employers-listing.html" target="_blank">
-                                        همه کارفرمایان
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مشاغل برجسته
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-7">
-                        <div class="copy-right-text">
-                            <p>کپی رایت © 1403 زوبن. تمام حقوق قالب محفوظ است. طراحی توسط <a href="#" target="_blank">Barat Hadian</a></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-5">
-                        <div class="copy-right-social-link">
-                            <ul class="social-link">
-                                <li>
-                                    <a href="https://www.facebook.com/" target="_blank">
-                                        <i class="ri-facebook-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <i class="ri-instagram-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/" target="_blank">
-                                        <i class="ri-twitter-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class="ri-linkedin-fill"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </div>
+</div>
 
 
-    <script src="~/MainTemplate/js/jquery.min.js"></script>
-
-    <script src="~/MainTemplate/js/bootstrap.bundle.min.js"></script>
-
-    <script src="~/MainTemplate/js/jquery.magnific-popup.min.js"></script>
-
-    <script src="~/MainTemplate/js/odometer.min.js"></script>
-
-    <script src="~/MainTemplate/js/jquery.appear.min.js"></script>
-
-    <script src="~/MainTemplate/js/meanmenu.min.js"></script>
-
-    <script src="~/MainTemplate/js/metismenu.min.js"></script>
-
-    <script src="~/MainTemplate/js/simplebar.min.js"></script>
-
-    <script src="~/MainTemplate/js/dropzone.min.js"></script>
-
-    <script src="~/MainTemplate/js/sticky-sidebar.min.js"></script>
-
-    <script src="~/MainTemplate/js/tweenMax.min.js"></script>
-
-    <script src="~/MainTemplate/js/owl.carousel.min.js"></script>
-
-    <script src="~/MainTemplate/js/wow.min.js"></script>
-
-    <script src="~/MainTemplate/js/jquery.ajaxchimp.min.js"></script>
-
-    <script src="~/MainTemplate/js/form-validator.min.js"></script>
-
-    <script src="~/MainTemplate/js/contact-form-script.js"></script>
-
-    <script src="~/MainTemplate/js/custom.js"></script>
-</body>
-</html>

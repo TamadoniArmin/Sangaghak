@@ -44,7 +44,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Read
-        public async Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
+        public async Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
             var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted == false);
             if (Request == null) return null;
@@ -132,7 +132,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
            ).ToListAsync(cancellationToken);
         }
 
-        public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
             var Result = await _context.Requests.AnyAsync(x => x.CustomerId == customerId && x.IsDeleted == false);
             if (Result == false)

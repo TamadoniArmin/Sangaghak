@@ -37,6 +37,21 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             }
         }
 
+        public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
+        {
+            var User = await _appDbContext
+                .Users
+                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
+            if (User == null) return false;
+            else 
+                {
+                    User.IsDeleted = true;
+                    await _appDbContext.SaveChangesAsync(cancellationToken);
+                    return true;
+                }
+
+        }
+
         public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
         {
             var Result= await _appDbContext

@@ -1,5 +1,5 @@
 ﻿@page
-@model SangaghakRazorEndPoint.Areas.Admin.Users.SeeUserProfileModel
+@model SangaghakRazorEndPoint.Areas.Admin.Pages.SeeAdminProfileModel
 @{
 }
 @using SangaghakRazorEndPoint
@@ -19,7 +19,7 @@
                         }
                         else
                         {
-                            <img src="~/images/Categories/e8886c2a-a725-4058-9cbc-319b66588bf5dummy-avatar.jpg" alt="" class="avatar-md">
+                            <img src="/images/Categories/e8886c2a-a725-4058-9cbc-319b66588bf5dummy-avatar.jpg" alt="" class="avatar-md">
                         }
 
                     </div>
@@ -29,25 +29,6 @@
                         <h4 class="mb-1">@Model.UserInfo.FullName <i class='bx bxs-badge-check text-success align-middle'></i></h4>
                         <p class="mb-0">@Model.UserInfo.Role</p>
                     </div>
-                    @if (Model.UserInfo.Role == App.Domain.Core.Sangaghak.Enum.RoleEnum.Expert)
-                    {
-                        @if(Model.ExpertSkills is not null)
-                        {
-                            @foreach (var Skill in Model.ExpertSkills)
-                            {
-                                <div class="row mt-3 gy-2">
-                                    <div class="col-lg-2 col-6">
-                                        <div class="d-flex align-items-center gap-2 border-end">
-                                            <div>
-                                                <h5 class="mb-1">@Skill</h5>
-                                                <p class="mb-0">مهارت</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-                    }
                 </div>
             </div>
         </div>

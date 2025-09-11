@@ -64,7 +64,7 @@ namespace SangaghakAppService.Sangaghak.Requests
             return await _service.GetCurrentRequestsCountAsync(cancellationToken);
         }
 
-        public async Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
+        public async Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
             var WantedRequest= await _service.GetRequestByIdAysnc(RequestId, cancellationToken);
             if (WantedRequest == null) return null;
@@ -118,7 +118,7 @@ namespace SangaghakAppService.Sangaghak.Requests
             return await _service.GetRequestBySubCategoryAsync(subCategoryId, cancellationToken);
         }
 
-        public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
             return await _service.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
         }

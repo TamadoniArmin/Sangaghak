@@ -21,6 +21,7 @@
     <Compile Include="Areas\Admin\Pages\EditCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\EditPackage.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\EditSubCategory.cshtml.cs" />
+    <Compile Include="Areas\Admin\Pages\SeeAdminProfile.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\SeeAllComments.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateCategory.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\CreateSubCategory.cshtml.cs" />
@@ -35,7 +36,7 @@
     <Compile Include="Areas\Admin\Pages\SeeUserProfile.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\UpdateUser.cshtml.cs" />
     <Compile Include="Areas\Admin\Pages\UserRegister.cshtml.cs" />
-    <Compile Include="Areas\Customer\Pages\CustomerProfile.cshtml.cs" />
+    <Compile Include="Areas\Customer\Pages\Index.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\PostRequest.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\RequestDetails.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml.cs" />
@@ -82,6 +83,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Areas\Public\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Public\Pages\_ViewStart.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -148,10 +153,11 @@
     <None Include="Areas\Admin\Pages\EditCategory.cshtml" />
     <None Include="Areas\Admin\Pages\EditPackage.cshtml" />
     <None Include="Areas\Admin\Pages\EditSubCategory.cshtml" />
+    <None Include="Areas\Admin\Pages\SeeAdminProfile.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllPackages.cshtml" />
     <None Include="Areas\Admin\Pages\SeeAllSubCategories.cshtml" />
     <None Include="Areas\Admin\Pages\Shared\_Layout.cshtml.css" />
-    <None Include="Areas\Customer\Pages\CustomerProfile.cshtml" />
+    <None Include="Areas\Customer\Pages\Index.cshtml" />
     <None Include="Areas\Customer\Pages\PostRequest.cshtml" />
     <None Include="Areas\Customer\Pages\RequestDetails.cshtml" />
     <None Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml" />

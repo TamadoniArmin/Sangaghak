@@ -22,12 +22,6 @@
                     <table class="table align-middle mb-0 table-hover table-centered">
                         <thead class="bg-light-subtle">
                             <tr>
-                                <th style="width: 20px;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="customCheck1">
-                                        <label class="form-check-label" for="customCheck1"></label>
-                                    </div>
-                                </th>
                                 <th>دسته‌بندی‌ها</th>
                                 <th>شناسه</th>
                                 <th>قیمت پایه</th>
@@ -41,15 +35,7 @@
                             {
                                 @foreach (var Package in Model.AllPackages)
                                 {
-
-
                                     <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                <label class="form-check-label" for="customCheck2"></label>
-                                            </div>
-                                        </td>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
                                                 <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
@@ -84,17 +70,6 @@
                     </table>
                 </div>
                 <!-- end table-responsive -->
-            </div>
-            <div class="card-footer border-top">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end mb-0">
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">قبلی</a></li>
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0);">بعدی</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>

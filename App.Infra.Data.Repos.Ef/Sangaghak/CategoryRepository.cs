@@ -15,7 +15,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Dependency Injection
         private readonly AppDbContext _appDbContext;
         private readonly ILogger<CategoryRepository> _logger;
-        public CategoryRepository(AppDbContext appDbContext, ILogger<CategoryRepository> logger )
+        public CategoryRepository(AppDbContext appDbContext, ILogger<CategoryRepository> logger)
         {
             _appDbContext = appDbContext;
             _logger = logger;
@@ -29,7 +29,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 var Category = new Category()
                 {
                     Title = Model.Title,
-                    Description= Model.Description,
+                    Description = Model.Description,
                     ImagePath = Model.ImagePath,
                 };
                 await _appDbContext.Categories.AddAsync(Category, cancellationToken);
@@ -70,7 +70,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             var subcategories = await _appDbContext
             .Categories
-            .Where(x => x.Title.Contains(title) && x.IsDeleted==false)
+            .Where(x => x.Title.Contains(title) && x.IsDeleted == false)
             .Include(x => x.Experts)//<<--پرسیده شود
             .Select(x => new GetSubcategoryForHomePageDto
             {
@@ -87,7 +87,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             var categories = await _appDbContext
             .Categories
-            .Where(x=>x.IsDeleted == false)
+            .Where(x => x.IsDeleted == false)
             .Include(x => x.Subcategories)
             .Select(x => new CategoryDTO
             {
@@ -105,14 +105,14 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             _logger.Log(logLevel: LogLevel.Information, "ادمین تلاش کرد زیر کتگوری ها را بخواند");
             var subcategories = await _appDbContext
             .Categories
-            .Where(x=>x.IsDeleted == false && x.ParentId!=0 && x.ParentId!=null)
+            .Where(x => x.IsDeleted == false && x.ParentId != 0 && x.ParentId != null)
             .Select(x => new SubCategoryDTO
             {
                 Id = x.Id,
                 Title = x.Title,
-                Description= x.Description,
+                Description = x.Description,
                 ImagePath = x.ImagePath,
-                ParentId = x.ParentId??0
+                ParentId = x.ParentId ?? 0
             }).ToListAsync(cancellationToken);
             return subcategories;
         }
@@ -145,15 +145,15 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             {
                 Id = x.Id,
                 Title = x.Title,
-                Description= x.Description,
+                Description = x.Description,
                 ImagePath = x.ImagePath,
-                ParentId = x.ParentId??0
+                ParentId = x.ParentId ?? 0
             }).ToListAsync(cancellationToken);
             return subcategories;
         }
         public async Task<CategoryDTO> GetCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
         {
-            var Category= await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == Id,cancellationToken);
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == Id, cancellationToken);
             if (Category is null) return null;
             else
             {
@@ -162,7 +162,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Id = Category.Id,
                     Title = Category.Title,
                     Description = Category.Description,
-                    ImagePath = Category.ImagePath??string.Empty,
+                    ImagePath = Category.ImagePath ?? string.Empty,
                     SubCategoryCount = 0
                 };
                 return categoryDTO;
@@ -173,19 +173,19 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             _logger.Log(logLevel: LogLevel.Information, "ادمین تلاش کرد کتگوری ها را بخواند");
             return await _appDbContext
                 .Categories
-                .Where(x=>(x.ParentId == null || x.ParentId==0 ) && x.IsDeleted==false)
-                .Select(x=> new CategoryDTO()
+                .Where(x => (x.ParentId == null || x.ParentId == 0) && x.IsDeleted == false)
+                .Select(x => new CategoryDTO()
                 {
                     Id = x.Id,
                     Title = x.Title,
                     Description = x.Description,
-                    ImagePath=x.ImagePath??string.Empty,
-                    SubCategoryCount=x.Subcategories.Count()
+                    ImagePath = x.ImagePath ?? string.Empty,
+                    SubCategoryCount = x.Subcategories.Count()
                 }).ToListAsync(cancellationToken);
         }
         public async Task<string> GetSubCategoryNameByIdAysnc(int Id, CancellationToken cancellationToken)
         {
-            var Category=await _appDbContext.Categories.FirstOrDefaultAsync(x=>x.Id==Id && x.IsDeleted==false);
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == Id && x.IsDeleted == false);
             if (Category is null) return string.Empty;
             else return Category.Title;
         }
@@ -201,7 +201,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Title = Category.Title,
                     Description = Category.Description,
                     ImagePath = Category.ImagePath ?? string.Empty,
-                    ParentId=Category.ParentId??0
+                    ParentId = Category.ParentId ?? 0
                 };
                 return categoryDTO;
             }
@@ -215,7 +215,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             if (Category == null) return false;
             Category.Title = Model.Title;
             Category.Description = Model.Description;
-            if(Model.ImagePath is not null)
+            if (Model.ImagePath is not null)
                 Category.ImagePath = Model.ImagePath;
             Category.ParentId = Model.ParentId;
             await _appDbContext.SaveChangesAsync(cancellationToken);
@@ -228,7 +228,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             if (Category == null) return false;
             Category.Title = Model.Title;
             Category.Description = Model.Description;
-            if(Model.ImagePath is not null)
+            if (Model.ImagePath is not null)
                 Category.ImagePath = Model.ImagePath;
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;
@@ -237,7 +237,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Delete
         public async Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken)
         {
-            var Category= await _appDbContext.Categories.FirstOrDefaultAsync(x=>x.Id == CategoryId && x.IsDeleted==false, cancellationToken);
+            var Category = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Id == CategoryId && x.IsDeleted == false, cancellationToken);
             if (Category == null) return false;
             Category.IsDeleted = true;
             await _appDbContext.SaveChangesAsync(cancellationToken);

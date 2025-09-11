@@ -37,9 +37,9 @@ namespace SangaghakRazorEndPoint.Pages
                         case "Admin":
                             return LocalRedirect("/Admin/Index");
                         case "Customer":
-                            return LocalRedirect("/Customer/CustomerProfile");
-                        case "Expert":
-                            return RedirectToAction("Management", new { area = "Expert" });
+                            return LocalRedirect("/Customer/Index");
+                        //case "Expert":
+                        //    return RedirectToAction("Management", new { area = "Expert" });
                         default:
                             return LocalRedirect("/AccessDenied");
                     }

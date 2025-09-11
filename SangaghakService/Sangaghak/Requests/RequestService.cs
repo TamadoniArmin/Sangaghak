@@ -54,7 +54,7 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetCustomerCompletedRequestsCount(CustomerId, cancellationToken);
         }
 
-        public async Task<RequestDTO> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
+        public async Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
             return await _repository.GetRequestByIdAysnc(RequestId, cancellationToken);
         }
@@ -79,7 +79,7 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetRequestCityIdAsync(RequestId, cancellationToken);
         }
 
-        public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
             return await _repository.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
         }

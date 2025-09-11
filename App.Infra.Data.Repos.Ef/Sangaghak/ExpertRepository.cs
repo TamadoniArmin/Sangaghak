@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.Data.Repositories;
+using App.Domain.Core.Sangaghak.DTOs.Categories;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,20 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return sum / PointerCount;
             }
             return -1;
+        }
+        public async Task<List<GetSubCategoryNameForExpertsDTO>?> GetExpertSkillsId(int ExpertId, CancellationToken cancellationToken)
+        {
+            var expert = await _appDbContext.Experts
+                .Where(x=>x.IsDeleted==false)
+                .Include(e => e.Skills)
+                .FirstOrDefaultAsync(e => e.Id == ExpertId);
+
+            var WantedSkills= expert?.Skills?.Select(s => new GetSubCategoryNameForExpertsDTO
+            {
+                SubcategoryNames = s.Title
+            }
+            ).ToList();
+            return WantedSkills;
         }
         #endregion
         #region Update

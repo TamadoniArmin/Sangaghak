@@ -55,7 +55,7 @@ namespace SangaghakAppService.Sangaghak.Pages
             return User.CustomerId.Value;
         }
 
-        public async Task<List<RequestDTO>> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
             var Requests = await _requestService.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
             if (Requests is null)
