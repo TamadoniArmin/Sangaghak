@@ -66,6 +66,27 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Read
+        public async Task<CategotyOrSubCategoryBasicInfo?> GetCategoryBasicInfo(int CategoryId, CancellationToken cancellationToken)
+        {
+            var WantedCategory= await _appDbContext
+                .Categories
+                .Where(c => c.Id == CategoryId && c.IsDeleted==false)
+                .Select(x=> new CategotyOrSubCategoryBasicInfo
+                {
+                    Id = x.Id,
+                    Title = x.Title
+                }).FirstOrDefaultAsync(cancellationToken);
+                
+            if (WantedCategory == null )
+            {
+                return null;
+            }
+            else
+            {
+                return WantedCategory;
+            }
+
+        }
         public async Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken)
         {
             var subcategories = await _appDbContext
@@ -243,6 +264,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;
         }
+
         #endregion
     }
 }

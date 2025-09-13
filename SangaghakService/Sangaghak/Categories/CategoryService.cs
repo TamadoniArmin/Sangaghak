@@ -55,6 +55,11 @@ namespace SangaghakService.Sangaghak.Categories
             return await _categoryRepository.GetByTitle(title, cancellationToken);
         }
 
+        public async Task<CategotyOrSubCategoryBasicInfo?> GetCategoryBasicInfo(int CategoryId, CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.GetCategoryBasicInfo(CategoryId, cancellationToken);
+        }
+
         public async Task<CategoryDTO> GetCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetCategoryByIdAysnc(Id, cancellationToken);

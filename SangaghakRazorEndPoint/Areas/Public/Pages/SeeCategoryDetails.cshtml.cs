@@ -12,10 +12,13 @@ namespace SangaghakRazorEndPoint.Areas.Public.Pages
         public CategoryDTO Category { get; set; }
         [BindProperty]
         public List<SubCategoryDTO> SubCategories { get; set; }
+        [BindProperty]
+        public int SubCategoryCount { get; set; }
         public async Task OnGet(int CategoryId,CancellationToken cancellationToken)
         {
             Category= await categoryAppService.GetCategoryByIdAysnc(CategoryId, cancellationToken);
-            SubCategories = await categoryAppService.GetSubCategoriesByParentId(Category.Id, cancellationToken);
+            SubCategories = await categoryAppService.GetSubCategoriesByParentId(CategoryId, cancellationToken);
+            SubCategoryCount = SubCategories.Count();
         }
     }
 }

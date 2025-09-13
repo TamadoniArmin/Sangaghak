@@ -116,10 +116,9 @@
                 <div class="job-details-widget-side pr-20">
                     <div class="job-details-widget">
                         <h3 class="title">بررسی اجمالی شغل</h3>
-                        <div class="bar"></div>
                         <ul class="job-details-category">
                             <li>نام دسته بندی: <span>@Model.Category.Title</span></li>
-                            <li>تعداد زیر دسته بندی: <span>@Model.Category.SubCategoryCount</span></li>
+                            <li>تعداد زیر دسته بندی: <span>@Model.SubCategoryCount</span></li>
                         </ul>
                     </div>
                 </div>
@@ -128,40 +127,60 @@
                 <div class="job-details-content">
                     <div class="content mb-30">
                         <h3>شرح شغل</h3>
-                        <div class="bar"></div>
                         <p>@Model.Category.Description</p>
                     </div>
                     <h3>زیر دسته بندی ها</h3>
-                    <div class="bar"></div>
-                    <div class="col-lg-12">
-                        @foreach (var subCategory in Model.SubCategories)
-                        {
+                    @foreach (var subCategory in Model.SubCategories)
+                    {
+                        <div class="col-lg-12">
+
                             <div class="recent-job-card box-shadow">
                                 <div class="content">
-                                    <div class="recent-job-img">
-                                        <a href="job-details.html">
-                                            @if (subCategory.ImagePath != null)
-                                            {
-                                                <img src="@subCategory.ImagePath" alt="Images">
-                                            }
-                                            else
-                                            {
-                                                <img src="~/MainTemplate/images/recent-job/recent-job5.jpg" alt="Images">
-                                            }
-                                        </a>
-                                    </div>
-                                    <h3><a href="job-details.html">@subCategory.Title</a></h3>
+                                    <h3><a asp-page="SeeSubCategoryDetails" asp-route-SubCategoryId="@subCategory.Id">@subCategory.Title</a></h3>
                                 </div>
-                                @*                                     <div class="job-sub-content">
-                                        <div class="price">@subCategory.BasePrice<b>/حداقل قیمت</b></div>
-                                    </div> *@
                             </div>
-                        }
-                    </div>
+
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<!--برای نمایش بذار خط 135-->
+@* @if (subCategory.ImagePath != null)
+{
+    <div class="col-lg-12">
+
+        <div class="recent-job-card box-shadow">
+            <div class="content">
+                <div class="recent-job-img">
+                    <img src="@subCategory.ImagePath" alt="Images">
+                </div>
+                <h3><a href="job-details.html">@subCategory.Title</a></h3>
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="col-lg-12">
+
+        <div class="recent-job-card box-shadow">
+            <div class="content">
+                <div class="recent-job-img">
+                    <img src="~/MainTemplate/images/recent-job/recent-job5.jpg" alt="Images">
+                </div>
+                <h3><a href="job-details.html">@subCategory.Title</a></h3>
+            </div>
+        </div>
+
+    </div>
+} *@
+<!--تا اینجا-->
 
 

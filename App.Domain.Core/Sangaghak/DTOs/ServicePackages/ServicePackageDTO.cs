@@ -9,7 +9,7 @@ namespace App.Domain.Core.Sangaghak.DTOs.ServicePackages
         public string Description { get; set; }
         public int MinPrice { get; set; }
         public int SubCategoryId { get; set; }
-        public string? SubCategoryTiltle { get; set; }
+        public string? SubCategoryTitle { get; set; }
         public string? ImagePath { get; set; }
     }
 }

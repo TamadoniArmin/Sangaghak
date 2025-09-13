@@ -11,6 +11,8 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<bool> CreateSubCategory(SubCategoryFroCreateDto Model, CancellationToken cancellationToken);
         #endregion
         #region Read
+        public Task<CategotyOrSubCategoryBasicInfo?> GetCategoryBasicInfo(int CategoryId, CancellationToken cancellationToken);
+
         public Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken);
         public Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken);//برای سرچ کردن کتگوری
         public Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken);

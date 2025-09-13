@@ -6,7 +6,6 @@
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-
 @section Header
 {
     <div class="desktop-nav desktop-nav-one nav-area">
@@ -29,16 +28,6 @@
                                     </a>
                                 </li>
                             </ul>
-                            @if (Model.UserAuthorized == true)
-                            {
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a asp-area="Customer" asp-page="CustomerProfile" class="nav-link">
-                                            پروفایل کاربری
-                                        </a>
-                                    </li>
-                                </ul>
-                            }
                         </li>
                     </ul>
                     <div class="others-options d-flex align-items-center">
@@ -77,10 +66,13 @@
 <div class="inner-banner">
     <div class="container">
         <div class="inner-title text-center">
-            <h3>جزئیات شرکت </h3>
+            <h3>جزئیات زیر دسته بندی </h3>
             <ul>
                 <li>
-                    <a href="index.html">خانه</a>
+                    <a asp-page="Index">خانه</a>
+                </li>
+                <li>
+                    @Html.Raw(Model.ParentCategoryHtml)
                 </li>
                 <li>جزئیات شرکت </li>
             </ul>
@@ -88,268 +80,58 @@
     </div>
 </div>
 
-
 <div class="company-details-area pt-100 pb-70">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="company-details-content">
                     <div class="company-details-preview mb-30">
-                        <img src="~/MainTemplate/images/company/company-details-img1.jpg" alt="Images">
+                        @Html.Raw(Model.SubCategoryImageHtml)
                     </div>
                     <div class="company-details-card box-shadow">
-                        <img src="~/MainTemplate/images/recent-job/recent-job4.jpg" alt="Images">
-                        <h3>جین مارت</h3>
-                        <ul class="content-list">
-                            <li><i class="ri-map-pin-line"></i>  ایران استان تهران میدان آزادی</b></li>
-                            <li><i class="ri-question-answer-line"></i> <a href="contact.html">پیام مستقیم به ما</a></li>
-                        </ul>
+                        <h3>@Model.SubCategory.Title</h3>
                     </div>
                     <div class="content mb-30">
-                        <h3>درباره شرکت ما</h3>
-                        <div class="bar"></div>
-                        <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
-                    </div>
-                    <div class="content mb-30">
-                        <h3>مرور اجمالی</h3>
-                        <div class="bar"></div>
-                        <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
-                        <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
-                    </div>
-                    <div class="company-details-list">
-                        <ul>
-                            <li>شما حداقل 3 سال سابقه کار به عنوان طراح محصول دارید.</li>
-
-                            <li>شما تجربه استفاده از Sketch و InVision یا Framer را دارید</li>
-
-                            <li>شما تجربه قبلی کار در یک محیط چابک دارید - به دوی سرعت دو هفته ای فکر کنید.</li>
-
-                            <li>با استفاده از Jira و Confluence در گردش کار خود آشنا هستید</li>
-
-                            <li>کار خود را در جلسات Show & Tell به مشاغل گسترده‌تر ارائه دهید.</li>
-
-                            <li>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</li>
-                        </ul>
+                        <h3>@Model.SubCategory.Description</h3>
                     </div>
                     <div class="content">
-                        <h3>افتخارات ما</h3>
+                        <h3>جالب است بدانید</h3>
                         <div class="bar"></div>
                         <div class="row justify-content-center">
                             <div class="col-lg-4 col-6 col-md-4">
                                 <div class="counter-item">
                                     <h3><span class="odometer" data-count="1400">0000</span></h3>
-                                    <p>کارمندان</p>
+                                    <p>تعداد کارشناسان فعال در این حوزه در سراسر کشور</p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-6 col-md-4">
                                 <div class="counter-item">
                                     <h3><span class="odometer" data-count="113">000</span></h3>
-                                    <p> مجموع جوایز</p>
+                                    <p> تعداد درخواست های جاری در این حوزه در سراسر کشور</p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-6 col-md-4">
                                 <div class="counter-item">
                                     <h3>M<span class="odometer" data-count="5">0</span></h3>
-                                    <p> میلیون فالوور</p>
+                                    <p>تعداد درخواس های تکمیل شده در این حوزه در سراسر کشور</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="content mb-30">
-                        <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
-                        <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
-                    </div>
-                    <div class="article-social-icon">
-                        <ul class="social-icon">
-                            <li class="title">اشتراک گذاری پست</li>
-                            <li>
-                                <a href="https://www.facebook.com/" target="_blank">
-                                    <i class="ri-facebook-fill"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/" target="_blank">
-                                    <i class="ri-instagram-fill"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/" target="_blank">
-                                    <i class="ri-twitter-fill"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/" target="_blank">
-                                    <i class="ri-linkedin-fill"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="company-details-portfolio">
-                        <h3>نمونه کار ما</h3>
-                        <div class="bar"></div>
-                        <div class="row gallery-photo">
-                            <div class="col-lg-3 col-6 col-md-3">
-                                <div class="company-details-portfolio-img">
-                                    <a href="~/MainTemplate/images/blog/blog-details-img2.jpg">
-                                        <img src="~/MainTemplate/images/blog/blog-details-img2.jpg" alt="Images">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6 col-md-3">
-                                <div class="company-details-portfolio-img">
-                                    <a href="~/MainTemplate/images/blog/blog-details-img3.jpg">
-                                        <img src="~/MainTemplate/images/blog/blog-details-img3.jpg" alt="Images">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6 col-md-3">
-                                <div class="company-details-portfolio-img">
-                                    <a href="~/MainTemplate/images/blog/blog-details-img4.jpg">
-                                        <img src="~/MainTemplate/images/blog/blog-details-img4.jpg" alt="Images">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-6 col-md-3">
-                                <div class="company-details-portfolio-img">
-                                    <a href="~/MainTemplate/images/blog/blog-details-img5.jpg">
-                                        <img src="~/MainTemplate/images/blog/blog-details-img5.jpg" alt="Images">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3>ویدئوی معرفی</h3>
-                    <div class="bar"></div>
-                    <div class="company-details-play">
-                        <a href="https://www.youtube.com/watch?v=Zd00oIDAt60" class="play-btn">
-                            <i class="ri-play-circle-line"></i>
-                        </a>
-                    </div>
-                    <h3>شغل های مرتبط</h3>
-                    <div class="bar"></div>
-                    <div class="col-lg-12">
-                        <div class="recent-job-card box-shadow">
-                            <div class="content">
-                                <div class="recent-job-img">
-                                    <a href="job-details.html">
-                                        <img src="~/MainTemplate/images/recent-job/recent-job5.jpg" alt="Images">
-                                    </a>
-                                </div>
-                                <h3><a href="job-details.html">کارگردان خلاق</a></h3>
-                                <ul class="job-list1">
-                                    <li><i class="ri-briefcase-line"></i> مشاغل خودروسازی</li>
-                                    <li><i class="ri-time-line"></i> ارسال شده 2 ساعت پیش</li>
-                                </ul>
-                                <span><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</span>
-                            </div>
-                            <div class="job-sub-content">
-                                <ul class="job-list2">
-                                    <li class="time">تمام وقت</li>
-                                    <li class="freelance">آزاد</li>
-                                </ul>
-                                <div class="price">150 تا 180 تومان <b>/هر هفته</b></div>
-                            </div>
-                            <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="recent-job-card box-shadow">
-                            <div class="content">
-                                <div class="recent-job-img">
-                                    <a href="job-details.html">
-                                        <img src="~/MainTemplate/images/recent-job/recent-job6.jpg" alt="Images">
-                                    </a>
-                                </div>
-                                <h3><a href="job-details.html">حسابدار دفتر کل</a></h3>
-                                <ul class="job-list1">
-                                    <li><i class="ri-briefcase-line"></i> حسابداری و مالی</li>
-                                    <li><i class="ri-time-line"></i> ارسال شده 1 روز پیش</li>
-                                </ul>
-                                <span><i class="ri-map-pin-line"></i> ایران استان تهران میدان آزادی</span>
-                            </div>
-                            <div class="job-sub-content">
-                                <ul class="job-list2">
-                                    <li class="time">تمام وقت</li>
-                                    <li class="freelance">آزاد</li>
-                                    <li class="internship">داخلی</li>
-                                </ul>
-                                <div class="price">150 تا 180 تومان <b>/هر هفته</b></div>
-                            </div>
-                            <button class="bookmark-btn"><i class="ri-bookmark-line"></i></button>
-                        </div>
-                    </div>
+                    <h3>پکیج های ارائه شده توسط شرکت سنجاقک در این حوزه</h3>
+                    @Html.Raw(Model.ServicePackagesHtml)
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="job-details-widget-side pl-20">
                     <div class="job-details-widget">
-                        <h3 class="title">درباره شرکت</h3>
-                        <div class="bar"></div>
+                        <h3 class="title">درباره این زیر دسته بندی</h3>
                         <ul class="job-details-category">
-                            <li>دسته بندی ها: <span>برنامه ها</span></li>
-                            <li>ایجاد: <span>1986</span></li>
-                            <li>کارمندان: <span>75</span></li>
-                            <li>موقعیت: <span>نیویورک</span></li>
-                            <li>شماره تلفن: <span>+44 7655 897987</span></li>
-                            <li>ایمیل: <span>info@zoben.com</span></li>
+                            <li>دسته بندی اصلی: <span>@Model.ParentCategoryInfo.Title</span></li>
+                            <li>عنوان: <span>@Model.SubCategory.Title</span></li>
+                            <li>تعداد کارشناسان فعال در این حوزه: <span>75</span></li>
+                            <li>تعداد پکیج های ارائه شده برای در این حوزه: <span>نیویورک</span></li>
                         </ul>
-                        <div class="job-details-social">
-                            <span>شبکه اجتماعی:</span>
-                            <ul class="social-icon">
-                                <li>
-                                    <a href="https://www.facebook.com/" target="_blank">
-                                        <i class="ri-facebook-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <i class="ri-instagram-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/" target="_blank">
-                                        <i class="ri-twitter-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class="ri-linkedin-fill"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="job-details-web-btn">
-                            <a href="#">www.zobencontact.com</a>
-                        </div>
-                    </div>
-                    <div class="job-details-widget">
-                        <h3 class="title">موقعیت شرکت</h3>
-                        <div class="bar"></div>
-                        <div class="job-details-map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3012.3531005543196!2d-73.6960694852179!3d40.973748329498996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c290dc165bb96f%3A0x63af0a238a20fe90!2s5%20North%20St%2C%20Rye%2C%20NY%2010580%2C%20USA!5e0!3m2!1sen!2sbd!4v1625385308899!5m2!1sen!2sbd"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="employers-cv-area">
-    <div class="container">
-        <div class="employers-cv-bg">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="employers-cv-content">
-                        <h2>اجازه دهید کارفرمایان شما را پیدا کنند</h2>
-                        <div class="bar"></div>
-                        <p>مشاغل خود را برای میلیون ها کاربر ماهانه تبلیغ کنید و 15.8 میلیون رزومه را در پایگاه داده ما جستجو کنید.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="employers-cv-btn">
-                        <a href="mailto: hello@zoben.com">بارگذاری رزومه</a>
                     </div>
                 </div>
             </div>

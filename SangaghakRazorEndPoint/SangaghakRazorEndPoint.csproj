@@ -66,6 +66,14 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="Areas\Customer\Pages\Shared\_Layout2.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Customer\Pages\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Areas\Customer\Pages\_ViewImports.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -160,6 +168,8 @@
     <None Include="Areas\Customer\Pages\Index.cshtml" />
     <None Include="Areas\Customer\Pages\PostRequest.cshtml" />
     <None Include="Areas\Customer\Pages\RequestDetails.cshtml" />
+    <None Include="Areas\Customer\Pages\Shared\_Layout2.cshtml.css" />
+    <None Include="Areas\Customer\Pages\Shared\_Layout.cshtml.css" />
     <None Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml" />
     <None Include="Areas\Public\Pages\Index.cshtml" />
     <None Include="Areas\Public\Pages\SeeCategoryDetails.cshtml" />

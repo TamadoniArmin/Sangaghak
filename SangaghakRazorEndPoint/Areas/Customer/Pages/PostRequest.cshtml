@@ -1,695 +1,77 @@
 ﻿@page
 @model SangaghakRazorEndPoint.Areas.Customer.Pages.PostRequestModel
 @{
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout2.cshtml";  // مشخص کردن قالب 1
+    ViewData["Title"] = "ثبت درخواست";
 }
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="HTML5,CSS3,HTML,Template,multi-page,Zoben - Job Board HTML Template">
-    <meta name="description" content="Zoben - Job Board HTML Template">
-    <meta name="author" content="Barat Hadian">
 
-    <link rel="stylesheet" href="~/MainTemplate/css/bootstrap.rtl.min.css">
+<div class="post-job-area pt-100 pb-70">
+    <div class="container">
+        <div class="post-job-form">
+            <h2>اطلاعات شغلی</h2>
+            <div class="bar"></div>
+            <div class="contact-form">
+                <h3>اطلاعات پایه</h3>
+                <form enctype="multipart/form-data" role="form" method="post" id="contactForm">
+                    <input asp-for="@Model.NewRequest.CityId" type="hidden" value="@Model.LogedInUser.CityId">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group select-group">
+                                <label>دسته بندی*</label>
+                                <select class="form-select form-control">
+                                    <option data-display='UI/UX Designer'>انتخاب کنید....</option>
+                                    @foreach (var Package in Model.Packages)
+                                    {
+                                        <option value="@Package.Id">@Package.Title / (@Package.SubCategoryTitle)</option>
+                                        <input asp-for="@Model.NewRequest.WantedPrice" type="hidden" value="@Package.MinPrice">
 
-    <link rel="stylesheet" href="~/MainTemplate/css/animate.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/fonts/remixicon.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/MainTemplate/css/owl.theme.default.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/metismenu.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/simplebar.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/dropzone.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/magnific-popup.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/odometer.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/meanmenu.min.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/style.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/responsive.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/theme-dark.css">
-
-    <link rel="stylesheet" href="~/MainTemplate/css/rtl.css">
-
-    <!-- persian picker CSS -->
-    <link rel="stylesheet" href="~/MainTemplate/datepicker-jalali/css/persianDatepicker-default.css" />
-
-    <title>Zoben - قالب HTML زوبن , پوسته سایت آگهی و کاریابی</title>
-
-    <link rel="icon" type="image/png" href="~/MainTemplate/images/favicon.png">
-</head>
-<body>
-
-    <div class="preloader">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="spinner"></div>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <label>مهلت درخواست</label>
+                                <input asp-for="@Model.NewRequest.MaxTime" name="msg_subject" class="form-control" required data-error="لطفا تاریخ را وارد کنید" placeholder="1400/02/29" data-jdp>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>شرح کار*</label>
+                                <textarea asp-for="@Model.NewRequest.Description" class="form-control" cols="30" rows="5" required data-error="شرح کار خود را بنویسید"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>آدرس*</label>
+                                <input asp-for="@Model.NewRequest.Address" type="text" class="form-control" required data-error="لطفا آدرس شرح کار خود را وارد کنید">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="choose-img">
+                                <p class="title">عکس 1 (اختیاری)</p>
+                                <label for="img">تصویر را انتخاب کنید:</label>
+                                <input asp-for="@Model.NewRequest.ImageFile1" type="file" id="img" name="img" accept="image/*">
+                                <p>حداکثر حجم فایل: 2 مگابایت</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="choose-img">
+                                <p class="title">عکس 2 (اختیاری)</p>
+                                <label for="img">تصویر را انتخاب کنید:</label>
+                                <input asp-for="@Model.NewRequest.ImageFile2" type="file" id="img" name="img" accept="image/*">
+                                <p>حداکثر حجم فایل: 2 مگابایت</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <button type="submit" class="default-btn border-radius-5">
+                                ارسال درخواست <i class="ri-chat-4-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
-    <div class="navbar-area">
-        <div class="mobile-responsive-nav">
-            <div class="container-fluid">
-                <div class="mobile-responsive-menu">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="desktop-nav desktop-nav-one nav-area">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-md navbar-light ">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
-                    </a>
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    خانه
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="index.html" class="nav-link">
-                                            صفحه اصلی - 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-2.html" class="nav-link">
-                                            صفحه اصلی - 2
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-3.html" class="nav-link">
-                                            صفحه اصلی - 3
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                    شغل ها
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="job-listing.html" class="nav-link">فهرست مشاغل</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="post-job.html" class="nav-link active">ارسال آگهی شغلی</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="job-details.html" class="nav-link">جزئیات مشاغل</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    کارفرمایان
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="employers-listing.html" class="nav-link">
-                                            لیست کارفرمایان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="employers-details.html" class="nav-link">
-                                            جزئیات کارفرمایان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard.html" class="nav-link">
-                                            داشبورد کارفرمایان
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    داوطلبان
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="candidates-listing.html" class="nav-link">
-                                            فهرست داوطلبان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="candidates-details.html" class="nav-link">
-                                            جزئیات داوطلبان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="candidates-dashboard.html" class="nav-link">
-                                            داشبورد داوطلبان
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    وبلاگ
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="blog-1.html" class="nav-link">
-                                            وبلاگ شبکه ای
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-2.html" class="nav-link">
-                                            وبلاگ سایدبار - 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-3.html" class="nav-link">
-                                            وبلاگ سایدبار - 2
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-details.html" class="nav-link">
-                                            جزئیات وبلاگ
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    صفحات
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="about.html" class="nav-link">
-                                            درباره ما
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="contact.html" class="nav-link">
-                                            تماس با ما
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="testimonials.html" class="nav-link">
-                                            بازخورد مشتریان
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="freelancer.html" class="nav-link">
-                                            فریلنسر
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-invoice.html" class="nav-link">
-                                            صورتحساب ها
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            شرکت ها
-                                            <i class="ri-arrow-down-s-line"></i>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="company.html" class="nav-link">
-                                                    فهرست شرکت ها
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="company-details.html" class="nav-link">
-                                                    جزئیات شرکت
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="search-job.html" class="nav-link">
-                                                    جستجوی شغل
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pricing.html" class="nav-link">
-                                            پلن قیمت گذاری
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pricing.html" class="nav-link">
-                                            پلن قیمت گذاری
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="faq.html" class="nav-link">
-                                            سوالات متداول
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="log-in-register.html" class="nav-link">
-                                            ورود / ثبت نام
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="forgot-password.html" class="nav-link">
-                                            فراموشی گذرواژه
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="terms-condition.html" class="nav-link">
-                                            قوانین و ضوابط
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="privacy-policy.html" class="nav-link">
-                                            حریم خصوصی
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="404.html" class="nav-link">
-                                            صفحه 404
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="coming-soon.html" class="nav-link">
-                                            صفحه به زودی
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="others-options d-flex align-items-center">
-                            <div class="optional-item">
-                                <a href="log-in-register.html" class="default-btn two border-radius-5">ورود / ثبت نام <i class="ri-user-3-line"></i></a>
-                            </div>
-                            <div class="optional-item">
-                                <a href="post-job.html" class="default-btn border-radius-5">ارسال آگهی <i class="ri-briefcase-2-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <div class="side-nav-responsive">
-            <div class="container-max">
-                <div class="dot-menu">
-                    <div class="circle-inner">
-                        <div class="circle circle-one"></div>
-                        <div class="circle circle-two"></div>
-                        <div class="circle circle-three"></div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="side-nav-inner">
-                        <div class="side-nav justify-content-center align-items-center">
-                            <div class="side-nav-item">
-                                <a href="log-in-register.html" class="default-btn two">
-                                    ورود / ثبت نام <i class="ri-user-3-line"></i>
-                                </a>
-                            </div>
-                            <div class="side-nav-item">
-                                <a href="post-job.html" class="default-btn">
-                                    ارسال آگهی <i class="ri-briefcase-2-line"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="inner-banner">
-        <div class="container">
-            <div class="inner-title text-center">
-                <h3>ارسال آگهی شغلی</h3>
-                <ul>
-                    <li>
-                        <a href="index.html">خانه</a>
-                    </li>
-                    <li>ارسال آگهی شغلی</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="post-job-area pt-100 pb-70">
-        <div class="container">
-            <div class="post-job-form">
-                <h2>اطلاعات شغلی</h2>
-                <div class="bar"></div>
-                <div class="contact-form">
-                    <h3>اطلاعات پایه</h3>
-                    <form enctype="multipart/form-data" role="form" method="post" id="contactForm">
-                        <input asp-for="@Model.NewRequest.CityId" type="hidden" value="@Model.LogedInUser.CityId">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group select-group">
-                                    <label>دسته بندی*</label>
-                                    <select class="form-select form-control">
-                                        <option data-display='UI/UX Designer'>انتخاب کنید....</option>
-                                        @foreach (var Package in Model.Packages)
-                                        {
-                                            <option value="@Package.Id">@Package.Title / (@Package.SubCategoryTiltle)</option>
-                                            <input asp-for="@Model.NewRequest.WantedPrice" type="hidden" value="@Package.MinPrice">
-
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group">
-                                    <label>مهلت درخواست</label>
-                                    <input asp-for="@Model.NewRequest.MaxTime" name="msg_subject" class="form-control" required data-error="لطفا تاریخ را وارد کنید" placeholder="1400/02/29" data-jdp>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="form-group">
-                                    <label>شرح کار*</label>
-                                    <textarea asp-for="@Model.NewRequest.Description" class="form-control" cols="30" rows="5" required data-error="شرح کار خود را بنویسید"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label>آدرس*</label>
-                                    <input asp-for="@Model.NewRequest.Address" type="text" class="form-control" required data-error="لطفا آدرس شرح کار خود را وارد کنید">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="choose-img">
-                                    <p class="title">عکس 1 (اختیاری)</p>
-                                    <label for="img">تصویر را انتخاب کنید:</label>
-                                    <input asp-for="@Model.NewRequest.ImageFile1" type="file" id="img" name="img" accept="image/*">
-                                    <p>حداکثر حجم فایل: 2 مگابایت</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="choose-img">
-                                    <p class="title">عکس 2 (اختیاری)</p>
-                                    <label for="img">تصویر را انتخاب کنید:</label>
-                                    <input asp-for="@Model.NewRequest.ImageFile2" type="file" id="img" name="img" accept="image/*">
-                                    <p>حداکثر حجم فایل: 2 مگابایت</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <button type="submit" class="default-btn border-radius-5">
-                                    ارسال درخواست <i class="ri-chat-4-line"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="employers-cv-area">
-        <div class="container">
-            <div class="employers-cv-bg">
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <div class="employers-cv-content">
-                            <h2>اجازه دهید کارفرمایان شما را پیدا کنند</h2>
-                            <div class="bar"></div>
-                            <p>مشاغل خود را برای میلیون ها کاربر ماهانه تبلیغ کنید و 15.8 میلیون رزومه را در پایگاه داده ما جستجو کنید.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="employers-cv-btn">
-                            <a href="mailto: hello@zoben.com">بارگذاری رزومه</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <footer class="footer-area">
-        <div class="container">
-            <div class="footer-top pt-100 pb-70">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-md-6">
-                        <div class="footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="~/MainTemplate/images/logo.png" class="footer-logo1" alt="Footer Logo"><img src="~/MainTemplate/images/logo-2.png" class="footer-logo2" alt="Footer Logo">
-                                </a>
-                            </div>
-                            <ul class="footer-contact-list">
-                                <li>
-                                    <i class="ri-map-pin-line"></i>
-                                    <div class="content">
-                                        <a href="https://goo.gl/maps/muUSCY6FnusqhrGK9">
-                                            ایران استان تهران میدان آزادی
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="ri-mail-line"></i>
-                                    <div class="content">
-                                        <a href="mailto: hello@zoben.com"> hello@zoben.com</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="ri-phone-line"></i>
-                                    <div class="content">
-                                        <a href="tel:+4471234567890">
-                                            +44 4325 9878 5875
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-6">
-                        <div class="footer-widget">
-                            <h3>کارفرما</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        مرور کاندیداها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard.html" target="_blank">
-                                        داشبورد کارفرمایان
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard-packages.html" target="_blank">
-                                        بسته های شغلی
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مشاغل برجسته
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post-job.html" target="_blank">
-                                        ارسال آگهی
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4">
-                        <div class="footer-widget ps-5">
-                            <h3>داوطلبان</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مرور مشاغل
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidate-dashboard-resume.html" target="_blank">
-                                        ارسال رزومه
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard.html" target="_blank">
-                                        داشبورد کاندیداها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مرور دسته بندی ها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        فهرست داوطلبان
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-4">
-                        <div class="footer-widget">
-                            <h3>شرکت</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="about.html" target="_blank">
-                                        درباره ما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contact.html" target="_blank">
-                                        تماس با ما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="terms-condition.html" target="_blank">
-                                        قوانین و ضوابط
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="privacy-policy.html" target="_blank">
-                                        حریم خصوصی
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        فهرست کاندیداها
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-4">
-                        <div class="footer-widget">
-                            <h3>لینکهای سریع</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        فهرست مشاغل
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="employers-listing.html" target="_blank">
-                                        لیست کارفرما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post-job.html" target="_blank">
-                                        ارسال شغل جدید
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="employers-listing.html" target="_blank">
-                                        همه کارفرمایان
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مشاغل برجسته
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-7">
-                        <div class="copy-right-text">
-                            <p>کپی رایت © 1403 زوبن. تمام حقوق قالب محفوظ است. طراحی توسط <a href="#" target="_blank">Barat Hadian</a></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-5">
-                        <div class="copy-right-social-link">
-                            <ul class="social-link">
-                                <li>
-                                    <a href="https://www.facebook.com/" target="_blank">
-                                        <i class="ri-facebook-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <i class="ri-instagram-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/" target="_blank">
-                                        <i class="ri-twitter-fill"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class="ri-linkedin-fill"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <script src="~/MainTemplate/js/jquery.min.js"></script>
-
-    <script src="~/MainTemplate/js/bootstrap.bundle.min.js"></script>
-
-    <script src="~/MainTemplate/js/jquery.magnific-popup.min.js"></script>
-
-    <script src="~/MainTemplate/js/odometer.min.js"></script>
-
-    <script src="~/MainTemplate/js/jquery.appear.min.js"></script>
-
-    <script src="~/MainTemplate/js/meanmenu.min.js"></script>
-
-    <script src="~/MainTemplate/js/metismenu.min.js"></script>
-
-    <script src="~/MainTemplate/js/simplebar.min.js"></script>
-
-    <script src="~/MainTemplate/js/dropzone.min.js"></script>
-
-    <script src="~/MainTemplate/js/sticky-sidebar.min.js"></script>
-
-    <script src="~/MainTemplate/js/tweenMax.min.js"></script>
-
-    <script src="~/MainTemplate/js/owl.carousel.min.js"></script>
-
-    <script src="~/MainTemplate/js/jquery.ajaxchimp.min.js"></script>
-
-    <script src="~/MainTemplate/js/form-validator.min.js"></script>
-
-    <script src="~/MainTemplate/js/contact-form-script.js"></script>
-
-    <script src="~/MainTemplate/js/custom.js"></script>
-
-    <link type="text/css" rel="stylesheet" href="~/MainTemplate/JalaliDatePicker-main/dist/jalalidatepicker.min.css" />
-    <script type="text/javascript" src="~/MainTemplate/JalaliDatePicker-main/dist/jalalidatepicker.min.js"></script>
-    <script>jalaliDatepicker.startWatch();</script>
-
-</body>
-</html>
+</div>

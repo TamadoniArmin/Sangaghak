@@ -35,7 +35,7 @@ namespace SangaghakAppService.Sangaghak.Pages
             var Packages= await _servicePackageService.GetAllAsync(cancellationToken);
             foreach (var package in Packages)
             {
-                package.SubCategoryTiltle = await _categoryService.GetSubCategoryNameByIdAysnc(package.SubCategoryId, cancellationToken);
+                package.SubCategoryTitle = await _categoryService.GetSubCategoryNameByIdAysnc(package.SubCategoryId, cancellationToken);
             }
             return Packages;
         }

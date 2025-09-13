@@ -1,336 +1,287 @@
 ﻿@page
 @model SangaghakRazorEndPoint.Areas.Customer.Pages.UpdateCustomerInfoModel
 @{
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";  // مشخص کردن قالب 1
+    ViewData["Title"] = "ویرایش اطلاعات کاربر";
 }
 @using App.Domain.Core.Sangaghak.Service
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @inject ICityService cityService;
-<!DOCTYPE html>
-<html lang="fa" dir="rtl" data-menu-size="sm-hover">
-
-<head>
-    <!-- Title Meta -->
-    <meta charset="utf-8" />
-    <title>ویرایش فروشنده | لارکن قالب مدیریتی</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully responsive premium admin dashboard template" />
-    <meta name="author" content="Techzaa" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
-
-    <link rel="stylesheet" href="~/AdminTemplate/libs/nouislider/nouislider.min.css">
-    <link rel="stylesheet" href="~/AdminTemplate/libs/choices.js/public/~/AdminTemplate/styles/choices.min.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/app.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
-    <link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
-    <script src="~/AdminTemplate/js/config.js"></script>
-
-</head>
-
-<body>
-    <div class="page-content">
-        <div class="container-fluid">
-            <div class="row">
 
 
-                <div class="col-xl-9 col-lg-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">اضافه کردن لوگوی برند</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="dropzone bg-light-subtle py-5">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple="multiple" />
+
+
+<div class="row">
+
+
+    <div class="col-xl-9 col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">اضافه کردن لوگوی برند</h4>
+            </div>
+            <div class="card-body">
+                <div class="dropzone bg-light-subtle py-5">
+                    <div class="fallback">
+                        <input name="file" type="file" multiple="multiple" />
+                    </div>
+                    <div class="dz-message needsclick">
+                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
+                        <h3 class="mt-4">
+                            تصاویر خود را اینجا رها کنید، یا
+                            <span class="text-primary">برای مرور کلیک کنید</span>
+                        </h3>
+                        <span class="text-muted fs-13">
+                            1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
+                        </span>
+                    </div>
+                </div>
+
+
+                <ul class="list-unstyled mb-0" id="dropzone-preview">
+                    <li class="mt-2" id="dropzone-preview-list">
+                        <div class="border rounded">
+                            <div class="d-flex p-2">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar-sm bg-light rounded">
+                                        <img data-dz-thumbnail
+                                             class="img-fluid rounded d-block"
+                                             src="#"
+                                             alt="تصویر دراپ زون" />
+                                    </div>
                                 </div>
-                                <div class="dz-message needsclick">
-                                    <i class="bx bx-cloud-upload fs-48 text-primary"></i>
-                                    <h3 class="mt-4">
-                                        تصاویر خود را اینجا رها کنید، یا
-                                        <span class="text-primary">برای مرور کلیک کنید</span>
-                                    </h3>
-                                    <span class="text-muted fs-13">
-                                        1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
-                                    </span>
+                                <div class="flex-grow-1">
+                                    <div class="pt-1">
+                                        <h5 class="fs-14 mb-1" data-dz-name>&</h5>
+                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                        <strong class="error text-primary"
+                                                data-dz-errormessage></strong>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 ms-3">
+                                    <button data-dz-remove class="btn btn-sm btn-primary">
+                                        حذف
+                                    </button>
                                 </div>
                             </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- پایان پیش نمایش دراپ زون -->
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">اطلاعات فروشنده</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <form enctype="multipart/form-data" role="form" method="post">
+                        <div id="horizontalwizard">
+                            <ul class="nav nav-pills nav-justified icon-wizard form-wizard-header bg-light p-1" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a href="#basictab1" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2 active" aria-selected="true" role="tab">
+                                        <iconify-icon icon="iconamoon:profile-circle-duotone" class="fs-26"></iconify-icon>
+                                        حساب
+                                    </a><!-- end nav-link -->
+                                </li><!-- end nav-item -->
+                                <li class="nav-item" role="presentation">
+                                    <a href="#basictab2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" role="tab" tabindex="-1">
+                                        <iconify-icon icon="iconamoon:profile-duotone" class="fs-26"></iconify-icon>
+                                        پروفایل
+                                    </a><!-- end nav-link -->
+                                </li><!-- end nav-item -->
+                                <li class="nav-item" role="presentation">
+                                    <a href="#basictab3" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" tabindex="-1" role="tab">
+                                        <iconify-icon icon="iconamoon:link-fill" class="fs-26"></iconify-icon>
+                                        لینک‌های اجتماعی
+                                    </a><!-- end nav-link -->
+                                </li><!-- end nav-item -->
+                                <li class="nav-item" role="presentation">
+                                    <a href="#basictab4" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" tabindex="-1" role="tab">
+                                        <iconify-icon icon="iconamoon:check-circle-1-duotone" class="fs-26"></iconify-icon>
+                                        اتمام
+                                    </a><!-- end nav-link -->
+                                </li><!-- end nav-item -->
+                            </ul>
 
+                            <div class="tab-content mb-0">
+                                <div class="tab-pane active show" id="basictab1" role="tabpanel">
+                                    <h4 class="fs-16 fw-semibold mb-1">اطلاعات حساب</h4>
+                                    <p class="text-muted">اطلاعات حساب خود را تنظیم کنید</p>
 
-                            <ul class="list-unstyled mb-0" id="dropzone-preview">
-                                <li class="mt-2" id="dropzone-preview-list">
-                                    <div class="border rounded">
-                                        <div class="d-flex p-2">
-                                            <div class="flex-shrink-0 me-3">
-                                                <div class="avatar-sm bg-light rounded">
-                                                    <img data-dz-thumbnail
-                                                         class="img-fluid rounded d-block"
-                                                         src="#"
-                                                         alt="تصویر دراپ زون" />
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicUser" class="form-label">نام کاربری</label>
+                                                <input asp-for="@Model.UpdatedUserInfo.UserName" id="basicUser" type="text" class="form-control" placeholder="نام کاربری را وارد کنید" value="@Model.WantedUser.UserName">
+                                            </div>
+                                        </div> <!-- end col -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicEmail" class="form-label">ایمیل</label>
+                                                <input asp-for="@Model.UpdatedUserInfo.Email" id="basicEmail" type="email" class="form-control" placeholder="ایمیل خود را وارد کنید" value="@Model.WantedUser.Email">
+                                            </div>
+                                        </div> <!-- end col -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <fieldset disabled="disabled">
+                                                    <label for="basicPassworda" class="form-label">گذرواژه</label>
+                                                    <input id="basicPassworda" type="text" class="form-control" placeholder="گذرواژه را وارد کنید">
+                                                </fieldset>
+                                            </div>
+                                        </div> <!-- end col -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <fieldset disabled="disabled">
+                                                    <label for="basicConfirmPassword" class="form-label">تأیید گذرواژه</label>
+                                                    <input id="basicConfirmPassword" type="text" class="form-control" placeholder="گذرواژه را تأیید کنید">
+                                                </fieldset>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+                                </div><!-- end tab-pane -->
+
+                                <div class="tab-pane" id="basictab2" role="tabpanel">
+                                    <h4 class="fs-16 fw-semibold mb-1">اطلاعات پروفایل</h4>
+                                    <p class="text-muted">اطلاعات پروفایل خود را تنظیم کنید</p>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="avatar-lg mb-3">
+                                                <div class="avatar-title bg-body rounded-circle border border-3 border-dashed-light position-relative">
+                                                    <label for="imageInput" class="position-absolute end-0 bottom-0">
+                                                        <div class="avatar-xs cursor-pointer">
+                                                            <span class="avatar-title bg-light text-dark rounded-circle"><i class="bx bx-camera"></i></span>
+                                                        </div>
+                                                    </label>
+                                                    <input asp-for="@Model.UpdatedUserInfo.ImagePath" class="hidden" type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
+
+                                                    <img id="preview" src="@Model.WantedUser.ImagePath" alt="تصویر پیش‌نمایش" class="rounded-circle img-fluid">
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1">
-                                                <div class="pt-1">
-                                                    <h5 class="fs-14 mb-1" data-dz-name>&</h5>
-                                                    <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                                    <strong class="error text-primary"
-                                                            data-dz-errormessage></strong>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="basicFname">نام</label>
+                                                        <input asp-for="@Model.UpdatedUserInfo.FirstName" type="text" id="basicFname" class="form-control" value="@Model.WantedUser.FirstName">
+                                                    </div>
+                                                </div><!-- end col -->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="basicLname">نام خانوادگی</label>
+                                                        <input asp-for="@Model.UpdatedUserInfo.LastName" type="text" id="basicLname" class="form-control" value="@Model.WantedUser.FirstName">
+                                                    </div>
+                                                </div><!-- end col -->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="basicMnumber">شماره</label>
+                                                        <input asp-for="@Model.UpdatedUserInfo.Mobile" type="number" id="basicMnumber" class="form-control" placeholder="شماره موبایل" value="@Model.WantedUser.Mobile">
+                                                    </div>
+                                                </div><!-- end col -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <select asp-for="@Model.UpdatedUserInfo.CityId" class="form-select">
+                                                                <option value="@Model.WantedUser.CityId">انتخاب کنید</option>
+                                                                @foreach (var city in await cityService.GetAllCities(default))
+                                                                {
+                                                                    <option value="@city.Id">@city.Title</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- end col -->
+                                            </div><!-- end row -->
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+                                </div><!-- end tab-pane -->
+
+                                <div class="tab-pane" id="basictab3" role="tabpanel">
+                                    <h4 class="fs-16 fw-semibold mb-1">لینک‌های رسانه‌های اجتماعی</h4>
+                                    <p class="text-muted">لینک‌های رسانه‌های اجتماعی خود را پر کنید</p>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicGitLink" class="form-label">GitHub</label>
+                                                <input id="basicGitLink" type="text" class="form-control" placeholder="لینک GitHub">
+                                            </div>
+                                        </div> <!-- end col -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicGoogleLink" class="form-label">گوگل</label>
+                                                <input id="basicGoogleLink" type="text" class="form-control" placeholder="لینک گوگل">
+                                            </div>
+                                        </div> <!-- end col -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicInstagramLink" class="form-label">اینستاگرام</label>
+                                                <input id="basicInstagramLink" type="text" class="form-control" placeholder="لینک اینستاگرام">
+                                            </div>
+                                        </div> <!-- end col -->
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label for="basicSkypeLink" class="form-label">Skype</label>
+                                                <input id="basicSkypeLink" type="text" class="form-control" placeholder="لینک Skype">
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div><!-- end row -->
+                                </div><!-- end tab-pane -->
+
+                                <div class="tab-pane" id="basictab4" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="text-center">
+                                                <div class="avatar-md mx-auto mb-3">
+                                                    <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle"><iconify-icon icon="iconamoon:like-duotone" class="fs-36"></iconify-icon></div>
+                                                </div>
+                                                <h3 class="mt-0">تمام شد!</h3>
+
+                                                <p class="w-75 mb-2 mx-auto">اطلاعات با موفقیت پر شد.</p>
+
+                                                <div class="mb-3">
+                                                    <div class="form-check d-inline-block">
+                                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                                        <label class="form-check-label" for="customCheck1">با شرایط و ضوابط موافقم</label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="flex-shrink-0 ms-3">
-                                                <button data-dz-remove class="btn btn-sm btn-primary">
-                                                    حذف
-                                                </button>
-                                            </div>
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+                                </div><!-- end tab-pane -->
+
+                                <div class="d-flex flex-wrap align-items-center wizard justify-content-between gap-3 mt-3">
+                                    <div class="first">
+                                        <a href="javascript:void(0);" class="btn btn-soft-primary">
+                                            اول
+                                        </a>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <div class="previous">
+                                            <a href="javascript:void(0);" class="btn btn-primary disabled">
+                                                <i class="bx bx-left-arrow-alt me-2"></i>بازگشت به قبلی
+                                            </a>
+                                        </div>
+                                        <div class="next">
+                                            <a href="javascript:void(0);" class="btn btn-primary">
+                                                مرحله بعد<i class="bx bx-right-arrow-alt ms-2"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                            <!-- پایان پیش نمایش دراپ زون -->
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">اطلاعات فروشنده</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <form enctype="multipart/form-data" role="form" method="post">
-                                    <div id="horizontalwizard">
-                                        <ul class="nav nav-pills nav-justified icon-wizard form-wizard-header bg-light p-1" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <a href="#basictab1" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2 active" aria-selected="true" role="tab">
-                                                    <iconify-icon icon="iconamoon:profile-circle-duotone" class="fs-26"></iconify-icon>
-                                                    حساب
-                                                </a><!-- end nav-link -->
-                                            </li><!-- end nav-item -->
-                                            <li class="nav-item" role="presentation">
-                                                <a href="#basictab2" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" role="tab" tabindex="-1">
-                                                    <iconify-icon icon="iconamoon:profile-duotone" class="fs-26"></iconify-icon>
-                                                    پروفایل
-                                                </a><!-- end nav-link -->
-                                            </li><!-- end nav-item -->
-                                            <li class="nav-item" role="presentation">
-                                                <a href="#basictab3" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" tabindex="-1" role="tab">
-                                                    <iconify-icon icon="iconamoon:link-fill" class="fs-26"></iconify-icon>
-                                                    لینک‌های اجتماعی
-                                                </a><!-- end nav-link -->
-                                            </li><!-- end nav-item -->
-                                            <li class="nav-item" role="presentation">
-                                                <a href="#basictab4" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 py-2" aria-selected="false" tabindex="-1" role="tab">
-                                                    <iconify-icon icon="iconamoon:check-circle-1-duotone" class="fs-26"></iconify-icon>
-                                                    اتمام
-                                                </a><!-- end nav-link -->
-                                            </li><!-- end nav-item -->
-                                        </ul>
-
-                                        <div class="tab-content mb-0">
-                                            <div class="tab-pane active show" id="basictab1" role="tabpanel">
-                                                <h4 class="fs-16 fw-semibold mb-1">اطلاعات حساب</h4>
-                                                <p class="text-muted">اطلاعات حساب خود را تنظیم کنید</p>
-
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="basicUser" class="form-label">نام کاربری</label>
-                                                            <input asp-for="@Model.UpdatedUserInfo.UserName" id="basicUser" type="text" class="form-control" placeholder="نام کاربری را وارد کنید" value="@Model.WantedUser.UserName">
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="basicEmail" class="form-label">ایمیل</label>
-                                                            <input asp-for="@Model.UpdatedUserInfo.Email" id="basicEmail" type="email" class="form-control" placeholder="ایمیل خود را وارد کنید" value="@Model.WantedUser.Email">
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <fieldset disabled="disabled">
-                                                                <label for="basicPassworda" class="form-label">گذرواژه</label>
-                                                                <input id="basicPassworda" type="text" class="form-control" placeholder="گذرواژه را وارد کنید">
-                                                            </fieldset>
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <fieldset disabled="disabled">
-                                                                <label for="basicConfirmPassword" class="form-label">تأیید گذرواژه</label>
-                                                                <input id="basicConfirmPassword" type="text" class="form-control" placeholder="گذرواژه را تأیید کنید">
-                                                            </fieldset>
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                </div> <!-- end row -->
-                                            </div><!-- end tab-pane -->
-
-                                            <div class="tab-pane" id="basictab2" role="tabpanel">
-                                                <h4 class="fs-16 fw-semibold mb-1">اطلاعات پروفایل</h4>
-                                                <p class="text-muted">اطلاعات پروفایل خود را تنظیم کنید</p>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="avatar-lg mb-3">
-                                                            <div class="avatar-title bg-body rounded-circle border border-3 border-dashed-light position-relative">
-                                                                <label for="imageInput" class="position-absolute end-0 bottom-0">
-                                                                    <div class="avatar-xs cursor-pointer">
-                                                                        <span class="avatar-title bg-light text-dark rounded-circle"><i class="bx bx-camera"></i></span>
-                                                                    </div>
-                                                                </label>
-                                                                <input asp-for="@Model.UpdatedUserInfo.ImagePath" class="hidden" type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
-
-                                                                <img id="preview" src="@Model.WantedUser.ImagePath" alt="تصویر پیش‌نمایش" class="rounded-circle img-fluid">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="basicFname">نام</label>
-                                                                    <input asp-for="@Model.UpdatedUserInfo.FirstName" type="text" id="basicFname" class="form-control"  value="@Model.WantedUser.FirstName">
-                                                                </div>
-                                                            </div><!-- end col -->
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="basicLname">نام خانوادگی</label>
-                                                                    <input asp-for="@Model.UpdatedUserInfo.LastName" type="text" id="basicLname" class="form-control" value="@Model.WantedUser.FirstName">
-                                                                </div>
-                                                            </div><!-- end col -->
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label" for="basicMnumber">شماره</label>
-                                                                    <input asp-for="@Model.UpdatedUserInfo.Mobile" type="number" id="basicMnumber" class="form-control" placeholder="شماره موبایل" value="@Model.WantedUser.Mobile">
-                                                                </div>
-                                                            </div><!-- end col -->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <div class="input-group">
-                                                                        <select asp-for="@Model.UpdatedUserInfo.CityId" class="form-select">
-                                                                            <option value="@Model.WantedUser.CityId">انتخاب کنید</option>
-                                                                            @foreach (var city in await cityService.GetAllCities(default))
-                                                                            {
-                                                                                <option value="@city.Id">@city.Title</option>
-                                                                            }
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div><!-- end col -->
-                                                        </div><!-- end row -->
-                                                    </div> <!-- end col -->
-                                                </div> <!-- end row -->
-                                            </div><!-- end tab-pane -->
-
-                                            <div class="tab-pane" id="basictab3" role="tabpanel">
-                                                <h4 class="fs-16 fw-semibold mb-1">لینک‌های رسانه‌های اجتماعی</h4>
-                                                <p class="text-muted">لینک‌های رسانه‌های اجتماعی خود را پر کنید</p>
-
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="basicGitLink" class="form-label">GitHub</label>
-                                                            <input id="basicGitLink" type="text" class="form-control" placeholder="لینک GitHub">
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="basicGoogleLink" class="form-label">گوگل</label>
-                                                            <input id="basicGoogleLink" type="text" class="form-control" placeholder="لینک گوگل">
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="basicInstagramLink" class="form-label">اینستاگرام</label>
-                                                            <input id="basicInstagramLink" type="text" class="form-control" placeholder="لینک اینستاگرام">
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="basicSkypeLink" class="form-label">Skype</label>
-                                                            <input id="basicSkypeLink" type="text" class="form-control" placeholder="لینک Skype">
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                </div><!-- end row -->
-                                            </div><!-- end tab-pane -->
-
-                                            <div class="tab-pane" id="basictab4" role="tabpanel">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="text-center">
-                                                            <div class="avatar-md mx-auto mb-3">
-                                                                <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle"><iconify-icon icon="iconamoon:like-duotone" class="fs-36"></iconify-icon></div>
-                                                            </div>
-                                                            <h3 class="mt-0">تمام شد!</h3>
-
-                                                            <p class="w-75 mb-2 mx-auto">اطلاعات با موفقیت پر شد.</p>
-
-                                                            <div class="mb-3">
-                                                                <div class="form-check d-inline-block">
-                                                                    <input type="checkbox" class="form-check-input" id="customCheck1">
-                                                                    <label class="form-check-label" for="customCheck1">با شرایط و ضوابط موافقم</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> <!-- end col -->
-                                                </div> <!-- end row -->
-                                            </div><!-- end tab-pane -->
-
-                                            <div class="d-flex flex-wrap align-items-center wizard justify-content-between gap-3 mt-3">
-                                                <div class="first">
-                                                    <a href="javascript:void(0);" class="btn btn-soft-primary">
-                                                        اول
-                                                    </a>
-                                                </div>
-                                                <div class="d-flex gap-2">
-                                                    <div class="previous">
-                                                        <a href="javascript:void(0);" class="btn btn-primary disabled">
-                                                            <i class="bx bx-left-arrow-alt me-2"></i>بازگشت به قبلی
-                                                        </a>
-                                                    </div>
-                                                    <div class="next">
-                                                        <a href="javascript:void(0);" class="btn btn-primary">
-                                                            مرحله بعد<i class="bx bx-right-arrow-alt ms-2"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="last">
-                                                    <button type="submit" href="javascript:void(0);" class="btn btn-soft-primary">
-                                                        اتمام
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div> <!-- tab-content -->
-                                    </div> <!-- end #horizontal wizard-->
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="last">
+                                        <button type="submit" href="javascript:void(0);" class="btn btn-soft-primary">
+                                            اتمام
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> <!-- tab-content -->
+                        </div> <!-- end #horizontal wizard-->
+                    </form>
                 </div>
             </div>
-
         </div>
-
-        <!-- ========== Footer Start ========== -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <script>document.write(new Date().getFullYear())</script> &copy; لارکن. ساخته شده توسط
-                        <iconify-icon icon="iconamoon:heart-duotone" class="fs-18 align-middle text-danger"></iconify-icon>
-                        <a href="" class="fw-bold footer-text" target="_blank">تکزا</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- ========== Footer End ========== -->
-
     </div>
-
-    <script src="~/AdminTemplate/js/app.js"></script>
-    <script src="~/AdminTemplate/js/layout.js"></script>
-    <script src="~/AdminTemplate/libs/dropzone/min/dropzone.min.js"></script>
-    <script src='~/AdminTemplate/libs/nouislider/nouislider.min.js'></script>
-    <script src='~/AdminTemplate/libs/wNumb/wNumb.min.js'></script>
-    <script src="~/AdminTemplate/js/pages/app-ecommerce-seller-add.js"></script>
-</body>
-
-</html>
+</div>
