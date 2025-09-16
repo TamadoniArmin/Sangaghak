@@ -405,8 +405,7 @@ namespace Connection.Migrations
                         name: "FK_Requests_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Requests_Offers_AcceptedOfferId",
                         column: x => x.AcceptedOfferId,

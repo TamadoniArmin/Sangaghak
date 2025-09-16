@@ -1,12 +1,10 @@
 ﻿@page
-@model SangaghakRazorEndPoint.Areas.Customer.Pages.PostRequestModel
+@model SangaghakRazorEndPoint.Areas.Customer.Pages.PostRequestWithPackageIdModel
 @{
-    Layout = "~/Areas/Customer/Pages/Shared/_Layout2.cshtml";
-    ViewData["Title"] = "ثبت درخواست";
+    Layout = "~/Areas/Customer/Pages/Shared/_Layout2.cshtml";  // مشخص کردن قالب 1
+    ViewData["Title"] = " ثبت درخواست با ایدی پکیج";
 }
-@using SangaghakRazorEndPoint
-@namespace SangaghakRazorEndPoint.Pages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 
 <div class="post-job-area pt-100 pb-70">
     <div class="container">
@@ -18,48 +16,46 @@
                 <form enctype="multipart/form-data" role="form" method="post" id="contactForm">
                     <input asp-for="@Model.NewRequest.CityId" type="hidden" value="@Model.LogedInUser.CityId">
                     <input asp-for="@Model.NewRequest.CustomerId" type="hidden" value="@Model.CustomerId">
-                    <input asp-for="@Model.NewRequest.WantedPrice" type="hidden">
-                    @Html.Raw(Model.HiddenInputsHtml)
+                    <input asp-for="@Model.NewRequest.ServicePackageId" type="hidden" value="@Model.WantedPackage.Id">
+                    <input asp-for="@Model.NewRequest.WantedPrice" type="hidden" value="@Model.WantedPackage.MinPrice">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
-                            <div class="form-group select-group">
-                                <label>دسته بندی</label>
-                                <select asp-for="@Model.NewRequest.ServicePackageId" class="form-select form-control">
-                                    @Html.Raw(Model.ServicePackagesOptionsHtml)
-                                </select>
+                            <div class="form-group">
+                                <label>پکیج انتخاب شده</label>
+                                <input value="@Model.WantedPackage.Tiltle" name="msg_subject" class="form-control" readonly data-error="" placeholder="عنوان پکیج">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="form-group">
                                 <label>مهلت درخواست</label>
-                                <input asp-for="@Model.NewRequest.MaxTime" class="form-control persian-datepicker" placeholder="1400/02/29">
+                                <input asp-for="@Model.NewRequest.MaxTime" name="msg_subject" class="form-control" required data-error="لطفا تاریخ را وارد کنید" placeholder="1400/02/29" data-jdp>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <label>شرح کار</label>
-                                <textarea asp-for="@Model.NewRequest.Description" class="form-control" cols="30" rows="5"></textarea>
+                                <label>شرح کار*</label>
+                                <textarea asp-for="@Model.NewRequest.Description" class="form-control" cols="30" rows="5" required data-error="شرح کار خود را بنویسید"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>آدرس</label>
-                                <input asp-for="@Model.NewRequest.Address" type="text" class="form-control">
+                                <label>آدرس*</label>
+                                <input asp-for="@Model.NewRequest.Address" type="text" class="form-control" required data-error="لطفا آدرس شرح کار خود را وارد کنید">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="choose-img">
                                 <p class="title">عکس 1 (اختیاری)</p>
-                                <label for="img1">تصویر را انتخاب کنید:</label>
-                                <input asp-for="@Model.NewRequest.ImageFile1" type="file" id="img1" name="img1" accept="image/*">
+                                <label for="img">تصویر را انتخاب کنید:</label>
+                                <input asp-for="@Model.NewRequest.ImageFile1" type="file" id="img" name="img" accept="image/*">
                                 <p>حداکثر حجم فایل: 2 مگابایت</p>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="choose-img">
                                 <p class="title">عکس 2 (اختیاری)</p>
-                                <label for="img2">تصویر را انتخاب کنید:</label>
-                                <input asp-for="@Model.NewRequest.ImageFile2" type="file" id="img2" name="img2" accept="image/*">
+                                <label for="img">تصویر را انتخاب کنید:</label>
+                                <input asp-for="@Model.NewRequest.ImageFile2" type="file" id="img" name="img" accept="image/*">
                                 <p>حداکثر حجم فایل: 2 مگابایت</p>
                             </div>
                         </div>

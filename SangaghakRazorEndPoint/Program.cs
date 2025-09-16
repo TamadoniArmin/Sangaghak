@@ -117,6 +117,7 @@ namespace SangaghakRazorEndPoint
                 builder.Services.AddScoped<IDashboardAppService, DashboardAppService>();
                 builder.Services.AddScoped<IGeneralService, GeneralService>();
                 builder.Services.AddScoped<ICustomerProfileAppService, CustomerProfileAppService>();
+                builder.Services.AddScoped<IPostRequestAppService, PostRequestAppService>();
 
 
                 builder.Services.AddRazorPages();

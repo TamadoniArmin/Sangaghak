@@ -984,7 +984,7 @@ namespace Connection.Migrations
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Customer", "Customer")
                         .WithMany("Requets")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.ServicePackages.ServicePackage", "ServicePackage")

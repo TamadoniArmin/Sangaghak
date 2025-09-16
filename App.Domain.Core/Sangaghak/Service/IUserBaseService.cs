@@ -18,6 +18,8 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<int> GetCountByRoleAsync(RoleEnum role, CancellationToken cancellationToken);
         public Task<int> GetBalanceAsync(int UserId, CancellationToken cancellationToken);
         public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken);
+        public Task<int> GetCustomerIdByUserId(int UserId, CancellationToken cancellationToken);
+        public Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken);
         public Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken);
         public Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken);
         public Task<bool> UpdateUserInfoAsync(UserBaseDTO user,int UserId ,CancellationToken cancellationToken);

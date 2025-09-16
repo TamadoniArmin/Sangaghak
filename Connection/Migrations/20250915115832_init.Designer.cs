@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Connection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250910122646_init")]
+    [Migration("20250915115832_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -987,7 +987,7 @@ namespace Connection.Migrations
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Customer", "Customer")
                         .WithMany("Requets")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.ServicePackages.ServicePackage", "ServicePackage")

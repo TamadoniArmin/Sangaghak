@@ -38,6 +38,7 @@
     <Compile Include="Areas\Admin\Pages\UserRegister.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\Index.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\PostRequest.cshtml.cs" />
+    <Compile Include="Areas\Customer\Pages\PostRequestWithPackageId.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\RequestDetails.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\Index.cshtml.cs" />
@@ -167,6 +168,7 @@
     <None Include="Areas\Admin\Pages\Shared\_Layout.cshtml.css" />
     <None Include="Areas\Customer\Pages\Index.cshtml" />
     <None Include="Areas\Customer\Pages\PostRequest.cshtml" />
+    <None Include="Areas\Customer\Pages\PostRequestWithPackageId.cshtml" />
     <None Include="Areas\Customer\Pages\RequestDetails.cshtml" />
     <None Include="Areas\Customer\Pages\Shared\_Layout2.cshtml.css" />
     <None Include="Areas\Customer\Pages\Shared\_Layout.cshtml.css" />

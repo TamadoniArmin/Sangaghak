@@ -12,49 +12,19 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 {
     public class UserBaseRepository : IUserBaseRepository
     {
+        #region Dependency Injection
         private readonly AppDbContext _appDbContext;
         public UserBaseRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
-
-        public async Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
-        {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false,cancellationToken);
-            if (WantedUser == null || WantedUser.Balance >= 0) return false;
-            else
-            {
-                if (WantedUser.Balance<money)
-                {
-                    return false;
-                }
-                else
-                {
-                    WantedUser.Balance-=money;
-                    await _appDbContext.SaveChangesAsync(cancellationToken);
-                    return true;
-                }
-            }
-        }
-
-        public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
-        {
-            var User = await _appDbContext
-                .Users
-                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
-            if (User == null) return false;
-            else 
-                {
-                    User.IsDeleted = true;
-                    await _appDbContext.SaveChangesAsync(cancellationToken);
-                    return true;
-                }
-
-        }
-
+        #endregion
+        #region Create
+        #endregion
+        #region Read
         public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
         {
-            var Result= await _appDbContext
+            var Result = await _appDbContext
                 .Users
                 //.AsNoTracking()
                 .Where(x => x.IsDeleted == false)
@@ -63,35 +33,35 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
-                    FullName=x.FirstName+" "+ x.LastName,
-                    UserName=x.UserName??string.Empty,
-                    Mobile=x.Mobile,
-                    Email=x.Email,
-                    RegisterAt=x.RegisteredAt,
-                    CityId=x.CityId,
-                    Role=x.Role,
-                    ImagePath=x.ImagePath
+                    FullName = x.FirstName + " " + x.LastName,
+                    UserName = x.UserName ?? string.Empty,
+                    Mobile = x.Mobile,
+                    Email = x.Email,
+                    RegisterAt = x.RegisteredAt,
+                    CityId = x.CityId,
+                    Role = x.Role,
+                    ImagePath = x.ImagePath
                 }).ToListAsync(cancellationToken);
             return Result;
         }
 
-        public async Task<int> GetBalanceAsync(int UserId,CancellationToken cancellationToken)
+        public async Task<int> GetBalanceAsync(int UserId, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId,cancellationToken);
+            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId, cancellationToken);
             if (WantedUser == null) return -1;
             return WantedUser.Balance;
         }
 
         public async Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
-            var WantedUser=await _appDbContext.Users.FirstOrDefaultAsync(x=>x.Id == id && x.IsDeleted==false, cancellationToken);
+            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false, cancellationToken);
             if (WantedUser == null) return null;
             var User = new GetUserBaseForViewPage()
             {
                 Id = WantedUser.Id,
                 FirstName = WantedUser.FirstName,
                 LastName = WantedUser.LastName,
-                FullName=WantedUser.FirstName+ " " + WantedUser.LastName,
+                FullName = WantedUser.FirstName + " " + WantedUser.LastName,
                 UserName = WantedUser.UserName,
                 Mobile = WantedUser.Mobile,
                 Email = WantedUser.Email,
@@ -123,12 +93,12 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<int> GetCountAsync(CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users.Where(x=>x.IsDeleted==false).CountAsync(cancellationToken);
+            return await _appDbContext.Users.Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<int> GetCountByRoleAsync(RoleEnum role, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users.Where(x=>x.Role== role && x.IsDeleted==false).CountAsync(cancellationToken);
+            return await _appDbContext.Users.Where(x => x.Role == role && x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken)
@@ -196,7 +166,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId, CancellationToken cancellationToken)
         {
-            var User= await _appDbContext.Users.FirstOrDefaultAsync(x=>x.ExpertId==ExpertId && x.IsDeleted==false, cancellationToken);
+            var User = await _appDbContext.Users.FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
             if (User is null) return null;
             else
             {
@@ -204,28 +174,68 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 userBaseSummaryDto.FirstName = User.FirstName;
                 userBaseSummaryDto.LastName = User.LastName;
                 userBaseSummaryDto.CityId = User.CityId;
-                userBaseSummaryDto.UserName = User.UserName??string.Empty;
+                userBaseSummaryDto.UserName = User.UserName ?? string.Empty;
                 userBaseSummaryDto.Email = User.Email;
                 userBaseSummaryDto.RegisterAt = User.RegisteredAt;
                 userBaseSummaryDto.Role = User.Role;
-                userBaseSummaryDto.ImagePath= User.ImagePath;
+                userBaseSummaryDto.ImagePath = User.ImagePath;
                 return userBaseSummaryDto;
             }
 
         }
+        public async Task<int> GetCustomerIdByUserId(int UserId, CancellationToken cancellationToken)
+        {
+            var WantedUser = await _appDbContext.Users
+                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
+            if (WantedUser is null) return 0;
+            else
+            {
+                return WantedUser.CustomerId ?? 0;
+            }
+        }
 
+        public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)
+        {
+            var WantedUser = await _appDbContext.Users
+                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
+            if (WantedUser is null) return 0;
+            else
+            {
+                return WantedUser.ExpertId ?? 0;
+            }
+        }
+        #endregion
+        #region Update
+        public async Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
+        {
+            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
+            if (WantedUser == null || WantedUser.Balance >= 0) return false;
+            else
+            {
+                if (WantedUser.Balance < money)
+                {
+                    return false;
+                }
+                else
+                {
+                    WantedUser.Balance -= money;
+                    await _appDbContext.SaveChangesAsync(cancellationToken);
+                    return true;
+                }
+            }
+        }
         public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)
         {
-            var WantedUser= await _appDbContext.Users.FirstOrDefaultAsync(x=>x.Id == UserId && x.IsDeleted==false, cancellationToken);
+            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
             if (WantedUser == null) return false;
             WantedUser.Balance += money;
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;
         }
 
-        public async Task<bool> UpdateUserInfo(UserBaseDTO user, int UserId,CancellationToken cancellationToken)
+        public async Task<bool> UpdateUserInfo(UserBaseDTO user, int UserId, CancellationToken cancellationToken)
         {
-            var User=await _appDbContext.Users.FirstOrDefaultAsync(x=>x.Id==UserId && x.IsDeleted==false,cancellationToken);
+            var User = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
             if (User == null) return false;
             else
             {
@@ -238,5 +248,23 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return true;
             }
         }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
+        {
+            var User = await _appDbContext
+                .Users
+                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
+            if (User == null) return false;
+            else
+            {
+                User.IsDeleted = true;
+                await _appDbContext.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+
+        }
+
+        #endregion
     }
 }

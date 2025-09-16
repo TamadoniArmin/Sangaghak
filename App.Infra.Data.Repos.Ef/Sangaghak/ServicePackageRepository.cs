@@ -140,6 +140,25 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             if (Package is null) return string.Empty;
             else return Package.Tiltle;
         }
+        public async Task<ServicePackageBasicInfoDTO?> GetPackageBasicInfo(int PackageId, CancellationToken cancellationToken)
+        {
+            var WantedPackage= await _context.Packages
+                .Where(x => x.Id == PackageId && x.IsDeleted == false)
+                .Select(x => new ServicePackageBasicInfoDTO
+                {
+                    Id = x.Id,
+                    Tiltle = x.Tiltle,
+                    MinPrice = x.MinPrice
+                }).FirstOrDefaultAsync(cancellationToken);
+            if (WantedPackage is null)
+            {
+                return null;
+            }
+            else
+            {
+                return WantedPackage;
+            }
+        }
         #endregion
         #region Update
         public async Task<bool> UpdateServicePackage(ServicePackageForCreateDTO servicePackageDTO, int PackageId, CancellationToken cancellationToken)

@@ -69,12 +69,10 @@ namespace SangaghakAppService.Sangaghak.ServicePackages
             return await _service.GetPackageTiltleById(PackageId, cancellationToken);
         }
 
-
-
-
-
-
-
+        public async Task<ServicePackageBasicInfoDTO?> GetPackageBasicInfo(int PackageId, CancellationToken cancellationToken)
+        {
+            return await _service.GetPackageBasicInfo(PackageId, cancellationToken);
+        }
         #endregion
         #region Update
         public async Task<bool> UpdateServicePackage(ServicePackageForCreateDTO servicePackageDTO, int PackageId, CancellationToken cancellationToken)

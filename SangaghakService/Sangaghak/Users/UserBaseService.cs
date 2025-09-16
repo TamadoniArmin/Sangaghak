@@ -64,6 +64,11 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.GetCustomerByCustomerIdAsync(CustomerId, cancellationToken);
         }
 
+        public async Task<int> GetCustomerIdByUserId(int UserId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCustomerIdByUserId(UserId, cancellationToken);
+        }
+
         public async Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
             return await _repository.GetCustomerNameByCustomerIdAsync(CustomerId,cancellationToken);
@@ -72,6 +77,11 @@ namespace SangaghakService.Sangaghak.Users
         public async Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId, CancellationToken cancellationToken)
         {
             return await _repository.GetCustomerSummeryByCustomerId(CustomerId, cancellationToken);
+        }
+
+        public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetExpertIdIdByUserId(UserId,cancellationToken);
         }
 
         public async Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)

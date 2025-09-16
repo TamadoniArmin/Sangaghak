@@ -29,6 +29,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     CityId = request.CityId,
                     CustomerId = request.CustomerId,
                     MaxTime = request.MaxTime,
+                    ServicePackageId= request.ServicePackageId,
                     Status = RequestStatusEnum.WatingForExpertsOffers,
                     SetAt = DateTime.Now,
                 };
@@ -143,7 +144,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             {
                 return await _context
                 .Requests
-                .Include(x => x.CustomerId)
                 .AsNoTracking()
                 .Where(x => x.Customer.Id == customerId && x.IsDeleted == false)
                 .Select(x => new RequestDTO()

@@ -178,5 +178,15 @@ namespace SangaghakAppService.Sangaghak.Users
             _logger.Log(logLevel: LogLevel.Warning , "User Logged In");
             return result.Succeeded ? IdentityResult.Success : IdentityResult.Failed();
         }
+
+        public async Task<int> GetCustomerIdByUserId(int UserId, CancellationToken cancellationToken)
+        {
+            return await _userService.GetCustomerIdByUserId(UserId, cancellationToken);
+        }
+
+        public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)
+        {
+            return await _userService.GetExpertIdIdByUserId(UserId, cancellationToken);
+        }
     }
 }
