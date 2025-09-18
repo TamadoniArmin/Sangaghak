@@ -93,5 +93,25 @@ namespace SangaghakService.Sangaghak.Requests
         {
             return await _repository.UpdateRequestStatusAsync(RequestId, requestStatus, cancellationToken);
         }
+
+        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetExpertNotCompeletedRequestsAsync(ExpertId, cancellationToken);
+        }
+
+        public async Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, List<int> PackagesId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetMatchRequestForExpert(cityId, PackagesId, cancellationToken);
+        }
+
+        public async Task<int> GetMatchRequestForExpertCount(int cityId, List<int> PackagesId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetMatchRequestForExpertCount(cityId, PackagesId, cancellationToken);
+        }
+
+        public async Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllExpertRequestsCountAsync(ExpertId,cancellationToken);
+        }
     }
 }

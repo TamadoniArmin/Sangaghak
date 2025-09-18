@@ -23,6 +23,11 @@ namespace SangaghakService.Sangaghak.Requests
             return await _offerRepository.DeleteOffer(OfferId, cancellationToken);
         }
 
+        public async Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken)
+        {
+           return await _offerRepository.GetAllExpertOffersCount(expertId, cancellationToken);
+        }
+
         public async Task<List<OfferDTO>> GetAllOffersAsync(CancellationToken cancellationToken)
         {
             return await _offerRepository.GetAllOffersAsync(cancellationToken);

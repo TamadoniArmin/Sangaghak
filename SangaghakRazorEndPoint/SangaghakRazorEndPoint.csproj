@@ -41,6 +41,9 @@
     <Compile Include="Areas\Customer\Pages\PostRequestWithPackageId.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\RequestDetails.cshtml.cs" />
     <Compile Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml.cs" />
+    <Compile Include="Areas\Expert\Pages\Index.cshtml.cs" />
+    <Compile Include="Areas\Expert\Pages\UpdateExpertSkills.cshtml.cs" />
+    <Compile Include="Areas\Expert\Pages\UpdateUserBasicInfo.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\Index.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\SeeCategoryDetails.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\SeeSubCategoryDetails.cshtml.cs" />
@@ -76,6 +79,14 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Areas\Customer\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Expert\Pages\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Expert\Pages\_ViewStart.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -173,6 +184,10 @@
     <None Include="Areas\Customer\Pages\Shared\_Layout2.cshtml.css" />
     <None Include="Areas\Customer\Pages\Shared\_Layout.cshtml.css" />
     <None Include="Areas\Customer\Pages\UpdateCustomerInfo.cshtml" />
+    <None Include="Areas\Expert\Pages\Index.cshtml" />
+    <None Include="Areas\Expert\Pages\Shared\_Layout.cshtml.css" />
+    <None Include="Areas\Expert\Pages\UpdateExpertSkills.cshtml" />
+    <None Include="Areas\Expert\Pages\UpdateUserBasicInfo.cshtml" />
     <None Include="Areas\Public\Pages\Index.cshtml" />
     <None Include="Areas\Public\Pages\SeeCategoryDetails.cshtml" />
     <None Include="Areas\Public\Pages\SeeSubCategoryDetails.cshtml" />

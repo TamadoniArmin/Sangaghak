@@ -14,6 +14,7 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<bool> CreatOffer(OfferForCreateAndUpdateDTO Model, CancellationToken cancellationToken);
         #endregion
         #region Read
+        public Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken);
         public Task<List<OfferDTO>> GetAllOffersAsync(CancellationToken cancellationToken);
         public Task<List<OfferDTO>> GetRequestOffersAsync(int Requestid, CancellationToken cancellationToken);
         public Task<OfferDTO> GetOfferByIdAsync(int Id, CancellationToken cancellationToken);

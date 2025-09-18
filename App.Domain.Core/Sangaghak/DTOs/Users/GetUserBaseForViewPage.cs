@@ -14,6 +14,9 @@ namespace App.Domain.Core.Sangaghak.DTOs.Users
         public string UserName { get; set; }
         public string? Mobile { get; set; }
         public string? Email { get; set; }
+        public int? AdminId { get; set; }
+        public int? CustomerId { get; set; }
+        public int? ExpertId { get; set; }
         public int CityId { get; set; }
         public string? CityName { get; set; }
         public DateTime RegisterAt { get; set; }

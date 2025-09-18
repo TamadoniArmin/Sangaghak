@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-menu-size="sm-hover">
+
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <title>داشبورد | لارکن قالب مدیریتی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully responsive premium admin dashboard template" />
+    <meta name="author" content="Techzaa" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/AdminTemplate/images/favicon.ico">
+
+    <link rel="stylesheet" href="~/AdminTemplate/css/app.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/icons.css">
+    <link rel="stylesheet" href="~/AdminTemplate/css/fontiran.min.css">
+    <script src="~/AdminTemplate/js/config.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="topbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <div class="d-flex align-items-center">
+                        <!-- دکمه toggle منو -->
+                        <div class="topbar-item">
+                            <button type="button" class="button-toggle-menu me-2">
+                                <iconify-icon icon="solar:hamburger-menu-broken" class="fs-24 align-middle"></iconify-icon>
+                            </button>
+                        </div>
+
+                        @await RenderSectionAsync("HeaderButtons", required: false)
+                    </div>
+
+                    <div class="d-flex align-items-center gap-1">
+
+                        <!-- تم رنگ (روشن/تاریک) -->
+                        <div class="topbar-item">
+                            <button type="button" class="topbar-button" id="light-dark-mode">
+                                <iconify-icon icon="solar:moon-bold-duotone" class="fs-24 align-middle"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <!-- کاربر -->
+                        <div class="dropdown topbar-item">
+                            <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <span class="d-flex align-items-center">
+                                    <img class="rounded-circle" width="32" src="/images/users/avatar-1.jpg"
+                                         alt="avatar-3">
+                                    @await RenderSectionAsync("AdminImage", required: false)
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- آیتم-->
+                                <h6 class="dropdown-header">به سنجاقک خوش آمدید!</h6>
+                                <a class="dropdown-item" asp-page="SeeUserProfile">
+                                    <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">پروفایل</span>
+                                </a>
+                                <div class="dropdown-divider my-1"></div>
+
+                                <a class="dropdown-item text-danger" href="login.html">
+                                    <i class="bx bx-log-out fs-18 align-middle me-1"></i><span class="align-middle">خروج</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+    </div>
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <main class="container mt-4">
+                <!-- Rendering the main content of each Razor page -->
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+
+
+    <script src="~/AdminTemplate/js/app.js"></script>
+    <script src="~/AdminTemplate/js/layout.js"></script>
+    <script src="~/AdminTemplate/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="~/AdminTemplate/libs/jsvectormap/jsvectormap.min.js"></script>
+    <script src="~/AdminTemplate/libs/jsvectormap/maps/world.js"></script>
+    <script src='~/AdminTemplate/js/pages/dashboard.js'></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

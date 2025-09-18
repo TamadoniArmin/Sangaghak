@@ -27,6 +27,7 @@ namespace App.Domain.Core.Sangaghak.DTOs.Requests
         public int? AcceptedOfferId { get; set; }
         public DateTime SetAt { get; set; }
         public RequestStatusEnum Status { get; set; }
-        //public List<IFormFile>? Images { get; set; }
+        public string? Images1 { get; set; }
+        public string? Images2 { get; set; }
     }
 }

@@ -159,6 +159,14 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return WantedPackage;
             }
         }
+        public async Task<List<int>>GetCategoryPackagesIdbyCategoriesIdAsync(List<int>  CategoriesId, CancellationToken cancellationToken)
+        {
+            return await _context.Packages
+                .Where(x=> CategoriesId.Contains(x.SubCategoryId))
+                .AsNoTracking()
+                .Select(x=>x.Id)
+                .ToListAsync(cancellationToken);
+        }
         #endregion
         #region Update
         public async Task<bool> UpdateServicePackage(ServicePackageForCreateDTO servicePackageDTO, int PackageId, CancellationToken cancellationToken)

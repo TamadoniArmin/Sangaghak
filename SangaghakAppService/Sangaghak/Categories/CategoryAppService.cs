@@ -87,6 +87,10 @@ namespace SangaghakAppService.Sangaghak.Categories
         {
             return await _categoryService.GetSubCategoryByIdAysnc(Id, cancellationToken);
         }
+        public async Task<List<int>> GetCategoryIdByExpertId(int expertId, CancellationToken cancellationToken)
+        {
+            return await _categoryService.GetCategoryIdByExpertId(expertId, cancellationToken);
+        }
 
 
         #endregion
@@ -114,8 +118,6 @@ namespace SangaghakAppService.Sangaghak.Categories
         {
             return await _categoryService.DeleteCategory(CategoryId, cancellationToken);
         }
-
-
         #endregion
 
     }

@@ -40,6 +40,13 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Read
+        public async Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Offers
+                .AsNoTracking()
+                .Where(x=>x.ExpertId==expertId && x.IsDeleted== false)
+                .CountAsync(cancellationToken);
+        }
         public async Task<List<OfferDTO>> GetAllOffersAsync(CancellationToken cancellationToken)
         {
             return await _appDbContext.Offers

@@ -16,6 +16,26 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Read
+        public async Task<bool> CheckExpertHasAnySkillAsync(int ExpertId,CancellationToken cancellationToken)
+        {
+            var WantedExpert = await _appDbContext.Experts
+                 .Where(x => x.Id == ExpertId && x.IsDeleted == false)
+                 .Include(x => x.Skills)
+                 .AsNoTracking()
+                 .FirstOrDefaultAsync(cancellationToken);
+            if (WantedExpert is null)
+            {
+                return false;
+            }
+            else
+            {
+                if(WantedExpert.Skills.Any())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public async Task<int> GetExpertRateAsync(int ExpertId, CancellationToken cancellationToken)
         {
             var Expert = await _appDbContext.Experts.FirstOrDefaultAsync(x => x.Id == ExpertId && x.IsDeleted == false,cancellationToken);
@@ -30,20 +50,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return sum / PointerCount;
             }
             return -1;
-        }
-        public async Task<List<GetSubCategoryNameForExpertsDTO>?> GetExpertSkillsId(int ExpertId, CancellationToken cancellationToken)
-        {
-            var expert = await _appDbContext.Experts
-                .Where(x=>x.IsDeleted==false)
-                .Include(e => e.Skills)
-                .FirstOrDefaultAsync(e => e.Id == ExpertId);
-
-            var WantedSkills= expert?.Skills?.Select(s => new GetSubCategoryNameForExpertsDTO
-            {
-                SubcategoryNames = s.Title
-            }
-            ).ToList();
-            return WantedSkills;
         }
         #endregion
         #region Update

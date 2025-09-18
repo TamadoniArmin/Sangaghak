@@ -37,6 +37,11 @@ namespace SangaghakService.Sangaghak.ServicePackages
             return await servicePackageRepository.GetAllPackageCount(cancellationToken);
         }
 
+        public async Task<List<int>> GetCategoryPackagesIdbyCategoriesIdAsync(List<int> CategoriesId, CancellationToken cancellationToken)
+        {
+            return await servicePackageRepository.GetCategoryPackagesIdbyCategoriesIdAsync(CategoriesId, cancellationToken);
+        }
+
         public async Task<ServicePackageBasicInfoDTO?> GetPackageBasicInfo(int PackageId, CancellationToken cancellationToken)
         {
             return await servicePackageRepository.GetPackageBasicInfo(PackageId, cancellationToken);

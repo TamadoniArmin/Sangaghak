@@ -1,0 +1,68 @@
+﻿@page
+@model SangaghakRazorEndPoint.Areas.Expert.Pages.UpdateExpertSkillsModel
+@{
+}
+
+@using App.Domain.Core.Sangaghak.Enum
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">وظایف من</h4>
+                <div>
+                    <a href="#!" class="btn btn-sm btn-primary">
+                        <i class="bx bx-plus me-1"></i>ایجاد وظیفه
+                    </a>
+                </div>
+            </div> <!-- end card-header-->
+            <div class="card-body p-0 pb-3">
+                <div class="p-3" data-simplebar style="max-height: 386px;">
+                    <div class="form-check form-todo ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck1">
+                        <label class="form-check-label" for="customCheck1">بررسی لاگ‌های سیستم برای هرگونه خطای گزارش شده</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" checked id="customCheck2">
+                        <label class="form-check-label" for="customCheck2">انجام آزمایش‌های کاربری برای شناسایی اشکالات احتمالی</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck3">
+                        <label class="form-check-label" for="customCheck3">جمع‌آوری بازخورد از ذینفعان</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck4">
+                        <label class="form-check-label" for="customCheck4">اولویت‌بندی اشکالات بر اساس شدت و تأثیر</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck5">
+                        <label class="form-check-label" for="customCheck5">تحقیق و تحلیل علت اصلی هر اشکال</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck6">
+                        <label class="form-check-label" for="customCheck6">توسعه و پیاده‌سازی اصلاحات برای اشکالات شناسایی شده</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck7">
+                        <label class="form-check-label" for="customCheck7">تکمیل هر گونه وظایف تکراری</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck8">
+                        <label class="form-check-label" for="customCheck8">بررسی ایمیل‌ها و پاسخ دادن</label>
+                    </div>
+                    <div class="form-check form-todo py-1 my-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" checked id="customCheck9">
+                        <label class="form-check-label" for="customCheck9">بررسی برنامه‌ریزی برای روز</label>
+                    </div>
+                    <div class="form-check form-todo pt-1 mt-2 ps-4">
+                        <input type="checkbox" class="form-check-input rounded-circle mt-0 fs-18" id="customCheck10">
+                        <label class="form-check-label" for="customCheck10">جلسه روزانه استندآپ</label>
+                    </div>
+                </div>
+            </div> <!-- end card body -->
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+</div>

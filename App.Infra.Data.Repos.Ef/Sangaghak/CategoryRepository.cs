@@ -227,6 +227,25 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return categoryDTO;
             }
         }
+        public async Task<List<GetSubCategoryNameForExpertsDTO>> GetCategoryNamesByExpertId(int expertId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Categories
+                .AsNoTracking()
+                .Where(c => c.Experts != null && c.Experts.Any(e => e.Id == expertId))
+                .Select(c => new GetSubCategoryNameForExpertsDTO
+                {
+                    SubcategoryNames = c.Title
+                })
+                .ToListAsync(cancellationToken);
+        }
+        public async Task<List<int>> GetCategoryIdByExpertId(int expertId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Categories
+                .AsNoTracking()
+                .Where(c => c.Experts != null && c.Experts.Any(c => c.Id == expertId))
+                .Select(x => x.Id)
+                .ToListAsync(cancellationToken);
+        }
         #endregion
         #region Update
         public async Task<bool> UpdateSubCategory(SubCategoryDTO Model, int SubCategoryId, CancellationToken cancellationToken)
