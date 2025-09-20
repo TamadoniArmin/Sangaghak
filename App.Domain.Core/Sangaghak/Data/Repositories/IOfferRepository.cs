@@ -24,6 +24,7 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         #endregion
         #region Update
         public Task<bool> UpdateOfferAsync(OfferForCreateAndUpdateDTO offer, int OfferId, CancellationToken cancellationToken);
+        public Task<bool> UpdateOfferStatusByOfferIdAysnc(int offerId, CancellationToken cancellationToken);
         #endregion
         #region Delete
         public Task<bool> DeleteOffer(int OfferId, CancellationToken cancellationToken);

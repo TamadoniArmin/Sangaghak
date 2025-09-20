@@ -97,5 +97,10 @@ namespace SangaghakAppService.Sangaghak.Requests
         {
             return await _offerService.UpdateOfferAsync(offer, OfferId,cancellationToken);
         }
+
+        public async Task<bool> UpdateOfferStatusByOfferIdAysnc(int offerId, CancellationToken cancellationToken)
+        {
+            return await _offerService.UpdateOfferStatusByOfferIdAysnc(offerId, cancellationToken);
+        }
     }
 }

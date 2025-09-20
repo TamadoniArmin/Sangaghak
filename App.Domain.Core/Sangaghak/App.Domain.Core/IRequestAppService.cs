@@ -30,6 +30,7 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         #region Update
         public Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken);
         public Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken);
+        public Task<(bool Success, string? ErrorMessage)> PayRequestAysnc(int OfferdPrice, int RequestId, CancellationToken cancellationToken);
         #endregion
         #region Delete
         public Task<bool> DeleteRequestDetailsAsync(int RequestId, CancellationToken cancellationToken);

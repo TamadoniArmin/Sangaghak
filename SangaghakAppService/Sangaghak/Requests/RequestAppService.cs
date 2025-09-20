@@ -158,14 +158,53 @@ namespace SangaghakAppService.Sangaghak.Requests
             return await _service.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
         }
 
-        public Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
+        public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _service.UpdateRequestDetailsAsync(OfferId, RequestId, cancellationToken);
         }
 
         public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken)
         {
             return await _service.UpdateRequestStatusAsync(RequestId, requestStatus, cancellationToken);
+        }
+        public async Task<(bool Success, string? ErrorMessage)> PayRequestAysnc(int OfferedPrice, int RequestId, CancellationToken cancellationToken)
+        {
+            var wantedRequest = await _service.GetRequestByIdAysnc(RequestId, cancellationToken);
+            if (wantedRequest == null)
+            {
+                return (false, "درخواست موردنظر یافت نشد.");
+            }
+
+            var Customer = await _userBaseService.GetCustomerBasicInfoByCustomerIdAsync(wantedRequest.CustomerId, cancellationToken);
+            var Expert = await _userBaseService.GetExpertBasicInfoByExpertIdAsync(wantedRequest.ExpertId, cancellationToken);
+            var CompanyProfit = (int)Math.Ceiling(wantedRequest.OfferPrice * 0.1);
+            var TotalCost = wantedRequest.OfferPrice + CompanyProfit;
+
+            var (success, errorMessage) = await _userBaseService.DecreaseBalanceAsync(Customer.Id, TotalCost, cancellationToken);
+            if (!success)
+            {
+                return (false, errorMessage ?? "موجودی کافی نیست.");
+            }
+
+            var Result2 = await _userBaseService.IncreaseBalance(Expert.Id, wantedRequest.OfferPrice, cancellationToken);
+            if (!Result2)
+            {
+                return (false, "خطا در افزایش موجودی کارشناس.");
+            }
+
+            var Result3 = await _userBaseService.IncreaseBalance(1, CompanyProfit, cancellationToken);
+            if (!Result3)
+            {
+                return (false, "خطا در افزایش موجودی شرکت.");
+            }
+
+            var Result4 = await _service.UpdateRequestStatusAsync(RequestId, RequestStatusEnum.Complited, cancellationToken);
+            if (!Result4)
+            {
+                return (false, "خطا در بروزرسانی وضعیت درخواست شما");
+            }
+            
+            return (true, null);
         }
     }
 }

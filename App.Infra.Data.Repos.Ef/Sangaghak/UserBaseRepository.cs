@@ -254,28 +254,36 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Update
-        public async Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
+        public async Task<(bool Success, string? ErrorMessage)> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
-            if (WantedUser == null || WantedUser.Balance >= 0) return false;
-            else
+            var WantedUser = await _appDbContext.Users
+                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
+
+            if (WantedUser == null)
             {
-                if (WantedUser.Balance < money)
-                {
-                    return false;
-                }
-                else
-                {
-                    WantedUser.Balance -= money;
-                    await _appDbContext.SaveChangesAsync(cancellationToken);
-                    return true;
-                }
+                return (false, "کاربر یافت نشد.");
             }
+
+            if (WantedUser.Balance < money)
+            {
+                return (false, "موجودی کافی نیست. لطفاً موجودی حساب خود را افزایش دهید.");
+            }
+
+            WantedUser.Balance -= money;
+            await _appDbContext.SaveChangesAsync(cancellationToken);
+            return (true, null);
         }
+
         public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
-            if (WantedUser == null) return false;
+            var WantedUser = await _appDbContext.Users
+                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
+
+            if (WantedUser == null)
+            {
+                return false;
+            }
+
             WantedUser.Balance += money;
             await _appDbContext.SaveChangesAsync(cancellationToken);
             return true;

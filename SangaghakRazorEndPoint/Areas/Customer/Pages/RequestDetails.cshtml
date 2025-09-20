@@ -24,7 +24,7 @@
                                         @Model.Request.Status
                                 </h4>
                                 <p class="mb-0">
-                                    این درخواست در تاریخ 
+                                    این درخواست در تاریخ
                                     (@Model.Request.SetAt)
                                     ثبت شده است
                                 </p>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">پیشنهادهای ثبت‌شده برای این درخواست</h4>
@@ -123,6 +123,7 @@
                                         <th>قیمت پیشنهادی</th>
                                         <th>متن</th>
                                         <th>وضعیت</th>
+                                        <th>عملیات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,7 +139,7 @@
                                                         </div>
                                                         <div>
                                                             <a href="#!" class="text-dark fw-medium fs-15">
-                                                                تی‌شرت مردانه مشکی سایز اسلیم فیت
+                                                                @offer.ExpertFullName
                                                             </a>
                                                             <p class="text-muted mb-0 mt-1 fs-13">
                                                                 <span>کارشناس</span>
@@ -149,34 +150,34 @@
                                                 <td>@offer.OfferedPrice</td>
                                                 <td>@offer.Description</td>
                                                 <td>
+                                                    @switch (offer.Status)
+                                                    {
+                                                        case OfferStatusEnum.Pending:
+                                                            <span class="badge bg-warning-subtle text-warning px-2 py-1 fs-13">در حال بررسی</span>
+                                                            break;
+                                                        case OfferStatusEnum.Accepted:
+                                                            <span class="badge border border-success text-success bg-transparent px-2 py-1 fs-13">قبول شده</span>
+                                                            break;
+                                                        case OfferStatusEnum.Rejected:
+                                                            <span class="badge border border-secondary text-secondary bg-transparent px-2 py-1 fs-13">رد شده</span>
+                                                            break;
+                                                        default:
+                                                            <span class="badge bg-light text-dark px-2 py-1 fs-13">نامشخص</span>
+                                                            break;
+                                                    }
+                                                </td>
+                                                <td>
                                                     @if (offer.Status == OfferStatusEnum.Pending)
                                                     {
                                                         <div class="d-flex gap-2">
-                                                            <a href="#!" class="btn btn-success btn-sm">
-                                                                <iconify-icon icon="solar:check-circle-bold" class="align-middle fs-18 text-white"></iconify-icon>
-                                                            </a>
-                                                            <a href="#!" class="btn btn-danger btn-sm">
-                                                                <iconify-icon icon="solar:close-circle-bold" class="align-middle fs-18 text-white"></iconify-icon>
-                                                            </a>
+                                                            <form asp-page-handler="AcceptOffer" method="post">
+                                                                <input type="hidden" name="requestId" value="@offer.RequestId" />
+                                                                <input type="hidden" name="offerId" value="@offer.Id" />
+                                                                <button type="submit" class="btn btn-success btn-sm">
+                                                                    <iconify-icon icon="solar:check-circle-bold" class="align-middle fs-18 text-white"></iconify-icon>
+                                                                </button>
+                                                            </form>
                                                         </div>
-                                                    }
-                                                    else if (offer.Status == OfferStatusEnum.Accepted)
-                                                    {
-                                                        <span class="badge border border-success text-success bg-transparent px-2 py-1 fs-13">
-                                                            قبول شده
-                                                        </span>
-                                                    }
-                                                    else if (offer.Status == OfferStatusEnum.Rejected)
-                                                    {
-                                                        <span class="badge border border-secondary text-secondary bg-transparent px-2 py-1 fs-13">
-                                                            رد شده
-                                                        </span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="badge bg-light text-dark px-2 py-1 fs-13">
-                                                            نامشخص
-                                                        </span>
                                                     }
                                                 </td>
                                             </tr>
@@ -185,7 +186,7 @@
                                     else
                                     {
                                         <tr>
-                                            <td colspan="4" class="text-center">هیچ پیشنهادی برای درخواست شما یافت نشد.</td>
+                                            <td colspan="5" class="text-center">هیچ پیشنهادی برای درخواست شما یافت نشد.</td>
                                         </tr>
                                     }
                                 </tbody>
@@ -193,7 +194,8 @@
                         </div>
                     </div>
                 </div>
-                
+
+
             </div>
         </div>
     </div>
@@ -207,92 +209,46 @@
             </div>
             <div class="card-body">
                 <div class="d-flex align-items-center gap-2">
-                    <img src="/images/users/avatar-1.jpg" alt=""
-                         class="avatar rounded-3 border border-light border-3">
                     <div>
-                        <p class="mb-1">گاستون لاپی‌یر</p>
-                        <a href="#!" class="link-primary fw-medium">coding.farhad@gmail.com</a>
+                        <p class="mb-1">@Model.Request.CustomerFullName</p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between mt-3">
                     <h5 class="">شماره تماس</h5>
-                    <div>
-                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
-                    </div>
                 </div>
-                <p class="mb-1">(723) 732-760-5760</p>
+                <p class="mb-1">@Modeol.Request.CustomerPhone</p>
 
                 <div class="d-flex justify-content-between mt-3">
-                    <h5 class="">آدرس ارسال</h5>
-                    <div>
-                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
-                    </div>
+                    <h5 class=""> ‌ایمیل</h5>
                 </div>
 
-                <div>
-                    <p class="mb-1">شرکت جواهرات ویلسون</p>
-                    <p class="mb-1">خیابان 1344 هرسل هالو،</p>
-                    <p class="mb-1">توکویلا، استان تهران،</p>
-                    <p class="mb-1">ایران</p>
-                    <p class="">(21) 732-760-5760</p>
-                </div>
-
-                <div class="d-flex justify-content-between mt-3">
-                    <h5 class="">آدرس صورت‌حساب</h5>
-                    <div>
-                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
-                    </div>
-                </div>
-
-                <p class="mb-1">همانند آدرس ارسال</p>
+                <p class="mb-1">@Model.Request.CustomerEmail</p>
             </div>
         </div>
-        <!--بخش اطلاعات کارشناس-->
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">جزئیات کارشناس</h4>
+        @if (Model.Request.AcceptedOfferId != null && Model.Request.AcceptedOfferId != 0)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">جزئیات کارشناس</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-2">
+                        <div>
+                            <p class="mb-1">@Model.Request.ExpertFullName</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <h5 class="">شماره تماس</h5>
+                    </div>
+                    <p class="mb-1">@Model.Request.ExpertPhone</p>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <h5 class="">ایمیل</h5>
+                    </div>
+
+                    <p class="mb-1">@Model.Request.ExpertEmail</p>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="d-flex align-items-center gap-2">
-                    <img src="/images/users/avatar-1.jpg" alt=""
-                         class="avatar rounded-3 border border-light border-3">
-                    <div>
-                        <p class="mb-1">گاستون لاپی‌یر</p>
-                        <a href="#!" class="link-primary fw-medium">coding.farhad@gmail.com</a>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between mt-3">
-                    <h5 class="">شماره تماس</h5>
-                    <div>
-                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
-                    </div>
-                </div>
-                <p class="mb-1">(723) 732-760-5760</p>
-
-                <div class="d-flex justify-content-between mt-3">
-                    <h5 class="">آدرس ارسال</h5>
-                    <div>
-                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="mb-1">شرکت جواهرات ویلسون</p>
-                    <p class="mb-1">خیابان 1344 هرسل هالو،</p>
-                    <p class="mb-1">توکویلا، استان تهران،</p>
-                    <p class="mb-1">ایران</p>
-                    <p class="">(21) 732-760-5760</p>
-                </div>
-
-                <div class="d-flex justify-content-between mt-3">
-                    <h5 class="">آدرس صورت‌حساب</h5>
-                    <div>
-                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
-                    </div>
-                </div>
-
-                <p class="mb-1">همانند آدرس ارسال</p>
-            </div>
-        </div>
+        }
     </div>
 </div>

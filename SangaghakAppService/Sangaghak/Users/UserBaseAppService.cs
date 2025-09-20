@@ -188,5 +188,10 @@ namespace SangaghakAppService.Sangaghak.Users
         {
             return await _userService.GetExpertIdIdByUserId(UserId, cancellationToken);
         }
+
+        public async Task<UserBasicInfoDTO?> GetExpertBasicInfoByExpertIdAsync(int expertId, CancellationToken cancellationToken)
+        {
+            return await _userService.GetExpertBasicInfoByExpertIdAsync(expertId, cancellationToken);
+        }
     }
 }

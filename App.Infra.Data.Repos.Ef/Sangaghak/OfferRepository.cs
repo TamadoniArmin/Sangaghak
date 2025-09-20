@@ -145,6 +145,42 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         #endregion
         #region Update
+        public async Task<bool> UpdateOfferStatusByOfferIdAysnc(int offerId,CancellationToken cancellationToken)
+        {
+            var targetOffer = await _appDbContext.Offers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(o => o.Id == offerId, cancellationToken);
+
+            if (targetOffer == null)
+            {
+                return false;
+            }
+            int requestId = targetOffer.RequestId;
+
+            var relatedOffers = await _appDbContext.Offers
+                .Where(o => o.RequestId == requestId)
+                .ToListAsync(cancellationToken);
+
+            if (!relatedOffers.Any())
+            {
+                return false;
+            }
+
+            foreach (var offer in relatedOffers)
+            {
+                offer.Status = offer.Id == offerId ? OfferStatusEnum.Accepted : OfferStatusEnum.Rejected;
+            }
+
+            try
+            {
+                await _appDbContext.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
 
         public async Task<bool> UpdateOfferAsync(OfferForCreateAndUpdateDTO offer, int OfferId, CancellationToken cancellationToken)
         {

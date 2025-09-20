@@ -1,4 +1,4 @@
-using App.Domain.Core.Sangaghak.App.Domain.Core;
+﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +14,7 @@ namespace SangaghakRazorEndPoint.Areas.Customer.Pages
         public List<OfferDTO>? Offers { get; set; }
         public async Task<IActionResult> OnGet(int RequestId, CancellationToken cancellationToken)
         {
+            TempData["RequestId"]= RequestId;
             Request = await requestAppService.GetRequestByIdAysnc(RequestId, cancellationToken);
             if(Request == null)
             {
@@ -33,11 +34,24 @@ namespace SangaghakRazorEndPoint.Areas.Customer.Pages
         }
         public async Task<IActionResult> OnPostAcceptOffer(int requestid, int offerId,CancellationToken cancellationToken)
         {
-            return Page();
-        }
-        public async Task<IActionResult> OnPostRejectOffer(int OfferId, CancellationToken cancellationToken)
-        {
-            return Page();
+            var Result1= await requestAppService.UpdateRequestDetailsAsync(requestid, offerId, cancellationToken);
+            if (!Result1)
+            { 
+                return BadRequest("بروزرسانی این درخواست با خطا مواجه شد افر"); 
+            }
+            else
+            {
+                var Result2 = await requestAppService.UpdateRequestStatusAsync(requestid, App.Domain.Core.Sangaghak.Enum.RequestStatusEnum.OfferAccepted, cancellationToken);
+                if (!Result2)
+                {
+                    return BadRequest("بروزرسانی این درخواست با خطا مواجه شد");
+                }
+                else
+                {
+                    var Result3 = await offerService.UpdateOfferStatusByOfferIdAysnc(offerId, cancellationToken);
+                }
+            }          
+            return RedirectToPage("RequestDetails", new { RequestId = TempData["RequestId"] });
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SangaghakService.Sangaghak.Users
             _repository = repository;
         }
 
-        public async Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
+        public async Task<(bool Success, string? ErrorMessage)> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
         {
             return await _repository.DecreaseBalanceAsync(UserId, money, cancellationToken);
         }

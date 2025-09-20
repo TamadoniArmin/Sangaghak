@@ -29,7 +29,7 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         #endregion
         #region Update
         public Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken);
-        public Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken);
+        public Task<(bool Success, string? ErrorMessage)> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken);
         public Task<bool> UpdateUserInfo(UserBaseDTO user, int UserId, CancellationToken cancellationToken);
         #endregion
         #region Delete
