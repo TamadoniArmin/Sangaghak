@@ -27,6 +27,8 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<int> GetCustomerCompletedRequestsCount(int CustomerId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, List<int> PackagesId, CancellationToken cancellationToken);
         public Task<int> GetMatchRequestForExpertCount(int cityId, List<int> PackagesId, CancellationToken cancellationToken);
+        public Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken);
         #endregion
         #region Update
         public Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken);

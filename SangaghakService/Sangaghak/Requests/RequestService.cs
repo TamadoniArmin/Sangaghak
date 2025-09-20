@@ -113,5 +113,15 @@ namespace SangaghakService.Sangaghak.Requests
         {
             return await _repository.GetAllExpertRequestsCountAsync(ExpertId,cancellationToken);
         }
+
+        public async Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetRequestPackageIdByRequestIdAsync(RequestId,cancellationToken);
+        }
+
+        public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllExpertRequestsAsync(ExpertId,cancellationToken);
+        }
     }
 }

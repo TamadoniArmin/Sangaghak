@@ -24,6 +24,9 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken);
         public Task<bool> UpdateUserInfoAsync(UserBaseDTO user,int UserId ,CancellationToken cancellationToken);
         public Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken);
+        public Task<UserBasicInfoDTO?> GetExpertBasicInfoByExpertIdAsync(int expertId, CancellationToken cancellationToken);
+        public Task<UserBasicInfoDTO?> GetCustomerBasicInfoByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
+        public Task<UserBasicInfoDTO?> GetAdminBasicInfoByAdminIdAsync(int adminId, CancellationToken cancellationToken);
 
     }
 }

@@ -3,6 +3,7 @@ using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.DTOs.Categories;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Categories;
+using App.Domain.Core.Sangaghak.Entities.Requests;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -244,6 +245,14 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 .AsNoTracking()
                 .Where(c => c.Experts != null && c.Experts.Any(c => c.Id == expertId))
                 .Select(x => x.Id)
+                .ToListAsync(cancellationToken);
+        }
+        public async Task<List<Category>> GetSubCategoriesForExpertSkillsAsync(List<int> SubCategoriesId,CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Categories
+                .Where(x=>SubCategoriesId.Contains(x.Id) 
+                &&x.ParentId !=null 
+                && x.IsDeleted==false)
                 .ToListAsync(cancellationToken);
         }
         #endregion

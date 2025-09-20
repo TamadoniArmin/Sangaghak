@@ -25,6 +25,7 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<string> GetSubCategoryNameByIdAysnc(int Id,CancellationToken cancellationToken);
         public Task<List<GetSubCategoryNameForExpertsDTO>> GetCategoryNamesByExpertId(int expertId, CancellationToken cancellationToken);
         public Task<List<int>> GetCategoryIdByExpertId(int expertId, CancellationToken cancellationToken);
+        public Task<List<Category>> GetSubCategoriesForExpertSkillsAsync(List<int> SubCategoriesId, CancellationToken cancellationToken);
         #endregion
         #region Update
         public Task<bool> UpdateSubCategory(SubCategoryDTO Model, int SubCategoryId, CancellationToken cancellationToken);

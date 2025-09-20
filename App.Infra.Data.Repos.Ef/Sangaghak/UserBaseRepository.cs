@@ -207,6 +207,51 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return WantedUser.ExpertId ?? 0;
             }
         }
+        public async Task<UserBasicInfoDTO?> GetExpertBasicInfoByExpertIdAsync(int expertId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Users
+                .Where(x => x.ExpertId == expertId && !x.IsDeleted)
+                .Select(x => new UserBasicInfoDTO
+                {
+                    Id = x.Id,
+                    UserName = x.UserName,
+                    FullName = x.FirstName + " " + x.LastName,
+                    Email = x.Email,
+                    Phone = x.PhoneNumber,
+                    CityId = x.CityId,
+                    ExpertId = expertId
+                }).FirstOrDefaultAsync(cancellationToken);
+        }
+        public async Task<UserBasicInfoDTO?> GetCustomerBasicInfoByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Users
+                .Where(x => x.CustomerId == customerId && !x.IsDeleted)
+                .Select(x => new UserBasicInfoDTO
+                {
+                    Id = x.Id,
+                    UserName = x.UserName ?? string.Empty,
+                    FullName = x.FirstName + " " + x.LastName,
+                    Email = x.Email ?? string.Empty,
+                    Phone = x.PhoneNumber ?? string.Empty,
+                    CityId = x.CityId,
+                    CustomerId = customerId
+                }).FirstOrDefaultAsync(cancellationToken);
+        }
+        public async Task<UserBasicInfoDTO?> GetAdminBasicInfoByAdminIdAsync(int adminId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Users
+                .Where(x => x.AdminId == adminId && !x.IsDeleted)
+                .Select(x => new UserBasicInfoDTO
+                {
+                    Id = x.Id,
+                    UserName = x.UserName?? string.Empty,
+                    FullName = x.FirstName + " " + x.LastName,
+                    Email = x.Email??string.Empty,
+                    Phone = x.PhoneNumber?? string.Empty,
+                    CityId = x.CityId,
+                    AdminId = adminId
+                }).FirstOrDefaultAsync(cancellationToken);
+        }
         #endregion
         #region Update
         public async Task<bool> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)

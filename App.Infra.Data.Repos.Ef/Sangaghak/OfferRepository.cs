@@ -61,6 +61,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     OfferedTime = x.OfferedTime,
                     Description = x.Description,
                     Status = x.Status,
+                    SetAt=x.SetAt
                 })
                 .ToListAsync(cancellationToken);
         }
@@ -78,8 +79,26 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 OfferedTime = FindOffer.OfferedTime,
                 Description = FindOffer.Description,
                 Status = FindOffer.Status,
+                SetAt=FindOffer.SetAt
             };
             return OfferToSend;
+        }
+        public async Task<List<OfferDTO>> GetAllExpertOffersByExpertIdAsync(int ExpertId,CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Offers
+                .AsNoTracking()
+                .Where(x=>x.ExpertId==ExpertId && !x.IsDeleted)
+                .Select(x=> new OfferDTO
+                {
+                    Id = x.Id,
+                    ExpertId = x.ExpertId,
+                    RequestId = x.RequestId,
+                    OfferedPrice = x.OfferedPrice,
+                    OfferedTime = x.OfferedTime,
+                    Description = x.Description,
+                    Status = x.Status,
+                    SetAt=x.SetAt
+                }).ToListAsync(cancellationToken);
         }
 
         public async Task<OfferDTO> GetOfferByIdAsync(int Id, CancellationToken cancellationToken)
@@ -95,6 +114,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 OfferedTime = FindOffer.OfferedTime,
                 Description = FindOffer.Description,
                 Status = FindOffer.Status,
+                SetAt=FindOffer.SetAt
             };
             return OfferToSend;
         }
@@ -113,6 +133,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     OfferedTime = x.OfferedTime,
                     Description = x.Description,
                     Status = x.Status,
+                    SetAt=x.SetAt
                 }
                 ).ToListAsync(cancellationToken);
         }

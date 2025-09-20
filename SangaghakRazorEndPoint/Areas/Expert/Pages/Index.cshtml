@@ -13,6 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row g-3">
+                    <!--قسمت اطلاعات کاربر-->
                     <div class="col-lg-2 text-lg-center">
                         <div class="bg-body d-flex align-items-center justify-content-center rounded py-4">
                             @if (Model.WantedUser.ImagePath != null)
@@ -69,6 +70,9 @@
                             </div>
                         </div>
                     </div>
+                    <!--تا اینجا-->
+
+                    <!--شروع قسمت تخصص کارشناس و درخواست های متناسب-->
                     <div class="col-lg-7">
                         <div class="card">
                             <div class="card-header">
@@ -78,56 +82,39 @@
                                 <div class="row g-2 mt-2 mb-4">
                                     <div class="col-lg-6">
                                         <div class="border p-3 rounded">
-                                            <h4 class="card-title">تخصص در بازاریابی</h4>
-
-                                            <div class="d-flex gap-2 flex-wrap mt-3">
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">#رهبری</span>
-                                            </div>
-                                            <p class="mb-0 text-dark mt-3">
-                                                آماده برای شبکه‌سازی: <span class="badge bg-success-subtle text-success ms-1">بله</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="border p-3 rounded">
-                                            <h4 class="card-title">:تخصص های شما</h4>
-                                            <div class="d-flex gap-2 flex-wrap mt-3">
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">#رهبری</span>
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">#تبلیغات</span>
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">
-                                                    #روابط
-                                                    عمومی
-                                                </span>
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">
-                                                    #مدیریت
-                                                    برند
-                                                </span>
-                                            </div>
-                                            <a href="#!" class="mb-0 text-dark mt-3">
-                                                برای ویرایش تخصص کلیک کنید
+                                            <h4 class="card-title">تخصص های شما</h4>
+                                            @if (Model.ExpertSkillsNames.any())
+                                            {
+                                                @foreach (var Skill in Model.ExpertSkillsNames)
+                                                {
+                                                    <div class="d-flex gap-2 flex-wrap mt-3">
+                                                        <span class="badge bg-body text-muted px-2 py-1 fs-12">#@Skill.SubcategoryNames</span>
+                                                    </div>
+                                                }
+                                            }
+                                            <a asp-page="UpdateExpertSkills" asp-rout-ExpertId="Model.WantedUser.ExpertId" class="mb-0 text-dark mt-3">
+                                                برای ویرایش تخصص ها کلیک کنید
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="border p-3 rounded">
-                                            <h4 class="card-title">:درخواست های متناسب با تخصص شما</h4>
+                                            <h4 class="card-title">درخواست های متناسب با تخصص ها و شهر شما:</h4>
                                             <div class="d-flex gap-2 flex-wrap mt-3">
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">
-                                                    :آخرین بروزرسانی تعداد این درخواست ها
-                                                    <span class="badge bg-success-subtle text-success ms-1">@Model.MatchRequestsForThisExpertCount</span>
-                                                </span>
+                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">@Model.MatchRequestsForThisExpertCount</span>
                                             </div>
-                                            <span class="badge bg-success-subtle text-success ms-1">
-                                                <a class="mb-0 text-dark mt-3">
-                                                    برای مشاهده کلیک کنید
+                                            <div class="card-footer border-top">
+                                                <a asp-page="SeeListOfRelatedRequests" asp-route-ExpertId="@Model.WantedUser.ExpertId" class="link-dark fw-medium">
+                                                    برای مشاهدی این لیست کلیک کنید <i class="bx bx-left-arrow-alt"></i>
                                                 </a>
-                                            </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--پایان قسمت تخصص های کارشناس و درخواست های متناسب-->
                 </div>
             </div>
         </div>
@@ -135,7 +122,7 @@
 </div>
 
 
-
+<!--شروع قسمت لیست درخواست های جاری-->
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
@@ -240,8 +227,11 @@
             </div>
         </div>
     </div>
+    <!--پایان قسمت درخواست های جاری-->
+
 
     <div class="col-lg-4">
+        <!--شروع قسمت موجودی حساب کارشناس-->
         <div data-bs-theme="dark">
             <div class="card overflow-hidden z-1">
                 <div class="card-body">
@@ -337,6 +327,9 @@
                 </div>
             </div>
         </div>
+        <!--پایان قسمت موجودی حساب کارشناس-->
+
+        <!--شروع قسمت های کل درخواست ها و کل پیشنهاد ها-->
         <div class="row">
             <div class="col-xl-6 col-md-6">
                 <div class="card">
@@ -358,7 +351,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
-                            <h5 class="card-title mb-0 text-dark fw-medium">کاربران</h5>
+                            <h5 class="card-title mb-0 text-dark fw-medium">تعداد تمام پیشنهاد های شما</h5>
                             <h4 class="text-dark fw-medium">@Model.AllExpertOfferCount</h4>
                         </div>
                     </div>
@@ -370,9 +363,11 @@
                 </div>
             </div>
         </div>
-
+        <!--پایان قسمت های کل درخواست ها و کل پیشنهاد ها-->
     </div>
 </div>
+
+<!--شروع قسمت کامنت ها-->
 <div class="row">
     @if (Model.ExpertComments != null)
     {
@@ -388,21 +383,69 @@
                         <div class="my-1">
                             <div class="d-flex gap-2 align-items-center">
                                 <ul class="d-flex text-warning m-0 fs-18 list-unstyled">
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star-half"></i>
-                                    </li>
+                                    @if (Model.ExpertRate>=1)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate==2)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate==3)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate==4)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate==5)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
                                 </ul>
                                 <p class="mb-0 fw-medium fs-15 text-dark">
                                     @Comment.PackageTiltle
@@ -419,3 +462,4 @@
         }
     }
 </div>
+<!--پایان قسمت کامنت ها-->

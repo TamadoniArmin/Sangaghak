@@ -1,0 +1,59 @@
+﻿@page
+@model SangaghakRazorEndPoint.Areas.Expert.Pages.SeeListOfRelatedRequestsModel
+@{
+}
+
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="d-flex card-header justify-content-between align-items-center">
+                <div>
+                    <h4 class="card-title">لیست درخواست های متناسب با شهر محل سکونت و تخصص های شما</h4>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 table-hover table-centered">
+                        <thead class="bg-light-subtle">
+                            <tr>
+                                <th>مشتری</th>
+                                <th>پکیج</th>
+                                <th>آخرین مهلت ثبت درخواست</th>
+                                <th>مشاهده جزئیات درخواست</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.AllRelatedRequest.IsNullOrEmpty())
+                            {
+                                @foreach (var request in Model.AllRelatedRequest)
+                                {
+                                    <tr>
+                                        <td> @request.CustomerFullName</td>
+                                        <td>@request.ServicePackageTiltle</td>
+                                        <td> @request.MaxTime</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <a asp-page="RequestDetails" asp-rout-RequestId="@request.Id" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">هیچ درخواست متناسب با شهر محل سکونت و تخصص های شما یافت نشد</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+            </div>
+        </div>
+    </div>
+</div>

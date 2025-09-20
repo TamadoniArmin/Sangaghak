@@ -18,7 +18,7 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
         [BindProperty]
         public int ExpertRate { get; set; }//done
         [BindProperty]
-        public List<GetSubCategoryNameForExpertsDTO> ExpertSkillsName { get; set; }//done
+        public List<GetSubCategoryNameForExpertsDTO> ExpertSkillsNames { get; set; }//done
         [BindProperty]
         public int MatchRequestsForThisExpertCount { get; set; }//done
         [BindProperty]
@@ -60,7 +60,7 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
                         var Skills = await expertProfileAppService.GetExpertSkillsNameByExpertId(ExpertID, cancellationToken);
                         if (Skills is not null && Skills.Any())
                         {
-                            ExpertSkillsName=Skills;
+                            ExpertSkillsNames = Skills;
                         }
                         MatchRequestsForThisExpertCount= await expertProfileAppService.GetMatchRequestCountForExpertAsync(ExpertID, WantedUser.CityId,cancellationToken);
                         AllCurrentExpertRequests = await expertProfileAppService.GetExpertNotCompeletedRequestsAsync(ExpertID, cancellationToken);

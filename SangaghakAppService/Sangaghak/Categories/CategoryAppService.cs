@@ -91,7 +91,10 @@ namespace SangaghakAppService.Sangaghak.Categories
         {
             return await _categoryService.GetCategoryIdByExpertId(expertId, cancellationToken);
         }
-
+        public async Task<List<Category>> GetSubCategoriesForExpertSkillsAsync(List<int> SubCategoriesId, CancellationToken cancellationToken)
+        {
+            return await _categoryService.GetSubCategoriesForExpertSkillsAsync(SubCategoriesId, cancellationToken);
+        }
 
         #endregion
         #region Update

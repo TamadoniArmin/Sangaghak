@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.DTOs.Categories;
+using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
@@ -61,6 +62,21 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Expert.PointerIds.Add(CustomerId);
                 Expert.Points.Add(Point);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> UpdateExpertSkillsAsync(int expertId, List<Category> newSkillIds,CancellationToken cancellationToken)
+        {
+            var Expert = await _appDbContext.Experts
+                .Include(x => x.Skills)
+                .FirstOrDefaultAsync(x => x.Id == expertId && x.IsDeleted == false, cancellationToken);
+                
+            if (Expert != null)
+            {
+                Expert.Skills.Clear();
+                Expert.Skills.AddRange(newSkillIds);
+                await _appDbContext.SaveChangesAsync();
                 return true;
             }
             return false;

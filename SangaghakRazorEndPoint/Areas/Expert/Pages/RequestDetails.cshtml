@@ -1,0 +1,126 @@
+﻿@page
+@model SangaghakRazorEndPoint.Areas.Expert.Pages.RequestDetailsModel
+@{
+}
+
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <!-- کراسفید -->
+                <div id="carouselExampleFade" class="carousel slide carousel-fade"
+                     data-bs-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img src="/images/product/p-1.png" alt=""
+                                 class="img-fluid bg-light rounded">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/images/product/p-10.png" alt=""
+                                 class="img-fluid bg-light rounded">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/images/product/p-13.png" alt=""
+                                 class="img-fluid bg-light rounded">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/images/product/p-14.png" alt=""
+                                 class="img-fluid bg-light rounded">
+                        </div>
+                        <!-- <a class="carousel-control-prev rounded" href="#carouselExampleFade" role="button" data-bs-slide="prev">
+                                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                   <span class="visually-hidden">قبلی</span>
+                                              </a>
+                                              <a class="carousel-control-next rounded" href="#carouselExampleFade" role="button" data-bs-slide="next">
+                                                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                   <span class="visually-hidden">بعدی</span>
+                                              </a> -->
+                    </div>
+                    <div class="carousel-indicators m-0 mt-2 d-lg-flex d-none position-static h-100">
+                        @if (Model.Request.Images1 != null)
+                        {
+                            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0"
+                                    aria-current="true" aria-label="اسلاید 1"
+                                    class="w-auto h-auto rounded bg-light active">
+
+                                <img src="@Model.Request.Images1" class="d-block avatar-xl"
+                                     alt="swiper-indicator-img">
+
+
+                            </button>
+                        }
+                        @if (Model.Request.Images2 != null)
+                        {
+                            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0"
+                                    aria-current="true" aria-label="اسلاید 1"
+                                    class="w-auto h-auto rounded bg-light active">
+
+                                <img src="@Model.Request.Images2" class="d-block avatar-xl"
+                                     alt="swiper-indicator-img">
+
+
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer border-top">
+                <div class="row g-2">
+                    <div class="col-lg-5">
+                        <a asp-page="PostOfferForRequest" asp-rout-RequestId="@Model.Request.Id"
+                           class="btn btn-primary d-flex align-items-center justify-content-center gap-2 w-100">
+                            <i class="bx bx-cart fs-18"></i> ثبت پیشنهاد برای این درخواست
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="badge bg-success text-light fs-14 py-1 px-2">جزئیات درخواست</h4>
+                <p class="mb-1">
+                    @Model.Request.ServicePackageTiltle
+                </p>
+                <h4>قیمت درخواست شده</h4>
+                <h3 class="fw-medium my-3">@Model.Request.ServicePackageTiltle</h3>
+                <h4 class="text-dark fw-medium">توضیحات :</h4>
+                <p class="text-muted">@Model.Request.Description</p>
+                <h4 class="text-dark fw-medium">آدرس :</h4>
+                <p class="text-muted">@Model.Request.Address</p>
+                <h4 class="text-dark fw-medium">آخرین مهلت ثبت پیشنهاد :</h4>
+                <p class="text-muted">@Model.Request.MaxTime</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">اطلاعات ارتباطی با مشتری</h4>
+            </div>
+            <div class="card-body">
+                <div class="">
+                    <ul class="d-flex flex-column gap-2 list-unstyled fs-14 text-muted mb-0">
+                        <li>
+                            <span class="fw-medium text-dark">نام و نام خانوادگی مشتری</span><span class="mx-2">:</span>@Model.Request.CustomerFullName
+                        </li>
+                        <li>
+                            <span class="fw-medium text-dark">شماره تماس مشتری</span><span class="mx-2">:</span>@Model.Request.CustomerPhone
+                        </li>
+                        <li>
+                            <span class="fw-medium text-dark">ایمیل مشتری</span><span class="mx-2">:</span>@Model.Request.CustomerEmail
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

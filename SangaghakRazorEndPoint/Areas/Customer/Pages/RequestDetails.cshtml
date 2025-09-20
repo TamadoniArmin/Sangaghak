@@ -7,155 +7,292 @@
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="card">
-            <div class="card-body">
-                <!-- Logo & title -->
-                <div class="clearfix pb-3 bg-info-subtle p-lg-3 p-2 m-n2 rounded position-relative">
-                    <div class="float-sm-start">
-                        <div class="auth-logo">
-                            <img class="logo-dark me-1" src="/images/logo-dark.png" alt="لوگو تیره" height="24" />
+
+
+
+<div class="row">
+    <div class="col-xl-9 col-lg-8">
+        <div class="row">
+            <div class="col-lg-12">
+                ```html
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                            <div>
+                                <h4 class="fw-medium text-dark d-flex align-items-center gap-2">
+                                    وضعیت درخواست <span class="badge bg-success-subtle text-success px-2 py-1 fs-13">
+                                        @Model.Request.Status
+                                </h4>
+                                <p class="mb-0">
+                                    این درخواست در تاریخ 
+                                    (@Model.Request.SetAt)
+                                    ثبت شده است
+                                </p>
+                            </div>
+                            <div>
+                                <a asp-page="Index" class="btn btn-outline-secondary">بازگشت</a>
+                                <a href="#!" class="btn btn-danger">حذف درخواست</a>
+                            </div>
                         </div>
-                        <div class="mt-4">
-                            <h4>اطلاعات درخواست</h4>
-                            <address class="mt-3 mb-0">
-                                <abbr title="توضیحات">توضیحات:</abbr> @Model.Request.Description
-                                <abbr title="آدرس">آدرس:</abbr> @Model.Request.Address
-                                <abbr title="شهر">شهر:</abbr> @Model.Request.CityTitle
-                                <abbr title="قیمت درخواستی">قیمت درخواستی:</abbr> @Model.Request.WantedPrice
-                                <abbr title="آخرین تاریخ">آخرین تاریخ:</abbr> @Model.Request.MaxTime
-                            </address>
+                        <div class="d-flex flex-column gap-3 mt-3">
+                            <div>
+                                <h4 class="fw-medium text-dark d-flex align-items-center gap-2">
+                                    آخرین مهلت ارسال درخواست
+                                </h4>
+                                <p class="mb-0">@Model.Request.MaxTime</p>
+                            </div>
+                            <div>
+                                <h4 class="fw-medium text-dark d-flex align-items-center gap-2">
+                                    قیمت درخواست شده
+                                </h4>
+                                <p class="mb-0">@Model.Request.WantedPrice</p>
+                            </div>
+                            <div>
+                                <h4 class="fw-medium text-dark d-flex align-items-center gap-2">
+                                    آدرس
+                                </h4>
+                                <p class="mb-0">@Model.Request.Address</p>
+                            </div>
+                            <div>
+                                <h4 class="fw-medium text-dark d-flex align-items-center gap-2">
+                                    توضیحات درخواست
+                                </h4>
+                                <p class="mb-0">@Model.Request.Description</p>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-md-12 text-start">
+                                    <div class="d-flex gap-2">
+                                        @if (Model.Request.Images1.IsNotNullOrEmpty())
+                                        {
+                                            <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModalLabel1" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <img src="/images/sample1.jpg" alt="تصویر 1" class="img-fluid" style="max-width: 100%; max-height: 80vh;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (Model.Request.Images2.IsNotNullOrEmpty())
+                                        {
+                                            <div class="modal fade" id="imageModal2" tabindex="-1" aria-labelledby="imageModalLabel2" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <img src="/images/sample2.jpg" alt="تصویر 2" class="img-fluid" style="max-width: 100%; max-height: 80vh;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="float-sm-end">
+
+                    <div class="card-footer d-flex flex-wrap align-items-center justify-content-between bg-light-subtle gap-2">
+                        <p class="border rounded mb-0 px-2 py-1 bg-body">
+                            <i class='bx bx-arrow-from-left align-middle fs-16'></i> این درخواست توسط
+                            کارشناس تکمیل شده است در تاریخ:
+                            <span class="text-dark fw-medium">25 فروردین 1403</span>
+                        </p>
+                        <div>
+                            <a href="#!" class="btn btn-primary">مشاهده ی فاکتور و پرداخت</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">پیشنهادهای ثبت‌شده برای این درخواست</h4>
+                    </div>
+                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-borderless mb-0">
+                            <table class="table align-middle mb-0 table-hover table-centered">
+                                <thead class="bg-light-subtle border-bottom">
+                                    <tr>
+                                        <th>کارشناس</th>
+                                        <th>قیمت پیشنهادی</th>
+                                        <th>متن</th>
+                                        <th>وضعیت</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="p-0 pe-5 py-1">
-                                            <p class="mb-0 text-dark fw-semibold">صورت‌حساب:</p>
-                                        </td>
-                                        <td class="text-end text-dark fw-semibold px-0 py-1">@Model.Request.Id</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 pe-5 py-1">
-                                            <p class="mb-0">تاریخ صدور:</p>
-                                        </td>
-                                        <td class="text-end text-dark fw-medium px-0 py-1">@Model.Request.SetAt</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 pe-5 py-1">
-                                            <p class="mb-0">شناسه پیشنهاد پذیرفته شده</p>
-                                        </td>
-                                        <td class="text-end text-dark fw-medium px-0 py-1">@Model.Request.AcceptedOfferId</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-0 pe-5 py-1">
-                                            <p class="mb-0">وضعیت:</p>
-                                        </td>
-                                        <td class="text-end px-0 py-1"><span class="badge bg-success text-white px-2 py-1 fs-13">@Model.Request.Status</span></td>
-                                    </tr>
+                                    @if (Model.Offers != null && Model.Offers.Any())
+                                    {
+                                        @foreach (var offer in Model.Offers)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
+                                                            <img src="/images/product/p-1.png" alt="" class="avatar-md">
+                                                        </div>
+                                                        <div>
+                                                            <a href="#!" class="text-dark fw-medium fs-15">
+                                                                تی‌شرت مردانه مشکی سایز اسلیم فیت
+                                                            </a>
+                                                            <p class="text-muted mb-0 mt-1 fs-13">
+                                                                <span>کارشناس</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>@offer.OfferedPrice</td>
+                                                <td>@offer.Description</td>
+                                                <td>
+                                                    @if (offer.Status == OfferStatusEnum.Pending)
+                                                    {
+                                                        <div class="d-flex gap-2">
+                                                            <a href="#!" class="btn btn-success btn-sm">
+                                                                <iconify-icon icon="solar:check-circle-bold" class="align-middle fs-18 text-white"></iconify-icon>
+                                                            </a>
+                                                            <a href="#!" class="btn btn-danger btn-sm">
+                                                                <iconify-icon icon="solar:close-circle-bold" class="align-middle fs-18 text-white"></iconify-icon>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    else if (offer.Status == OfferStatusEnum.Accepted)
+                                                    {
+                                                        <span class="badge border border-success text-success bg-transparent px-2 py-1 fs-13">
+                                                            قبول شده
+                                                        </span>
+                                                    }
+                                                    else if (offer.Status == OfferStatusEnum.Rejected)
+                                                    {
+                                                        <span class="badge border border-secondary text-secondary bg-transparent px-2 py-1 fs-13">
+                                                            رد شده
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-light text-dark px-2 py-1 fs-13">
+                                                            نامشخص
+                                                        </span>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="4" class="text-center">هیچ پیشنهادی برای درخواست شما یافت نشد.</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="position-absolute top-100 start-50 translate-middle">
-                        <img src="/images/check-2.png" alt="" class="img-fluid">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-3 col-lg-4">
+        <!--بخش اطلاعات مشتری-->
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">جزئیات مشتری</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="/images/users/avatar-1.jpg" alt=""
+                         class="avatar rounded-3 border border-light border-3">
+                    <div>
+                        <p class="mb-1">گاستون لاپی‌یر</p>
+                        <a href="#!" class="link-primary fw-medium">coding.farhad@gmail.com</a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <h5 class="">شماره تماس</h5>
+                    <div>
+                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
+                    </div>
+                </div>
+                <p class="mb-1">(723) 732-760-5760</p>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <h5 class="">آدرس ارسال</h5>
+                    <div>
+                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
                     </div>
                 </div>
 
+                <div>
+                    <p class="mb-1">شرکت جواهرات ویلسون</p>
+                    <p class="mb-1">خیابان 1344 هرسل هالو،</p>
+                    <p class="mb-1">توکویلا، استان تهران،</p>
+                    <p class="mb-1">ایران</p>
+                    <p class="">(21) 732-760-5760</p>
+                </div>
 
-                <div class="clearfix pb-3 mt-4">
-                    <div class="float-sm-start">
-                        <div class="">
-                            <h4 class="card-title">درخواست دهنده:</h4>
-                            <div class="mt-3">
-                                <h4>@Model.Request.CustomerFullName</h4>
-                                <p class="mb-2">@Model.Request.CityTitle</p>
-                                <p class="mb-2"><span class="text-decoration-underline">تلفن:</span>@Model.Request.CustomerPhone</p>
-                                <p class="mb-2"><span class="text-decoration-underline">ایمیل:</span> @Model.Request.CustomerEmail</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="float-sm-end">
-                        <div class="">
-                            <h4 class="card-title">پذیرنده:</h4>
-                            <div class="mt-3">
-                                <h4>@Model.Request.ExpertFullName</h4>
-                                <p class="mb-2"><span class="text-decoration-underline">تلفن:</span> @Model.Request.ExpertPhone</p>
-                                <p class="mb-2"><span class="text-decoration-underline">ایمیل:</span>@Model.Request.ExpertEmail</p>
-                            </div>
-                        </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <h5 class="">آدرس صورت‌حساب</h5>
+                    <div>
+                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
                     </div>
                 </div>
 
+                <p class="mb-1">همانند آدرس ارسال</p>
+            </div>
+        </div>
+        <!--بخش اطلاعات کارشناس-->
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">جزئیات کارشناس</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="/images/users/avatar-1.jpg" alt=""
+                         class="avatar rounded-3 border border-light border-3">
+                    <div>
+                        <p class="mb-1">گاستون لاپی‌یر</p>
+                        <a href="#!" class="link-primary fw-medium">coding.farhad@gmail.com</a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <h5 class="">شماره تماس</h5>
+                    <div>
+                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
+                    </div>
+                </div>
+                <p class="mb-1">(723) 732-760-5760</p>
 
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table-responsive table-borderless text-nowrap table-centered">
-                            <table class="table mb-0">
-                                <thead class="bg-light bg-opacity-50">
-                                    <tr>
-                                        <th class="border-0 py-2">کارشناس</th>
-                                        <th class="border-0 py-2">مبلغ پیشنهادی</th>
-                                        <th class="border-0 py-2">تاریخ پیشنهادی</th>
-                                        <th class="border-0 py-2">توضیحات پیشنهاد</th>
-                                        <th class="text-end border-0 py-2">وضعیت</th>
-                                    </tr>
-                                </thead> <!-- پایان thead -->
-                                <tbody>
-                                    @foreach (var Offer in Model.Offers)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="rounded bg-light avatar d-flex align-items-center justify-content-center">
-                                                        <img src="/images/product/p-1.png" alt="" class="avatar">
-                                                    </div>
-                                                    <div>
-                                                        <a href="#!" class="text-dark fw-medium fs-15">@Offer.ExpertFullName</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>@Offer.OfferedPrice</td>
-                                            <td>@Offer.OfferedTime </td>
-                                            <td>@Offer.Description</td>
-                                            <td class="text-end"> @Offer.Status </td>
-                                        </tr>
-                                    }
-                                </tbody> <!-- پایان tbody -->
-                            </table> <!-- پایان جدول -->
-                        </div> <!-- پایان جدول واکنش‌گرا -->
-                    </div> <!-- پایان ستون -->
-                </div> <!-- پایان سطر -->
-
-
-                <div class="row mt-3">
-                    <div class="col-lg-12">
-                        <div class="alert alert-danger alert-icon p-2" role="alert">
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-sm rounded bg-danger d-flex justify-content-center align-items-center fs-18 me-2 flex-shrink-0">
-                                    <i class="bx bx-info-circle text-white"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    تمام حساب‌ها باید ظرف ۷ روز از دریافت فاکتور پرداخت شوند. پرداخت باید از طریق چک، کارت اعتباری یا پرداخت مستقیم آنلاین انجام شود. در صورت عدم پرداخت حساب ظرف ۷ روز، جزئیات اعتباری ارائه شده به عنوان تأیید کار انجام شده به مبلغ توافقی ذکر شده در بالا، کسر خواهد شد.
-                                </div>
-                            </div>
-                        </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <h5 class="">آدرس ارسال</h5>
+                    <div>
+                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
                     </div>
                 </div>
 
+                <div>
+                    <p class="mb-1">شرکت جواهرات ویلسون</p>
+                    <p class="mb-1">خیابان 1344 هرسل هالو،</p>
+                    <p class="mb-1">توکویلا، استان تهران،</p>
+                    <p class="mb-1">ایران</p>
+                    <p class="">(21) 732-760-5760</p>
+                </div>
 
-                <div class="mt-3 mb-1">
-                    <div class="text-end d-print-none">
-                        <a href="javascript:window.print()" class="btn btn-info width-xl">پرینت</a>
-                        <a href="javascript:void(0);" class="btn btn-outline-primary width-xl">ارسال</a>
+                <div class="d-flex justify-content-between mt-3">
+                    <h5 class="">آدرس صورت‌حساب</h5>
+                    <div>
+                        <a href="#!"><i class='bx bx-edit-alt fs-18'></i></a>
                     </div>
                 </div>
 
-            </div> <!-- end card body -->
-        </div> <!-- end card -->
-    </div> <!-- end col -->
-</div> <!-- end row -->
+                <p class="mb-1">همانند آدرس ارسال</p>
+            </div>
+        </div>
+    </div>
+</div>

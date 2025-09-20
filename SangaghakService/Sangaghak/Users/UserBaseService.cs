@@ -24,6 +24,11 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.DeleteUser(UserId, cancellationToken);
         }
 
+        public async Task<UserBasicInfoDTO?> GetAdminBasicInfoByAdminIdAsync(int adminId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetAdminBasicInfoByAdminIdAsync(adminId, cancellationToken);
+        }
+
         public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await _repository.GetAllAsync(cancellationToken);
@@ -59,6 +64,11 @@ namespace SangaghakService.Sangaghak.Users
             throw new NotImplementedException();
         }
 
+        public async Task<UserBasicInfoDTO?> GetCustomerBasicInfoByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetCustomerBasicInfoByCustomerIdAsync(customerId, cancellationToken);
+        }
+
         public async Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
             return await _repository.GetCustomerByCustomerIdAsync(CustomerId, cancellationToken);
@@ -77,6 +87,11 @@ namespace SangaghakService.Sangaghak.Users
         public async Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId, CancellationToken cancellationToken)
         {
             return await _repository.GetCustomerSummeryByCustomerId(CustomerId, cancellationToken);
+        }
+
+        public async Task<UserBasicInfoDTO?> GetExpertBasicInfoByExpertIdAsync(int expertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetExpertBasicInfoByExpertIdAsync(expertId, cancellationToken);
         }
 
         public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)

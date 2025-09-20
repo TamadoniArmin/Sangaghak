@@ -1,0 +1,43 @@
+﻿@page
+@model SangaghakRazorEndPoint.Areas.Customer.Pages.PostCommentModel
+@{
+}
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">ثبت کامنت</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label for="comment" class="form-label text-dark">کامنت مشتری</label>
+                            <textarea asp-for="Comment" class="form-control" id="comment" placeholder="کامنت خود را وارد کنید" onblur="if(this.value.trim() === '') this.value = 'متنی توسط مشتری وارد نشده است';"></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="">
+                            <label for="rating" class="form-label">امتیاز</label>
+                            <select asp-for="Rating" class="form-control" id="rating" data-choices data-choices-groups data-placeholder="امتیاز را انتخاب کنید" onchange="if(this.value === '') this.value = '3';">
+                                <option value="">انتخاب کنید</option>
+                                <option value="5">خیلی خوب</option>
+                                <option value="4">خوب</option>
+                                <option value="3" selected>متوسط</option>
+                                <option value="2">ضعیف</option>
+                                <option value="1">بد</option>
+                            </select>
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer border-top">
+                    <button type="submit" class="btn btn-primary">ثبت تغییرات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

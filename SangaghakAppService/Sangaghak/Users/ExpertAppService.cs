@@ -1,10 +1,15 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Categories;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
+using App.Domain.Core.Sangaghak.DTOs.Users;
+using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Service;
+using Microsoft.IdentityModel.Tokens;
+using SangaghakService.Sangaghak.BaseEntities;
 using SangaghakService.Sangaghak.Categories;
 using SangaghakService.Sangaghak.Requests;
+using SangaghakService.Sangaghak.Users;
 using System.Net.Http.Headers;
 
 namespace SangaghakAppService.Sangaghak.Users
@@ -15,22 +20,28 @@ namespace SangaghakAppService.Sangaghak.Users
         private readonly ICategoryService _categoryService;
         private readonly IRequestService _requestService;
         private readonly IServicePackageService _packageService;
+        private readonly IUserBaseService _userBaseService;
+        private readonly ICityService _cityService;
         public ExpertAppService(IExpertService expertService, 
             ICategoryService categoryService, 
             IRequestService requestService,
-            IServicePackageService servicePackageService)
+            IServicePackageService servicePackageService,
+            IUserBaseService userBaseService,
+            ICityService cityService)
         {
             _expertService = expertService;
             _categoryService = categoryService;
             _requestService = requestService;
             _packageService = servicePackageService;
+            _userBaseService = userBaseService;
+            _cityService = cityService;
         }
 
         public async Task<bool> CheckExpertHasAnySkillAsync(int ExpertId, CancellationToken cancellationToken)
         {
             return await _expertService.CheckExpertHasAnySkillAsync(ExpertId, cancellationToken);
         }
-        public async Task<List<RequestDTO>> GetMathRequestForExpertInfo(int ExpertId, int CityId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>?> GetMathRequestForExpertInfo(int ExpertId, int CityId, CancellationToken cancellationToken)
         {
             var checkExpertHasSkill = await _expertService.CheckExpertHasAnySkillAsync(ExpertId, cancellationToken);
             if (!checkExpertHasSkill)
@@ -67,6 +78,24 @@ namespace SangaghakAppService.Sangaghak.Users
                 }
             }
 
+        }
+
+        public async Task<bool> UpdateExpertSkillsAsync(int expertId, List<int> newSkillIds, CancellationToken cancellationToken)
+        {
+            var ExpertSkills= await _categoryService.GetSubCategoriesForExpertSkillsAsync(newSkillIds, cancellationToken);
+            if (!ExpertSkills.IsNullOrEmpty())
+            {
+                return await _expertService.UpdateExpertSkillsAsync(expertId,ExpertSkills, cancellationToken);
+            }
+            return false;
+        }
+
+        public async Task<GetUserBaseForViewPage> UserSummary(int UserId, CancellationToken cancellationToken)
+        {
+            var wantedUser = await _userBaseService.GetByIdAsync(UserId, cancellationToken);
+            wantedUser.FullName = wantedUser.FirstName + " " + wantedUser.LastName;
+            wantedUser.CityName = await _cityService.GetNameOfCity(wantedUser.CityId, cancellationToken);
+            return wantedUser;
         }
         //public Task<bool> DecreaseExpertBalanceAsync(int Money, int ExpertId, CancellationToken cancellationToken)
         //{

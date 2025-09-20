@@ -14,6 +14,7 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<OfferDTO> GetOfferByIdAsync(int Id, CancellationToken cancellationToken);
         public Task<OfferDTO> GetOfferByExpertAsync(int ExpertId, CancellationToken cancellationToken);
         public Task<int> GetExpertIdByOfferIdAysnc(int OfferId, CancellationToken cancellationToken);
+        public Task<List<OfferDTO>> GetAllExpertOffersByExpertIdAsync(int ExpertId, CancellationToken cancellationToken);
         #endregion
         #region Update
         public Task<bool> UpdateOfferAsync(OfferForCreateAndUpdateDTO offer, int OfferId, CancellationToken cancellationToken);

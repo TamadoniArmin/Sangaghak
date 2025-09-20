@@ -80,6 +80,11 @@ namespace SangaghakService.Sangaghak.Categories
             return await _categoryRepository.GetSubCategoriesByParentId(ParentCategoryId, cancellationToken);
         }
 
+        public async Task<List<Category>> GetSubCategoriesForExpertSkillsAsync(List<int> SubCategoriesId, CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.GetSubCategoriesForExpertSkillsAsync(SubCategoriesId, cancellationToken);
+        }
+
         public async Task<SubCategoryDTO> GetSubCategoryByIdAysnc(int Id, CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetSubCategoryByIdAysnc(Id, cancellationToken);

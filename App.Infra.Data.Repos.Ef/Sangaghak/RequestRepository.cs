@@ -71,6 +71,25 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 AcceptedOfferId = x.AcceptedOfferId
             }).ToListAsync(cancellationToken);
         }
+        public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _context.Requests
+            .Where(r => r.AcceptedOffer != null &&
+                        r.AcceptedOffer.ExpertId == ExpertId)
+            .Select(x => new RequestDTO()
+            {
+                Id = x.Id,
+                Description = x.Description,
+                WantedPrice = x.WantedPrice,
+                Address = x.Address,
+                CityId = x.CityId,
+                CustomerId = x.CustomerId,
+                MaxTime = x.MaxTime,
+                Status = x.Status,
+                SetAt = x.SetAt,
+                AcceptedOfferId = x.AcceptedOfferId
+            }).ToListAsync(cancellationToken);
+        }
         public async Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, List<int> PackagesId, CancellationToken cancellationToken)
         {
 
@@ -177,6 +196,14 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             {
                 return Request.CityId;
             }
+        }
+        public async Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _context.Requests
+                .AsNoTracking()
+                .Where(x => x.Id == RequestId && !x.IsDeleted)
+                .Select(x => x.ServicePackageId)
+                .FirstOrDefaultAsync(cancellationToken);
         }
         public async Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {

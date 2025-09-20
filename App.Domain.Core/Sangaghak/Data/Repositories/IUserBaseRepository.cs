@@ -23,6 +23,9 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken);
         public Task<int> GetCustomerIdByUserId(int UserId, CancellationToken cancellationToken);
         public Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken);
+        public Task<UserBasicInfoDTO?> GetExpertBasicInfoByExpertIdAsync(int expertId, CancellationToken cancellationToken);
+        public Task<UserBasicInfoDTO?> GetCustomerBasicInfoByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
+        public Task<UserBasicInfoDTO?> GetAdminBasicInfoByAdminIdAsync(int adminId, CancellationToken cancellationToken);
         #endregion
         #region Update
         public Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken);

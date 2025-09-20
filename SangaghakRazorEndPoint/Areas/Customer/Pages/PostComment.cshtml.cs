@@ -1,0 +1,12 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace SangaghakRazorEndPoint.Areas.Customer.Pages
+{
+    public class PostCommentModel : PageModel
+    {
+        public void OnGet()
+        {
+        }
+    }
+}

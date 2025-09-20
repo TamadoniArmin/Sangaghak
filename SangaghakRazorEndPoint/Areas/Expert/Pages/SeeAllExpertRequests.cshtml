@@ -1,0 +1,91 @@
+﻿@page
+@model SangaghakRazorEndPoint.Areas.Expert.Pages.SeeAllExpertRequestsModel
+@{
+}
+
+@using SangaghakRazorEndPoint
+@namespace SangaghakRazorEndPoint.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="d-flex card-header justify-content-between align-items-center">
+                <div>
+                    <h4 class="card-title">لیست تمام درخواست‌های شما</h4>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 table-hover table-centered">
+                        <thead class="bg-light-subtle">
+                            <tr>
+                                <th>مشتری</th>
+                                <th>پکیج</th>
+                                <th>وضعیت درخواست</th>
+                                <th>مجموع</th>
+                                <th>مشاهده جزئیات درخواست</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.AllExpertRequest.IsNullOrEmpty())
+                            {
+                                @foreach (var request in Model.AllExpertRequest)
+                                {
+                                    <tr>
+                                        <td>@request.CustomerFullName</td>
+                                        <td>@request.ServicePackageTiltle</td>
+                                        <td>
+                                            @{
+                                                string badgeClass = request.Status switch
+                                                {
+                                                    RequestStatusEnum.WatingForExpertsOffers => "bg-warning-subtle text-warning",
+                                                    RequestStatusEnum.WatingForCustomerComfimation => "bg-orange-subtle text-orange",
+                                                    RequestStatusEnum.OfferAccepted => "bg-success-subtle text-success",
+                                                    RequestStatusEnum.JobDone => "bg-info-subtle text-info",
+                                                    RequestStatusEnum.WatingForPay => "bg-purple-subtle text-purple",
+                                                    RequestStatusEnum.Complited => "bg-success text-white",
+                                                    RequestStatusEnum.Cancelled => "bg-danger-subtle text-danger",
+                                                    _ => "bg-light text-dark" // پیش‌فرض
+                                                };
+                                                string statusText = request.Status switch
+                                                {
+                                                    RequestStatusEnum.WatingForExpertsOffers => "در انتظار پیشنهادات متخصصین",
+                                                    RequestStatusEnum.WatingForCustomerComfimation => "در انتظار تأیید مشتری",
+                                                    RequestStatusEnum.OfferAccepted => "پیشنهاد پذیرفته‌شده",
+                                                    RequestStatusEnum.JobDone => "کار انجام‌شده",
+                                                    RequestStatusEnum.WatingForPay => "در انتظار پرداخت",
+                                                    RequestStatusEnum.Complited => "تکمیل‌شده",
+                                                    RequestStatusEnum.Cancelled => "لغوشده",
+                                                    _ => "نامشخص"
+                                                };
+                                            }
+                                            <span class="badge @badgeClass py-1 px-2">
+                                                @statusText
+                                            </span>
+                                        </td>
+                                        <td>@request.OfferPrice</td>
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <a asp-page="RequestDetails" asp-route-RequestId="@request.Id" class="btn btn-light btn-sm">
+                                                    <iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">هیچ درخواستی یافت نشد.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+            </div>
+        </div>
+    </div>
+</div>
