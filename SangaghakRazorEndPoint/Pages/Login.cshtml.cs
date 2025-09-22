@@ -38,14 +38,12 @@ namespace SangaghakRazorEndPoint.Pages
                             return LocalRedirect("/Admin/Index");
                         case "Customer":
                             return LocalRedirect("/Customer/Index");
-                        //case "Expert":
-                        //    return RedirectToAction("Management", new { area = "Expert" });
+                        case "Expert":
+                            return LocalRedirect("/Expert/Index");
                         default:
                             return LocalRedirect("/AccessDenied");
                     }
                 }
-
-                // اگر نقش کاربر نامعتبر باشد
                 return RedirectToPage("/AccessDenied");
             }
             else
@@ -57,3 +55,6 @@ namespace SangaghakRazorEndPoint.Pages
         }
     }
 }
+
+
+//SangaghakRazorEndPoint>Pages>Index

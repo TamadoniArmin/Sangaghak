@@ -1,12 +1,14 @@
+using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Users;
+using App.Domain.Core.Sangaghak.DTOs.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SangaghakAppService.Sangaghak.Users;
-using App.Domain.Core.Sangaghak.App.Domain.Core;
-using App.Domain.Core.Sangaghak.DTOs.Users;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Pages
 {
+    [Authorize(Roles = ("Admin"))]
     public class SeeAdminProfileModel(IUserBaseAppService userBaseAppService) : PageModel
     {
         [BindProperty]

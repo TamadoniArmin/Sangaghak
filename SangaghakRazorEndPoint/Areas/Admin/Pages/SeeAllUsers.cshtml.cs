@@ -1,11 +1,13 @@
 using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Users;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Identity;
 
 namespace SangaghakRazorEndPoint.Areas.Admin
 {
+    [Authorize(Roles = ("Admin"))]
     public class SeeAllUsersModel(IUserBaseAppService userBaseAppService) : PageModel
     {
         [BindProperty]

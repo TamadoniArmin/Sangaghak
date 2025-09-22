@@ -231,19 +231,19 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         public async Task<List<GetSubCategoryNameForExpertsDTO>> GetCategoryNamesByExpertId(int expertId, CancellationToken cancellationToken)
         {
             return await _appDbContext.Categories
-                .AsNoTracking()
-                .Where(c => c.Experts != null && c.Experts.Any(e => e.Id == expertId))
-                .Select(c => new GetSubCategoryNameForExpertsDTO
-                {
-                    SubcategoryNames = c.Title
-                })
-                .ToListAsync(cancellationToken);
+                    .AsNoTracking()
+                    .Where(c => c.Experts.Any(e => e.Id == expertId))
+                    .Select(c => new GetSubCategoryNameForExpertsDTO
+                    {
+                        SubcategoryNames = c.Title
+                    })
+                    .ToListAsync(cancellationToken);
         }
         public async Task<List<int>> GetCategoryIdByExpertId(int expertId, CancellationToken cancellationToken)
         {
             return await _appDbContext.Categories
                 .AsNoTracking()
-                .Where(c => c.Experts != null && c.Experts.Any(c => c.Id == expertId))
+                .Where(c =>c.Experts.Any(c => c.Id == expertId))
                 .Select(x => x.Id)
                 .ToListAsync(cancellationToken);
         }

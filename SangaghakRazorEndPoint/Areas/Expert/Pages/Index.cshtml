@@ -26,7 +26,7 @@
                             }
                         </div>
                         <div class="mt-3">
-                            <a href="#!" class="btn btn-primary w-100">ویرایش اطلاعات کاربری</a>
+                            <a asp-page="UpdateUserBasicInfo" asp-route-UserId="@Model.WantedUser.Id" class="btn btn-primary w-100">ویرایش اطلاعات کاربری</a>
                         </div>
                     </div>
                     <div class="col-lg-3 border-end">
@@ -35,15 +35,70 @@
                             <p class="mb-1">(کارشناس)</p>
                             <div class="d-flex align-items-center justify-content-start gap-2 mt-2 mb-1">
                                 <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
-                                    <li><i class="bx bxs-star"></i></li>
-                                    <li><i class="bx bxs-star"></i></li>
-                                    <li><i class="bx bxs-star"></i></li>
-                                    <li><i class="bx bxs-star"></i></li>
-                                    <li><i class="bx bxs-star-half"></i></li>
+                                    @if (Model.ExpertRate >= 1)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate == 2)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate == 3)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate == 4)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                    @if (Model.ExpertRate == 5)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
                                 </ul>
-                                <p class="fw-medium mb-0 text-dark fs-15">
-                                    ۴.۵/۵ <span class="fs-13">(۲۳.۳K بررسی)</span>
-                                </p>
                             </div>
                             <div class="mt-2">
                                 <div class="d-flex align-items-center gap-2 mb-2">
@@ -83,7 +138,7 @@
                                     <div class="col-lg-6">
                                         <div class="border p-3 rounded">
                                             <h4 class="card-title">تخصص های شما</h4>
-                                            @if (Model.ExpertSkillsNames.any())
+                                            @if (Model.ExpertSkillsNames!=null)
                                             {
                                                 @foreach (var Skill in Model.ExpertSkillsNames)
                                                 {
@@ -92,6 +147,10 @@
                                                     </div>
                                                 }
                                             }
+                                            else
+                                            {
+                                                <h5 class="card-title">تخصصی برای شما ثبت نشده است</h5>
+                                            }
                                             <a asp-page="UpdateExpertSkills" asp-rout-ExpertId="Model.WantedUser.ExpertId" class="mb-0 text-dark mt-3">
                                                 برای ویرایش تخصص ها کلیک کنید
                                             </a>
@@ -99,15 +158,22 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="border p-3 rounded">
-                                            <h4 class="card-title">درخواست های متناسب با تخصص ها و شهر شما:</h4>
-                                            <div class="d-flex gap-2 flex-wrap mt-3">
-                                                <span class="badge bg-body text-muted px-2 py-1 fs-12">@Model.MatchRequestsForThisExpertCount</span>
-                                            </div>
-                                            <div class="card-footer border-top">
-                                                <a asp-page="SeeListOfRelatedRequests" asp-route-ExpertId="@Model.WantedUser.ExpertId" class="link-dark fw-medium">
-                                                    برای مشاهدی این لیست کلیک کنید <i class="bx bx-left-arrow-alt"></i>
-                                                </a>
-                                            </div>
+                                            @if (Model.ExpertSkillsNames!=null)
+                                            {
+                                                <h4 class="card-title">درخواست های متناسب با تخصص ها و شهر شما:</h4>
+                                                <div class="d-flex gap-2 flex-wrap mt-3">
+                                                    <span class="badge bg-body text-muted px-2 py-1 fs-12">@Model.MatchRequestsForThisExpertCount</span>
+                                                </div>
+                                                <div class="card-footer border-top">
+                                                    <a asp-page="SeeListOfRelatedRequests" asp-route-ExpertId="@Model.WantedUser.ExpertId" class="link-dark fw-medium">
+                                                        برای مشاهدی این لیست کلیک کنید <i class="bx bx-left-arrow-alt"></i>
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="card-title">برای مشاهده ی این بخش اول تخصصی را انتخاب کنید</h4>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -214,12 +280,18 @@
                                         </td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a href="#!" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
+                                                <a asp-page="RequestDetails" asp-route-RequestId="@Request.Id" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
                                             </div>
                                         </td>
                                     </tr>
                                 }
 
+                            }
+                            @if (Model.AllCurrentExpertRequests == null)
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">در حال حاضر هیچ درخواست تکمیل نشده ای ندارید.</td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -340,7 +412,7 @@
                         </div>
                     </div>
                     <div class="card-footer border-top">
-                        <a href="#!" class="link-dark fw-medium">
+                        <a asp-page="SeeAllExpertRequests" asp-route-ExpertId="@Model.WantedUser.ExpertId" class="link-dark fw-medium">
                             مشاهده بیشتر <i class="bx bx-left-arrow-alt"></i>
                         </a>
                     </div>
@@ -356,7 +428,7 @@
                         </div>
                     </div>
                     <div class="card-footer border-top">
-                        <a href="#!" class="link-dark fw-medium">
+                        <a asp-page="SeeAllExpertOffers" asp-route-ExpertId="@Model.WantedUser.ExpertId" class="link-dark fw-medium">
                             مشاهده بیشتر <i class="bx bx-left-arrow-alt"></i>
                         </a>
                     </div>
@@ -375,7 +447,6 @@
         {
             <div class="col-md-6 col-xl-3">
                 <div class="card">
-                    <img src="/images/product/p-1.png" alt="" class="img-fluid ">
                     <div class="card-body bg-light-subtle rounded-bottom">
                         <p class="text-dark fw-medium fs-16">
                             @Comment.CustomerName
@@ -383,22 +454,13 @@
                         <div class="my-1">
                             <div class="d-flex gap-2 align-items-center">
                                 <ul class="d-flex text-warning m-0 fs-18 list-unstyled">
-                                    @if (Model.ExpertRate>=1)
+                                    @if (Comment.Rate>= 1)
                                     {
                                         <li>
                                             <i class="bx bxs-star"></i>
                                         </li>
                                     }
-                                    @if (Model.ExpertRate==2)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Model.ExpertRate==3)
+                                    @if (Comment.Rate == 2)
                                     {
                                         <li>
                                             <i class="bx bxs-star"></i>
@@ -406,11 +468,8 @@
                                         <li>
                                             <i class="bx bxs-star"></i>
                                         </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
                                     }
-                                    @if (Model.ExpertRate==4)
+                                    @if (Comment.Rate == 3)
                                     {
                                         <li>
                                             <i class="bx bxs-star"></i>
@@ -421,6 +480,18 @@
                                         <li>
                                             <i class="bx bxs-star"></i>
                                         </li>
+                                    }
+                                    @if (Comment.Rate == 4)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
                                         <li>
                                             <i class="bx bxs-star"></i>
                                         </li>
@@ -428,7 +499,7 @@
                                             <i class="bx bxs-star"></i>
                                         </li>
                                     }
-                                    @if (Model.ExpertRate==5)
+                                    @if (Comment.Rate == 5)
                                     {
                                         <li>
                                             <i class="bx bxs-star"></i>

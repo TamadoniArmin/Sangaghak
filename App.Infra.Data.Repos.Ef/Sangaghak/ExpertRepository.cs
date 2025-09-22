@@ -4,6 +4,7 @@ using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using Connection.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace App.Infra.Data.Repos.Ef.Sangaghak
 {
@@ -39,16 +40,27 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         public async Task<int> GetExpertRateAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var Expert = await _appDbContext.Experts.FirstOrDefaultAsync(x => x.Id == ExpertId && x.IsDeleted == false,cancellationToken);
+            var Expert = await _appDbContext.Experts
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == ExpertId && x.IsDeleted == false,cancellationToken);
             if (Expert != null)
             {
-                int PointerCount = Expert.PointerIds.Count();
-                int sum = 0;
-                foreach (var Point in Expert.Points)
+                if(Expert.PointerIds.IsNullOrEmpty() || Expert.Points.IsNullOrEmpty())
                 {
-                    sum += Point;
+                    return 3;
                 }
-                return sum / PointerCount;
+                else
+                {
+                    int PointerCount = Expert.PointerIds!.Count();
+                    int sum = 0;
+                    foreach (var Point in Expert.Points!)
+                    {
+                        sum += Point;
+                    }
+                    var Rate= sum / PointerCount;
+                    return (Rate > 5) ? 5 : Rate;
+                }
+
             }
             return -1;
         }

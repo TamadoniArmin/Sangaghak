@@ -1,10 +1,12 @@
 using App.Domain.Core.Sangaghak.App.Domain.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SangaghakAppService.Sangaghak.Users;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Users
 {
+    [Authorize(Roles = ("Admin"))]
     public class LoginUserModel(IUserBaseAppService userAppService) : PageModel
     {
         [BindProperty]

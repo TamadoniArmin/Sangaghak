@@ -12,10 +12,12 @@ namespace App.Domain.Core.Sangaghak.DTOs.Requests
         public int CityId { get; set; }
         public string? CityTitle { get; set; }
         public int CustomerId { get; set; }
+        public int CustomerUserId { get; set; }
         public string? CustomerEmail { get; set; }
         public string? CustomerPhone { get; set; }
         public string? CustomerFullName { get; set; }
         public int ExpertId { get; set; }
+        public int ExpertUserId { get; set; }
         public string? ExpertFullName { get; set; }
         public string? ExpertEmail { get; set; }
         public string? ExpertPhone { get; set; }

@@ -19,21 +19,25 @@
                     <p class="text-muted mt-1 mb-4">جدید به پلتفرم ما هستید؟ همین حالا ثبت نام کنید! این فقط یک دقیقه طول می‌کشد.</p>
 
                     <div>
-                        <form method="post">
+                        <form form enctype="multipart/form-data" role="form" method="post" asp-page-handler="UpdateUser">
+                            @Model.ProfileImgFile
                             <div class="form-body">
+
                                 <div class="dropzone bg-light-subtle py-5">
-                                    <div class="fallback">
-                                        <input asp-for="@Model.ProfileImgFile" name="file" type="file" />
-                                    </div>
-                                    <div class="dz-message needsclick">
-                                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
-                                        <h3 class="mt-4">
-                                            تصاویر خود را اینجا رها کنید، یا
-                                            <span class="text-primary">برای مرور کلیک کنید</span>
-                                        </h3>
-                                        <span class="text-muted fs-13">
-                                            1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
-                                        </span>
+                                    <div class="form-group relative">
+                                        <input asp-for="@Model.ProfileImgFile" type="file" class="form-control">
+                                        <label>آپلود عکس</label>
+                                        <div class="input-group round">
+                                            <input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-success">
+                                                    <i class="icon-picture"></i>
+                                                    آپلود عکس
+                                                    <div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div>
+                                                </button>
+                                            </span>
+                                        </div><!-- /.input-group -->
+                                        <div class="help-block"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">

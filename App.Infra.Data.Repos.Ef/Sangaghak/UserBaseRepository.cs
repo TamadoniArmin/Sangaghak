@@ -62,7 +62,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 FirstName = WantedUser.FirstName,
                 LastName = WantedUser.LastName,
                 FullName = WantedUser.FirstName + " " + WantedUser.LastName,
-                UserName = WantedUser.UserName,
+                UserName = WantedUser.UserName ?? "نام کاربری برای این کاربر ثبت نشده است",
                 AdminId=WantedUser.AdminId,
                 CustomerId=WantedUser.CustomerId,
                 ExpertId=WantedUser.ExpertId,
@@ -117,9 +117,27 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             {
                 UserBaseContactInfoDTO userBaseContactInfoDTO = new UserBaseContactInfoDTO()
                 {
+                    Id= Customer.Id,
                     FullName = Customer.FirstName + " " + Customer.LastName,
                     Email = Customer.Email,
-                    Phone = Customer.PhoneNumber,
+                    Phone = Customer.Mobile,
+                    CityId = Customer.CityId,
+                };
+                return userBaseContactInfoDTO;
+            }
+        }
+        public async Task<UserBaseContactInfoDTO> GetExpertByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            var Customer = await _appDbContext.Users.FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
+            if (Customer == null) return null;
+            else
+            {
+                UserBaseContactInfoDTO userBaseContactInfoDTO = new UserBaseContactInfoDTO()
+                {
+                    Id = Customer.Id,
+                    FullName = Customer.FirstName + " " + Customer.LastName,
+                    Email = Customer.Email,
+                    Phone = Customer.Mobile,
                     CityId = Customer.CityId,
                 };
                 return userBaseContactInfoDTO;
@@ -148,7 +166,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 userBaseSummaryDto.LastName = User.LastName;
                 userBaseSummaryDto.CityId = User.CityId;
                 userBaseSummaryDto.UserName = User.UserName ?? string.Empty;
-                userBaseSummaryDto.Email = User.Email;
+                userBaseSummaryDto.Email = User.Email??"برای کاربر ایمیلی ثبت نشده است";
+                userBaseSummaryDto.Mobile= User.Mobile;
                 userBaseSummaryDto.RegisterAt = User.RegisteredAt;
                 userBaseSummaryDto.Role = User.Role;
                 userBaseSummaryDto.ImagePath = User.ImagePath;
@@ -178,7 +197,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 userBaseSummaryDto.LastName = User.LastName;
                 userBaseSummaryDto.CityId = User.CityId;
                 userBaseSummaryDto.UserName = User.UserName ?? string.Empty;
-                userBaseSummaryDto.Email = User.Email;
+                userBaseSummaryDto.Email = User.Email ?? "برای کاربر ایمیلی ثبت نشده است";
+                userBaseSummaryDto.Mobile=User.Mobile;
                 userBaseSummaryDto.RegisterAt = User.RegisteredAt;
                 userBaseSummaryDto.Role = User.Role;
                 userBaseSummaryDto.ImagePath = User.ImagePath;

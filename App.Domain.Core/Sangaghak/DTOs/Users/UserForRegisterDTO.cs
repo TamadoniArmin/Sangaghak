@@ -15,5 +15,6 @@ namespace App.Domain.Core.Sangaghak.DTOs.Users
         public int CityId { get; set; }
         public IFormFile? ProfileImgFile { get; set; }
         public string? ImagePath { get; set; }
+        public bool CreatedByAdmin { get; set; }
     }
 }

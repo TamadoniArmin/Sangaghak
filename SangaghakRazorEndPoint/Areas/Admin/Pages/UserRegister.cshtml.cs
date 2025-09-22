@@ -3,11 +3,13 @@ using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Users;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin
 {
+    [Authorize(Roles =("Admin"))]
     public class UserRegisterModel(IUserBaseAppService _userBaseAppService) : PageModel
     {
         [BindProperty]
@@ -37,7 +39,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin
         {
             return Page();
         }
-        public async Task<IActionResult> OnPost(CancellationToken cancellationToken)
+        public async Task<IActionResult> OnPostUpdateUser(CancellationToken cancellationToken)
         {
             if(RePassword!=Password)
             {
@@ -55,9 +57,10 @@ namespace SangaghakRazorEndPoint.Areas.Admin
                 userForRegisterDTO.CityId = CityId;
                 userForRegisterDTO.Role = Role;
                 userForRegisterDTO.ProfileImgFile = ProfileImgFile;
+                userForRegisterDTO.CreatedByAdmin = true;
 
 
-                await _userBaseAppService.Register(userForRegisterDTO, cancellationToken);//این خروجی داره
+                await _userBaseAppService.Register(userForRegisterDTO, cancellationToken);
 
                 return RedirectToPage("Index");
             }

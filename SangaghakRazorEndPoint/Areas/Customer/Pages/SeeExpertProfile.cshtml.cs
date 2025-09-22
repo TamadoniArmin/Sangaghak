@@ -3,12 +3,14 @@ using App.Domain.Core.Sangaghak.DTOs.Categories;
 using App.Domain.Core.Sangaghak.DTOs.Comments;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.DTOs.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SangaghakAppService.Sangaghak.Pages;
 
 namespace SangaghakRazorEndPoint.Areas.Customer.Pages
 {
+    [Authorize(Roles = ("Customer"))]
     public class SeeExpertProfileModel(IExpertProfileAppService expertProfileAppService,
         IUserBaseAppService userBaseAppService) : PageModel
     {

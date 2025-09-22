@@ -229,10 +229,6 @@
                         <h4 class="card-title">
                             سفارشات اخیر
                         </h4>
-
-                        <a href="#!" class="btn btn-sm btn-soft-primary">
-                            <i class="bx bx-plus me-1"></i>ایجاد سفارش
-                        </a>
                     </div>
                 </div>
                 <!-- end card body -->
@@ -272,64 +268,32 @@
                         </thead>
                         <!-- end thead-->
                         <tbody>
-                            <tr>
-                                @foreach (var Request in Model.Requests)
-                                {
+
+                            @foreach (var Request in Model.Requests)
+                            {
+                                <tr>
                                     <td class="ps-3">
-                                        <a href="apps-ecommerce-order-detail.html">@Request.Id</a>
+                                        <a>@Request.Id</a>
                                     </td>
                                     <td>@Request.SetAt</td>
+                                    <td>@Request.ServicePackageTiltle</td>
                                     <td>
-                                        <a href="#!">@Request.CustomerFullName</a>
+                                        <a asp-page="SeeUserProfile" asp-route-UserId="@Request.CustomerUserId">@Request.CustomerFullName</a>
                                     </td>
                                     <td>@Request.CustomerEmail</td>
                                     <td>@Request.CustomerPhone</td>
                                     <td>@Request.CityTitle</td>
                                     <td>@Request.ExpertFullName</td>
                                     <td>
-                                        <i class="bx bxs-circle text-success me-1"></i> @Request.Status
+                                        @Request.Status
                                     </td>
-                                }
-                            </tr>
+                                </tr>
+                            }
+
                         </tbody>
                         <!-- end tbody -->
                     </table>
                     <!-- end table -->
-                </div>
-                <!-- table responsive -->
-
-                <div class="card-footer border-top">
-                    <div class="row g-3">
-                        <div class="col-sm">
-                            <div class="text-muted">
-                                نمایش
-                                <span class="fw-semibold">5</span>
-                                از
-                                <span class="fw-semibold">90,521</span>
-                                سفارش
-                            </div>
-                        </div>
-
-                        <div class="col-sm-auto">
-                            <ul class="pagination m-0">
-                                <li class="page-item">
-                                    <a href="#" class="page-link"><i class="bx bx-right-arrow-alt"></i></a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link"><i class="bx bx-left-arrow-alt"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- end card -->

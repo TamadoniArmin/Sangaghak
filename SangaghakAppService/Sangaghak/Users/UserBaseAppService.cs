@@ -3,6 +3,7 @@ using App.Domain.Core.Sangaghak.DTOs.Users;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Enum;
 using App.Domain.Core.Sangaghak.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
@@ -22,8 +23,17 @@ namespace SangaghakAppService.Sangaghak.Users
         private readonly IPasswordHasher<UserBase> _passwordHasher;
         private readonly ILogger<UserBaseAppService> _logger;
         private readonly IMemoryCache _memoryCache;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserBaseAppService(IUserBaseService userService, UserManager<UserBase> userManager, SignInManager<UserBase> signInManager, IPasswordHasher<UserBase> passwordHasher, IGeneralService generalService,ICityService cityService, ILogger<UserBaseAppService> logger, IMemoryCache memoryCache)
+        public UserBaseAppService(IUserBaseService userService,
+            UserManager<UserBase> userManager,
+            SignInManager<UserBase> signInManager,
+            IPasswordHasher<UserBase> passwordHasher,
+            IGeneralService generalService,
+            ICityService cityService,
+            ILogger<UserBaseAppService> logger,
+            IMemoryCache memoryCache,
+            IHttpContextAccessor httpContextAccessor)
         {
             _userService = userService;
             _userManager = userManager;
@@ -33,6 +43,7 @@ namespace SangaghakAppService.Sangaghak.Users
             _cityService = cityService;
             _logger = logger;
             _memoryCache = memoryCache;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
@@ -50,7 +61,6 @@ namespace SangaghakAppService.Sangaghak.Users
             else
             {
                 WantedUsers = await _userService.GetAllAsync(cancellationToken);
-                var Name = await _cityService.GetNameOfCity(3, cancellationToken);
                 foreach (var WantedUser in WantedUsers)
                 {
                     var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
@@ -65,9 +75,9 @@ namespace SangaghakAppService.Sangaghak.Users
             }
             return WantedUsers;
         }
-        public async Task<IdentityResult> DeleteUser(int UserId,CancellationToken cancellationToken)
+        public async Task<IdentityResult> DeleteUser(int UserId, CancellationToken cancellationToken)
         {
-            var StringId=  Convert.ToString(UserId);
+            var StringId = Convert.ToString(UserId);
             var user = await _userManager.FindByIdAsync(StringId);
             if (user == null)
             {
@@ -99,17 +109,22 @@ namespace SangaghakAppService.Sangaghak.Users
         {
             string role = string.Empty;
 
-
+            if (model.ProfileImgFile is not null)
+            {
+                model.ImagePath = await _generalService.UploadImage(model.ProfileImgFile!, "Profiles", cancellationToken);
+            }
             var user = new UserBase
             {
                 UserName = model.UserName,
-                FirstName=model.FirstName,
-                LastName=model.LastName,
-                CityId=model.CityId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                CityId = model.CityId,
                 Email = model.Email,
                 Mobile = model.Phone,
-                Role=model.Role,
-                Balance=1000000
+                Role = model.Role,
+                Balance = 1000000,
+                RegisteredAt=DateTime.Now,
+                ImagePath= model.ImagePath ?? null
             };
 
             if (model.Role == RoleEnum.Admin)
@@ -137,10 +152,6 @@ namespace SangaghakAppService.Sangaghak.Users
 
             if (result.Succeeded)
             {
-                if (model.ProfileImgFile is not null)
-                {
-                    model.ImagePath = await _generalService.UploadImage(model.ProfileImgFile!, "Profiles", cancellationToken);
-                }
 
                 await _userManager.AddToRoleAsync(user, role);
 
@@ -154,8 +165,10 @@ namespace SangaghakAppService.Sangaghak.Users
                 {
                     await _userManager.AddClaimAsync(user, new Claim("ExpertId", user.Expert.Id.ToString()));
                 }
-
-                await _signInManager.PasswordSignInAsync(user.UserName, model.Password, true, false);
+                if (!model.CreatedByAdmin)
+                {
+                    await _signInManager.PasswordSignInAsync(user.UserName, model.Password, true, false);
+                }
             }
             if (!result.Succeeded)
             {
@@ -165,17 +178,48 @@ namespace SangaghakAppService.Sangaghak.Users
             {
                 _logger.LogInformation("کاربری با نام کاربری {Username} درساعت {Time} با موفقیت ثبتنام کرد", DateTime.UtcNow.ToLongTimeString(), user.UserName);
             }
-                return result;
+            return result;
         }
 
-        public async Task<bool> UpdateUserInfoAsync(UserBaseDTO user, int UserId, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateUserInfo(UserBaseDTO userDto, int userId, CancellationToken cancellationToken)
         {
-            return await _userService.UpdateUserInfoAsync(user, UserId, cancellationToken);
+            // یافتن کاربر بر اساس شناسه
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                _logger.LogWarning("کاربری با شناسه {UserId} یافت نشد.", userId);
+                return IdentityResult.Failed(new IdentityError { Description = "کاربر یافت نشد." });
+            }
+            user.UserName = userDto.UserName;
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            user.CityId = userDto.CityId;
+            user.Email = userDto.Email;
+            user.Mobile = userDto.Mobile;
+
+
+            if (userDto.ProfileImgFile != null)
+            {
+                user.ImagePath = await _generalService.UploadImage(userDto.ProfileImgFile, "Profiles", cancellationToken);
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("کاربر با شناسه {UserId} در ساعت {Time} با موفقیت به‌روزرسانی شد.", userId, DateTime.UtcNow.ToLongTimeString());
+            }
+            else
+            {
+                _logger.LogWarning("به‌روزرسانی کاربر با شناسه {UserId} در ساعت {Time} ناموفق بود.", userId, DateTime.UtcNow.ToLongTimeString());
+            }
+
+            return result;
         }
         public async Task<IdentityResult> Login(string username, string password, bool rememberMe)
         {
             var result = await _signInManager.PasswordSignInAsync(username, password, rememberMe, false);
-            _logger.Log(logLevel: LogLevel.Warning , "User Logged In");
+            _logger.Log(logLevel: LogLevel.Warning, "User Logged In");
             return result.Succeeded ? IdentityResult.Success : IdentityResult.Failed();
         }
 
@@ -193,5 +237,61 @@ namespace SangaghakAppService.Sangaghak.Users
         {
             return await _userService.GetExpertBasicInfoByExpertIdAsync(expertId, cancellationToken);
         }
+        public async Task<UserDTO> GetCurrentUserAsync()
+        {
+            var user = _httpContextAccessor.HttpContext?.User;
+            if (user == null || !user.Identity.IsAuthenticated)
+            {
+                return null;
+            }
+
+            string cacheKey = $"User_{user.Identity.Name}";
+            if (!_memoryCache.TryGetValue(cacheKey, out UserDTO userDTO))
+            {
+                var applicationUser = await _userManager.GetUserAsync(user);
+                if (applicationUser == null)
+                {
+                    return null;
+                }
+
+                userDTO = new UserDTO
+                {
+                    Id = applicationUser.Id,
+                    FullName = applicationUser.FirstName + " " + applicationUser.LastName ?? applicationUser.Email ?? "کاربر بدون نام!!!!!",
+                    ProfileImageUrl = applicationUser.ImagePath ?? "~/images/Profiles/dummy-avatar.jpg"
+                };
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(10));
+                _memoryCache.Set(cacheKey, userDTO, cacheOptions);
+            }
+
+            return userDTO;
+        }
+
+
+
+
+
+        public async Task<UserDTO> GetByIdAsync(int userId)
+        {
+            var applicationUser = await _userManager.FindByIdAsync(userId.ToString());
+            if (applicationUser == null)
+            {
+                return null;
+            }
+
+            return new UserDTO
+            {
+                Id = applicationUser.Id,
+                FullName = applicationUser.FirstName + " " + applicationUser.LastName ?? applicationUser.Email ?? "کاربر بدون نام!!!!!",
+                ProfileImageUrl = applicationUser.ImagePath ?? "~/images/Profiles/dummy-avatar.jpg"
+            };
+        }
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
     }
 }
+

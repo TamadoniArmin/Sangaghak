@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Pages
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class IndexModel(IDashboardAppService dashboardAppService) : PageModel
     {
         [BindProperty]
@@ -23,6 +23,8 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
         [BindProperty]
         public int Balance { get; set; }//کیف پول
         [BindProperty]
+        public int Id { get; set; }
+        [BindProperty]
         public int AllRequestsCount { get; set; }//تعداد کل درخواست ها
         [BindProperty]
         public int CurrentRequestsCount { get; set; }//نعداد درخواست های جاری
@@ -34,7 +36,7 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages
         public int AllPackagesCount { get; set; }//تعداد پکیج های ثبت شده
         public async Task OnGet(CancellationToken cancellationToken)
         {
-            var data = User;
+            Id = 1;
             Users = await dashboardAppService.GetAllUsersAsync(cancellationToken);
             AllUsersCount = await dashboardAppService.GetAllUsersCount(cancellationToken);
             CustomerCount = await dashboardAppService.GetEachRoleCount(RoleEnum.Customer, cancellationToken);

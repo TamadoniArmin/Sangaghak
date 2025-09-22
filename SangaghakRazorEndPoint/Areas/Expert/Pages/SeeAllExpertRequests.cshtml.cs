@@ -11,9 +11,9 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
     {
         [BindProperty]
         public List<RequestDTO>? AllExpertRequest { get; set; }
-        public async Task<IActionResult> OnGetAsync(int Expertid, CancellationToken cancellationToken)
+        public async Task<IActionResult> OnGetAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            AllExpertRequest= await requestAppService.GetAllExpertRequestsAsync(Expertid, cancellationToken);
+            AllExpertRequest= await requestAppService.GetAllExpertRequestsAsync(ExpertId, cancellationToken);
             return Page();
         }
     }

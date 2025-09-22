@@ -1,0 +1,21 @@
+﻿@model App.Domain.Core.Sangaghak.DTOs.Users.UserInfoViewModel
+
+<div class="dropdown topbar-item">
+    <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        <span class="d-flex align-items-center">
+            <img class="rounded-circle" width="32" src="@Model.ProfileImageUrl">
+            <span class="ms-2">@Model.FullName</span>
+        </span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end">
+        <h6 class="dropdown-header">به سنجاقک خوش آمدید!</h6>
+        <a class="dropdown-item" asp-page="Index">
+            <span class="align-middle">خانه</span>
+        </a>
+        <div class="dropdown-divider my-1"></div>
+        <a class="dropdown-item text-danger" asp-page="Logout">
+            <i class="bx bx-log-out fs-18 align-middle me-1"></i><span class="align-middle">خروج</span>
+        </a>
+    </div>
+</div>

@@ -10,6 +10,7 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken);
         public Task<GetUserBaseForViewPage> GetByNameAsync(string name, CancellationToken cancellationToken);
         public Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken);
+        public Task<UserBaseContactInfoDTO> GetExpertByExpertIdAsync(int ExpertId, CancellationToken cancellationToken);
         public Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken);
         public Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId, CancellationToken cancellationToken);
         public Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken);

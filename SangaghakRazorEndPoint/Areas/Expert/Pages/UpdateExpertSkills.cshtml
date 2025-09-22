@@ -12,17 +12,16 @@
     <div class="col-xl-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="card-title">وظایف من</h4>
-                <div>
-                    <a href="#!" class="btn btn-sm btn-primary">
-                        <i class="bx bx-plus me-1"></i>ایجاد وظیفه
-                    </a>
-                </div>
+                <h4 class="card-title">تخصص های من</h4>
             </div> <!-- end card-header-->
             <div class="card-body p-0 pb-3">
-                <form method="post">
+                <form enctype="multipart/form-data" role="form" method="post" asp-page-handler="UpdateExpertSkills">
+                    <!-- فیلد مخفی برای ExpertId -->
+
+
                     <!-- فرم برای submit -->
                     <div class="p-3" data-simplebar style="max-height: 386px;">
+                        <input type="hidden" asp-for="@Model.WantedExpertId" value="@Model.ExpertId" />
                         @foreach (var category in Model.AllSubCategories)
                         {
                             <div class="form-check form-todo py-1 my-2 ps-4">

@@ -15,7 +15,7 @@
                     <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
                         @if (@Model.UserInfo.ProfileImgFile != null)
                         {
-                            <img src="@Model.UserInfo.ProfileImgFile" alt="" class="avatar-md">
+                            <img class="rounded-circle" width="32" src="@Model.UserInfo.ImagePath">
                         }
                         else
                         {

@@ -1,10 +1,12 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Customer.Pages
 {
+    [Authorize(Roles = ("Customer"))]
     public class RequestInvoiceModel(IRequestAppService requestAppService) : PageModel
     {
         [BindProperty]

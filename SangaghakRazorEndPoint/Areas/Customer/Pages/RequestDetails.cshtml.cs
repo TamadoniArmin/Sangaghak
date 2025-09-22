@@ -1,11 +1,13 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Customer.Pages
 {
+    [Authorize(Roles = ("Customer"))]
     public class RequestDetailsModel(IRequestAppService requestAppService, IOfferService offerService) : PageModel
     {
         [BindProperty]
@@ -23,7 +25,7 @@ namespace SangaghakRazorEndPoint.Areas.Customer.Pages
             Offers = await offerService.GetRequestOffersAsync(RequestId, cancellationToken);
             return Page();
         }
-        public async Task<IActionResult> OnDelete(int RequestId,CancellationToken cancellationToken)
+        public async Task<IActionResult> OnGetDelete(int RequestId,CancellationToken cancellationToken)
         {
             var Result  = await requestAppService.DeleteRequestDetailsAsync(RequestId, cancellationToken);
             if (Result)

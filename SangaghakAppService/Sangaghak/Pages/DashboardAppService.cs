@@ -73,15 +73,20 @@ namespace SangaghakAppService.Sangaghak.Pages
             {
                 var Customer = await userBaseService.GetCustomerByCustomerIdAsync(Request.CustomerId, cancellationToken);
                 Request.CustomerFullName = Customer.FullName??string.Empty;
-                Request.CustomerEmail = Customer.Email;
-                Request.CustomerPhone = Customer.Phone;
+                Request.CustomerEmail = Customer.Email??"ایمیلی ثبت نشده است";
+                Request.CustomerPhone = Customer.Phone??"شماره ای ثبت نشده است";
+                Request.CustomerUserId = Customer.Id;
                 Request.ServicePackageTiltle = await servicePackageService.GetPackageTiltleById(Request.ServicePackageId, cancellationToken);
                 var City = await cityService.GetCityById(Request.CityId, cancellationToken);
                 Request.CityTitle = City.Title;
                 if (Request.AcceptedOfferId != 0 && Request.AcceptedOfferId is not null)
                 {
                     Request.ExpertId = await offerService.GetExpertIdByOfferIdAysnc(Request.AcceptedOfferId.Value, cancellationToken);
-                    Request.ExpertFullName = await userBaseService.GetExpertNameByExpertIdAsync(Request.ExpertId, cancellationToken);
+                    var wantedExpert= await userBaseService.GetExpertByExpertIdAsync(Request.ExpertId, cancellationToken);
+                    Request.ExpertFullName = wantedExpert.FullName;
+                    Request.ExpertEmail = wantedExpert.Email?? "ایمیلی ثبت نشده است";
+                    Request.ExpertPhone= wantedExpert.Phone?? "شماره ای ثبت نشده است";
+                    Request.ExpertUserId = wantedExpert.Id;
                 }
             }
             return Requests;

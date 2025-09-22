@@ -1,11 +1,13 @@
 using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Requests
 {
+    [Authorize(Roles = ("Admin"))]
     public class SeeAllRequestsModel(IRequestAppService requestAppService) : PageModel
     {
         [BindProperty]

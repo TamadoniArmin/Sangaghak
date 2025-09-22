@@ -342,7 +342,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Delete
         public async Task<bool> DeleteRequestDetailsAsync(int RequestId, CancellationToken cancellationToken)
         {
-            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted == false, cancellationToken);
+            var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted == false, cancellationToken);
             if (Request != null)
             {
                 Request.IsDeleted = true;

@@ -8,124 +8,99 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="row">
-
-
     <div class="col-xl-9 col-lg-8">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">اضافه کردن لوگوی برند</h4>
-            </div>
-            <div class="card-body">
-                <div class="dropzone bg-light-subtle py-5">
-                    <div class="fallback">
-                        <input name="file" type="file" multiple="multiple" />
-                    </div>
-                    <div class="dz-message needsclick">
-                        <i class="bx bx-cloud-upload fs-48 text-primary"></i>
-                        <h3 class="mt-4">
-                            تصاویر خود را اینجا رها کنید، یا
-                            <span class="text-primary">برای مرور کلیک کنید</span>
-                        </h3>
-                        <span class="text-muted fs-13">
-                            1600 x 1200 (4:3) توصیه می‌شود. فایل‌های PNG، JPG و GIF مجاز هستند
-                        </span>
-                    </div>
+        <form enctype="multipart/form-data" role="form" method="post" asp-page-handler="UpdateUser">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">ویرایش اطلاعات کاربر</h4>
                 </div>
+                <div class="card-body">
+                    <div class="row">
 
-
-                <ul class="list-unstyled mb-0" id="dropzone-preview">
-                    <li class="mt-2" id="dropzone-preview-list">
-                        <div class="border rounded">
-                            <div class="d-flex p-2">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar-sm bg-light rounded">
-                                        <img data-dz-thumbnail
-                                             class="img-fluid rounded d-block"
-                                             src="#"
-                                             alt="تصویر دراپ زون" />
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="pt-1">
-                                        <h5 class="fs-14 mb-1" data-dz-name>&</h5>
-                                        <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                        <strong class="error text-primary"
-                                                data-dz-errormessage></strong>
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 ms-3">
-                                    <button data-dz-remove class="btn btn-sm btn-primary">
-                                        حذف
-                                    </button>
-                                </div>
+                        <div class="dropzone bg-light-subtle py-5">
+                            <div class="form-group relative">
+                                <input asp-for="UserToUpdate.ProfileImgFile" type="file" class="form-control">
+                                <label>آپلود عکس</label>
+                                <div class="input-group round">
+                                    <input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-success">
+                                            <i class="icon-picture"></i>
+                                            آپلود عکس
+                                            <div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div>
+                                        </button>
+                                    </span>
+                                </div><!-- /.input-group -->
+                                <div class="help-block"></div>
                             </div>
                         </div>
-                    </li>
-                </ul>
-                <!-- پایان پیش نمایش دراپ زون -->
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">اطلاعات فروشنده</h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <form>
                         <div class="col-lg-6">
-
                             <div class="mb-3">
                                 <label for="brand-title" class="form-label">نام</label>
                                 <input asp-for="@Model.UserToUpdate.FirstName" type="text"
                                        id="brand-title"
                                        class="form-control"
                                        placeholder="نام"
-                                       value="@Model.PriorUserinfo.FirstName" />
+                                       value="@(Model.PriorUserinfo?.FirstName ?? "")" />
                             </div>
-
                         </div>
                         <div class="col-lg-6">
-
                             <div class="mb-3">
-                                <label for="brand-title" class="form-label"> نام خانوادگی</label>
+                                <label for="brand-title" class="form-label">نام خانوادگی</label>
                                 <input asp-for="@Model.UserToUpdate.LastName" type="text"
                                        id="brand-title"
                                        class="form-control"
                                        placeholder="نام خانوادگی"
-                                       value="@Model.PriorUserinfo.LastName" />
+                                       value="@(Model.PriorUserinfo?.LastName ?? "")" />
                             </div>
-
                         </div>
-
                         <div class="col-lg-6">
-
+                            <div class="mb-3">
+                                <label for="username" class="form-label">نام کاربری</label>
+                                <input asp-for="@Model.UserToUpdate.UserName" type="text"
+                                       id="username"
+                                       class="form-control"
+                                       placeholder="نام کاربری"
+                                       value="@(Model.PriorUserinfo?.UserName ?? "")" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">نام کاربری</label>
+                                <input asp-for="@Model.UserToUpdate.Email" type="text"
+                                       id="username"
+                                       class="form-control"
+                                       placeholder="نام کاربری"
+                                       value="@(Model.PriorUserinfo?.Email ?? "")" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
                             <label for="product-categories" class="form-label">شهر</label>
-                            <select asp-for="@Model.UserToUpdate.CityId" class="form-control"
-                                    id="product-categories"
-                                    data-choices
-                                    data-choices-groups
-                                    data-placeholder="یک شهر انتخاب کیند"
-                                    name="choices-single-groups">
+                            <select asp-for="@Model.UserToUpdate.CityId" class="form-select"
+                                    data-placeholder="یک شهر انتخاب کیند">
                                 <option value="@Model.PriorUserinfo.CityId">یک شهر انتخاب کنید</option>
-                                @foreach (var city in Model.Cities)
+                                @if (Model.Cities != null)
                                 {
-                                    <option value="@city.Id">@city.Title</option>
+                                    @foreach (var city in Model.Cities)
+                                    {
+
+                                        <option value="@city.Id">@city.Title</option>
+
+                                    }
                                 }
                             </select>
-
                         </div>
                         <div class="col-lg-6">
                             <label for="seller-number" class="form-label">شماره تلفن</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text fs-20">
-                                    <iconify-icon icon="solar:outgoing-call-rounded-bold-duotone"
-                                                  class="fs-20"></iconify-icon>
+                                    <iconify-icon icon="solar:outgoing-call-rounded-bold-duotone" class="fs-20"></iconify-icon>
                                 </span>
                                 <input asp-for="@Model.UserToUpdate.Mobile" type="text"
                                        id="seller-number"
                                        class="form-control"
                                        placeholder="09*********"
-                                       value="@Model.PriorUserinfo.Mobile" />
+                                       value="@(Model.PriorUserinfo?.Mobile ?? "")" />
                             </div>
                             <div class="p-3 bg-light mb-3 rounded">
                                 <div class="row justify-content-end g-2">
@@ -133,15 +108,15 @@
                                         <button type="submit" class="btn btn-outline-secondary w-100">ذخیره تغییرات</button>
                                     </div>
                                     <div class="col-lg-2">
-                                        <a asp-page="SeeUserProfile" class="btn btn-primary w-100">لغو</a>
+                                        <a href="" class="btn btn-primary w-100">لغو</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
 </div>

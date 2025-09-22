@@ -94,6 +94,11 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.GetExpertBasicInfoByExpertIdAsync(expertId, cancellationToken);
         }
 
+        public async Task<UserBaseContactInfoDTO> GetExpertByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetExpertByExpertIdAsync(ExpertId, cancellationToken);
+        }
+
         public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)
         {
             return await _repository.GetExpertIdIdByUserId(UserId,cancellationToken);

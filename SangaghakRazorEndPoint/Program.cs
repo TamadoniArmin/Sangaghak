@@ -1,4 +1,4 @@
-using App.Domain.Core.Sangaghak.App.Domain.Core;
+﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Service;
@@ -65,7 +65,13 @@ namespace SangaghakRazorEndPoint
                 AddRoles<IdentityRole<int>>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
-
+                builder.Services.AddDistributedMemoryCache(); // برای ذخیره‌سازی Session (در محیط توسعه، از MemoryCache استفاده کنید؛ در تولید می‌توانید Redis یا SQL استفاده کنید)
+                builder.Services.AddSession(options =>
+                {
+                    options.IdleTimeout = TimeSpan.FromMinutes(30); // زمان انقضای Session
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.IsEssential = true; // برای رعایت قوانین cookie consent
+                });
 
                 //    optionsBuilder.UseSqlServer();
                 //    base.OnConfiguring(optionsBuilder);

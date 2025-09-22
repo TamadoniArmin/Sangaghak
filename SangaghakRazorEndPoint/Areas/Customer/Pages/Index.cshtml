@@ -1,5 +1,7 @@
 ﻿@page
 @model SangaghakRazorEndPoint.Areas.Customer.Pages.IndexModel
+@using App.Domain.Core.Sangaghak.Enum
+@using System.Web
 @{
     Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
     ViewData["Title"] = "داشبورد";
@@ -10,7 +12,14 @@
         <div class="card overflow-hidden">
             <div class="card-body">
                 <div class="bg-primary profile-bg rounded-top p-5 position-relative mx-n3 mt-n3">
-                    <img src="/images/users/avatar-2.jpg" alt="" class="avatar-lg border border-light border-3 rounded-circle position-absolute top-100 start-0 translate-middle ms-5">
+                    @if (Model.WantedUser.ImagePath != null)
+                    {
+                        <img src="@Model.WantedUser.ImagePath" alt="" class="avatar-lg border border-light border-3 rounded-circle position-absolute top-100 start-0 translate-middle ms-5">
+                    }
+                    else
+                    {
+                        <img src="/images/Categories/e8886c2a-a725-4058-9cbc-319b66588bf5dummy-avatar.jpg" alt="" class="avatar-lg border border-light border-3 rounded-circle position-absolute top-100 start-0 translate-middle ms-5">
+                    }
                 </div>
                 <div class="mt-4 pt-3">
                     <h4 class="mb-1">@Model.WantedUser.FirstName @Model.WantedUser.LastName <i class="bx bxs-badge-check text-success align-middle"></i></h4>
@@ -100,7 +109,51 @@
                 </a>
             </div>
             <div class="card-body">
-                @Html.Raw(Model.RequestsTableHtml)
+                @if (Model.UserRequests?.Any() != true)
+                {
+                    <p>هیچ درخواستی ثبت نشده است.</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0 table-hover table-centered">
+                            <thead class="bg-light-subtle">
+                                <tr>
+                                    <th>وضعیت</th>
+                                    <th>قیمت خواسته‌شده</th>
+                                    <th>تاریخ ثبت</th>
+                                    <th>دسته‌بندی</th>
+                                    <th>مشاهده</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var request in Model.UserRequests)
+                                {
+                                    var (statusDisplay, statusBadgeClass) = request.Status switch
+                                    {
+                                        RequestStatusEnum.WatingForExpertsOffers => ("در انتظار پیشنهادات متخصصین", "bg-warning-subtle text-warning"),
+                                        RequestStatusEnum.WatingForCustomerComfimation => ("در انتظار تأیید مشتری", "bg-warning-subtle text-warning"),
+                                        RequestStatusEnum.OfferAccepted => ("پیشنهاد پذیرفته شده", "bg-info-subtle text-info"),
+                                        RequestStatusEnum.JobDone => ("کار انجام شده", "bg-success-subtle text-success"),
+                                        RequestStatusEnum.WatingForPay => ("در انتظار پرداخت", "bg-warning-subtle text-warning"),
+                                        RequestStatusEnum.Complited => ("تکمیل شده", "bg-success-subtle text-success"),
+                                        RequestStatusEnum.Cancelled => ("لغو شده", "bg-danger-subtle text-danger"),
+                                        _ => (request.Status.ToString(), "bg-warning-subtle text-warning")
+                                    };
+                                    <tr>
+                                        <td><span class="badge @statusBadgeClass py-1 px-2">@HttpUtility.HtmlEncode(statusDisplay)</span></td>
+                                        <td>@HttpUtility.HtmlEncode(request.WantedPrice.ToString())</td>
+                                        <td>@HttpUtility.HtmlEncode(request.SetAt.ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                                        <td>@HttpUtility.HtmlEncode(request.ServicePackageTiltle)</td>
+                                        <td>
+                                            <a asp-page="RequestDetails" asp-route-RequestId="@request.Id" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
             </div>
         </div>
     </div>

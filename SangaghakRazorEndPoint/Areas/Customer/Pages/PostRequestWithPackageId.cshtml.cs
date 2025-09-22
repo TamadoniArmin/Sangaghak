@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SangaghakRazorEndPoint.Areas.Customer.Pages
 {
-    [Authorize]
+    [Authorize(Roles = ("Customer"))]
     public class PostRequestWithPackageIdModel(IServicePackageAppService servicePackageAppService,
         IPostRequestAppService postRequestAppService,
         IUserBaseAppService userBaseAppService) : PageModel

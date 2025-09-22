@@ -1,11 +1,13 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Categories;
 using App.Domain.Core.Sangaghak.Entities.Categories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin
 {
+    [Authorize(Roles = ("Admin"))]
     public class CreateSubCategoryModel(ICategoryAppService categoryAppService) : PageModel
     {
         [BindProperty]

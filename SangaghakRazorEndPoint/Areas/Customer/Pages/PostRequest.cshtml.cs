@@ -13,7 +13,7 @@ using System.Web;
 
 namespace SangaghakRazorEndPoint.Areas.Customer.Pages
 {
-    [Authorize]
+    [Authorize(Roles = ("Customer"))]
     public class PostRequestModel(IPostRequestAppService postRequestAppService,
         IUserBaseAppService userBaseAppService) : PageModel
     {

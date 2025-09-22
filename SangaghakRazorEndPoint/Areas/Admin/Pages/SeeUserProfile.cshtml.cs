@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Users
 {
-    [Authorize]
+    [Authorize(Roles = ("Admin"))]
     public class SeeUserProfileModel(IUserBaseAppService userBaseAppService,
         ICategoryAppService categoryAppService,
         IExpertProfileAppService expertProfileAppService) : PageModel

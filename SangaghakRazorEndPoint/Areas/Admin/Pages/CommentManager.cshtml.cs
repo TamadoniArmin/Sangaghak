@@ -1,11 +1,13 @@
 using App.Domain.Core.Sangaghak.App.Domain.Core;
 using App.Domain.Core.Sangaghak.DTOs.Comments;
 using App.Domain.Core.Sangaghak.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SangaghakRazorEndPoint.Areas.Admin.Pages.Edits
 {
+    [Authorize(Roles = ("Admin"))]
     public class CommentManagerModel(ICommentAppService commentAppService) : PageModel
     {
         [BindProperty]
