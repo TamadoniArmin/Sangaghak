@@ -4,6 +4,7 @@
 }
 
 @using App.Domain.Core.Sangaghak.Enum
+@using Microsoft.IdentityModel.Tokens
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -35,7 +36,7 @@
                             <p class="mb-1">(کارشناس)</p>
                             <div class="d-flex align-items-center justify-content-start gap-2 mt-2 mb-1">
                                 <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
-                                    @if (Model.ExpertRate >= 1)
+                                    @if (Model.ExpertRate <= 1)
                                     {
                                         <li>
                                             <i class="bx bxs-star"></i>
@@ -64,9 +65,6 @@
                                     }
                                     @if (Model.ExpertRate == 4)
                                     {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
                                         <li>
                                             <i class="bx bxs-star"></i>
                                         </li>
@@ -151,7 +149,7 @@
                                             {
                                                 <h5 class="card-title">تخصصی برای شما ثبت نشده است</h5>
                                             }
-                                            <a asp-page="UpdateExpertSkills" asp-rout-ExpertId="Model.WantedUser.ExpertId" class="mb-0 text-dark mt-3">
+                                            <a asp-page="UpdateExpertSkills" asp-route-expertId="@Model.WantedUser.ExpertId" class="mb-0 text-dark mt-3">
                                                 برای ویرایش تخصص ها کلیک کنید
                                             </a>
                                         </div>
@@ -165,7 +163,7 @@
                                                     <span class="badge bg-body text-muted px-2 py-1 fs-12">@Model.MatchRequestsForThisExpertCount</span>
                                                 </div>
                                                 <div class="card-footer border-top">
-                                                    <a asp-page="SeeListOfRelatedRequests" asp-route-ExpertId="@Model.WantedUser.ExpertId" class="link-dark fw-medium">
+                                                    <a asp-page="SeeListOfRelatedRequests" asp-route-ExpertId="@Model.WantedUser.ExpertId" asp-route-CityId="@Model.WantedUser.CityId" class="link-dark fw-medium">
                                                         برای مشاهدی این لیست کلیک کنید <i class="bx bx-left-arrow-alt"></i>
                                                     </a>
                                                 </div>
@@ -210,9 +208,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model.AllCurrentExpertRequests != null)
+                            @if (Model.AllCurrentExpertRequests.IsNullOrEmpty())
                             {
-                                @foreach (var Request in Model.AllCurrentExpertRequests)
+                                <tr>
+                                    <td colspan="5" class="text-center">در حال حاضر هیچ درخواست تکمیل نشده ای ندارید.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var Request in Model.AllCurrentExpertRequests!)
                                 {
                                     <tr>
                                         <td>
@@ -286,12 +290,6 @@
                                     </tr>
                                 }
 
-                            }
-                            @if (Model.AllCurrentExpertRequests == null)
-                            {
-                                <tr>
-                                    <td colspan="5" class="text-center">در حال حاضر هیچ درخواست تکمیل نشده ای ندارید.</td>
-                                </tr>
                             }
                         </tbody>
                     </table>
@@ -447,87 +445,44 @@
         {
             <div class="col-md-6 col-xl-3">
                 <div class="card">
+                    <img src="/images/product/p-1.png" alt="" class="img-fluid ">
                     <div class="card-body bg-light-subtle rounded-bottom">
-                        <p class="text-dark fw-medium fs-16">
-                            @Comment.CustomerName
-                        </p>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18 list-unstyled">
-                                    @if (Comment.Rate>= 1)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate == 2)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate == 3)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate == 4)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate == 5)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">
-                                    @Comment.PackageTiltle
-                                </p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            @Comment.Description
-                        </h4>
-                    </div>
+                        <p class="mb-2 text-dark fw-semibold fs-15">@Comment.CustomerName</p>
+                        <p class="mb-2 text-dark fw-semibold fs-15">@Comment.SetAt</p>
+                        <p class="mb-0">@Comment.Description</p>
+                        <p class="text-white mb-0">@Comment.PackageTiltle / @Comment.CityName</p>
+                        <div class="d-flex align-items-center gap-2 mt-2 mb-1">
+                            <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
+                                @for (int i = 1; i <= Comment.Rate; i++)
+                                {
+                                    <li>
+                                        <i class="bx bxs-star"></i>
+                                    </li>
+                                }
+                            </ul>
+                            @if (Comment.Rate == 1)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">بسیار بد</p>
+                            }
+                            @if (Comment.Rate == 2)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">ضعیف</p>
+                            }
+                            @if (Comment.Rate == 3)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">متوسط</p>
+                            }
+                            @if (Comment.Rate == 4)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">خوب</p>
+                            }
+                            @if (Comment.Rate == 5)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">بسیار عالی</p>
+                            }
 
+                        </div>
+                    </div>
                 </div>
             </div>
         }

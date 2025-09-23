@@ -1,5 +1,5 @@
 ﻿@model App.Domain.Core.Sangaghak.DTOs.Users.UserInfoViewModel
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <div class="dropdown topbar-item">
     <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown"
        aria-haspopup="true" aria-expanded="false">
@@ -10,6 +10,9 @@
     </a>
     <div class="dropdown-menu dropdown-menu-end">
         <h6 class="dropdown-header">به سنجاقک خوش آمدید!</h6>
+        <a class="dropdown-item" asp-area="Public" asp-page="/Index">
+            <span class="align-middle">صفحه اصلی</span>
+        </a>
         <a class="dropdown-item" asp-page="SeeAdminProfile" asp-route-id="@Model.UserId">
             <i class="bx bx-user-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">پروفایل</span>
         </a>

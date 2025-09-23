@@ -8,9 +8,12 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
 {
     public class RequestDetailsModel(IRequestAppService requestAppService) : PageModel
     {
+        [BindProperty]
         public RequestDTO? Request { get; set; }
-        public async Task<IActionResult> OnGet(int RequestId, CancellationToken cancellationToken)
+        public int WantedExpertId { get; set; }
+        public async Task<IActionResult> OnGet(int RequestId, int ExpertId,CancellationToken cancellationToken)
         {
+            WantedExpertId = ExpertId;
             Request = await requestAppService.GetRequestByIdAysnc(RequestId, cancellationToken);
             if (Request == null)
             {

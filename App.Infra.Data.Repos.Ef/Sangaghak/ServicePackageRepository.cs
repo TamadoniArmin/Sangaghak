@@ -136,7 +136,9 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<string> GetPackageTiltleById(int PackageId, CancellationToken cancellationToken)
         {
-            var Package = await _context.Packages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
+            var Package = await _context.Packages
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
             if (Package is null) return string.Empty;
             else return Package.Tiltle;
         }

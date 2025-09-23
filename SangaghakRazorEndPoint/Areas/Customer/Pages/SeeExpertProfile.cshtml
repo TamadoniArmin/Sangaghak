@@ -5,6 +5,7 @@
     ViewData["Title"] = "صفحه ی مشاهده ی پروفایل کارشناس";
 }
 
+@using Microsoft.IdentityModel.Tokens
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -33,7 +34,7 @@
                             <p class="mb-1">(کارشناس)</p>
                             <div class="d-flex align-items-center justify-content-start gap-2 mt-2 mb-1">
                                 <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
-                                    @if (Model.ExpertRate >= 1)
+                                    @if (Model.ExpertRate <= 1)
                                     {
                                         <li>
                                             <i class="bx bxs-star"></i>
@@ -97,9 +98,6 @@
                                         </li>
                                     }
                                 </ul>
-                                <p class="fw-medium mb-0 text-dark fs-15">
-                                    ۴.۵/۵ <span class="fs-13">(۲۳.۳K بررسی)</span>
-                                </p>
                             </div>
                             <div class="mt-2">
                                 <div class="d-flex align-items-center gap-2 mb-2">
@@ -138,7 +136,7 @@
                                     <div class="col-lg-6">
                                         <div class="border p-3 rounded">
                                             <h4 class="card-title">تخصص های کارشناس</h4>
-                                            @if (Model.ExpertSkillsNames.any())
+                                            @if (!Model.ExpertSkillsNames.IsNullOrEmpty())
                                             {
                                                 @foreach (var Skill in Model.ExpertSkillsNames)
                                                 {
@@ -170,86 +168,42 @@
                 <div class="card">
                     <img src="/images/product/p-1.png" alt="" class="img-fluid ">
                     <div class="card-body bg-light-subtle rounded-bottom">
-                        <p class="text-dark fw-medium fs-16">
-                            @Comment.CustomerName
-                        </p>
-                        <div class="my-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <ul class="d-flex text-warning m-0 fs-18 list-unstyled">
-                                    @if (Comment.Rate.(int)Math.Ceiling().(int)Math.Ceiling() >= 1)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate.(int)Math.Ceiling() == 2)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate.(int)Math.Ceiling() == 3)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate.(int)Math.Ceiling() == 4)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                    @if (Comment.Rate.(int)Math.Ceiling() <= 5)
-                                    {
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="bx bxs-star"></i>
-                                        </li>
-                                    }
-                                </ul>
-                                <p class="mb-0 fw-medium fs-15 text-dark">
-                                    @Comment.PackageTiltle
-                                </p>
-                            </div>
-                        </div>
-                        <h4 class="fw-semibold text-dark mt-2 d-flex align-items-center gap-2">
-                            @Comment.Description
-                        </h4>
-                    </div>
+                        <p class="mb-2 text-dark fw-semibold fs-15">@Comment.CustomerName</p>
+                        <p class="mb-2 text-dark fw-semibold fs-15">@Comment.SetAt</p>
+                        <p class="mb-0">@Comment.Description</p>
+                        <p class="text-white mb-0">@Comment.PackageTiltle / @Comment.CityName</p>
+                        <div class="d-flex align-items-center gap-2 mt-2 mb-1">
+                            <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
+                                @for (int i = 1; i <= Comment.Rate; i++)
+                                {
+                                    <li>
+                                        <i class="bx bxs-star"></i>
+                                    </li>
+                                }
+                            </ul>
+                            @if (Comment.Rate == 1)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">بسیار بد</p>
+                            }
+                            @if (Comment.Rate == 2)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">ضعیف</p>
+                            }
+                            @if (Comment.Rate == 3)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">متوسط</p>
+                            }
+                            @if (Comment.Rate == 4)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">خوب</p>
+                            }
+                            @if (Comment.Rate == 5)
+                            {
+                                <p class="fw-medium mb-0 text-dark fs-15">بسیار عالی</p>
+                            }
 
+                        </div>
+                    </div>
                 </div>
             </div>
         }

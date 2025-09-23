@@ -21,7 +21,10 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Create
         public async Task<bool> CreatOffer(OfferForCreateAndUpdateDTO Model, CancellationToken cancellationToken)
         {
-            var WantedOffer = await _appDbContext.Offers.AsNoTracking().FirstOrDefaultAsync(x => x.RequestId == Model.RequestId && x.ExpertId == Model.ExpertId, cancellationToken);
+            var WantedOffer = await _appDbContext.Offers
+                .FirstOrDefaultAsync(x => x.RequestId == Model.RequestId
+                && x.ExpertId == Model.ExpertId
+                && !x.IsDeleted, cancellationToken);
             if (WantedOffer == null)
             {
                 Offer offer1 = new Offer();
@@ -137,11 +140,35 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 }
                 ).ToListAsync(cancellationToken);
         }
+        public async Task<OfferDTO> GetAcceptedOfferByRequestId(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Offers
+                .Where(x => x.RequestId == RequestId && x.IsDeleted == false)
+                .Select (x => new OfferDTO()
+                {
+                    Id = x.Id,
+                    ExpertId = x.ExpertId,
+                    RequestId = x.RequestId,
+                    OfferedPrice = x.OfferedPrice,
+                    OfferedTime = x.OfferedTime,
+                    Description = x.Description,
+                    Status = x.Status,
+                    SetAt = x.SetAt
+                }).FirstOrDefaultAsync(cancellationToken);
+        }
         public async Task<int> GetExpertIdByOfferIdAysnc(int OfferId, CancellationToken cancellationToken)
         {
             var Offer= await _appDbContext.Offers.FirstOrDefaultAsync(x=>x.Id == OfferId,cancellationToken);
             if (Offer==null) return 0;
             else return Offer.ExpertId;
+        }
+
+        public async Task<List<int>> GetListOfExpertRequestIds(int expertId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext.Offers
+                .Where(x=>x.ExpertId == expertId && !x.IsDeleted)
+                .Select (x =>x.RequestId)
+                .ToListAsync(cancellationToken);
         }
         #endregion
         #region Update

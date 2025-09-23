@@ -10,21 +10,27 @@ namespace SangaghakAppService.Sangaghak.Requests
     {
         private readonly IOfferService _offerService;
         private readonly IUserBaseService _userBaseService;
-        private readonly IRequestAppService _requestAppService;
+        private readonly IRequestService _requestService;
         private readonly IServicePackageAppService _servicePackageAppService;
         public OfferAppService(IOfferService offerService, 
             IUserBaseService userBaseService,
-            IRequestAppService requestAppService,
+            IRequestService requestService,
             IServicePackageAppService servicePackageAppService)
         {
             _offerService = offerService;
             _userBaseService = userBaseService;
-            _requestAppService = requestAppService;
+            _requestService = requestService;
             _servicePackageAppService = servicePackageAppService;
         }
 
         public async Task<bool> CreatOffer(OfferForCreateAndUpdateDTO Model, CancellationToken cancellationToken)
         {
+            var Result = await _requestService.UpdateRequestStatusAsync(Model.RequestId, 
+                App.Domain.Core.Sangaghak.Enum.RequestStatusEnum.WatingForCustomerComfimation, cancellationToken);
+            if (!Result)
+            {
+                return false;
+            }
             return await _offerService.CreatOffer(Model, cancellationToken);
         }
 
@@ -47,7 +53,7 @@ namespace SangaghakAppService.Sangaghak.Requests
                     }
                     else
                     {
-                        var packageId = await _requestAppService.GetRequestPackageIdByRequestIdAsync(offers.RequestId, cancellationToken);
+                        var packageId = await _requestService.GetRequestPackageIdByRequestIdAsync(offers.RequestId, cancellationToken);
                         if (packageId!=0)
                         {
                             break;

@@ -69,7 +69,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return await _context.Comments
                 .Include(x => x.Request)
                 .AsNoTracking()
-                .Where(x => x.CustomerId == CustomerId && x.IsDeleted == false)
+                .Where(x => x.CustomerId == CustomerId 
+                && x.IsDeleted == false)
                 .Select(x => new CommentDTO()
                 {
                     Id = x.id,
@@ -87,7 +88,9 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return await _context.Comments
                 .Include(x => x.Request)
                 .AsNoTracking()
-                .Where(x => x.ExpertId == ExpertId && x.IsDeleted == false)
+                .Where(x => x.ExpertId == ExpertId 
+                && x.IsDeleted == false
+                && x.Status==CommentStatusEnum.Confirmed)
                 .Select(x => new CommentDTO()
                 {
                     Id = x.id,
@@ -104,7 +107,8 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return await _context.Comments
             .Include(x => x.Request)
             .AsNoTracking()
-            .Where(x => x.Status == CommentStatusEnum.Pending && x.IsDeleted == false)
+            .Where(x => x.Status == CommentStatusEnum.Pending 
+            && x.IsDeleted == false)
             .Select(x => new CommentDTO()
             {
                 Id = x.id,

@@ -42,14 +42,17 @@ namespace SangaghakAppService.Sangaghak.Requests
 
         public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var WantedRequests= await _service.GetAllExpertRequestsAsync(ExpertId, cancellationToken);
+            var RequestIds= await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
+            var WantedRequests = await _service.GetAllExpertRequestsAsync(RequestIds, cancellationToken);
             if (!WantedRequests.IsNullOrEmpty())
             {
-                foreach(var request in WantedRequests)
+                foreach (var request in WantedRequests)
                 {
                     var customerId = request.CustomerId;
                     var wantedUser = await _userBaseService.GetCustomerBasicInfoByCustomerIdAsync(customerId, cancellationToken);
-                    request.CustomerFullName = wantedUser.FullName??string.Empty;
+                    request.CustomerFullName = wantedUser!.FullName ?? string.Empty;
+                    var PackageName = await _packageService.GetPackageTiltleById(request.ServicePackageId, cancellationToken);
+                    request.ServicePackageTiltle = PackageName ?? "نامی برای این پکیج پیدا نشد";
                 }
             }
             return WantedRequests;
@@ -57,12 +60,12 @@ namespace SangaghakAppService.Sangaghak.Requests
 
         public async Task<List<RequestDTO>> GetAllRequestsAsync(CancellationToken cancellationToken)
         {
-            var Requests= await _service.GetAllRequestsAsync(cancellationToken);
+            var Requests = await _service.GetAllRequestsAsync(cancellationToken);
             foreach (var request in Requests)
             {
                 request.CityTitle = await _cityService.GetNameOfCity(request.CityId, cancellationToken);
-                request.CustomerFullName=await _userBaseService.GetCustomerNameByCustomerIdAsync(request.CustomerId, cancellationToken);
-                request.ServicePackageTiltle=await _categoryService.GetSubCategoryNameByIdAysnc(request.ServicePackageId, cancellationToken);
+                request.CustomerFullName = await _userBaseService.GetCustomerNameByCustomerIdAsync(request.CustomerId, cancellationToken);
+                request.ServicePackageTiltle = await _categoryService.GetSubCategoryNameByIdAysnc(request.ServicePackageId, cancellationToken);
             }
             return Requests;
         }
@@ -89,7 +92,7 @@ namespace SangaghakAppService.Sangaghak.Requests
 
         public async Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
-            var WantedRequest= await _service.GetRequestByIdAysnc(RequestId, cancellationToken);
+            var WantedRequest = await _service.GetRequestByIdAysnc(RequestId, cancellationToken);
             if (WantedRequest == null) return null;
             else
             {
@@ -97,7 +100,7 @@ namespace SangaghakAppService.Sangaghak.Requests
                 if (packageName == null) return null;
                 else
                 {
-                    WantedRequest.ServicePackageTiltle=packageName;
+                    WantedRequest.ServicePackageTiltle = packageName;
                     var customer = await _userBaseService.GetCustomerSummeryByCustomerId(WantedRequest.CustomerId, cancellationToken);
                     if (customer == null) return null;
                     else
@@ -106,7 +109,8 @@ namespace SangaghakAppService.Sangaghak.Requests
                         WantedRequest.CustomerPhone = customer.Mobile;
                         WantedRequest.CustomerEmail = customer.Email;
                         WantedRequest.CityTitle = await _cityService.GetNameOfCity(WantedRequest.CityId, cancellationToken) ?? string.Empty;
-                        if (WantedRequest.AcceptedOfferId == 0 || WantedRequest.AcceptedOfferId == null)
+                        if (WantedRequest.Status == RequestStatusEnum.WatingForExpertsOffers 
+                            || WantedRequest.Status == RequestStatusEnum.WatingForCustomerComfimation)
                         {
                             WantedRequest.AcceptedOfferId = 0;
                             WantedRequest.OfferPrice = 0;
@@ -117,7 +121,8 @@ namespace SangaghakAppService.Sangaghak.Requests
                         }
                         else
                         {
-                            var Offer = await _offerService.GetOfferByIdAsync(WantedRequest.AcceptedOfferId.Value, cancellationToken);
+                            var Offer = await _offerService.GetAcceptedOfferByRequestId(WantedRequest.Id, cancellationToken);
+                            WantedRequest.AcceptedOfferId = Offer.Id;
                             WantedRequest.ExpertId = Offer.ExpertId;
                             WantedRequest.OfferPrice = Offer.OfferedPrice;
                             WantedRequest.OfferDate = Offer.OfferedTime;
@@ -176,17 +181,23 @@ namespace SangaghakAppService.Sangaghak.Requests
             }
 
             var Customer = await _userBaseService.GetCustomerBasicInfoByCustomerIdAsync(wantedRequest.CustomerId, cancellationToken);
-            var Expert = await _userBaseService.GetExpertBasicInfoByExpertIdAsync(wantedRequest.ExpertId, cancellationToken);
-            var CompanyProfit = (int)Math.Ceiling(wantedRequest.OfferPrice * 0.1);
-            var TotalCost = wantedRequest.OfferPrice + CompanyProfit;
+            var Offer = await _offerService.GetAcceptedOfferByRequestId(wantedRequest.Id, cancellationToken);
+            if (Offer == null) return (false, "خطا در پیداکردن پیشنهاد کارشناس");
+            var Expert = await _userBaseService.GetExpertBasicInfoByExpertIdAsync(Offer.ExpertId, cancellationToken);
+            if (Expert == null)
+            {
+                return (false, "خطا در پیدا کردن کارشناس.");
+            }
+            var CompanyProfit = (int)Math.Ceiling(OfferedPrice * 0.1);
+            var TotalCost = OfferedPrice + CompanyProfit;
 
-            var (success, errorMessage) = await _userBaseService.DecreaseBalanceAsync(Customer.Id, TotalCost, cancellationToken);
+            var (success, errorMessage) = await _userBaseService.DecreaseBalanceAsync(Customer!.Id, TotalCost, cancellationToken);
             if (!success)
             {
                 return (false, errorMessage ?? "موجودی کافی نیست.");
             }
 
-            var Result2 = await _userBaseService.IncreaseBalance(Expert.Id, wantedRequest.OfferPrice, cancellationToken);
+            var Result2 = await _userBaseService.IncreaseBalance(Expert!.Id, OfferedPrice, cancellationToken);
             if (!Result2)
             {
                 return (false, "خطا در افزایش موجودی کارشناس.");
@@ -203,8 +214,10 @@ namespace SangaghakAppService.Sangaghak.Requests
             {
                 return (false, "خطا در بروزرسانی وضعیت درخواست شما");
             }
-            
+
             return (true, null);
+
+
         }
     }
 }

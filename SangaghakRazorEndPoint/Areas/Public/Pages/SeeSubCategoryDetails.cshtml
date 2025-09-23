@@ -6,12 +6,6 @@
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<!-- بخش Header بدون تغییر باقی می‌ماند -->
-@section Header
-{
-    <!-- کد Header شما -->
-}
-
 <div class="inner-banner">
     <div class="container">
         <div class="inner-title text-center">
@@ -23,7 +17,7 @@
                 <li>
                     @Html.Raw(Model.ParentCategoryHtml)
                 </li>
-                <li>جزئیات شرکت</li>
+                <li>جزئیات زیردسته بندی</li>
             </ul>
         </div>
     </div>
@@ -34,38 +28,21 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="company-details-content">
-                    <div class="company-details-preview mb-30">
-                        @Html.Raw(Model.SubCategoryImageHtml)
+                    <div class="browse-jobs-item">
+                        @if (Model.SubCategory.ImagePath!=null)
+                        {
+                            <img src="@Model.SubCategory.ImagePath" alt="Images">
+                        }
+                        else
+                        {
+                            <img src="~/Images/Categories/No Picture.jpg" alt="Images">
+                        }
                     </div>
                     <div class="company-details-card box-shadow">
                         <h3>@Model.SubCategory.Title</h3>
                     </div>
                     <div class="content mb-30">
                         <h3>@Model.SubCategory.Description</h3>
-                    </div>
-                    <div class="content">
-                        <h3>جالب است بدانید</h3>
-                        <div class="bar"></div>
-                        <div class="row justify-content-center">
-                            <div class="col-lg-4 col-6 col-md-4">
-                                <div class="counter-item">
-                                    <h3><span class="odometer" data-count="1400">0000</span></h3>
-                                    <p>تعداد کارشناسان فعال در این حوزه در سراسر کشور</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-6 col-md-4">
-                                <div class="counter-item">
-                                    <h3><span class="odometer" data-count="113">000</span></h3>
-                                    <p>تعداد درخواست‌های جاری در این حوزه در سراسر کشور</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-6 col-md-4">
-                                <div class="counter-item">
-                                    <h3>M<span class="odometer" data-count="5">0</span></h3>
-                                    <p>تعداد درخواست‌های تکمیل شده در این حوزه در سراسر کشور</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <h3>پکیج‌های ارائه شده توسط شرکت سنجاقک در این حوزه</h3>
                     @if (Model.ServicePackages?.Any() == true)
@@ -104,9 +81,8 @@
                     <div class="job-details-widget">
                         <h3 class="title">درباره این زیر دسته بندی</h3>
                         <ul class="job-details-category">
-                            <li>دسته‌بندی اصلی: <span>@Model.ParentCategoryInfo.Title</span></li>
+                            <li>دسته‌بندی اصلی: <span>@Model.ParentCategoryInfo!.Title</span></li>
                             <li>عنوان: <span>@Model.SubCategory.Title</span></li>
-                            <li>تعداد کارشناسان فعال در این حوزه: <span>75</span></li>
                             <li>تعداد پکیج‌های ارائه شده در این حوزه: <span>@(Model.ServicePackages?.Count ?? 0)</span></li>
                         </ul>
                     </div>

@@ -56,7 +56,7 @@
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label for="offer-date" class="form-label">تاریخ پیشنهاد</label>
-                                <input type="date" asp-for="@Model.OfferedTime" class="form-control" id="offer-date" placeholder="تاریخ را انتخاب کنید" required>
+                                <input type="date" asp-for="@Model.OfferedTime" class="form-control persian-datepicker" id="offer-date" placeholder="تاریخ را انتخاب کنید" required>
                                 <span asp-validation-for="@Model.OfferedTime" class="text-danger"></span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text fs-20"><i class='bx bx-dollar'></i></span>
                                 <input type="number" asp-for="@Model.Price" id="product-price" class="form-control" placeholder="000" required>
-                                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                                <span asp-validation-for="@Model.Price" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-4">

@@ -50,8 +50,6 @@ namespace SangaghakRazorEndPoint.Areas.Public.Pages
 
                 // تولید HTML برای بخش‌های مختلف
                 ParentCategoryHtml = GenerateParentCategoryHtml(ParentCategoryInfo);
-                SubCategoryImageHtml = GenerateSubCategoryImageHtml(SubCategory);
-                //ServicePackagesHtml = GenerateServicePackagesHtml(ServicePackages);
 
                 return Page();
             }
@@ -70,52 +68,5 @@ namespace SangaghakRazorEndPoint.Areas.Public.Pages
             }
             return string.Empty;
         }
-
-        private string GenerateSubCategoryImageHtml(SubCategoryDTO subCategory)
-        {
-            if (subCategory.ImagePath != null)
-            {
-                return $@"<img src=""{HttpUtility.HtmlEncode(subCategory.ImagePath)}"" alt=""Images"">";
-            }
-            return @"<img src=""~/MainTemplate/images/find-jobs/find-jobs3.jpg"" alt=""Images"">";
-        }
-
-        //private string GenerateServicePackagesHtml(List<ServicePackageDTO>? servicePackages)
-        //{
-        //    var htmlBuilder = new StringBuilder();
-
-        //    if (servicePackages?.Any() == true)
-        //    {
-        //        foreach (var package in servicePackages)
-        //        {
-        //            htmlBuilder.AppendLine(
-        //                $@"<div class=""col-lg-12"">
-        //                    <div class=""recent-job-card box-shadow"">
-        //                        <div class=""content"">
-        //                            <h3><a href=""job-details.html"">{HttpUtility.HtmlEncode(package.Title)}</a></h3>
-        //                            <ul class=""job-list1"">
-        //                                <li>{HttpUtility.HtmlEncode(package.SubCategoryTitle)}</li>
-        //                            </ul>
-        //                            <span>{HttpUtility.HtmlEncode(package.Description)}</span>
-        //                        </div>
-        //                        <div class=""job-sub-content"">
-        //                            <ul class=""job-list2"">
-        //                                <li class=""time"">
-        //                                    <a asp-area=""Customer"" asp-page=""PostRequestWithPackageId"" asp-route-PackageId=""{package.Id}"">ثبت درخواست</a>
-        //                                </li>
-        //                            </ul>
-        //                            <div class=""price"">{HttpUtility.HtmlEncode(package.MinPrice.ToString())} <b>:شروع قیمت</b></div>
-        //                        </div>
-        //                    </div>
-        //                </div>");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        htmlBuilder.AppendLine("<h4>در حال حاضر پکیجی برای این حوزه در نظر گرفته نشده</h4>");
-        //    }
-
-        //    return htmlBuilder.ToString();
-        //}
     }
 }

@@ -2,7 +2,7 @@
 @model SangaghakRazorEndPoint.Areas.Expert.Pages.SeeListOfRelatedRequestsModel
 @{
 }
-
+@using Microsoft.IdentityModel.Tokens
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -27,7 +27,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (!Model.AllRelatedRequest.IsNullOrEmpty())
+                            @if (Model.AllRelatedRequest.IsNullOrEmpty())
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">هیچ درخواست متناسب با شهر محل سکونت و تخصص های شما یافت نشد</td>
+                                </tr>
+                            }
+                            else
                             {
                                 @foreach (var request in Model.AllRelatedRequest)
                                 {
@@ -37,17 +43,11 @@
                                         <td> @request.MaxTime</td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a asp-page="RequestDetails" asp-rout-RequestId="@request.Id" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
+                                                <a asp-page="RequestDetails" asp-route-RequestId="@request.Id" asp-route-ExpertId="@Model.WantedExpertId" class="btn btn-light btn-sm"><iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon></a>
                                             </div>
                                         </td>
                                     </tr>
                                 }
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td colspan="5" class="text-center">هیچ درخواست متناسب با شهر محل سکونت و تخصص های شما یافت نشد</td>
-                                </tr>
                             }
                         </tbody>
                     </table>

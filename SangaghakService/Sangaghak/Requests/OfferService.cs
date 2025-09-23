@@ -23,6 +23,11 @@ namespace SangaghakService.Sangaghak.Requests
             return await _offerRepository.DeleteOffer(OfferId, cancellationToken);
         }
 
+        public async Task<OfferDTO> GetAcceptedOfferByRequestId(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _offerRepository.GetAcceptedOfferByRequestId(RequestId, cancellationToken);
+        }
+
         public async Task<List<OfferDTO>> GetAllExpertOffersByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
             return await _offerRepository.GetAllExpertOffersByExpertIdAsync(ExpertId, cancellationToken);
@@ -41,6 +46,11 @@ namespace SangaghakService.Sangaghak.Requests
         public async Task<int> GetExpertIdByOfferIdAysnc(int OfferId, CancellationToken cancellationToken)
         {
             return await _offerRepository.GetExpertIdByOfferIdAysnc(OfferId, cancellationToken);
+        }
+
+        public async Task<List<int>> GetListOfExpertRequestIds(int expertId, CancellationToken cancellationToken)
+        {
+            return await _offerRepository.GetListOfExpertRequestIds(expertId, cancellationToken);
         }
 
         public async Task<OfferDTO> GetOfferByExpertAsync(int ExpertId, CancellationToken cancellationToken)

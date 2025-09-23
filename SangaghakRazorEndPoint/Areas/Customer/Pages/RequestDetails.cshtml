@@ -1,7 +1,7 @@
 ﻿@page
 @model SangaghakRazorEndPoint.Areas.Customer.Pages.RequestDetailsModel
 @{
-    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";  // مشخص کردن قالب 1
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
     ViewData["Title"] = "جزئیات درخواست";
 }
 @using App.Domain.Core.Sangaghak.Enum
@@ -15,7 +15,6 @@
     <div class="col-xl-9 col-lg-8">
         <div class="row">
             <div class="col-lg-12">
-                ```html
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
@@ -98,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    @if (Model.Request.Status==RequestStatusEnum.Complited)
+                    @if (Model.Request.Status == RequestStatusEnum.OfferAccepted)
                     {
                         <div class="card-footer d-flex flex-wrap align-items-center justify-content-between bg-light-subtle gap-2">
                             <p class="border rounded mb-0 px-2 py-1 bg-body">
@@ -106,7 +105,7 @@
                                 کارشناس تکمیل شده است :
                             </p>
                             <div>
-                                <a href="#!" class="btn btn-primary">مشاهده ی فاکتور و پرداخت</a>
+                                <a asp-page="RequestInvoice" asp-route-RequestId="@Model.Request.Id" class="btn btn-primary">مشاهده ی فاکتور و پرداخت</a>
                             </div>
                         </div>
 
@@ -174,7 +173,7 @@
                                                     {
                                                         <div class="d-flex gap-2">
                                                             <form asp-page-handler="AcceptOffer" method="post">
-                                                                <input type="hidden" name="requestId" value="@offer.RequestId" />
+                                                                <input type="hidden" name="requestid" value="@offer.RequestId" />
                                                                 <input type="hidden" name="offerId" value="@offer.Id" />
                                                                 <button type="submit" class="btn btn-success btn-sm">
                                                                     <iconify-icon icon="solar:check-circle-bold" class="align-middle fs-18 text-white"></iconify-icon>
@@ -228,7 +227,10 @@
                 <p class="mb-1">@Model.Request.CustomerEmail</p>
             </div>
         </div>
-        @if (Model.Request.AcceptedOfferId != null && Model.Request.AcceptedOfferId != 0)
+        @if (Model.Request.Status==RequestStatusEnum.OfferAccepted
+                || Model.Request.Status == RequestStatusEnum.JobDone
+                || Model.Request.Status == RequestStatusEnum.WatingForPay
+                || Model.Request.Status == RequestStatusEnum.Complited)
         {
             <div class="card">
                 <div class="card-header">
@@ -237,7 +239,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center gap-2">
                         <div>
-                            <p class="mb-1">@Model.Request.ExpertFullName</p>
+                            <a asp-page="SeeExpertProfile" asp-route-ExpertId="@Model.Request.ExpertId" class="mb-1">@Model.Request.ExpertFullName</a>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-3">

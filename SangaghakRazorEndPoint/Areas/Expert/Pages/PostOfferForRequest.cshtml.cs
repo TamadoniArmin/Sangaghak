@@ -9,8 +9,7 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
 {
     [Authorize(Roles = ("Expert"))]
     public class PostOfferForRequestModel(IRequestAppService requestAppService,
-        IOfferAppService offerAppService,
-        IExpertAppService expertAppService) : PageModel
+        IOfferAppService offerAppService) : PageModel
     {
         [BindProperty]
         public RequestDTO? WantedRequest { get; set; }
@@ -52,7 +51,7 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
             var Result = await offerAppService.CreatOffer(Offer, cancellationToken);
             if (Result)
             {
-                return RedirectToPage("SeeAllExpertOffers");
+                return RedirectToPage("Index");
             }
             else
             {

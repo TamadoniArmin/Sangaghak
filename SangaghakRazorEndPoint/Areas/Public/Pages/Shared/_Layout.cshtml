@@ -1,11 +1,6 @@
-﻿@* @await RenderSectionAsync("Scripts", required: false)
-@await Html.PartialAsync("_Header")
-@await Html.PartialAsync("_Navbar") *@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa" dir="rtl">
-    @* این بخش هدر است *@
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,42 +8,24 @@
     <meta name="description" content="Zoben - Job Board HTML Template">
     <meta name="author" content="Barat Hadian">
     <link rel="stylesheet" href="~/MainTemplate/css/bootstrap.rtl.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/animate.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/fonts/remixicon.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/MainTemplate/css/owl.theme.default.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/metismenu.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/simplebar.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/dropzone.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/magnific-popup.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/odometer.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/meanmenu.min.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/style.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/responsive.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/theme-dark.css">
-
     <link rel="stylesheet" href="~/MainTemplate/css/rtl.css">
-
     <title>Zoben - قالب HTML زوبن , پوسته سایت آگهی و کاریابی</title>
-
     <link rel="icon" type="image/png" href="~/MainTemplate/images/favicon.png">
 </head>
-
-@* تا اینجا هدر است *@
 <body>
-
     <div class="preloader">
         <div class="d-table">
             <div class="d-table-cell">
@@ -56,7 +33,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="navbar-area">
         <div class="mobile-responsive-nav">
@@ -70,11 +46,103 @@
                 </div>
             </div>
         </div>
-        @await RenderSectionAsync("Header", required: false)
+        <div class="desktop-nav desktop-nav-one nav-area">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="~/MainTemplate/images/logo.png" class="logo-one" alt="logo"><img src="~/MainTemplate/images/logo-2.png" class="logo-two" alt="Logo">
+                    </a>
+                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active">
+                                    خانه
+                                    <i class="ri-arrow-down-s-line"></i>
+                                </a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a asp-page="/Index" class="nav-link">
+                                                بازگشت به صفحه ی اصلی
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            @{
+                                                var role = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+                                                string profileArea = role switch
+                                                {
+                                                    "Admin" => "Admin",
+                                                    "Customer" => "Customer",
+                                                    "Expert" => "Expert",
+                                                    _ => "" // برای هدایت به Access Denied
+                                                };
+                                                string profilePage = role switch
+                                                {
+                                                    "Admin" => "/Index",
+                                                    "Customer" => "/Index",
+                                                    "Expert" => "/Index",
+                                                    _ => "/Account/AccessDenied" // صفحه Access Denied
+                                                };
+                                            }
+                                            <a asp-area="@profileArea" asp-page="@profilePage" class="nav-link">
+                                                پروفایل کاربری
+                                            </a>
+                                        </li>
+                                    </ul>
+                                }
+                            </li>
+                        </ul>
+                        <div class="others-options d-flex align-items-center">
+                            <div class="optional-item">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @await Component.InvokeAsync("UserProfile")
+                                }
+                                else
+                                {
+                                    <a asp-page="/Login" class="default-btn two border-radius-5">ورود / ثبت نام <i class="ri-user-3-line"></i></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="side-nav-responsive">
+            <div class="container-max">
+                <div class="dot-menu">
+                    <div class="circle-inner">
+                        <div class="circle circle-one"></div>
+                        <div class="circle circle-two"></div>
+                        <div class="circle circle-three"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="side-nav-inner">
+                        <div class="side-nav justify-content-center align-items-center">
+                            <div class="side-nav-item">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @await Component.InvokeAsync("UserProfile")
+                                }
+                                else
+                                {
+                                    <a asp-page="/Login" class="default-btn two">
+                                        ورود / ثبت نام <i class="ri-user-3-line"></i>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @RenderBody()
-
 
     <footer class="footer-area">
         <div class="container">
@@ -109,134 +177,6 @@
                                             +44 4325 9878 5875
                                         </a>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-6">
-                        <div class="footer-widget">
-                            <h3>کارفرما</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        مرور کاندیداها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard.html" target="_blank">
-                                        داشبورد کارفرمایان
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard-packages.html" target="_blank">
-                                        بسته های شغلی
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مشاغل برجسته
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post-job.html" target="_blank">
-                                        ارسال آگهی
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4">
-                        <div class="footer-widget ps-5">
-                            <h3>داوطلبان</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مرور مشاغل
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidate-dashboard-resume.html" target="_blank">
-                                        ارسال رزومه
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dashboard.html" target="_blank">
-                                        داشبورد کاندیداها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مرور دسته بندی ها
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        فهرست داوطلبان
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-4">
-                        <div class="footer-widget">
-                            <h3>شرکت</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="about.html" target="_blank">
-                                        درباره ما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contact.html" target="_blank">
-                                        تماس با ما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="terms-condition.html" target="_blank">
-                                        قوانین و ضوابط
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="privacy-policy.html" target="_blank">
-                                        حریم خصوصی
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="candidates-listing.html" target="_blank">
-                                        فهرست کاندیداها
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-sm-6 col-md-4">
-                        <div class="footer-widget">
-                            <h3>لینکهای سریع</h3>
-                            <ul class="footer-list">
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        فهرست مشاغل
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="employers-listing.html" target="_blank">
-                                        لیست کارفرما
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="post-job.html" target="_blank">
-                                        ارسال شغل جدید
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="employers-listing.html" target="_blank">
-                                        همه کارفرمایان
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="job-listing.html" target="_blank">
-                                        مشاغل برجسته
-                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -283,37 +223,21 @@
         </div>
     </footer>
 
-
     <script src="~/MainTemplate/js/jquery.min.js"></script>
-
     <script src="~/MainTemplate/js/bootstrap.bundle.min.js"></script>
-
     <script src="~/MainTemplate/js/jquery.magnific-popup.min.js"></script>
-
     <script src="~/MainTemplate/js/odometer.min.js"></script>
-
     <script src="~/MainTemplate/js/jquery.appear.min.js"></script>
-
     <script src="~/MainTemplate/js/meanmenu.min.js"></script>
-
     <script src="~/MainTemplate/js/metismenu.min.js"></script>
-
     <script src="~/MainTemplate/js/simplebar.min.js"></script>
-
     <script src="~/MainTemplate/js/dropzone.min.js"></script>
-
     <script src="~/MainTemplate/js/sticky-sidebar.min.js"></script>
-
     <script src="~/MainTemplate/js/tweenMax.min.js"></script>
-
     <script src="~/MainTemplate/js/owl.carousel.min.js"></script>
-
     <script src="~/MainTemplate/js/jquery.ajaxchimp.min.js"></script>
-
     <script src="~/MainTemplate/js/form-validator.min.js"></script>
-
     <script src="~/MainTemplate/js/contact-form-script.js"></script>
-
     <script src="~/MainTemplate/js/custom.js"></script>
 </body>
 </html>

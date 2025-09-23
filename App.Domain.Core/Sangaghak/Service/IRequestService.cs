@@ -12,8 +12,8 @@ namespace App.Domain.Core.Sangaghak.Service
         #region Read
         public Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
-        public Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(int ExpertId, CancellationToken cancellationToken);
-        public Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken);
+        public Task<int> GetAllExpertRequestsCountAsync(List<int> RequestIds, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetAllRequestsAsync(CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetRequestBySubCategoryAsync(int subCategoryId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetRequestByStatusAsync(RequestStatusEnum status, CancellationToken cancellationToken);
@@ -27,7 +27,8 @@ namespace App.Domain.Core.Sangaghak.Service
         public Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, List<int> PackagesId, CancellationToken cancellationToken);
         public Task<int> GetMatchRequestForExpertCount(int cityId, List<int> PackagesId, CancellationToken cancellationToken);
         public Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken);
-        public Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken);
+        public Task<List<RequestDTO>> GetAllExpertRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken);
+
 
         #endregion
         #region Update

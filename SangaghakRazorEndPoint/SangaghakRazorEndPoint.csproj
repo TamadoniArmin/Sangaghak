@@ -59,8 +59,10 @@
     <Compile Include="Areas\Expert\Pages\UpdateExpertSkills.cshtml.cs" />
     <Compile Include="Areas\Expert\Pages\UpdateUserBasicInfo.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\Index.cshtml.cs" />
+    <Compile Include="Areas\Public\Pages\Logout.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\SeeCategoryDetails.cshtml.cs" />
     <Compile Include="Areas\Public\Pages\SeeSubCategoryDetails.cshtml.cs" />
+    <Compile Include="Areas\Public\Pages\Shared\Components\UserProfile\Default.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -217,8 +219,10 @@
     <None Include="Areas\Expert\Pages\UpdateExpertSkills.cshtml" />
     <None Include="Areas\Expert\Pages\UpdateUserBasicInfo.cshtml" />
     <None Include="Areas\Public\Pages\Index.cshtml" />
+    <None Include="Areas\Public\Pages\Logout.cshtml" />
     <None Include="Areas\Public\Pages\SeeCategoryDetails.cshtml" />
     <None Include="Areas\Public\Pages\SeeSubCategoryDetails.cshtml" />
+    <None Include="Areas\Public\Pages\Shared\Components\UserProfile\Default.cshtml" />
     <None Include="Areas\Public\Pages\Shared\_Footer.cshtml" />
     <None Include="Areas\Public\Pages\Shared\_Header.cshtml" />
     <None Include="Areas\Public\Pages\Shared\_Layout.cshtml.css" />

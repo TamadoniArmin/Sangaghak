@@ -68,10 +68,6 @@ namespace SangaghakAppService.Sangaghak.Pages
         {
             return await _commentService.GetCommentByExpertIdAsync(ExpertId,cancellationToken);
         }
-        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(int ExpertId, CancellationToken cancellationToken)
-        {
-            return await _requestService.GetExpertNotCompeletedRequestsAsync(ExpertId, cancellationToken);
-        }
         public async Task<List<GetSubCategoryNameForExpertsDTO>> GetExpertSkillsNameByExpertId(int ExpertId, CancellationToken cancellationToken)
         {
             return await _categoryService.GetCategoryNamesByExpertId(ExpertId, cancellationToken);
@@ -99,23 +95,33 @@ namespace SangaghakAppService.Sangaghak.Pages
                     }
                     else
                     {
-                        return await _requestService.GetMatchRequestForExpertCount(CityId, expertSkillsId, cancellationToken);
+                        return await _requestService.GetMatchRequestForExpertCount(CityId, matchPackages, cancellationToken);
                     }
                 }
             }
         }
-        public async Task<List<RequestDTO>> GetNotCompeletedExpertRequests(int ExpertId, CancellationToken cancellationToken)
-        {
-            return await _requestService.GetExpertNotCompeletedRequestsAsync(ExpertId, cancellationToken);
-        }
         public async Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            return await _requestService.GetAllExpertRequestsCountAsync(ExpertId, cancellationToken);
+            var RequetsId= await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
+            return await _requestService.GetAllExpertRequestsCountAsync(RequetsId, cancellationToken);
         }
         public async Task<List<CommentDTO>?> GetExpertCommentsAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            return await _commentService.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
+            var WantedComments = await _commentService.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
+            if (WantedComments.Any())
+            {
+                foreach (var comment in WantedComments)
+                {
+                    comment.CustomerName = await _userBaseService.GetCustomerNameByCustomerIdAsync(comment.CustomerId, cancellationToken);
+                    comment.PackageId = await _requestService.GetRequestPackageIdAsync(comment.RequestId, cancellationToken);
+                    comment.PackageTiltle = await _servicePackageService.GetPackageTiltleById(comment.PackageId, cancellationToken);
+                    comment.CityId = await _requestService.GetRequestCityIdAsync(comment.RequestId, cancellationToken);
+                    comment.CityName = await _cityService.GetNameOfCity(comment.CityId, cancellationToken);
+                }
+            }
+            return WantedComments;
         }
+
         public async Task<int> GetExpertRateAysnc(int ExpertId, CancellationToken cancellationToken)
         {
            return await _expertService.GetExpertRateAsync(ExpertId, cancellationToken);
@@ -124,6 +130,32 @@ namespace SangaghakAppService.Sangaghak.Pages
         public async Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken)
         {
             return await _offerService.GetAllExpertOffersCount(expertId, cancellationToken);
+        }
+
+        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            var RequestIds = await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
+            var Requests = await _requestService.GetExpertNotCompeletedRequestsAsync(RequestIds, cancellationToken);
+            if (Requests.Any())
+            {
+                foreach (var request in Requests)
+                {
+                    request.ServicePackageTiltle = await _servicePackageService.GetPackageTiltleById(request.ServicePackageId, cancellationToken) ?? "نام این پکیج پیدا نشد";
+                    var customer = await _userBaseService.GetCustomerSummeryByCustomerId(request.CustomerId, cancellationToken);
+                    if (customer != null)
+                    {
+                        request.CustomerFullName = customer.FirstName + " " + customer.LastName ?? "کاربر بدون نام";
+                        request.CustomerPhone = customer.Mobile ?? "شماره ای برای این کاربر یافت نشد";
+                        request.CustomerEmail = customer.Email ?? "ایمیلی برای این کاربر یافت نشد";
+                    }
+                }
+            }
+            return Requests;
+        }
+
+        public Task<List<RequestDTO>> GetNotCompeletedExpertRequests(int ExpertId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<int> GetCancelledRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken);
+
         #endregion
         #region Update
         public Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken);

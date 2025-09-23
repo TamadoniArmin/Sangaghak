@@ -93,6 +93,29 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             }
             return false;
         }
+        public async Task<bool> UpdateExpertRateAsync(int expertId, int pointerId, int rate,CancellationToken cancellationToken)
+        {
+            var expert = await _appDbContext.Experts
+                .FirstOrDefaultAsync(e => e.Id == expertId && !e.IsDeleted, cancellationToken);
+
+            if (expert != null)
+            {
+                if (expert.PointerIds == null || !expert.PointerIds.Any())
+                {
+                    expert.PointerIds = new List<int>();
+                }
+                if (expert.Points == null || !expert.Points.Any())
+                {
+                    expert.Points = new List<int>();
+                }
+                expert.PointerIds.Add(pointerId);
+                expert.Points.Add(rate);
+                await _appDbContext.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
+        }
         #endregion
         #region Delete
         public async Task<bool> DeleteExpertAsync(int ExpertId, CancellationToken cancellationToken)

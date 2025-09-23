@@ -26,7 +26,7 @@ namespace SangaghakRazorEndPoint.Areas.Customer.Pages
         public async Task<IActionResult> OnGet(int ExpertId, CancellationToken cancellationToken)
         {
             var wanteduser = await userBaseAppService.GetExpertBasicInfoByExpertIdAsync(ExpertId, cancellationToken);
-            WantedUser = await expertProfileAppService.UserSummary(WantedUser.Id, cancellationToken);
+            WantedUser = await expertProfileAppService.UserSummary(wanteduser!.Id, cancellationToken);
             if (WantedUser is null)
             {
                 return NotFound();

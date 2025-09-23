@@ -34,6 +34,11 @@ namespace SangaghakService.Sangaghak.Users
             return await _expertRepository.SetExpertPointAsync(CustomerId, Point, ExpertId, cancellationToken);
         }
 
+        public async Task<bool> UpdateExpertRateAsync(int expertId, int pointerId, int rate, CancellationToken cancellationToken)
+        {
+            return await _expertRepository.UpdateExpertRateAsync(expertId, pointerId, rate, cancellationToken);
+        }
+
         public async Task<bool> UpdateExpertSkillsAsync(int expertId, List<Category> newSkillIds, CancellationToken cancellationToken)
         {
             return await _expertRepository.UpdateExpertSkillsAsync(expertId, newSkillIds, cancellationToken);

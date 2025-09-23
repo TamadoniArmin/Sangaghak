@@ -3,6 +3,8 @@
 @{
 }
 
+@using App.Domain.Core.Sangaghak.Enum
+@using Microsoft.IdentityModel.Tokens
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -23,14 +25,13 @@
                                 <th>مشتری</th>
                                 <th>پکیج</th>
                                 <th>وضعیت درخواست</th>
-                                <th>مجموع</th>
                                 <th>مشاهده جزئیات درخواست</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (!Model.AllExpertRequest.IsNullOrEmpty())
                             {
-                                @foreach (var request in Model.AllExpertRequest)
+                                @foreach (var request in Model.AllExpertRequest!)
                                 {
                                     <tr>
                                         <td>@request.CustomerFullName</td>
@@ -64,7 +65,6 @@
                                                 @statusText
                                             </span>
                                         </td>
-                                        <td>@request.OfferPrice</td>
                                         <td>
                                             <div class="d-flex gap-2">
                                                 <a asp-page="RequestDetails" asp-route-RequestId="@request.Id" class="btn btn-light btn-sm">

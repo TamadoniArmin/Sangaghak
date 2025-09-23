@@ -71,8 +71,8 @@
             <div class="card-footer border-top">
                 <div class="row g-2">
                     <div class="col-lg-5">
-                        <a asp-page="PostOfferForRequest" asp-rout-RequestId="@Model.Request.Id"
-                           class="btn btn-primary d-flex align-items-center justify-content-center gap-2 w-100">
+                        <a asp-page="PostOfferForRequest" asp-route-RequestId="@Model.Request.Id"
+                           asp-route-ExpertId="@Model.WantedExpertId" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 w-100">
                             <i class="bx bx-cart fs-18"></i> ثبت پیشنهاد برای این درخواست
                         </a>
                     </div>
@@ -88,7 +88,7 @@
                     @Model.Request.ServicePackageTiltle
                 </p>
                 <h4>قیمت درخواست شده</h4>
-                <h3 class="fw-medium my-3">@Model.Request.ServicePackageTiltle</h3>
+                <h3 class="fw-medium my-3">@Model.Request.WantedPrice</h3>
                 <h4 class="text-dark fw-medium">توضیحات :</h4>
                 <p class="text-muted">@Model.Request.Description</p>
                 <h4 class="text-dark fw-medium">آدرس :</h4>

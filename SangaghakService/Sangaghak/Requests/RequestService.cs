@@ -94,9 +94,9 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.UpdateRequestStatusAsync(RequestId, requestStatus, cancellationToken);
         }
 
-        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
-            return await _repository.GetExpertNotCompeletedRequestsAsync(ExpertId, cancellationToken);
+            return await _repository.GetExpertNotCompeletedRequestsAsync(RequestIds, cancellationToken);
         }
 
         public async Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, List<int> PackagesId, CancellationToken cancellationToken)
@@ -109,9 +109,9 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetMatchRequestForExpertCount(cityId, PackagesId, cancellationToken);
         }
 
-        public async Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<int> GetAllExpertRequestsCountAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllExpertRequestsCountAsync(ExpertId,cancellationToken);
+            return await _repository.GetAllExpertRequestsCountAsync(RequestIds, cancellationToken);
         }
 
         public async Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken)
@@ -119,9 +119,9 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetRequestPackageIdByRequestIdAsync(RequestId,cancellationToken);
         }
 
-        public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllExpertRequestsAsync(ExpertId,cancellationToken);
+            return await _repository.GetAllExpertRequestsAsync(RequestIds, cancellationToken);
         }
     }
 }

@@ -15,7 +15,6 @@ namespace SangaghakRazorEndPoint.Areas.Public.Pages
         public async Task OnGet(CancellationToken cancellationToken)
         {
             Categories = await categoryAppService.GetAllParentsCategory(cancellationToken);
-
         }
 
         public async Task<IActionResult> OnGetRedirect()
@@ -34,12 +33,12 @@ namespace SangaghakRazorEndPoint.Areas.Public.Pages
                     //case "Expert":
                     //    return RedirectToAction("Management", new { area = "Expert" });
                     default:
-                        return LocalRedirect("/AccessDenied");
+                        return LocalRedirect("/Account/AccessDenied");
                 }
             }
 
             // «ê— ‰ﬁ‘ ò«—»— ‰«„⁄ »— »«‘œ
-            return RedirectToPage("/AccessDenied");
+            return RedirectToPage("/Account/AccessDenied");
         }
     }
 }

@@ -56,7 +56,7 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
                     }
                     else
                     {
-                        ExpertRate = await expertProfileAppService.GetExpertRateAysnc(ExpertID,cancellationToken);
+                        ExpertRate = await expertProfileAppService.GetExpertRateAysnc(ExpertID, cancellationToken);
                         var Skills = await expertProfileAppService.GetExpertSkillsNameByExpertId(ExpertID, cancellationToken);
                         if (Skills is not null && Skills.Any())
                         {

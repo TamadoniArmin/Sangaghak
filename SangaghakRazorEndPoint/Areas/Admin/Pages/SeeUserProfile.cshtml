@@ -2,92 +2,280 @@
 @model SangaghakRazorEndPoint.Areas.Admin.Users.SeeUserProfileModel
 @{
 }
+@using Microsoft.IdentityModel.Tokens
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<div class="row">
-    <div class="col-xl-9 col-lg-8">
-        <div class="card overflow-hidden">
-            <div class="card-body">
-                <div class="bg-primary profile-bg rounded-top position-relative mx-n3 mt-n3">
+@if (Model.UserInfo.Role != App.Domain.Core.Sangaghak.Enum.RoleEnum.Expert)
+{
+    <div class="row">
+        <div class="col-xl-9 col-lg-8">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="bg-primary profile-bg rounded-top position-relative mx-n3 mt-n3">
 
-                    <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
-                        @if (@Model.UserInfo.ProfileImgFile != null)
-                        {
-                            <img src="@Model.UserInfo.ProfileImgFile" alt="" class="avatar-md">
-                        }
-                        else
-                        {
-                            <img src="~/images/Categories/e8886c2a-a725-4058-9cbc-319b66588bf5dummy-avatar.jpg" alt="" class="avatar-md">
-                        }
+                        <div class="rounded bg-light avatar-md d-flex align-items-center justify-content-center">
+                            @if (@Model.UserInfo.ProfileImgFile != null)
+                            {
+                                <img src="@Model.UserInfo.ProfileImgFile" alt="" class="avatar-md">
+                            }
+                            else
+                            {
+                                <img src="~/images/Categories/e8886c2a-a725-4058-9cbc-319b66588bf5dummy-avatar.jpg" alt="" class="avatar-md">
+                            }
 
+                        </div>
+                    </div>
+                    <div class="mt-5 d-flex flex-wrap align-items-center justify-content-between">
+                        <div>
+                            <h4 class="mb-1">@Model.UserInfo.FullName <i class='bx bxs-badge-check text-success align-middle'></i></h4>
+                            <p class="mb-0">@Model.UserInfo.Role</p>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-5 d-flex flex-wrap align-items-center justify-content-between">
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">اطلاعات شخصی</h4>
+                </div>
+                <div class="card-body">
                     <div>
-                        <h4 class="mb-1">@Model.UserInfo.FullName <i class='bx bxs-badge-check text-success align-middle'></i></h4>
-                        <p class="mb-0">@Model.UserInfo.Role</p>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                <iconify-icon icon="solar:backpack-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
+                            </div>
+                            <p class="mb-0 fs-14">@Model.UserInfo.Role</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                <iconify-icon icon="solar:letter-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
+                            </div>
+                            <p class="mb-0 fs-14">ایمیل: <a href="#!" class="text-primary fw-semibold">@Model.UserInfo.Email</a></p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                <iconify-icon icon="solar:link-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
+                            </div>
+                            <p class="mb-0 fs-14">شماره تماس: <a href="#!" class="text-primary fw-semibold">@Model.UserInfo.Mobile</a></p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                <iconify-icon icon="solar:check-circle-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
+                            </div>
+                            <p class="mb-0 fs-14">وضعیت: <span class="badge bg-success-subtle text-success ms-1">فعال</span></p>
+                        </div>
+                        <div class="mt-2">
+                            <a asp-page="UpdateUser" asp-route-UserId="@Model.UserInfo.Id" class="text-primary">ویرایش اطلاعات</a>
+                        </div>
                     </div>
-                    @if (Model.UserInfo.Role == App.Domain.Core.Sangaghak.Enum.RoleEnum.Expert)
-                    {
-                        @if(Model.ExpertSkills is not null)
-                        {
-                            @foreach (var Skill in Model.ExpertSkills)
-                            {
-                                <div class="row mt-3 gy-2">
-                                    <div class="col-lg-2 col-6">
-                                        <div class="d-flex align-items-center gap-2 border-end">
-                                            <div>
-                                                <h5 class="mb-1">@Skill</h5>
-                                                <p class="mb-0">مهارت</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Model.UserInfo.Role == App.Domain.Core.Sangaghak.Enum.RoleEnum.Expert)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!--قسمت اطلاعات کاربر-->
+                        <div class="col-lg-2 text-lg-center">
+                            <div class="bg-body d-flex align-items-center justify-content-center rounded py-4">
+                                @if (Model.UserInfo.ImagePath != null)
+                                {
+                                    <img src="@Model.UserInfo.ImagePath" alt="" class="avatar-md">
+                                }
+                                else
+                                {
+                                    <img src="~/Images/Profiles/dummy-avatar.jpg" alt="" class="avatar-md">
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-3 border-end">
+                            <div class="">
+                                <h4 class="mb-1">@Model.UserInfo.FullName</h4>
+                                <p class="mb-1">(کارشناس)</p>
+                                <div class="d-flex align-items-center justify-content-start gap-2 mt-2 mb-1">
+                                    <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
+                                        @if (Model.ExpertRate <= 1)
+                                        {
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                        }
+                                        @if (Model.ExpertRate == 2)
+                                        {
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                        }
+                                        @if (Model.ExpertRate == 3)
+                                        {
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                        }
+                                        @if (Model.ExpertRate == 4)
+                                        {
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                        }
+                                        @if (Model.ExpertRate == 5)
+                                        {
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="bx bxs-star"></i>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                            <iconify-icon icon="solar:point-on-map-bold-duotone"
+                                                          class="fs-20 text-primary"></iconify-icon>
+                                        </div>
+                                        <p class="mb-0 fs-15">@Model.UserInfo.CityName</p>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                            <iconify-icon icon="solar:letter-bold-duotone"
+                                                          class="fs-20 text-primary"></iconify-icon>
+                                        </div>
+                                        <p class="mb-0 fs-15">@Model.UserInfo.Email</p>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
+                                            <iconify-icon icon="solar:outgoing-call-rounded-bold-duotone"
+                                                          class="fs-20 text-primary"></iconify-icon>
+                                        </div>
+                                        <p class="mb-0 fs-15">@Model.UserInfo.Mobile</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تا اینجا-->
+                        <!--شروع قسمت تخصص کارشناس و درخواست های متناسب-->
+                        <div class="col-lg-7">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">تخصص ها</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-2 mt-2 mb-4">
+                                        <div class="col-lg-6">
+                                            <div class="border p-3 rounded">
+                                                <h4 class="card-title">تخصص های کارشناس</h4>
+                                                @if (!Model.ExpertSkillsNames.IsNullOrEmpty())
+                                                {
+                                                    @foreach (var Skill in Model.ExpertSkillsNames)
+                                                    {
+                                                        <div class="d-flex gap-2 flex-wrap mt-3">
+                                                            <span class="badge bg-body text-muted px-2 py-1 fs-12">#@Skill.SubcategoryNames</span>
+                                                        </div>
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            }
-                        }
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">اطلاعات شخصی</h4>
-            </div>
-            <div class="card-body">
-                <div>
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-                            <iconify-icon icon="solar:backpack-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
+                            </div>
                         </div>
-                        <p class="mb-0 fs-14">@Model.UserInfo.Role</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-                            <iconify-icon icon="solar:letter-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
-                        </div>
-                        <p class="mb-0 fs-14">ایمیل: <a href="#!" class="text-primary fw-semibold">@Model.UserInfo.Email</a></p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-                            <iconify-icon icon="solar:link-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
-                        </div>
-                        <p class="mb-0 fs-14">شماره تماس: <a href="#!" class="text-primary fw-semibold">@Model.UserInfo.Mobile</a></p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="avatar-sm bg-light d-flex align-items-center justify-content-center rounded">
-                            <iconify-icon icon="solar:check-circle-bold-duotone" class="fs-20 text-secondary"></iconify-icon>
-                        </div>
-                        <p class="mb-0 fs-14">وضعیت: <span class="badge bg-success-subtle text-success ms-1">فعال</span></p>
-                    </div>
-                    <div class="mt-2">
-                        <a asp-page="UpdateUser" asp-route-UserId="@Model.UserInfo.Id" class="text-primary">ویرایش اطلاعات</a>
+                        <!--پایان قسمت تخصص های کارشناس و درخواست های متناسب-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!--شروع قسمت کامنت ها-->
+    <div class="row">
+        @if (Model.ExpertComments != null)
+        {
+            @foreach (var Comment in Model.ExpertComments)
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <img src="/images/product/p-1.png" alt="" class="img-fluid ">
+                        <div class="card-body bg-light-subtle rounded-bottom">
+                            <p class="mb-2 text-dark fw-semibold fs-15">@Comment.CustomerName</p>
+                            <p class="mb-2 text-dark fw-semibold fs-15">@Comment.SetAt</p>
+                            <p class="mb-0">@Comment.Description</p>
+                            <p class="text-white mb-0">@Comment.PackageTiltle / @Comment.CityName</p>
+                            <div class="d-flex align-items-center gap-2 mt-2 mb-1">
+                                <ul class="d-flex text-warning m-0 fs-20 list-unstyled">
+                                    @for (int i = 1; i <= Comment.Rate; i++)
+                                    {
+                                        <li>
+                                            <i class="bx bxs-star"></i>
+                                        </li>
+                                    }
+                                </ul>
+                                @if (Comment.Rate == 1)
+                                {
+                                    <p class="fw-medium mb-0 text-dark fs-15">بسیار بد</p>
+                                }
+                                @if (Comment.Rate == 2)
+                                {
+                                    <p class="fw-medium mb-0 text-dark fs-15">ضعیف</p>
+                                }
+                                @if (Comment.Rate == 3)
+                                {
+                                    <p class="fw-medium mb-0 text-dark fs-15">متوسط</p>
+                                }
+                                @if (Comment.Rate == 4)
+                                {
+                                    <p class="fw-medium mb-0 text-dark fs-15">خوب</p>
+                                }
+                                @if (Comment.Rate == 5)
+                                {
+                                    <p class="fw-medium mb-0 text-dark fs-15">بسیار عالی</p>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <!--پایان قسمت کامنت ها-->
+}

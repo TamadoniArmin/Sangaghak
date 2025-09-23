@@ -50,13 +50,13 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #endregion
         #region Read
         #region Expert
-        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
             return await _context.Requests
-            .Where(r => r.AcceptedOffer != null &&
-                        r.AcceptedOffer.ExpertId == ExpertId &&
-                        r.Status != RequestStatusEnum.Complited &&
-                        r.Status != RequestStatusEnum.Cancelled)
+            .Where(r =>RequestIds.Contains(r.Id) 
+            && r.Status != RequestStatusEnum.Complited 
+            && r.Status != RequestStatusEnum.Cancelled
+            && !r.IsDeleted)
             .Select(x => new RequestDTO()
             {
                 Id = x.Id,
@@ -65,17 +65,18 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Address = x.Address,
                 CityId = x.CityId,
                 CustomerId = x.CustomerId,
+                ServicePackageId=x.ServicePackageId,
                 MaxTime = x.MaxTime,
                 Status = x.Status,
                 SetAt = x.SetAt,
                 AcceptedOfferId = x.AcceptedOfferId
             }).ToListAsync(cancellationToken);
         }
-        public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
             return await _context.Requests
-            .Where(r => r.AcceptedOffer != null &&
-                        r.AcceptedOffer.ExpertId == ExpertId)
+            .Where(x=> RequestIds.Contains(x.Id)
+            && !x.IsDeleted)
             .Select(x => new RequestDTO()
             {
                 Id = x.Id,
@@ -84,21 +85,23 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 Address = x.Address,
                 CityId = x.CityId,
                 CustomerId = x.CustomerId,
+                ServicePackageId= x.ServicePackageId,
                 MaxTime = x.MaxTime,
                 Status = x.Status,
                 SetAt = x.SetAt,
                 AcceptedOfferId = x.AcceptedOfferId
             }).ToListAsync(cancellationToken);
         }
-        public async Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, List<int> PackagesId, CancellationToken cancellationToken)
+        public async Task<List<RequestDTO>> GetMatchRequestForExpert(int cityId, 
+            List<int> PackagesId, 
+            CancellationToken cancellationToken)
         {
 
             return await _context.Requests
                 .Where(r => r.CityId == cityId
                 && PackagesId.Contains(r.ServicePackageId)
                 && r.IsDeleted == false 
-                && r.Status!= RequestStatusEnum.Cancelled
-                && r.AcceptedOffer == null
+                && r.Status==RequestStatusEnum.WatingForExpertsOffers
                 && (r.AcceptedOfferId == null || r.AcceptedOfferId == 0))
                 .Select(x => new RequestDTO
                 {
@@ -122,17 +125,16 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return await _context.Requests
                 .Where(r => r.CityId == cityId
                 && PackagesId.Contains(r.ServicePackageId)
-                && r.IsDeleted == false 
-                && r.Status!= RequestStatusEnum.Cancelled
-                && r.AcceptedOffer == null
+                && r.IsDeleted == false
+                && r.Status == RequestStatusEnum.WatingForExpertsOffers
                 && (r.AcceptedOfferId == null || r.AcceptedOfferId == 0))
                 .CountAsync(cancellationToken);
         }
-        public async Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken)
+        public async Task<int> GetAllExpertRequestsCountAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
             return await _context.Requests
-                .Where(r => r.AcceptedOffer != null &&
-                            r.AcceptedOffer.ExpertId == ExpertId)
+                .Where(r => RequestIds.Contains(r.Id)
+                && !r.IsDeleted)
                 .CountAsync(cancellationToken);
         }
 
@@ -207,12 +209,14 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         public async Task<RequestDTO?> GetRequestByIdAysnc(int RequestId, CancellationToken cancellationToken)
         {
-            var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId && x.IsDeleted == false);
+            var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId 
+            && x.IsDeleted == false);
             if (Request == null) return null;
             else
             {
                 RequestDTO requestDTO = new RequestDTO();
                 requestDTO.Id = Request.Id;
+                requestDTO.ServicePackageId = Request.ServicePackageId;
                 requestDTO.WantedPrice = Request.WantedPrice;
                 requestDTO.Description = Request.Description;
                 requestDTO.CityId = Request.CityId;
@@ -329,12 +333,19 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken)
         {
-            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == RequestId, cancellationToken);
+            var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId, cancellationToken);
             if (Request != null)
             {
-                Request.Status = requestStatus;
-                await _context.SaveChangesAsync(cancellationToken);
-                return true;
+                if (Request.Status==requestStatus)
+                {
+                    return true;
+                }
+                else
+                {
+                    Request.Status = requestStatus;
+                    await _context.SaveChangesAsync(cancellationToken);
+                    return true;
+                }
             }
             return false;
         }

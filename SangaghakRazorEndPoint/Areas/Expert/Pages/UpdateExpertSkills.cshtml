@@ -3,7 +3,7 @@
 @{
 }
 
-@using App.Domain.Core.Sangaghak.Enum
+
 @using SangaghakRazorEndPoint
 @namespace SangaghakRazorEndPoint.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -18,10 +18,10 @@
                 <form enctype="multipart/form-data" role="form" method="post" asp-page-handler="UpdateExpertSkills">
                     <!-- فیلد مخفی برای ExpertId -->
 
-
+                    <input type="hidden" asp-for="@Model.WantedExpertId" value="@Model.ExpertId" />
                     <!-- فرم برای submit -->
                     <div class="p-3" data-simplebar style="max-height: 386px;">
-                        <input type="hidden" asp-for="@Model.WantedExpertId" value="@Model.ExpertId" />
+
                         @foreach (var category in Model.AllSubCategories)
                         {
                             <div class="form-check form-todo py-1 my-2 ps-4">
@@ -29,7 +29,7 @@
                                        class="form-check-input rounded-circle mt-0 fs-18"
                                        name="SelectedSkillIds"
                                        value="@category.Id"
-                                       @(Model.SelectedSkillIds.Contains(category.Id) ? "checked" : "")
+                                       @(Model.CurrentExpertSkillsId.Contains(category.Id) ? "checked" : "")
                                        id="customCheck_@category.Id" />
                                 <label class="form-check-label" for="customCheck_@category.Id">@category.Title</label>
                             </div>

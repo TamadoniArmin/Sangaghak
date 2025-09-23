@@ -13,6 +13,8 @@ namespace App.Domain.Core.Sangaghak.Service
         #region Update
         public Task<bool> SetExpertPointAsync(int CustomerId, int Point, int ExpertId, CancellationToken cancellationToken);
         public Task<bool> UpdateExpertSkillsAsync(int expertId, List<Category> newSkillIds,CancellationToken cancellationToken);
+        public Task<bool> UpdateExpertRateAsync(int expertId, int pointerId, int rate, CancellationToken cancellationToken);
+
         #endregion
         #region Delete
         public Task<bool> DeleteExpertAsync(int ExpertId, CancellationToken cancellationToken);

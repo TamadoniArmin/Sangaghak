@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace SangaghakRazorEndPoint.Areas.Expert.Pages
 {
     [Authorize]
-    public class UpdateExpertSkillsModel(ICategoryAppService categoryAppService, 
+    public class UpdateExpertSkillsModel(ICategoryAppService categoryAppService,
         IExpertAppService expertAppService) : PageModel
     {
 
@@ -44,23 +44,18 @@ namespace SangaghakRazorEndPoint.Areas.Expert.Pages
             }
             else
             {
-                SelectedSkillIds = await categoryAppService.GetCategoryIdByExpertId(ExpertId, cancellationToken);
+                CurrentExpertSkillsId = await categoryAppService.GetCategoryIdByExpertId(expertId, cancellationToken);
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostUpdateExpertSkills(CancellationToken cancellationToken)
         {
-            int wantedExpertId = Convert.ToInt32(TempData["Armin"]);
-            var currentSkillIds = await categoryAppService.GetCategoryIdByExpertId(WantedExpertId, cancellationToken);
-            var newSkillIds = SelectedSkillIds.OrderBy(id => id).ToList();
-            if (!currentSkillIds.OrderBy(id => id).SequenceEqual(newSkillIds))
+            var data = TempData["Armin"];
+            var result = await expertAppService.UpdateExpertSkillsAsync(WantedExpertId, SelectedSkillIds, cancellationToken);
+            if (!result)
             {
-                var result = await expertAppService.UpdateExpertSkillsAsync(WantedExpertId, newSkillIds, cancellationToken);
-                if (!result)
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
             return RedirectToPage("Index");
         }

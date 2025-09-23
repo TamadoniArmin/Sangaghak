@@ -75,12 +75,12 @@ namespace SangaghakRazorEndPoint.Pages
                             case "Expert":
                                 return RedirectToAction("Management", new { area = "Expert" });
                             default:
-                                return RedirectToPage("/AccessDenied");
+                                return RedirectToPage("/Account/AccessDenied");
                         }
                     }
 
                     // اگر نقش کاربر نامعتبر باشد
-                    return RedirectToPage("/AccessDenied");
+                    return RedirectToPage("/Account/AccessDenied");
                 }
                 else
                 {

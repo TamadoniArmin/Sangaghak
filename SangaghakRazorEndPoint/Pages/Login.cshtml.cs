@@ -41,10 +41,10 @@ namespace SangaghakRazorEndPoint.Pages
                         case "Expert":
                             return LocalRedirect("/Expert/Index");
                         default:
-                            return LocalRedirect("/AccessDenied");
+                            return LocalRedirect("/Account/AccessDenied");
                     }
                 }
-                return RedirectToPage("/AccessDenied");
+                return RedirectToPage("/Account/AccessDenied");
             }
             else
             {

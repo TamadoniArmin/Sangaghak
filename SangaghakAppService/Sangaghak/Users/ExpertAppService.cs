@@ -64,13 +64,25 @@ namespace SangaghakAppService.Sangaghak.Users
                     }
                     else
                     {
-                        var matchRequests = await _requestService.GetMatchRequestForExpert(CityId, expertSkillsId, cancellationToken);
+                        var matchRequests = await _requestService.GetMatchRequestForExpert(CityId, matchPackages, cancellationToken);
                         if (!matchRequests.Any())
                         {
                             return null;
                         }
                         else
                         {
+                            foreach (var request in matchRequests)
+                            {
+                                request.ServicePackageTiltle = await _packageService.GetPackageTiltleById(request.ServicePackageId, cancellationToken) ?? string.Empty;
+                                var customer = await _userBaseService.GetCustomerSummeryByCustomerId(request.CustomerId, cancellationToken);
+                                if (customer != null)
+                                {
+                                    request.CustomerFullName = customer.FirstName + " " + customer.LastName;
+                                    request.CustomerPhone = customer.Mobile;
+                                    request.CustomerEmail = customer.Email;
+                                    request.CityTitle = await _cityService.GetNameOfCity(request.CityId, cancellationToken) ?? string.Empty;
+                                }
+                            }
                             return matchRequests;
                         }
                     }

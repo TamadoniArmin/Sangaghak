@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SangaghakRazorEndPoint.Areas.Admin.Pages.Edits
+namespace SangaghakRazorEndPoint.Areas.Admin.Pages
 {
     [Authorize(Roles = ("Admin"))]
     public class CommentManagerModel(ICommentAppService commentAppService) : PageModel
@@ -13,22 +13,18 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Pages.Edits
         [BindProperty]
         public List<CommentDTO>? Comments { get; set; }
         [BindProperty]
-        public CommentStatusEnum Status { get; set; }
+        public CommentStatusEnum CommentAccepted { get; set; }
+        [BindProperty]
+        public CommentStatusEnum CommentNotAccepted { get; set; }
         public async Task OnGet(CancellationToken cancellationToken)
         {
+            CommentAccepted = CommentStatusEnum.Confirmed;
+            CommentNotAccepted = CommentStatusEnum.NotConfirmed;
             Comments = await commentAppService.GetPendingCommentAsync(cancellationToken);
         }
-        public async Task<IActionResult> OnPost(int CommentId,int statusEnum,CancellationToken cancellationToken)
+        public async Task<IActionResult> OnGetUpdateComment(int CommentId,CommentStatusEnum Status, CancellationToken cancellationToken)
         {
-            if(statusEnum==1)
-            {
-                Status = CommentStatusEnum.Confirmed;
-            }
-            else
-            {
-                Status = CommentStatusEnum.NotConfirmed;
-            }
-                var Result = await commentAppService.UpdateCommentStatusAsync(CommentId, Status, cancellationToken);
+            var Result = await commentAppService.UpdateCommentStatusAsync(CommentId, Status, cancellationToken);
             if (!Result)
             {
                 return NotFound();
