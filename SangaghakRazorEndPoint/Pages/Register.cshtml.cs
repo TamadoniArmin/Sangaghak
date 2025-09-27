@@ -69,13 +69,13 @@ namespace SangaghakRazorEndPoint.Pages
                         switch (userRoles)
                         {
                             case "Admin":
-                                return RedirectToAction("Index", new { area = "Admin" });
+                                return LocalRedirect("/Admin/Index");
                             case "Customer":
-                                return RedirectToAction("CustomerProfile", new { area = "Customer" });
+                                return LocalRedirect("/Customer/Index");
                             case "Expert":
-                                return RedirectToAction("Management", new { area = "Expert" });
+                                return LocalRedirect("/Expert/Index");
                             default:
-                                return RedirectToPage("/Account/AccessDenied");
+                                return LocalRedirect("/Account/AccessDenied");
                         }
                     }
 

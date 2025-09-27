@@ -99,6 +99,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     ExpertId = x.ExpertId,
                     RequestId = x.RequestId,
                     CustomerId = x.CustomerId,
+                    SetAt=x.SetAt
                 }
                 ).ToListAsync(cancellationToken);
         }

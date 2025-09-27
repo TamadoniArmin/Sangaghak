@@ -100,9 +100,11 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return await _context.Requests
                 .Where(r => r.CityId == cityId
                 && PackagesId.Contains(r.ServicePackageId)
-                && r.IsDeleted == false 
-                && r.Status==RequestStatusEnum.WatingForExpertsOffers
-                && (r.AcceptedOfferId == null || r.AcceptedOfferId == 0))
+                && r.IsDeleted == false
+                && (r.Status == RequestStatusEnum.WatingForExpertsOffers
+                || r.Status == RequestStatusEnum.WatingForCustomerComfimation)
+                && (r.AcceptedOfferId == null 
+                || r.AcceptedOfferId == 0))
                 .Select(x => new RequestDTO
                 {
                     Id = x.Id,
@@ -126,8 +128,10 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 .Where(r => r.CityId == cityId
                 && PackagesId.Contains(r.ServicePackageId)
                 && r.IsDeleted == false
-                && r.Status == RequestStatusEnum.WatingForExpertsOffers
-                && (r.AcceptedOfferId == null || r.AcceptedOfferId == 0))
+                && (r.Status == RequestStatusEnum.WatingForExpertsOffers 
+                || r.Status==RequestStatusEnum.WatingForCustomerComfimation)
+                && (r.AcceptedOfferId == null 
+                || r.AcceptedOfferId == 0))
                 .CountAsync(cancellationToken);
         }
         public async Task<int> GetAllExpertRequestsCountAsync(List<int> RequestIds, CancellationToken cancellationToken)
@@ -320,7 +324,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Update
         public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
         {
-            var Request = await _context.Requests.AsNoTracking().FirstOrDefaultAsync(x => x.Id == RequestId, cancellationToken);
+            var Request = await _context.Requests.FirstOrDefaultAsync(x => x.Id == RequestId, cancellationToken);
             if (Request != null)
             {
                 Request.AcceptedOfferId = OfferId;

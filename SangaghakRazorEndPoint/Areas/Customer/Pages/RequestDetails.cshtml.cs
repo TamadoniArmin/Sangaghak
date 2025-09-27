@@ -36,7 +36,7 @@ namespace SangaghakRazorEndPoint.Areas.Customer.Pages
         }
         public async Task<IActionResult> OnPostAcceptOffer(int requestid, int offerId,CancellationToken cancellationToken)
         {
-            var Result1= await requestAppService.UpdateRequestDetailsAsync(requestid, offerId, cancellationToken);
+            var Result1= await requestAppService.UpdateRequestDetailsAsync(offerId, requestid, cancellationToken);
             if (!Result1)
             { 
                 return BadRequest("بروزرسانی این درخواست با خطا مواجه شد افر"); 

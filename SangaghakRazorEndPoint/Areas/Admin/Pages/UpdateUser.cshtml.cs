@@ -20,7 +20,16 @@ namespace SangaghakRazorEndPoint.Areas.Admin.Users
         public async void OnGet(int UserId,CancellationToken cancellationToken)
         {
             TempData["UserId"] = UserId;
-            Cities = await cityService.GetAllCities(cancellationToken);
+            try
+            {
+                Cities = await cityService.GetAllCities(cancellationToken);
+            }
+            catch (Exception)
+            {
+
+                throw new InvalidDataException("مشکل از سیتی است");
+            }
+
             PriorUserinfo = await userBaseAppService.GetByIdAsync(UserId, cancellationToken);
         }
         public async Task<IActionResult> OnPostUpdateUser( CancellationToken cancellationToken)

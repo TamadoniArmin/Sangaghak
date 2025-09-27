@@ -68,6 +68,16 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="Email" class="form-label">ایمیل</label>
+                                <input asp-for="@Model.UserToUpdate.Email" type="email"
+                                       id="Email"
+                                       class="form-control"
+                                       placeholder="Email@gmail.com"
+                                       value="@Model.PriorUserinfo.Email" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
                             <label for="product-categories" class="form-label">شهر</label>
                             <select asp-for="@Model.UserToUpdate.CityId" class="form-select"
                                     data-placeholder="یک شهر انتخاب کیند">
