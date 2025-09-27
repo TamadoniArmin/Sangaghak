@@ -1,12 +1,13 @@
-﻿using System;
-using App.Domain.Core.Sangaghak.Data.Repositories;
+﻿using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.DTOs.Categories;
 using App.Domain.Core.Sangaghak.DTOs.Requests;
 using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Requests;
 using Connection.Common;
+using Dapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace App.Infra.Data.Repos.Ef.Sangaghak
 {
@@ -105,39 +106,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             return subcategories;
         }
 
-        public async Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken)
-        {
-            var categories = await _appDbContext
-            .Categories
-            .Where(x => x.IsDeleted == false)
-            .Include(x => x.Subcategories)
-            .Select(x => new CategoryDTO
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                ImagePath = x.ImagePath,
-                SubCategoryCount = x.Subcategories.Count,
-            }).ToListAsync(cancellationToken);
-            return categories;
-        }
-
-        public async Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken)
-        {
-            _logger.Log(logLevel: LogLevel.Information, "ادمین تلاش کرد زیر کتگوری ها را بخواند");
-            var subcategories = await _appDbContext
-            .Categories
-            .Where(x => x.IsDeleted == false && x.ParentId != 0 && x.ParentId != null)
-            .Select(x => new SubCategoryDTO
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                ImagePath = x.ImagePath,
-                ParentId = x.ParentId ?? 0
-            }).ToListAsync(cancellationToken);
-            return subcategories;
-        }
         public async Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken)
         {
             var FindCategory = await _appDbContext.Categories.FirstOrDefaultAsync(x => x.Title == title && x.IsDeleted == false, cancellationToken);

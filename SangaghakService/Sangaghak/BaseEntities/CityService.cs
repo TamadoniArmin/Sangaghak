@@ -8,14 +8,17 @@ namespace SangaghakService.Sangaghak.BaseEntities
     public class CityService : ICityService
     {
         private readonly ICityRepository _cityRepository;
-        public CityService(ICityRepository cityRepository)
+        private readonly IDapperRepository _dapperRepository;
+        public CityService(ICityRepository cityRepository,
+            IDapperRepository dapperRepository)
         {
             _cityRepository = cityRepository;
+            _dapperRepository = dapperRepository;
         }
 
         public async Task<List<CityDTO>> GetAllCities(CancellationToken cancellationToken)
         {
-            return await _cityRepository.GetAllCities(cancellationToken);
+            return await _dapperRepository.GetAllCities(cancellationToken);
         }
 
         public async Task<CityDTO> GetCityById(int id, CancellationToken cancellationToken)

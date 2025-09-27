@@ -10,9 +10,12 @@ namespace SangaghakService.Sangaghak.Categories
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        public CategoryService(ICategoryRepository categoryRepository)
+        private readonly IDapperRepository _dapperRepository;
+        public CategoryService(ICategoryRepository categoryRepository,
+            IDapperRepository dapperRepository)
         {
             _categoryRepository = categoryRepository;
+            _dapperRepository = dapperRepository;
         }
 
         public async Task<bool> CreateCategory(CategoryForCreateDto Model, CancellationToken cancellationToken)
@@ -37,7 +40,7 @@ namespace SangaghakService.Sangaghak.Categories
 
         public async Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken)
         {
-            return await _categoryRepository.GetAllCategories(cancellationToken);
+            return await _dapperRepository.GetAllCategories(cancellationToken);
         }
 
         public async Task<List<CategoryDTO>> GetAllParentsCategory(CancellationToken cancellationToken)
@@ -47,7 +50,7 @@ namespace SangaghakService.Sangaghak.Categories
 
         public async Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken)
         {
-            return await _categoryRepository.GetAllSubCategories(cancellationToken);
+            return await _dapperRepository.GetAllSubCategories(cancellationToken);
         }
 
         public async Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken)

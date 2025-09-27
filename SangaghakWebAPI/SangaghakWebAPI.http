@@ -1,0 +1,6 @@
+@SangaghakWebAPI_HostAddress = http://localhost:5118
+
+GET {{SangaghakWebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

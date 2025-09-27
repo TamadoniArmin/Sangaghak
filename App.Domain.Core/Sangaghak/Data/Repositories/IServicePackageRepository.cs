@@ -9,7 +9,6 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         public Task<bool> CreateServicePackage(ServicePackageForCreateDTO forCreateDTO, CancellationToken cancellationToken);
         #endregion
         #region Read
-        public Task<List<ServicePackageDTO>> GetAllAsync(CancellationToken cancellationToken);
         public Task<int> GetAllPackageCount(CancellationToken cancellationToken);
         public Task<List<ServicePackageDTO>> GetAllPackageBySubCategoryId(int SubCategoryId,CancellationToken cancellationToken);
         public Task<ServicePackageDTO> GetPackageById(int PackageId, CancellationToken cancellationToken);

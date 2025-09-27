@@ -5,7 +5,8 @@ using App.Domain.Core.Sangaghak.Service;
 
 namespace SangaghakService.Sangaghak.ServicePackages
 {
-    public class ServicePackageService(IServicePackageRepository servicePackageRepository) : IServicePackageService
+    public class ServicePackageService(IServicePackageRepository servicePackageRepository,
+        IDapperRepository dapperRepository) : IServicePackageService
     {
         public async Task<bool> CreateServicePackage(ServicePackageForCreateDTO forCreateDTO, CancellationToken cancellationToken)
         {
@@ -24,7 +25,7 @@ namespace SangaghakService.Sangaghak.ServicePackages
 
         public async Task<List<ServicePackageDTO>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await servicePackageRepository.GetAllAsync(cancellationToken);
+            return await dapperRepository.GetAllServicePackagesAsync(cancellationToken);
         }
 
         public async Task<List<ServicePackageDTO>> GetAllPackageBySubCategoryId(int SubCategoryId, CancellationToken cancellationToken)

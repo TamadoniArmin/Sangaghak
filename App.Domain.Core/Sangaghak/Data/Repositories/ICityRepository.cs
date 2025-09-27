@@ -11,7 +11,6 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
     public interface ICityRepository
     {
         #region Read
-        public Task<List<CityDTO>> GetAllCities(CancellationToken cancellationToken);
         public Task<CityDTO> GetCityById(int id, CancellationToken cancellationToken);
         public Task<CityDTO> GetCityByName(string cityName, CancellationToken cancellationToken);
         public Task<string> GetNameOfCity(int CityId,CancellationToken cancellationToken);

@@ -58,28 +58,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             }).ToListAsync(cancellationToken);
             return Packages;
         }
-
-        public async Task<List<ServicePackageDTO>> GetAllAsync(CancellationToken cancellationToken)
-        {
-            var Result = await _context.Packages.AnyAsync(cancellationToken);
-            if (Result)
-            {
-                return await _context.Packages
-                    .Where(x => x.IsDeleted == false)
-                    .Select(x => new ServicePackageDTO()
-                    {
-                        Id = x.Id,
-                        Title = x.Tiltle,
-                        Description = x.Description,
-                        MinPrice = x.MinPrice,
-                        SubCategoryId = x.SubCategoryId,
-                        ImagePath = x.ImagePath
-                    })
-                    .ToListAsync(cancellationToken);
-            }
-            else return null;
-        }
-
         public async Task<List<ServicePackageDTO>> GetAllPackageBySubCategoryId(int SubCategoryId, CancellationToken cancellationToken)
         {
             return await _context

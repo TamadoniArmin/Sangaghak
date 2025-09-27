@@ -45,11 +45,6 @@ namespace SangaghakRazorEndPoint
             builder.Services.AddMemoryCache();
             try
             {
-
-                //var configuration = builder.Configuration;
-
-
-                // Add services to the container.
                 builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer("Server=.,1433;Initial Catalog=Sangaghak;User ID=sa;Password=1234;TrustServerCertificate=true"));
 
@@ -73,8 +68,6 @@ namespace SangaghakRazorEndPoint
                     options.Cookie.IsEssential = true; // برای رعایت قوانین cookie consent
                 });
 
-                //    optionsBuilder.UseSqlServer();
-                //    base.OnConfiguring(optionsBuilder);
 
                 builder.Services.AddScoped<IUserBaseRepository, UserBaseRepository>();
                 builder.Services.AddScoped<IUserBaseService, UserBaseService>();
@@ -125,6 +118,7 @@ namespace SangaghakRazorEndPoint
                 builder.Services.AddScoped<ICustomerProfileAppService, CustomerProfileAppService>();
                 builder.Services.AddScoped<IPostRequestAppService, PostRequestAppService>();
                 builder.Services.AddScoped<IExpertProfileAppService, ExpertProfileAppService>();
+                builder.Services.AddScoped<IDapperRepository,DapperRepository>();
 
 
                 builder.Services.AddRazorPages();
@@ -138,11 +132,9 @@ namespace SangaghakRazorEndPoint
 
                 var app = builder.Build();
 
-                // Configure the HTTP request pipeline.
                 if (!app.Environment.IsDevelopment())
                 {
                     app.UseExceptionHandler("/Error");
-                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                     app.UseHsts();
                 }
 

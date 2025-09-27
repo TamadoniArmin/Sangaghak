@@ -14,11 +14,9 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
         #endregion
         #region Read
         public Task<CategotyOrSubCategoryBasicInfo?> GetCategoryBasicInfo(int CategoryId, CancellationToken cancellationToken);
-        public Task<List<CategoryDTO>> GetAllCategories(CancellationToken cancellationToken);
         public Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken);//برای سرچ کردن کتگوری
         public Task<GetSubcategoryForHomePageDto> GetByTitle(string title, CancellationToken cancellationToken);
         public Task<List<CategoryDTO>> GetAllParentsCategory(CancellationToken cancellationToken);
-        public Task<List<SubCategoryDTO>> GetAllSubCategories(CancellationToken cancellationToken);
         public Task<List<SubCategoryDTO>> GetSubCategoriesByParentId(int ParentCategoryId, CancellationToken cancellationToken);
         public Task<CategoryDTO> GetCategoryByIdAysnc(int Id,CancellationToken cancellationToken);
         public Task<SubCategoryDTO> GetSubCategoryByIdAysnc(int Id,CancellationToken cancellationToken);
