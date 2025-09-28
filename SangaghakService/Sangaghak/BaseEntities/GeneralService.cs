@@ -6,6 +6,7 @@ namespace SangaghakService.Sangaghak.BaseEntities
 {
     public class GeneralService : IGeneralService
     {
+        #region Upload
         public async Task<string> UploadImage(IFormFile FormFile, string folderName, CancellationToken cancellation)
         {
             string filePath;
@@ -33,5 +34,6 @@ namespace SangaghakService.Sangaghak.BaseEntities
 
             return fileName;
         }
+        #endregion
     }
 }

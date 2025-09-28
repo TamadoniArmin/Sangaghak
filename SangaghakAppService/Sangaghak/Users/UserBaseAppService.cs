@@ -14,10 +14,10 @@ namespace SangaghakAppService.Sangaghak.Users
 {
     public class UserBaseAppService : IUserBaseAppService
     {
+        #region Dependency Injection
         private readonly IUserBaseService _userService;
         private readonly ICityService _cityService;
         private readonly IGeneralService _generalService;
-
         private readonly UserManager<UserBase> _userManager;
         private readonly SignInManager<UserBase> _signInManager;
         private readonly IPasswordHasher<UserBase> _passwordHasher;
@@ -45,66 +45,8 @@ namespace SangaghakAppService.Sangaghak.Users
             _memoryCache = memoryCache;
             _httpContextAccessor = httpContextAccessor;
         }
-
-        public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
-        {
-            List<GetUserBaseForViewPage> WantedUsers;
-            if (_memoryCache.Get("AllUsers") is not null)
-            {
-                WantedUsers = _memoryCache.Get<List<GetUserBaseForViewPage>>("AllUsers");
-                foreach (var WantedUser in WantedUsers)
-                {
-                    var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
-                    WantedUser.CityName = cityName;
-                }
-            }
-            else
-            {
-                WantedUsers = await _userService.GetAllAsync(cancellationToken);
-                foreach (var WantedUser in WantedUsers)
-                {
-                    var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
-                    WantedUser.CityName = cityName;
-                }
-                _memoryCache.Set("AllUsers", WantedUsers,
-                    new MemoryCacheEntryOptions
-                    {
-                        SlidingExpiration = TimeSpan.FromSeconds(10)
-                    }
-                    );
-            }
-            return WantedUsers;
-        }
-        public async Task<IdentityResult> DeleteUser(int UserId, CancellationToken cancellationToken)
-        {
-            var StringId = Convert.ToString(UserId);
-            var user = await _userManager.FindByIdAsync(StringId);
-            if (user == null)
-            {
-                return IdentityResult.Failed(new IdentityError { Description = "کاربر یافت نشد." });
-            }
-
-            user.IsDeleted = true;
-            var result = await _userManager.UpdateAsync(user);
-            return result;
-        }
-        public Task<int> GetBalance(int UserId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken)
-        {
-            var User = await _userService.GetByIdAsync(id, cancellationToken);
-            User.CityName = await _cityService.GetNameOfCity(User.CityId, cancellationToken);
-            return User;
-        }
-
-        public Task<int> GetEachRoleCount(RoleEnum customer, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
+        #endregion
+        #region Create
         public async Task<IdentityResult> Register(UserForRegisterDTO model, CancellationToken cancellationToken)
         {
             string role = string.Empty;
@@ -123,8 +65,8 @@ namespace SangaghakAppService.Sangaghak.Users
                 Mobile = model.Phone,
                 Role = model.Role,
                 Balance = 1000000,
-                RegisteredAt=DateTime.Now,
-                ImagePath= model.ImagePath ?? null
+                RegisteredAt = DateTime.Now,
+                ImagePath = model.ImagePath ?? null
             };
 
             if (model.Role == RoleEnum.Admin)
@@ -181,41 +123,8 @@ namespace SangaghakAppService.Sangaghak.Users
             return result;
         }
 
-        public async Task<IdentityResult> UpdateUserInfo(UserBaseDTO userDto, int userId, CancellationToken cancellationToken)
-        {
-            // یافتن کاربر بر اساس شناسه
-            var user = await _userManager.FindByIdAsync(userId.ToString());
-            if (user == null)
-            {
-                _logger.LogWarning("کاربری با شناسه {UserId} یافت نشد.", userId);
-                return IdentityResult.Failed(new IdentityError { Description = "کاربر یافت نشد." });
-            }
-            user.UserName = userDto.UserName;
-            user.FirstName = userDto.FirstName;
-            user.LastName = userDto.LastName;
-            user.CityId = userDto.CityId;
-            user.Email = userDto.Email;
-            user.Mobile = userDto.Mobile;
-
-
-            if (userDto.ProfileImgFile != null)
-            {
-                user.ImagePath = await _generalService.UploadImage(userDto.ProfileImgFile, "Profiles", cancellationToken);
-            }
-
-            var result = await _userManager.UpdateAsync(user);
-
-            if (result.Succeeded)
-            {
-                _logger.LogInformation("کاربر با شناسه {UserId} در ساعت {Time} با موفقیت به‌روزرسانی شد.", userId, DateTime.UtcNow.ToLongTimeString());
-            }
-            else
-            {
-                _logger.LogWarning("به‌روزرسانی کاربر با شناسه {UserId} در ساعت {Time} ناموفق بود.", userId, DateTime.UtcNow.ToLongTimeString());
-            }
-
-            return result;
-        }
+        #endregion
+        #region Read
         public async Task<IdentityResult> Login(string username, string password, bool rememberMe)
         {
             var result = await _signInManager.PasswordSignInAsync(username, password, rememberMe, false);
@@ -268,11 +177,6 @@ namespace SangaghakAppService.Sangaghak.Users
 
             return userDTO;
         }
-
-
-
-
-
         public async Task<UserDTO> GetByIdAsync(int userId)
         {
             var applicationUser = await _userManager.FindByIdAsync(userId.ToString());
@@ -288,10 +192,111 @@ namespace SangaghakAppService.Sangaghak.Users
                 ProfileImageUrl = applicationUser.ImagePath ?? "~/images/Profiles/dummy-avatar.jpg"
             };
         }
+        public Task<int> GetBalance(int UserId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            var User = await _userService.GetByIdAsync(id, cancellationToken);
+            User.CityName = await _cityService.GetNameOfCity(User.CityId, cancellationToken);
+            return User;
+        }
+
+        public Task<int> GetEachRoleCount(RoleEnum customer, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
+        {
+            List<GetUserBaseForViewPage> WantedUsers;
+            if (_memoryCache.Get("AllUsers") is not null)
+            {
+                WantedUsers = _memoryCache.Get<List<GetUserBaseForViewPage>>("AllUsers");
+                foreach (var WantedUser in WantedUsers)
+                {
+                    var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
+                    WantedUser.CityName = cityName;
+                }
+            }
+            else
+            {
+                WantedUsers = await _userService.GetAllAsync(cancellationToken);
+                foreach (var WantedUser in WantedUsers)
+                {
+                    var cityName = await _cityService.GetNameOfCity(WantedUser.CityId, cancellationToken);
+                    WantedUser.CityName = cityName;
+                }
+                _memoryCache.Set("AllUsers", WantedUsers,
+                    new MemoryCacheEntryOptions
+                    {
+                        SlidingExpiration = TimeSpan.FromSeconds(10)
+                    }
+                    );
+            }
+            return WantedUsers;
+        }
+
+        #endregion
+        #region Update
+        public async Task<IdentityResult> UpdateUserInfo(UserBaseDTO userDto, int userId, CancellationToken cancellationToken)
+        {
+            // یافتن کاربر بر اساس شناسه
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                _logger.LogWarning("کاربری با شناسه {UserId} یافت نشد.", userId);
+                return IdentityResult.Failed(new IdentityError { Description = "کاربر یافت نشد." });
+            }
+            user.UserName = userDto.UserName;
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            user.CityId = userDto.CityId;
+            user.Email = userDto.Email;
+            user.Mobile = userDto.Mobile;
+
+
+            if (userDto.ProfileImgFile != null)
+            {
+                user.ImagePath = await _generalService.UploadImage(userDto.ProfileImgFile, "Profiles", cancellationToken);
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("کاربر با شناسه {UserId} در ساعت {Time} با موفقیت به‌روزرسانی شد.", userId, DateTime.UtcNow.ToLongTimeString());
+            }
+            else
+            {
+                _logger.LogWarning("به‌روزرسانی کاربر با شناسه {UserId} در ساعت {Time} ناموفق بود.", userId, DateTime.UtcNow.ToLongTimeString());
+            }
+
+            return result;
+        }
         public async Task LogoutAsync()
         {
             await _signInManager.SignOutAsync();
         }
+
+
+        #endregion
+        #region Delete
+        public async Task<IdentityResult> DeleteUser(int UserId, CancellationToken cancellationToken)
+        {
+            var StringId = Convert.ToString(UserId);
+            var user = await _userManager.FindByIdAsync(StringId);
+            if (user == null)
+            {
+                return IdentityResult.Failed(new IdentityError { Description = "کاربر یافت نشد." });
+            }
+
+            user.IsDeleted = true;
+            var result = await _userManager.UpdateAsync(user);
+            return result;
+        }
+        #endregion
     }
 }
 

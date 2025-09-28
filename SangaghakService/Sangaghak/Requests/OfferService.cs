@@ -7,22 +7,20 @@ namespace SangaghakService.Sangaghak.Requests
 {
     public class OfferService : IOfferService
     {
+        #region Dependency Injection
         private readonly IOfferRepository _offerRepository;
         public OfferService(IOfferRepository offerRepository)
         {
             _offerRepository = offerRepository;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreatOffer(OfferForCreateAndUpdateDTO Model, CancellationToken cancellationToken)
         {
             return await _offerRepository.CreatOffer(Model, cancellationToken);
         }
-
-        public async Task<bool> DeleteOffer(int OfferId, CancellationToken cancellationToken)
-        {
-            return await _offerRepository.DeleteOffer(OfferId, cancellationToken);
-        }
-
+        #endregion
+        #region Read
         public async Task<OfferDTO> GetAcceptedOfferByRequestId(int RequestId, CancellationToken cancellationToken)
         {
             return await _offerRepository.GetAcceptedOfferByRequestId(RequestId, cancellationToken);
@@ -35,7 +33,7 @@ namespace SangaghakService.Sangaghak.Requests
 
         public async Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken)
         {
-           return await _offerRepository.GetAllExpertOffersCount(expertId, cancellationToken);
+            return await _offerRepository.GetAllExpertOffersCount(expertId, cancellationToken);
         }
 
         public async Task<List<OfferDTO>> GetAllOffersAsync(CancellationToken cancellationToken)
@@ -67,15 +65,23 @@ namespace SangaghakService.Sangaghak.Requests
         {
             return await _offerRepository.GetRequestOffersAsync(Requestid, cancellationToken);
         }
-
+        #endregion
+        #region Update
         public async Task<bool> UpdateOfferAsync(OfferForCreateAndUpdateDTO offer, int OfferId, CancellationToken cancellationToken)
         {
-            return await _offerRepository.UpdateOfferAsync(offer, OfferId,cancellationToken);
+            return await _offerRepository.UpdateOfferAsync(offer, OfferId, cancellationToken);
         }
 
         public async Task<bool> UpdateOfferStatusByOfferIdAysnc(int offerId, CancellationToken cancellationToken)
         {
             return await _offerRepository.UpdateOfferStatusByOfferIdAysnc(offerId, cancellationToken);
         }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteOffer(int OfferId, CancellationToken cancellationToken)
+        {
+            return await _offerRepository.DeleteOffer(OfferId, cancellationToken);
+        }
+        #endregion
     }
 }

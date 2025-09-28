@@ -4,6 +4,8 @@ namespace App.Domain.Core.Sangaghak.Service
 {
     public interface IGeneralService
     {
+        #region Upload
         public Task<string> UploadImage(IFormFile FormFile, string folderName, CancellationToken cancellation);
+        #endregion
     }
 }

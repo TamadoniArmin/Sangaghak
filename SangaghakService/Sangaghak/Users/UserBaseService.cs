@@ -8,22 +8,16 @@ namespace SangaghakService.Sangaghak.Users
 {
     public class UserBaseService : IUserBaseService
     {
+        #region Dependency Injection
         private readonly IUserBaseRepository _repository;
         public UserBaseService(IUserBaseRepository repository)
         {
             _repository = repository;
         }
-
-        public async Task<(bool Success, string? ErrorMessage)> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
-        {
-            return await _repository.DecreaseBalanceAsync(UserId, money, cancellationToken);
-        }
-
-        public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
-        {
-            return await _repository.DeleteUser(UserId, cancellationToken);
-        }
-
+        #endregion
+        #region Create
+        #endregion
+        #region Read
         public async Task<UserBasicInfoDTO?> GetAdminBasicInfoByAdminIdAsync(int adminId, CancellationToken cancellationToken)
         {
             return await _repository.GetAdminBasicInfoByAdminIdAsync(adminId, cancellationToken);
@@ -44,12 +38,12 @@ namespace SangaghakService.Sangaghak.Users
             return await _repository.GetByIdAsync(id, cancellationToken);
         }
 
-        public async  Task<GetUserBaseForViewPage> GetByNameAsync(string name, CancellationToken cancellationToken)
+        public async Task<GetUserBaseForViewPage> GetByNameAsync(string name, CancellationToken cancellationToken)
         {
             return await _repository.GetByNameAsync(name, cancellationToken);
         }
 
-        public async  Task<int> GetCountAsync(CancellationToken cancellationToken)
+        public async Task<int> GetCountAsync(CancellationToken cancellationToken)
         {
             return await _repository.GetCountAsync(cancellationToken);
         }
@@ -81,7 +75,7 @@ namespace SangaghakService.Sangaghak.Users
 
         public async Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
-            return await _repository.GetCustomerNameByCustomerIdAsync(CustomerId,cancellationToken);
+            return await _repository.GetCustomerNameByCustomerIdAsync(CustomerId, cancellationToken);
         }
 
         public async Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId, CancellationToken cancellationToken)
@@ -101,7 +95,7 @@ namespace SangaghakService.Sangaghak.Users
 
         public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)
         {
-            return await _repository.GetExpertIdIdByUserId(UserId,cancellationToken);
+            return await _repository.GetExpertIdIdByUserId(UserId, cancellationToken);
         }
 
         public async Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
@@ -111,9 +105,14 @@ namespace SangaghakService.Sangaghak.Users
 
         public async Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId, CancellationToken cancellationToken)
         {
-            return await _repository.GetExpertSummeryByExpertId(ExpertId,cancellationToken) ;
+            return await _repository.GetExpertSummeryByExpertId(ExpertId, cancellationToken);
         }
-
+        #endregion
+        #region Update
+        public async Task<(bool Success, string? ErrorMessage)> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
+        {
+            return await _repository.DecreaseBalanceAsync(UserId, money, cancellationToken);
+        }
         public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)
         {
             return await _repository.IncreaseBalance(UserId, money, cancellationToken);
@@ -123,5 +122,12 @@ namespace SangaghakService.Sangaghak.Users
         {
             return await _repository.UpdateUserInfo(user, UserId, cancellationToken);
         }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
+        {
+            return await _repository.DeleteUser(UserId, cancellationToken);
+        }
+        #endregion
     }
 }

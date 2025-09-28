@@ -5,6 +5,9 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
 {
     public interface ICustomerProfileAppService
     {
+        #region Create
+        #endregion
+        #region Read
         public Task<UserBaseSummaryDto> CustomerSummary(int CustomerId, CancellationToken cancellationToken);
         public Task<GetUserBaseForViewPage> UserSummary(int UserId, CancellationToken cancellationToken);
         public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken);
@@ -13,5 +16,11 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<bool> CheckCustomerHasRequest(int CustomerId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>?> GetRequestsByCustomerIdAsync(int customerId, CancellationToken cancellationToken);
         public Task<int> GetCustomerCompletedRequestsCount(int CustomerId, CancellationToken cancellationToken);
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
+
     }
 }

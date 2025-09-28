@@ -8,11 +8,12 @@ namespace SangaghakAppService.Sangaghak.Requests
 {
     public class OfferAppService : IOfferAppService
     {
+        #region Dependency Injection
         private readonly IOfferService _offerService;
         private readonly IUserBaseService _userBaseService;
         private readonly IRequestService _requestService;
         private readonly IServicePackageAppService _servicePackageAppService;
-        public OfferAppService(IOfferService offerService, 
+        public OfferAppService(IOfferService offerService,
             IUserBaseService userBaseService,
             IRequestService requestService,
             IServicePackageAppService servicePackageAppService)
@@ -22,10 +23,11 @@ namespace SangaghakAppService.Sangaghak.Requests
             _requestService = requestService;
             _servicePackageAppService = servicePackageAppService;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreatOffer(OfferForCreateAndUpdateDTO Model, CancellationToken cancellationToken)
         {
-            var Result = await _requestService.UpdateRequestStatusAsync(Model.RequestId, 
+            var Result = await _requestService.UpdateRequestStatusAsync(Model.RequestId,
                 App.Domain.Core.Sangaghak.Enum.RequestStatusEnum.WatingForCustomerComfimation, cancellationToken);
             if (!Result)
             {
@@ -34,19 +36,17 @@ namespace SangaghakAppService.Sangaghak.Requests
             return await _offerService.CreatOffer(Model, cancellationToken);
         }
 
-        public async Task<bool> DeleteOffer(int OfferId, CancellationToken cancellationToken)
-        {
-            return await _offerService.DeleteOffer(OfferId, cancellationToken);
-        }
 
+        #endregion
+        #region Read
         public async Task<List<OfferDTO>> GetAllExpertOffersByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var wantedOffers= await _offerService.GetAllExpertOffersByExpertIdAsync(ExpertId, cancellationToken);
+            var wantedOffers = await _offerService.GetAllExpertOffersByExpertIdAsync(ExpertId, cancellationToken);
             if (!wantedOffers.IsNullOrEmpty())
             {
                 foreach (var offers in wantedOffers)
                 {
-                    if(offers.RequestId==0)
+                    if (offers.RequestId == 0)
                     {
                         break;
                         //اینجا لاگ میخواد
@@ -54,14 +54,14 @@ namespace SangaghakAppService.Sangaghak.Requests
                     else
                     {
                         var packageId = await _requestService.GetRequestPackageIdByRequestIdAsync(offers.RequestId, cancellationToken);
-                        if (packageId!=0)
+                        if (packageId != 0)
                         {
                             break;
                             //اینجا لاگ میخواد
                         }
                         else
                         {
-                            offers.PackageTitle= await _servicePackageAppService.GetPackageTiltleById(packageId, cancellationToken); 
+                            offers.PackageTitle = await _servicePackageAppService.GetPackageTiltleById(packageId, cancellationToken);
                         }
                     }
                 }
@@ -91,22 +91,30 @@ namespace SangaghakAppService.Sangaghak.Requests
 
         public async Task<List<OfferDTO>> GetRequestOffersAsync(int Requestid, CancellationToken cancellationToken)
         {
-            var Offers= await _offerService.GetRequestOffersAsync(Requestid, cancellationToken);
+            var Offers = await _offerService.GetRequestOffersAsync(Requestid, cancellationToken);
             foreach (var offer in Offers)
             {
-                offer.ExpertFullName = await _userBaseService.GetExpertNameByExpertIdAsync(offer.ExpertId,cancellationToken)??string.Empty;
+                offer.ExpertFullName = await _userBaseService.GetExpertNameByExpertIdAsync(offer.ExpertId, cancellationToken) ?? string.Empty;
             }
             return Offers;
         }
-
+        #endregion
+        #region Update
         public async Task<bool> UpdateOfferAsync(OfferForCreateAndUpdateDTO offer, int OfferId, CancellationToken cancellationToken)
         {
-            return await _offerService.UpdateOfferAsync(offer, OfferId,cancellationToken);
+            return await _offerService.UpdateOfferAsync(offer, OfferId, cancellationToken);
         }
 
         public async Task<bool> UpdateOfferStatusByOfferIdAysnc(int offerId, CancellationToken cancellationToken)
         {
             return await _offerService.UpdateOfferStatusByOfferIdAysnc(offerId, cancellationToken);
         }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteOffer(int OfferId, CancellationToken cancellationToken)
+        {
+            return await _offerService.DeleteOffer(OfferId, cancellationToken);
+        }
+        #endregion
     }
 }

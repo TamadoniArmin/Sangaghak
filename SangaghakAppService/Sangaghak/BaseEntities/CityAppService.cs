@@ -6,10 +6,21 @@ namespace SangaghakAppService.Sangaghak.BaseEntities
 {
     public class CityAppService : ICityAppService
     {
+        #region Dependency Injection
         private readonly ICityService _cityService;
         public CityAppService(ICityService cityService)
         {
             _cityService = cityService;
         }
+        #endregion
+        #region Create
+        #endregion
+        #region Read
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
+
     }
 }

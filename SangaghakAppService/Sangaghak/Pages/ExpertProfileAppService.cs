@@ -12,6 +12,7 @@ namespace SangaghakAppService.Sangaghak.Pages
 {
     public class ExpertProfileAppService : IExpertProfileAppService
     {
+        #region Dependency Injection
         private readonly IUserBaseService _userBaseService;
         private readonly IRequestService _requestService;
         private readonly IServicePackageService _servicePackageService;
@@ -21,13 +22,13 @@ namespace SangaghakAppService.Sangaghak.Pages
         private readonly IOfferService _offerService;
         private readonly ICategoryService _categoryService;
         private readonly UserManager<UserBase> _userManager;
-        public ExpertProfileAppService(IUserBaseService userBaseService, 
+        public ExpertProfileAppService(IUserBaseService userBaseService,
             IRequestService requestService,
-            IServicePackageService servicePackageService, 
+            IServicePackageService servicePackageService,
             ICommentService commentService,
             IExpertService expertService,
             IOfferService offerService,
-            ICityService cityService, 
+            ICityService cityService,
             ICategoryService categoryService,
             UserManager<UserBase> userManager)
         {
@@ -36,15 +37,19 @@ namespace SangaghakAppService.Sangaghak.Pages
             _servicePackageService = servicePackageService;
             _cityService = cityService;
             _userManager = userManager;
-            _commentService= commentService;
+            _commentService = commentService;
             _expertService = expertService;
             _offerService = offerService;
             _categoryService = categoryService;
         }
+        #endregion
+        #region Create
+        #endregion
+        #region Read
         public async Task<GetUserBaseForViewPage> UserSummary(int UserId, CancellationToken cancellationToken)
         {
-            var wantedUser= await _userBaseService.GetByIdAsync(UserId, cancellationToken);
-            wantedUser.FullName= wantedUser.FirstName+" "+ wantedUser.LastName;
+            var wantedUser = await _userBaseService.GetByIdAsync(UserId, cancellationToken);
+            wantedUser.FullName = wantedUser.FirstName + " " + wantedUser.LastName;
             wantedUser.CityName = await _cityService.GetNameOfCity(wantedUser.CityId, cancellationToken);
             return wantedUser;
         }
@@ -66,7 +71,7 @@ namespace SangaghakAppService.Sangaghak.Pages
         }
         public async Task<List<CommentDTO>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            return await _commentService.GetCommentByExpertIdAsync(ExpertId,cancellationToken);
+            return await _commentService.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
         }
         public async Task<List<GetSubCategoryNameForExpertsDTO>> GetExpertSkillsNameByExpertId(int ExpertId, CancellationToken cancellationToken)
         {
@@ -102,7 +107,7 @@ namespace SangaghakAppService.Sangaghak.Pages
         }
         public async Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var RequetsId= await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
+            var RequetsId = await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
             return await _requestService.GetAllExpertRequestsCountAsync(RequetsId, cancellationToken);
         }
         public async Task<List<CommentDTO>?> GetExpertCommentsAsync(int ExpertId, CancellationToken cancellationToken)
@@ -124,7 +129,7 @@ namespace SangaghakAppService.Sangaghak.Pages
 
         public async Task<int> GetExpertRateAysnc(int ExpertId, CancellationToken cancellationToken)
         {
-           return await _expertService.GetExpertRateAsync(ExpertId, cancellationToken);
+            return await _expertService.GetExpertRateAsync(ExpertId, cancellationToken);
         }
 
         public async Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken)
@@ -157,5 +162,10 @@ namespace SangaghakAppService.Sangaghak.Pages
         {
             throw new NotImplementedException();
         }
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
     }
 }

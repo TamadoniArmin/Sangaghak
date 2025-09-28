@@ -6,12 +6,14 @@ namespace SangaghakAppService.Sangaghak.Users
 {
     public class CustomerAppService : ICustomerAppService
     {
+        #region Dependency Injection
         private readonly ICustomerService _customerService;
         public CustomerAppService(ICustomerService customerService)
         {
             _customerService = customerService;
         }
-
+        #endregion
+        #region ThisClassComments
         //public Task<bool> DecreaseCustomerBalanceAsync(int Money, int Customerid, CancellationToken cancellationToken)
         //{
         //    //int CurrentMoney=await GetCustomerBalanceAsync(Customerid);
@@ -61,5 +63,7 @@ namespace SangaghakAppService.Sangaghak.Users
         //{
         //    return await _customerService.UpdateCustomerDetailsAsync(customer, CustomerId, cancellationToken);
         //}
+
+        #endregion
     }
 }

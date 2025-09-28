@@ -10,6 +10,7 @@ namespace SangaghakAppService.Sangaghak.Pages
 {
     public class CustomerProfileAppService : ICustomerProfileAppService
     {
+        #region Dependency Injection
         private readonly IUserBaseService _userBaseService;
         private readonly IRequestService _requestService;
         private readonly IServicePackageService _servicePackageService;
@@ -23,7 +24,10 @@ namespace SangaghakAppService.Sangaghak.Pages
             _cityService = cityService;
             _userManager = userManager;
         }
-
+        #endregion
+        #region Create
+        #endregion
+        #region Read
         public Task<bool> CheckCustomerHasRequest(int CustomerId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
@@ -50,7 +54,7 @@ namespace SangaghakAppService.Sangaghak.Pages
 
         public async Task<int> GetCustomerId(int UserId, CancellationToken cancellationToken)
         {
-            var User= await _userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
+            var User = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
             if (User == null) return 0;
             return User.CustomerId.Value;
         }
@@ -76,7 +80,7 @@ namespace SangaghakAppService.Sangaghak.Pages
 
         public async Task<int> GetUserBalance(int UserId, CancellationToken cancellationToken)
         {
-            var User= await _userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted==false);
+            var User = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
             if (User == null) return 0;
             return User.Balance;
         }
@@ -85,5 +89,10 @@ namespace SangaghakAppService.Sangaghak.Pages
         {
             return await _userBaseService.GetByIdAsync(UserId, cancellationToken);
         }
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
     }
 }

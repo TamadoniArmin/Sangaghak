@@ -9,16 +9,17 @@ namespace SangaghakAppService.Sangaghak.Comments
 {
     public class CommentAppService : ICommentAppService
     {
+        #region Dependency Injection
         private readonly ICommentService _commentService;
         private readonly IRequestService _requestService;
         private readonly ICityService _cityService;
         private readonly IUserBaseService _userBaseService;
         private readonly IServicePackageService _servicePackageService;
         private readonly IExpertService _expertService;
-        public CommentAppService(ICommentService commentService, 
-            IRequestService requestService, 
-            ICityService cityService, 
-            IUserBaseService userBaseService, 
+        public CommentAppService(ICommentService commentService,
+            IRequestService requestService,
+            ICityService cityService,
+            IUserBaseService userBaseService,
             IServicePackageService servicePackageService,
             IExpertService expertService)
         {
@@ -29,7 +30,8 @@ namespace SangaghakAppService.Sangaghak.Comments
             _servicePackageService = servicePackageService;
             _expertService = expertService;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreateCommentAsync(CommentForCreateDTO comment, CancellationToken cancellationToken)
         {
             var Result = await _expertService.UpdateExpertRateAsync(comment.ExpertId, comment.CustomerId, comment.Rate, cancellationToken);
@@ -39,15 +41,11 @@ namespace SangaghakAppService.Sangaghak.Comments
             }
             return await _commentService.CreateCommentAsync(comment, cancellationToken);
         }
-
-        public Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
+        #endregion
+        #region Read
         public async Task<List<CommentDTO>> GetAllCommentsAsync(CancellationToken cancellationToken)
         {
-            var Comments= await _commentService.GetAllCommentsAsync(cancellationToken);
+            var Comments = await _commentService.GetAllCommentsAsync(cancellationToken);
             if (Comments != null)
             {
                 foreach (var comment in Comments)
@@ -66,7 +64,7 @@ namespace SangaghakAppService.Sangaghak.Comments
 
         public async Task<List<CommentDTO>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
-            var Comments= await _commentService.GetCommentByCustomerIdAsync(CustomerId, cancellationToken);
+            var Comments = await _commentService.GetCommentByCustomerIdAsync(CustomerId, cancellationToken);
             if (Comments != null)
             {
                 foreach (var comment in Comments)
@@ -104,7 +102,7 @@ namespace SangaghakAppService.Sangaghak.Comments
 
         public async Task<List<CommentDTO>> GetPendingCommentAsync(CancellationToken cancellationToken)
         {
-            var Comments= await _commentService.GetPendingCommentAsync(cancellationToken);
+            var Comments = await _commentService.GetPendingCommentAsync(cancellationToken);
             if (Comments != null)
             {
                 foreach (var comment in Comments)
@@ -125,10 +123,18 @@ namespace SangaghakAppService.Sangaghak.Comments
         {
             return await _commentService.GetPendingCommentCountAsync(cancellationToken);
         }
-
+        #endregion
+        #region Update
         public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)
         {
             return await _commentService.UpdateCommentStatusAsync(CommentId, status, cancellationToken);
         }
+        #endregion
+        #region Delete
+        public Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

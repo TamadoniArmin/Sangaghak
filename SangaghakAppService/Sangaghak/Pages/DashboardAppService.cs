@@ -10,22 +10,46 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SangaghakAppService.Sangaghak.Pages
 {
-    public class DashboardAppService(IUserBaseService userBaseService, 
-        IRequestService requestService, ICommentService commentService, 
-        IOfferService offerService, ICategoryService categoryService, 
-        ICityService cityService, UserManager<UserBase> userManager,
-        IServicePackageService servicePackageService) : IDashboardAppService
+    public class DashboardAppService : IDashboardAppService
     {
+        #region Dependency Injection
+        private readonly IUserBaseService _userBaseService;
+        private readonly IRequestService _requestService;//requestService
+        private readonly ICommentService _commentService;//commentService
+        private readonly IOfferService _offerService;//offerService
+        private readonly ICityService _cityService;//cityService
+        private readonly UserManager<UserBase> _userManager;//userManager
+        private readonly IServicePackageService _servicePackageService;//servicePackageService
+        public DashboardAppService(IUserBaseService userBaseService,
+            IRequestService requestService,
+            ICommentService commentService,
+            IOfferService offerService,
+            ICityService cityService,
+            UserManager<UserBase> userManager,
+            IServicePackageService servicePackageService)
+        {
+            _userBaseService = userBaseService;
+            _requestService = requestService;
+            _commentService = commentService;
+            _offerService = offerService;
+            _cityService = cityService;
+            _userManager = userManager;
+            _servicePackageService = servicePackageService;
+        }
+        #endregion
+        #region Create
+        #endregion
+        #region Read
         public async Task<int> GetAllUsersCount(CancellationToken cancellationToken)
         {
-            return await userManager.Users.AsNoTracking().Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
+            return await _userManager.Users.AsNoTracking().Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var result = await userManager.Users
+                var result = await _userManager.Users
                 .AsNoTracking()
                 .Where(x => !x.IsDeleted)
                 .Select(x => new GetUserBaseForViewPage
@@ -56,36 +80,36 @@ namespace SangaghakAppService.Sangaghak.Pages
 
         public async Task<int> GetBalance(int UserId, CancellationToken cancellationToken)
         {
-            var WantedUser = await userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId, cancellationToken);
+            var WantedUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == UserId, cancellationToken);
             if (WantedUser == null) return -1;
             return WantedUser.Balance;
         }
 
         public async Task<int> GetEachRoleCount(RoleEnum role, CancellationToken cancellationToken)
         {
-            return await userManager.Users.AsNoTracking().Where(x => x.Role == role && x.IsDeleted == false).CountAsync();
+            return await _userManager.Users.AsNoTracking().Where(x => x.Role == role && x.IsDeleted == false).CountAsync();
         }
 
         public async Task<List<RequestDTO>> GetAllRequests(CancellationToken cancellationToken)
         {
-            var Requests = await requestService.GetAllRequestsAsync(cancellationToken);
+            var Requests = await _requestService.GetAllRequestsAsync(cancellationToken);
             foreach (var Request in Requests)
             {
-                var Customer = await userBaseService.GetCustomerByCustomerIdAsync(Request.CustomerId, cancellationToken);
-                Request.CustomerFullName = Customer.FullName??string.Empty;
-                Request.CustomerEmail = Customer.Email??"ایمیلی ثبت نشده است";
-                Request.CustomerPhone = Customer.Phone??"شماره ای ثبت نشده است";
+                var Customer = await _userBaseService.GetCustomerByCustomerIdAsync(Request.CustomerId, cancellationToken);
+                Request.CustomerFullName = Customer.FullName ?? string.Empty;
+                Request.CustomerEmail = Customer.Email ?? "ایمیلی ثبت نشده است";
+                Request.CustomerPhone = Customer.Phone ?? "شماره ای ثبت نشده است";
                 Request.CustomerUserId = Customer.Id;
-                Request.ServicePackageTiltle = await servicePackageService.GetPackageTiltleById(Request.ServicePackageId, cancellationToken);
-                var City = await cityService.GetCityById(Request.CityId, cancellationToken);
+                Request.ServicePackageTiltle = await _servicePackageService.GetPackageTiltleById(Request.ServicePackageId, cancellationToken);
+                var City = await _cityService.GetCityById(Request.CityId, cancellationToken);
                 Request.CityTitle = City.Title;
                 if (Request.AcceptedOfferId != 0 && Request.AcceptedOfferId is not null)
                 {
-                    Request.ExpertId = await offerService.GetExpertIdByOfferIdAysnc(Request.AcceptedOfferId.Value, cancellationToken);
-                    var wantedExpert= await userBaseService.GetExpertByExpertIdAsync(Request.ExpertId, cancellationToken);
+                    Request.ExpertId = await _offerService.GetExpertIdByOfferIdAysnc(Request.AcceptedOfferId.Value, cancellationToken);
+                    var wantedExpert = await _userBaseService.GetExpertByExpertIdAsync(Request.ExpertId, cancellationToken);
                     Request.ExpertFullName = wantedExpert.FullName;
-                    Request.ExpertEmail = wantedExpert.Email?? "ایمیلی ثبت نشده است";
-                    Request.ExpertPhone= wantedExpert.Phone?? "شماره ای ثبت نشده است";
+                    Request.ExpertEmail = wantedExpert.Email ?? "ایمیلی ثبت نشده است";
+                    Request.ExpertPhone = wantedExpert.Phone ?? "شماره ای ثبت نشده است";
                     Request.ExpertUserId = wantedExpert.Id;
                 }
             }
@@ -94,22 +118,27 @@ namespace SangaghakAppService.Sangaghak.Pages
 
         public async Task<int> GetAllRequestsCountAsync(CancellationToken cancellationToken)
         {
-            return await requestService.GetAllRequestsCountAsync(cancellationToken);
+            return await _requestService.GetAllRequestsCountAsync(cancellationToken);
         }
 
         public async Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken)
         {
-            return await requestService.GetCurrentRequestsCountAsync(cancellationToken);
+            return await _requestService.GetCurrentRequestsCountAsync(cancellationToken);
         }
 
         public async Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
         {
-            return await commentService.GetPendingCommentCountAsync(cancellationToken);
+            return await _commentService.GetPendingCommentCountAsync(cancellationToken);
         }
 
         public async Task<int> GetAllPackagesCountAsync(CancellationToken cancellationToken)
         {
-            return await servicePackageService.GetAllPackageCount(cancellationToken);
+            return await _servicePackageService.GetAllPackageCount(cancellationToken);
         }
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
     }
 }

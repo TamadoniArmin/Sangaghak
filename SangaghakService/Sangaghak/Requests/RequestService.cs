@@ -8,22 +8,20 @@ namespace SangaghakService.Sangaghak.Requests
 {
     public class RequestService : IRequestService
     {
+        #region Dependency Injection
         private readonly IRequestRepository _repository;
         public RequestService(IRequestRepository requestRepository)
         {
             _repository = requestRepository;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreateRequestAsync(GetDataForCreateRequestDto request, CancellationToken cancellationToken)
         {
             return await _repository.CreateRequestAsync(request, cancellationToken);
         }
-
-        public async Task<bool> DeleteRequestDetailsAsync(int RequestId, CancellationToken cancellationToken)
-        {
-            return await _repository.DeleteRequestDetailsAsync(RequestId, cancellationToken);
-        }
-
+        #endregion
+        #region Read
         public async Task<List<RequestDTO>> GetAllRequestsAsync(CancellationToken cancellationToken)
         {
             return await _repository.GetAllRequestsAsync(cancellationToken);
@@ -84,15 +82,7 @@ namespace SangaghakService.Sangaghak.Requests
             return await _repository.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
         }
 
-        public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
-        {
-            return await _repository.UpdateRequestDetailsAsync(OfferId, RequestId, cancellationToken);
-        }
 
-        public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken)
-        {
-            return await _repository.UpdateRequestStatusAsync(RequestId, requestStatus, cancellationToken);
-        }
 
         public async Task<List<RequestDTO>> GetExpertNotCompeletedRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
@@ -116,12 +106,30 @@ namespace SangaghakService.Sangaghak.Requests
 
         public async Task<int> GetRequestPackageIdByRequestIdAsync(int RequestId, CancellationToken cancellationToken)
         {
-            return await _repository.GetRequestPackageIdByRequestIdAsync(RequestId,cancellationToken);
+            return await _repository.GetRequestPackageIdByRequestIdAsync(RequestId, cancellationToken);
         }
 
         public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(List<int> RequestIds, CancellationToken cancellationToken)
         {
             return await _repository.GetAllExpertRequestsAsync(RequestIds, cancellationToken);
         }
+        #endregion
+        #region Update
+        public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
+        {
+            return await _repository.UpdateRequestDetailsAsync(OfferId, RequestId, cancellationToken);
+        }
+
+        public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken)
+        {
+            return await _repository.UpdateRequestStatusAsync(RequestId, requestStatus, cancellationToken);
+        }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteRequestDetailsAsync(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _repository.DeleteRequestDetailsAsync(RequestId, cancellationToken);
+        }
+        #endregion
     }
 }

@@ -7,6 +7,9 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
 {
     public interface IDashboardAppService
     {
+        #region Create
+        #endregion
+        #region Read
         public Task<List<GetUserBaseForViewPage>> GetAllUsersAsync(CancellationToken cancellationToken);
         public Task<int> GetEachRoleCount(RoleEnum role, CancellationToken cancellationToken);
         public Task<int> GetAllUsersCount(CancellationToken cancellationToken);
@@ -16,5 +19,11 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<int> GetCurrentRequestsCountAsync(CancellationToken cancellationToken);
         public Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken);
         public Task<int> GetAllPackagesCountAsync(CancellationToken cancellationToken);
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
+
     }
 }

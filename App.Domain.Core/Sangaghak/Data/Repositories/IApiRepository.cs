@@ -9,6 +9,14 @@ namespace App.Domain.Core.Sangaghak.Data.Repositories
 {
     public interface IApiRepository
     {
-       public Task<List<CategoryWithSubCategoriesAndPackagesDTO>> GetAllCategoriesWithSubCategoriesAndPackagesAsync(CancellationToken cancellationToken);
+        #region Create
+        #endregion
+        #region Read
+        public Task<List<CategoryWithSubCategoriesAndPackagesDTO>> GetAllCategoriesWithSubCategoriesAndPackagesAsync(CancellationToken cancellationToken);
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
     }
 }

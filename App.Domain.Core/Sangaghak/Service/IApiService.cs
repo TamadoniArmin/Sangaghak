@@ -9,6 +9,14 @@ namespace App.Domain.Core.Sangaghak.Service
 {
     public interface IApiService
     {
+        #region Create
+        #endregion
+        #region Read
         public Task<List<CategoryWithSubCategoriesAndPackagesDTO>> GetAllCategoriesWithSubCategoriesAndPackagesAsync(CancellationToken cancellationToken);
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
     }
 }

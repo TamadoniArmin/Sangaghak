@@ -16,12 +16,17 @@ namespace SangaghakAppService.Sangaghak.Pages
 {
     public class PostRequestAppService : IPostRequestAppService
     {
+        #region Dependency Injection
         private readonly IRequestService _requestService;
         private readonly IServicePackageService _servicePackageService;
         private readonly ICategoryService _categoryService;
         private readonly UserManager<UserBase> _userManager;
         private readonly ICityService _cityService;
-        public PostRequestAppService(IRequestService requestService, IServicePackageService servicePackageService, ICategoryService categoryService, UserManager<UserBase> userManager, ICityService cityService)
+        public PostRequestAppService(IRequestService requestService, 
+            IServicePackageService servicePackageService, 
+            ICategoryService categoryService, 
+            UserManager<UserBase> userManager, 
+            ICityService cityService)
         {
             _requestService = requestService;
             _servicePackageService = servicePackageService;
@@ -29,10 +34,18 @@ namespace SangaghakAppService.Sangaghak.Pages
             _userManager = userManager;
             _cityService = cityService;
         }
+        #endregion
+        #region Create
+        public async Task<bool> PostRequest(GetDataForCreateRequestDto requestDto, CancellationToken cancellationToken)
+        {
+            return await _requestService.CreateRequestAsync(requestDto, cancellationToken);
+        }
 
+        #endregion
+        #region Read
         public async Task<List<ServicePackageDTO>> GetAllPackages(CancellationToken cancellationToken)
         {
-            var Packages= await _servicePackageService.GetAllAsync(cancellationToken);
+            var Packages = await _servicePackageService.GetAllAsync(cancellationToken);
             foreach (var package in Packages)
             {
                 package.SubCategoryTitle = await _categoryService.GetSubCategoryNameByIdAysnc(package.SubCategoryId, cancellationToken);
@@ -42,26 +55,26 @@ namespace SangaghakAppService.Sangaghak.Pages
 
         public async Task<UserBaseDTO> GetLogedInUser(int userId, CancellationToken cancellationToken)
         {
-            var User= await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+            var User = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
             if (User == null) return null;
             else
             {
-               return new UserBaseDTO
+                return new UserBaseDTO
                 {
                     Id = User.Id,
                     Email = User.Email,
                     Mobile = User.PhoneNumber ?? string.Empty,
                     UserName = User.UserName ?? string.Empty,
                     CityId = User.CityId,
-                    CityName = await _cityService.GetNameOfCity(User.CityId, cancellationToken)??string.Empty,
-               };
+                    CityName = await _cityService.GetNameOfCity(User.CityId, cancellationToken) ?? string.Empty,
+                };
 
             }
         }
-
-        public async Task<bool> PostRequest(GetDataForCreateRequestDto requestDto, CancellationToken cancellationToken)
-        {
-            return await _requestService.CreateRequestAsync(requestDto, cancellationToken);
-        }
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
     }
 }

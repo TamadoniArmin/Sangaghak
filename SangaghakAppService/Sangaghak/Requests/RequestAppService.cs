@@ -9,6 +9,7 @@ namespace SangaghakAppService.Sangaghak.Requests
 {
     public class RequestAppService : IRequestAppService
     {
+        #region Dependency Injection
         private readonly IRequestService _service;
         private readonly ICityService _cityService;
         private readonly IUserBaseService _userBaseService;
@@ -29,20 +30,18 @@ namespace SangaghakAppService.Sangaghak.Requests
             _offerService = offerService;
             _packageService = servicePackageService;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreateRequestAsync(GetDataForCreateRequestDto request, CancellationToken cancellationToken)
         {
             return await _service.CreateRequestAsync(request, cancellationToken);
         }
 
-        public async Task<bool> DeleteRequestDetailsAsync(int RequestId, CancellationToken cancellationToken)
-        {
-            return await _service.DeleteRequestDetailsAsync(RequestId, cancellationToken);
-        }
-
+        #endregion
+        #region Read
         public async Task<List<RequestDTO>> GetAllExpertRequestsAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var RequestIds= await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
+            var RequestIds = await _offerService.GetListOfExpertRequestIds(ExpertId, cancellationToken);
             var WantedRequests = await _service.GetAllExpertRequestsAsync(RequestIds, cancellationToken);
             if (!WantedRequests.IsNullOrEmpty())
             {
@@ -109,7 +108,7 @@ namespace SangaghakAppService.Sangaghak.Requests
                         WantedRequest.CustomerPhone = customer.Mobile;
                         WantedRequest.CustomerEmail = customer.Email;
                         WantedRequest.CityTitle = await _cityService.GetNameOfCity(WantedRequest.CityId, cancellationToken) ?? string.Empty;
-                        if (WantedRequest.Status == RequestStatusEnum.WatingForExpertsOffers 
+                        if (WantedRequest.Status == RequestStatusEnum.WatingForExpertsOffers
                             || WantedRequest.Status == RequestStatusEnum.WatingForCustomerComfimation)
                         {
                             WantedRequest.AcceptedOfferId = 0;
@@ -162,12 +161,8 @@ namespace SangaghakAppService.Sangaghak.Requests
         {
             return await _service.GetRequestsByCustomerIdAsync(customerId, cancellationToken);
         }
-
-        public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
-        {
-            return await _service.UpdateRequestDetailsAsync(OfferId, RequestId, cancellationToken);
-        }
-
+        #endregion
+        #region Update
         public async Task<bool> UpdateRequestStatusAsync(int RequestId, RequestStatusEnum requestStatus, CancellationToken cancellationToken)
         {
             return await _service.UpdateRequestStatusAsync(RequestId, requestStatus, cancellationToken);
@@ -219,5 +214,17 @@ namespace SangaghakAppService.Sangaghak.Requests
 
 
         }
+        public async Task<bool> UpdateRequestDetailsAsync(int OfferId, int RequestId, CancellationToken cancellationToken)
+        {
+            return await _service.UpdateRequestDetailsAsync(OfferId, RequestId, cancellationToken);
+        }
+
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteRequestDetailsAsync(int RequestId, CancellationToken cancellationToken)
+        {
+            return await _service.DeleteRequestDetailsAsync(RequestId, cancellationToken);
+        }
+        #endregion
     }
 }

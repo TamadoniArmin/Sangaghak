@@ -8,22 +8,20 @@ namespace SangaghakService.Sangaghak.Comments
 {
     public class CommentService : ICommentService
     {
+        #region Dependency Injection
         private readonly ICommentRepository _commentRepository;
         public CommentService(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreateCommentAsync(CommentForCreateDTO comment, CancellationToken cancellationToken)
         {
             return await _commentRepository.CreateCommentAsync(comment, cancellationToken);
         }
-
-        public async Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
-        {
-            return await _commentRepository.DeleteCommentStatusAsync(CommentId, cancellationToken);
-        }
-
+        #endregion
+        #region Read
         public async Task<List<CommentDTO>> GetAllCommentsAsync(CancellationToken cancellationToken)
         {
             return await _commentRepository.GetAllCommentsAsync(cancellationToken);
@@ -48,10 +46,18 @@ namespace SangaghakService.Sangaghak.Comments
         {
             return await _commentRepository.GetPendingCommentCountAsync(cancellationToken);
         }
-
+        #endregion
+        #region Update
         public async Task<bool> UpdateCommentStatusAsync(int CommentId, CommentStatusEnum status, CancellationToken cancellationToken)
         {
             return await _commentRepository.UpdateCommentStatusAsync(CommentId, status, cancellationToken);
         }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteCommentStatusAsync(int CommentId, CancellationToken cancellationToken)
+        {
+            return await _commentRepository.DeleteCommentStatusAsync(CommentId, cancellationToken);
+        }
+        #endregion
     }
 }

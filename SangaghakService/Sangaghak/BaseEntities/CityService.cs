@@ -7,6 +7,7 @@ namespace SangaghakService.Sangaghak.BaseEntities
 {
     public class CityService : ICityService
     {
+        #region Dependency Injection
         private readonly ICityRepository _cityRepository;
         private readonly IDapperRepository _dapperRepository;
         public CityService(ICityRepository cityRepository,
@@ -15,7 +16,8 @@ namespace SangaghakService.Sangaghak.BaseEntities
             _cityRepository = cityRepository;
             _dapperRepository = dapperRepository;
         }
-
+        #endregion
+        #region Read
         public async Task<List<CityDTO>> GetAllCities(CancellationToken cancellationToken)
         {
             return await _dapperRepository.GetAllCities(cancellationToken);
@@ -35,5 +37,6 @@ namespace SangaghakService.Sangaghak.BaseEntities
         {
             return await _cityRepository.GetNameOfCity(CityId, cancellationToken);
         }
+        #endregion
     }
 }

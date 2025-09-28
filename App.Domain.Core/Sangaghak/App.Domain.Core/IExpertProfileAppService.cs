@@ -7,6 +7,9 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
 {
     public interface IExpertProfileAppService
     {
+        #region Create
+        #endregion
+        #region Read
         public Task<GetUserBaseForViewPage> UserSummary(int UserId, CancellationToken cancellationToken);
         public Task<int> GetUserBalance(int UserId, CancellationToken cancellationToken);
         public Task<int> GetExpertId(int UserId, CancellationToken cancellationToken);
@@ -20,5 +23,11 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
         public Task<int> GetAllExpertRequestsCountAsync(int ExpertId, CancellationToken cancellationToken);
         public Task<List<RequestDTO>> GetNotCompeletedExpertRequests(int ExpertId, CancellationToken cancellationToken);
         public Task<int> GetAllExpertOffersCount(int expertId, CancellationToken cancellationToken);
+        #endregion
+        #region Update
+        #endregion
+        #region Delete
+        #endregion
+
     }
 }

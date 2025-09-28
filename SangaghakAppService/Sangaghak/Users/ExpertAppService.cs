@@ -16,14 +16,15 @@ namespace SangaghakAppService.Sangaghak.Users
 {
     public class ExpertAppService : IExpertAppService
     {
+        #region Dependency Injection
         private readonly IExpertService _expertService;
         private readonly ICategoryService _categoryService;
         private readonly IRequestService _requestService;
         private readonly IServicePackageService _packageService;
         private readonly IUserBaseService _userBaseService;
         private readonly ICityService _cityService;
-        public ExpertAppService(IExpertService expertService, 
-            ICategoryService categoryService, 
+        public ExpertAppService(IExpertService expertService,
+            ICategoryService categoryService,
             IRequestService requestService,
             IServicePackageService servicePackageService,
             IUserBaseService userBaseService,
@@ -36,11 +37,15 @@ namespace SangaghakAppService.Sangaghak.Users
             _userBaseService = userBaseService;
             _cityService = cityService;
         }
-
+        #endregion
+        #region Create
+        #endregion
+        #region Read
         public async Task<bool> CheckExpertHasAnySkillAsync(int ExpertId, CancellationToken cancellationToken)
         {
             return await _expertService.CheckExpertHasAnySkillAsync(ExpertId, cancellationToken);
         }
+
         public async Task<List<RequestDTO>?> GetMathRequestForExpertInfo(int ExpertId, int CityId, CancellationToken cancellationToken)
         {
             var checkExpertHasSkill = await _expertService.CheckExpertHasAnySkillAsync(ExpertId, cancellationToken);
@@ -57,7 +62,7 @@ namespace SangaghakAppService.Sangaghak.Users
                 }
                 else
                 {
-                    List<int> matchPackages= await _packageService.GetCategoryPackagesIdbyCategoriesIdAsync(expertSkillsId, cancellationToken);
+                    List<int> matchPackages = await _packageService.GetCategoryPackagesIdbyCategoriesIdAsync(expertSkillsId, cancellationToken);
                     if (!matchPackages.Any())
                     {
                         return null;
@@ -91,17 +96,6 @@ namespace SangaghakAppService.Sangaghak.Users
             }
 
         }
-
-        public async Task<bool> UpdateExpertSkillsAsync(int expertId, List<int> newSkillIds, CancellationToken cancellationToken)
-        {
-            var ExpertSkills= await _categoryService.GetSubCategoriesForExpertSkillsAsync(newSkillIds, cancellationToken);
-            if (!ExpertSkills.IsNullOrEmpty())
-            {
-                return await _expertService.UpdateExpertSkillsAsync(expertId,ExpertSkills, cancellationToken);
-            }
-            return false;
-        }
-
         public async Task<GetUserBaseForViewPage> UserSummary(int UserId, CancellationToken cancellationToken)
         {
             var wantedUser = await _userBaseService.GetByIdAsync(UserId, cancellationToken);
@@ -109,6 +103,21 @@ namespace SangaghakAppService.Sangaghak.Users
             wantedUser.CityName = await _cityService.GetNameOfCity(wantedUser.CityId, cancellationToken);
             return wantedUser;
         }
+        #endregion
+        #region Update
+        public async Task<bool> UpdateExpertSkillsAsync(int expertId, List<int> newSkillIds, CancellationToken cancellationToken)
+        {
+            var ExpertSkills = await _categoryService.GetSubCategoriesForExpertSkillsAsync(newSkillIds, cancellationToken);
+            if (!ExpertSkills.IsNullOrEmpty())
+            {
+                return await _expertService.UpdateExpertSkillsAsync(expertId, ExpertSkills, cancellationToken);
+            }
+            return false;
+        }
+        #endregion
+        #region Delete
+        #endregion
+        #region Comments
         //public Task<bool> DecreaseExpertBalanceAsync(int Money, int ExpertId, CancellationToken cancellationToken)
         //{
         //    throw new NotImplementedException();
@@ -158,5 +167,7 @@ namespace SangaghakAppService.Sangaghak.Users
         //{
         //    throw new NotImplementedException();
         //}
+
+        #endregion
     }
 }

@@ -8,9 +8,19 @@ namespace App.Domain.Core.Sangaghak.App.Domain.Core
 {
     public interface IExpertAppService
     {
+        #region Create
+        #endregion
+        #region Read
         public Task<bool> CheckExpertHasAnySkillAsync(int ExpertId, CancellationToken cancellationToken);
         public Task<GetUserBaseForViewPage> UserSummary(int UserId, CancellationToken cancellationToken);
-        public Task<bool> UpdateExpertSkillsAsync(int expertId, List<int> newSkillIds,CancellationToken cancellationToken);
         public Task<List<RequestDTO>?> GetMathRequestForExpertInfo(int ExpertId, int CityId, CancellationToken cancellationToken);
+
+        #endregion
+        #region Update
+        public Task<bool> UpdateExpertSkillsAsync(int expertId, List<int> newSkillIds, CancellationToken cancellationToken);
+
+        #endregion
+        #region Delete
+        #endregion
     }
 }

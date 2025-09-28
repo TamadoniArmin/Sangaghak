@@ -9,6 +9,7 @@ namespace SangaghakService.Sangaghak.Categories
 {
     public class CategoryService : ICategoryService
     {
+        #region Dependency Injection
         private readonly ICategoryRepository _categoryRepository;
         private readonly IDapperRepository _dapperRepository;
         public CategoryService(ICategoryRepository categoryRepository,
@@ -17,7 +18,8 @@ namespace SangaghakService.Sangaghak.Categories
             _categoryRepository = categoryRepository;
             _dapperRepository = dapperRepository;
         }
-
+        #endregion
+        #region Create
         public async Task<bool> CreateCategory(CategoryForCreateDto Model, CancellationToken cancellationToken)
         {
             return await _categoryRepository.CreateCategory(Model, cancellationToken);
@@ -27,12 +29,8 @@ namespace SangaghakService.Sangaghak.Categories
         {
             return await _categoryRepository.CreateSubCategory(Model, cancellationToken);
         }
-
-        public async Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken)
-        {
-            return await _categoryRepository.DeleteCategory(CategoryId, cancellationToken);
-        }
-
+        #endregion
+        #region Read
         public async Task<List<GetSubcategoryForHomePageDto>> FindByTitle(string title, CancellationToken cancellationToken)
         {
             return await _categoryRepository.FindByTitle(title, cancellationToken);
@@ -97,7 +95,8 @@ namespace SangaghakService.Sangaghak.Categories
         {
             return await _categoryRepository.GetSubCategoryNameByIdAysnc(Id, cancellationToken);
         }
-
+        #endregion
+        #region Update
         public async Task<bool> UpdateCategory(CategoryDTO Model, int CategoryId, CancellationToken cancellationToken)
         {
             return await _categoryRepository.UpdateCategory(Model, CategoryId, cancellationToken);
@@ -107,5 +106,13 @@ namespace SangaghakService.Sangaghak.Categories
         {
             return await _categoryRepository.UpdateSubCategory(Model, SubCategoryId, cancellationToken);
         }
+        #endregion
+        #region Delete
+        public async Task<bool> DeleteCategory(int CategoryId, CancellationToken cancellationToken)
+        {
+            return await _categoryRepository.DeleteCategory(CategoryId, cancellationToken);
+        }
+
+        #endregion
     }
 }
