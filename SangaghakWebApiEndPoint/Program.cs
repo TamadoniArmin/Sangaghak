@@ -16,12 +16,14 @@ using SangaghakAppService.Sangaghak.Pages;
 using SangaghakAppService.Sangaghak.Requests;
 using SangaghakAppService.Sangaghak.ServicePackages;
 using SangaghakAppService.Sangaghak.Users;
+using SangaghakAppService.Sangaghak.WebApi;
 using SangaghakService.Sangaghak.BaseEntities;
 using SangaghakService.Sangaghak.Categories;
 using SangaghakService.Sangaghak.Comments;
 using SangaghakService.Sangaghak.Requests;
 using SangaghakService.Sangaghak.ServicePackages;
 using SangaghakService.Sangaghak.Users;
+using SangaghakService.Sangaghak.WebApi;
 using SangaghakWebApiEndPoint.WebFramework.WebApi.Filters;
 using Serilog;
 
@@ -93,6 +95,14 @@ builder.Services.AddScoped<IOfferAppService, OfferAppService>();
 builder.Services.AddScoped<IRequestRepository, RequestRepository>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IRequestAppService, RequestAppService>();
+
+
+
+builder.Services.AddScoped<IApiRepository, ApiRepository>();
+builder.Services.AddScoped<IApiService, ApiService>();
+builder.Services.AddScoped<IApiAppService, ApiAppService>();
+
+
 
 builder.Services.AddScoped<IDashboardAppService, DashboardAppService>();
 builder.Services.AddScoped<IGeneralService, GeneralService>();
