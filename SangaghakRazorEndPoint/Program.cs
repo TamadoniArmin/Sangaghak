@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Sangaghak.App.Domain.Core;
+using App.Domain.Core.Sangaghak.Config;
 using App.Domain.Core.Sangaghak.Data.Repositories;
 using App.Domain.Core.Sangaghak.Entities.Users;
 using App.Domain.Core.Sangaghak.Service;
@@ -32,6 +33,16 @@ namespace SangaghakRazorEndPoint
                 .WriteTo.Console()
                 .CreateLogger();
             var builder = WebApplication.CreateBuilder(args);
+
+
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var siteSettings = configuration.GetSection(nameof(Sitesettings)).Get<Sitesettings>();
+            builder.Services.AddSingleton(siteSettings);
+
+
             builder.Host.ConfigureLogging(o =>
             {
                 o.ClearProviders();
@@ -39,14 +50,14 @@ namespace SangaghakRazorEndPoint
             }).UseSerilog((Context, Config) =>
             {
                 Config.WriteTo.Console();
-                Config.WriteTo.Seq("http://localhost:5341", apiKey: "nKDiTm7QGqmr8z6Wg3Dg");
+                Config.WriteTo.Seq(siteSettings.SeqConfigurations.UrlAddress, apiKey: siteSettings.SeqConfigurations.ApiToken);
             });
 
             builder.Services.AddMemoryCache();
             try
             {
                 builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=.,1433;Initial Catalog=Sangaghak;User ID=sa;Password=1234;TrustServerCertificate=true"));
+                options.UseSqlServer(siteSettings.SqlConfigurations.ConnectionString));
 
                 builder.Services.AddIdentity<UserBase, IdentityRole<int>>(options =>
                 {

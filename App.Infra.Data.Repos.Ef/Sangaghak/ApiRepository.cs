@@ -20,8 +20,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<List<CategoryWithSubCategoriesAndPackagesDTO>> GetAllCategoriesWithSubCategoriesAndPackagesAsync(CancellationToken cancellationToken)
         {
-            try
-            {
+
                 _logger.LogInformation("تلاش برای دریافت تمام دسته‌بندی‌ها با زیرمجموعه‌ها و بسته‌ها");
 
                 var categories = await _appDbContext.Categories
@@ -58,12 +57,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                     }).ToListAsync(cancellationToken);
 
                 return categories;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "خطا در دریافت دسته‌بندی‌ها با زیرمجموعه‌ها و بسته‌ها");
-                throw;
-            }
         }
     }
 }
