@@ -25,8 +25,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         public async Task<List<GetUserBaseForViewPage>> GetAllAsync(CancellationToken cancellationToken)
         {
             var Result = await _appDbContext
-                .Users
-                //.AsNoTracking()
+                .UserBases
                 .Where(x => x.IsDeleted == false)
                 .Select(x => new GetUserBaseForViewPage()
                 {
@@ -47,61 +46,61 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<int> GetBalanceAsync(int UserId, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId, cancellationToken);
+            var WantedUser = await _appDbContext.UserBases.FirstOrDefaultAsync(x => x.Id == UserId, cancellationToken);
             if (WantedUser == null) return -1;
             return WantedUser.Balance;
         }
 
         public async Task<GetUserBaseForViewPage> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false, cancellationToken);
-            if (WantedUser == null) return null;
-            var User = new GetUserBaseForViewPage()
-            {
-                Id = WantedUser.Id,
-                FirstName = WantedUser.FirstName,
-                LastName = WantedUser.LastName,
-                FullName = WantedUser.FirstName + " " + WantedUser.LastName,
-                UserName = WantedUser.UserName ?? "نام کاربری برای این کاربر ثبت نشده است",
-                AdminId=WantedUser.AdminId,
-                CustomerId=WantedUser.CustomerId,
-                ExpertId=WantedUser.ExpertId,
-                Mobile = WantedUser.Mobile,
-                Email = WantedUser.Email,
-                CityId = WantedUser.CityId,
-                Role = WantedUser.Role,
-                ImagePath = WantedUser.ImagePath
-            };
-            return User;
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.Id == id && x.IsDeleted == false)
+                .Select(WantedUser => new GetUserBaseForViewPage()
+                {
+                    Id = WantedUser.Id,
+                    FirstName = WantedUser.FirstName,
+                    LastName = WantedUser.LastName,
+                    FullName = WantedUser.FirstName + " " + WantedUser.LastName,
+                    UserName = WantedUser.UserName ?? "نام کاربری برای این کاربر ثبت نشده است",
+                    AdminId = WantedUser.AdminId,
+                    CustomerId = WantedUser.CustomerId,
+                    ExpertId = WantedUser.ExpertId,
+                    Mobile = WantedUser.Mobile,
+                    Email = WantedUser.Email,
+                    CityId = WantedUser.CityId,
+                    Role = WantedUser.Role,
+                    ImagePath = WantedUser.ImagePath
+                }).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<GetUserBaseForViewPage> GetByNameAsync(string name, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users.FirstOrDefaultAsync(x => x.UserName == name && x.IsDeleted == false, cancellationToken);
-            if (WantedUser == null) return null;
-            var User = new GetUserBaseForViewPage()
-            {
-                Id = WantedUser.Id,
-                FirstName = WantedUser.FirstName,
-                LastName = WantedUser.LastName,
-                UserName = WantedUser.UserName ?? string.Empty,
-                Mobile = WantedUser.Mobile,
-                Email = WantedUser.Email,
-                CityId = WantedUser.CityId,
-                Role = WantedUser.Role,
-                ImagePath = WantedUser.ImagePath
-            };
-            return User;
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.UserName == name && x.IsDeleted == false)
+                .Select(WantedUser => new GetUserBaseForViewPage()
+                {
+                    Id = WantedUser.Id,
+                    FirstName = WantedUser.FirstName,
+                    LastName = WantedUser.LastName,
+                    UserName = WantedUser.UserName ?? string.Empty,
+                    Mobile = WantedUser.Mobile,
+                    Email = WantedUser.Email,
+                    CityId = WantedUser.CityId,
+                    Role = WantedUser.Role,
+                    ImagePath = WantedUser.ImagePath
+                }).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<int> GetCountAsync(CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users.Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
+            return await _appDbContext.UserBases.Where(x => x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<int> GetCountByRoleAsync(RoleEnum role, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users.Where(x => x.Role == role && x.IsDeleted == false).CountAsync(cancellationToken);
+            return await _appDbContext.UserBases.Where(x => x.Role == role && x.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public Task<int> GetCustomerBalance(int CustomerId, CancellationToken cancellationToken)
@@ -111,125 +110,108 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<UserBaseContactInfoDTO> GetCustomerByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Users.FirstOrDefaultAsync(x => x.CustomerId == CustomerId && x.IsDeleted == false, cancellationToken);
-            if (Customer == null) return null;
-            else
-            {
-                UserBaseContactInfoDTO userBaseContactInfoDTO = new UserBaseContactInfoDTO()
-                {
-                    Id= Customer.Id,
-                    FullName = Customer.FirstName + " " + Customer.LastName,
-                    Email = Customer.Email,
-                    Phone = Customer.Mobile,
-                    CityId = Customer.CityId,
-                };
-                return userBaseContactInfoDTO;
-            }
-        }
-        public async Task<UserBaseContactInfoDTO> GetExpertByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
-        {
-            var Customer = await _appDbContext.Users.FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
-            if (Customer == null) return null;
-            else
-            {
-                UserBaseContactInfoDTO userBaseContactInfoDTO = new UserBaseContactInfoDTO()
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.CustomerId == CustomerId && x.IsDeleted == false)
+                .Select(Customer => new UserBaseContactInfoDTO()
                 {
                     Id = Customer.Id,
                     FullName = Customer.FirstName + " " + Customer.LastName,
                     Email = Customer.Email,
                     Phone = Customer.Mobile,
                     CityId = Customer.CityId,
-                };
-                return userBaseContactInfoDTO;
-            }
+                }).FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public async Task<UserBaseContactInfoDTO> GetExpertByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.ExpertId == ExpertId && x.IsDeleted == false)
+                .Select(Customer=> new UserBaseContactInfoDTO()
+                {
+                    Id = Customer.Id,
+                    FullName = Customer.FirstName + " " + Customer.LastName,
+                    Email = Customer.Email,
+                    Phone = Customer.Mobile,
+                    CityId = Customer.CityId,
+                }).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<string> GetCustomerNameByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
         {
-            var Customer = await _appDbContext.Users.FirstOrDefaultAsync(x => x.CustomerId == CustomerId && x.IsDeleted == false, cancellationToken);
-            if (Customer == null) return string.Empty;
-            else
-            {
-                var CustomerFullName = Customer.FirstName + " " + Customer.LastName;
-                return CustomerFullName;
-            }
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.CustomerId == CustomerId && x.IsDeleted == false)
+                .Select(x=> x.FirstName+" "+x.LastName)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<UserBaseSummaryDto> GetCustomerSummeryByCustomerId(int CustomerId, CancellationToken cancellationToken)
         {
-            var User = await _appDbContext.Users.FirstOrDefaultAsync(x => x.CustomerId == CustomerId && x.IsDeleted == false, cancellationToken);
-            if (User is null) return null;
-            else
-            {
-                UserBaseSummaryDto userBaseSummaryDto = new UserBaseSummaryDto();
-                userBaseSummaryDto.FirstName = User.FirstName;
-                userBaseSummaryDto.LastName = User.LastName;
-                userBaseSummaryDto.CityId = User.CityId;
-                userBaseSummaryDto.UserName = User.UserName ?? string.Empty;
-                userBaseSummaryDto.Email = User.Email??"برای کاربر ایمیلی ثبت نشده است";
-                userBaseSummaryDto.Mobile= User.Mobile;
-                userBaseSummaryDto.RegisterAt = User.RegisteredAt;
-                userBaseSummaryDto.Role = User.Role;
-                userBaseSummaryDto.ImagePath = User.ImagePath;
-                return userBaseSummaryDto;
-            }
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.CustomerId == CustomerId && x.IsDeleted == false)
+                .Select(User=> new UserBaseSummaryDto()
+                {
+                    FirstName = User.FirstName,
+                    LastName = User.LastName,
+                    CityId = User.CityId,
+                    UserName = User.UserName,
+                    Email = User.Email ?? "برای کاربر ایمیلی ثبت نشده است",
+                    Mobile = User.Mobile,
+                    RegisterAt = User.RegisteredAt,
+                    Role = User.Role,
+                    ImagePath = User.ImagePath,
+                }).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<string> GetExpertNameByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var Expert = await _appDbContext.Users.FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
-            if (Expert == null) return string.Empty;
-            else
-            {
-                var ExpertFullName = Expert.FirstName + " " + Expert.LastName;
-                return ExpertFullName;
-            }
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.ExpertId == ExpertId && x.IsDeleted == false)
+                .Select(x=> x.FirstName+" "+x.LastName)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<UserBaseSummaryDto> GetExpertSummeryByExpertId(int ExpertId, CancellationToken cancellationToken)
         {
-            var User = await _appDbContext.Users.FirstOrDefaultAsync(x => x.ExpertId == ExpertId && x.IsDeleted == false, cancellationToken);
-            if (User is null) return null;
-            else
-            {
-                UserBaseSummaryDto userBaseSummaryDto = new UserBaseSummaryDto();
-                userBaseSummaryDto.FirstName = User.FirstName;
-                userBaseSummaryDto.LastName = User.LastName;
-                userBaseSummaryDto.CityId = User.CityId;
-                userBaseSummaryDto.UserName = User.UserName ?? string.Empty;
-                userBaseSummaryDto.Email = User.Email ?? "برای کاربر ایمیلی ثبت نشده است";
-                userBaseSummaryDto.Mobile=User.Mobile;
-                userBaseSummaryDto.RegisterAt = User.RegisteredAt;
-                userBaseSummaryDto.Role = User.Role;
-                userBaseSummaryDto.ImagePath = User.ImagePath;
-                return userBaseSummaryDto;
-            }
+            return await _appDbContext
+                .UserBases
+                .Where(x => x.ExpertId == ExpertId && x.IsDeleted == false)
+                .Select(User=> new UserBaseSummaryDto()
+                {
+                    FirstName = User.FirstName,
+                    LastName = User.LastName,
+                    CityId = User.CityId,
+                    UserName = User.UserName,
+                    Email = User.Email,
+                    Mobile = User.Mobile,
+                    RegisterAt = User.RegisteredAt,
+                    Role = User.Role,
+                    ImagePath = User.ImagePath,
+                }).FirstOrDefaultAsync(cancellationToken);
 
         }
         public async Task<int> GetCustomerIdByUserId(int UserId, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users
-                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
-            if (WantedUser is null) return 0;
-            else
-            {
-                return WantedUser.CustomerId ?? 0;
-            }
+            return await _appDbContext.UserBases
+                .Where(x => x.Id == UserId && x.IsDeleted == false)
+                .Select(x => x.CustomerId.Value)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<int> GetExpertIdIdByUserId(int UserId, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users
-                .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
-            if (WantedUser is null) return 0;
-            else
-            {
-                return WantedUser.ExpertId ?? 0;
-            }
+            return await _appDbContext.UserBases
+                .Where(x => x.Id == UserId && x.IsDeleted == false)
+                .Select(x=>x.ExpertId.Value)
+                .FirstOrDefaultAsync(cancellationToken);
         }
         public async Task<UserBasicInfoDTO?> GetExpertBasicInfoByExpertIdAsync(int expertId, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users
+            return await _appDbContext.UserBases
                 .Where(x => x.ExpertId == expertId && !x.IsDeleted)
                 .Select(x => new UserBasicInfoDTO
                 {
@@ -244,7 +226,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         public async Task<UserBasicInfoDTO?> GetCustomerBasicInfoByCustomerIdAsync(int customerId, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users
+            return await _appDbContext.UserBases
                 .Where(x => x.CustomerId == customerId && !x.IsDeleted)
                 .Select(x => new UserBasicInfoDTO
                 {
@@ -259,15 +241,15 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         public async Task<UserBasicInfoDTO?> GetAdminBasicInfoByAdminIdAsync(int adminId, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Users
+            return await _appDbContext.UserBases
                 .Where(x => x.AdminId == adminId && !x.IsDeleted)
                 .Select(x => new UserBasicInfoDTO
                 {
                     Id = x.Id,
-                    UserName = x.UserName?? string.Empty,
+                    UserName = x.UserName ?? string.Empty,
                     FullName = x.FirstName + " " + x.LastName,
-                    Email = x.Email??string.Empty,
-                    Phone = x.PhoneNumber?? string.Empty,
+                    Email = x.Email ?? string.Empty,
+                    Phone = x.PhoneNumber ?? string.Empty,
                     CityId = x.CityId,
                     AdminId = adminId
                 }).FirstOrDefaultAsync(cancellationToken);
@@ -276,7 +258,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Update
         public async Task<(bool Success, string? ErrorMessage)> DecreaseBalanceAsync(int UserId, int money, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users
+            var WantedUser = await _appDbContext.UserBases
                 .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
 
             if (WantedUser == null)
@@ -296,7 +278,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<bool> IncreaseBalance(int UserId, int money, CancellationToken cancellationToken)
         {
-            var WantedUser = await _appDbContext.Users
+            var WantedUser = await _appDbContext.UserBases
                 .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
 
             if (WantedUser == null)
@@ -311,7 +293,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<bool> UpdateUserInfo(UserBaseDTO user, int UserId, CancellationToken cancellationToken)
         {
-            var User = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
+            var User = await _appDbContext.UserBases.FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false, cancellationToken);
             if (User == null) return false;
             else
             {
@@ -329,7 +311,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         public async Task<bool> DeleteUser(int UserId, CancellationToken cancellationToken)
         {
             var User = await _appDbContext
-                .Users
+                .UserBases
                 .FirstOrDefaultAsync(x => x.Id == UserId && x.IsDeleted == false);
             if (User == null) return false;
             else

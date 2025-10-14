@@ -8,7 +8,7 @@ namespace App.Domain.Core.Sangaghak.Entities.ServicePackages
     {
         #region Properties
         public int Id { get; set; }
-        public string Tiltle { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public int MinPrice { get; set; }
         public string? ImagePath { get; set; }
@@ -19,6 +19,5 @@ namespace App.Domain.Core.Sangaghak.Entities.ServicePackages
         public Category? SubCategory { get; set; }
         public List<Request>? Requests { get; set; }
         #endregion
-
     }
 }

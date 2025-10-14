@@ -46,82 +46,223 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Read
         public async Task<List<CommentDTO>> GetAllCommentsAsync(CancellationToken cancellationToken)
         {
-            return await _context.Comments
-                .Include(x => x.Request)
+            var query = _context.Comments
+                .Include(c => c.Customer)
+                    .ThenInclude(cu => cu.UserBase)  
+                .Include(c => c.Expert)
+                    .ThenInclude(e => e.UserBase)    
+                .Include(c => c.Request)
+                    .ThenInclude(r => r.City)        
+                .Include(c => c.Request)
+                    .ThenInclude(r => r.ServicePackage)  
                 .AsNoTracking()
-                .Where(x => x.IsDeleted == false)
-                .Select(x => new CommentDTO()
+                .Where(c => c.IsDeleted == false)
+                .Select(c => new
                 {
-                    Id = x.id,
-                    Description = x.Description,
-                    Rate = x.Rate,
-                    ExpertId = x.ExpertId,
-                    RequestId = x.RequestId,
-                    CustomerId = x.CustomerId,
-                    Status=x.Status,
-                    SetAt=x.SetAt
-                }
-                ).ToListAsync(cancellationToken);
-        }
+                    c.id,
+                    c.Description,
+                    c.Rate,
+                    c.CustomerId,
+                    CustomerFirstName = c.Customer != null && c.Customer.UserBase != null ? c.Customer.UserBase.FirstName : (string?)null,
+                    CustomerLastName = c.Customer != null && c.Customer.UserBase != null ? c.Customer.UserBase.LastName : (string?)null,
+                    c.ExpertId,
+                    ExpertFirstName = c.Expert != null && c.Expert.UserBase != null ? c.Expert.UserBase.FirstName : (string?)null,
+                    ExpertLastName = c.Expert != null && c.Expert.UserBase != null ? c.Expert.UserBase.LastName : (string?)null,
+                    c.RequestId,
+                    PackageId = c.Request != null ? c.Request.ServicePackageId : 0,
+                    PackageTitle = c.Request != null && c.Request.ServicePackage != null ? c.Request.ServicePackage.Title : "",
+                    CityId = c.Request != null ? c.Request.CityId : 0,
+                    CityTitle = c.Request != null && c.Request.City != null ? c.Request.City.Title : "",
+                    c.Status,
+                    c.SetAt
+                });
 
-        public async Task<List<CommentDTO>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
-        {
-            return await _context.Comments
-                .Include(x => x.Request)
-                .AsNoTracking()
-                .Where(x => x.CustomerId == CustomerId 
-                && x.IsDeleted == false)
-                .Select(x => new CommentDTO()
-                {
-                    Id = x.id,
-                    Description = x.Description,
-                    Rate = x.Rate,
-                    ExpertId = x.ExpertId,
-                    RequestId = x.RequestId,
-                    CustomerId = x.CustomerId,
-                }
-                ).ToListAsync(cancellationToken);
-        }
+            var results = await query.ToListAsync(cancellationToken);
 
-        public async Task<List<CommentDTO>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
-        {
-            return await _context.Comments
-                .Include(x => x.Request)
-                .AsNoTracking()
-                .Where(x => x.ExpertId == ExpertId 
-                && x.IsDeleted == false
-                && x.Status==CommentStatusEnum.Confirmed)
-                .Select(x => new CommentDTO()
-                {
-                    Id = x.id,
-                    Description = x.Description,
-                    Rate = x.Rate,
-                    ExpertId = x.ExpertId,
-                    RequestId = x.RequestId,
-                    CustomerId = x.CustomerId,
-                    SetAt=x.SetAt
-                }
-                ).ToListAsync(cancellationToken);
-        }
-        public async Task<List<CommentDTO>> GetPendingCommentAsync(CancellationToken cancellationToken)
-        {
-            return await _context.Comments
-            .Include(x => x.Request)
-            .AsNoTracking()
-            .Where(x => x.Status == CommentStatusEnum.Pending 
-            && x.IsDeleted == false)
-            .Select(x => new CommentDTO()
+            return results.Select(x => new CommentDTO()
             {
                 Id = x.id,
                 Description = x.Description,
                 Rate = x.Rate,
-                ExpertId = x.ExpertId,
-                RequestId = x.RequestId,
                 CustomerId = x.CustomerId,
+                CustomerName = string.Join(" ", new[] { x.CustomerFirstName, x.CustomerLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                ExpertId = x.ExpertId,
+                ExpertName = string.Join(" ", new[] { x.ExpertFirstName, x.ExpertLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                RequestId = x.RequestId,
+                PackageId = x.PackageId,
+                PackageTiltle = x.PackageTitle,
+                CityId = x.CityId,
+                CityName = x.CityTitle,
                 Status = x.Status,
                 SetAt = x.SetAt
-            }
-            ).ToListAsync(cancellationToken);
+            }).ToList();
+        }
+
+        public async Task<List<CommentDTO>> GetCommentByCustomerIdAsync(int CustomerId, CancellationToken cancellationToken)
+        {
+            var query = _context.Comments
+                .Include(x => x.Customer)
+                    .ThenInclude(cu => cu.UserBase)
+                .Include(x => x.Expert)
+                    .ThenInclude(e => e.UserBase)
+                .Include(x => x.Request)
+                    .ThenInclude(r => r.City)
+                .Include(x => x.Request)
+                    .ThenInclude(r => r.ServicePackage)
+                .AsNoTracking()
+                .Where(x => x.CustomerId == CustomerId && x.IsDeleted == false)
+                .Select(x => new
+                {
+                    x.id,
+                    x.Description,
+                    x.Rate,
+                    x.CustomerId,
+                    CustomerFirstName = x.Customer != null && x.Customer.UserBase != null ? x.Customer.UserBase.FirstName : (string?)null,
+                    CustomerLastName = x.Customer != null && x.Customer.UserBase != null ? x.Customer.UserBase.LastName : (string?)null,
+                    x.ExpertId,
+                    ExpertFirstName = x.Expert != null && x.Expert.UserBase != null ? x.Expert.UserBase.FirstName : (string?)null,
+                    ExpertLastName = x.Expert != null && x.Expert.UserBase != null ? x.Expert.UserBase.LastName : (string?)null,
+                    x.RequestId,
+                    PackageId = x.Request != null ? x.Request.ServicePackageId : 0,
+                    PackageTitle = x.Request != null && x.Request.ServicePackage != null ? x.Request.ServicePackage.Title : "",
+                    CityId = x.Request != null ? x.Request.CityId : 0,
+                    CityTitle = x.Request != null && x.Request.City != null ? x.Request.City.Title : "",
+                    x.Status,
+                    x.SetAt
+                });
+
+            var results = await query.ToListAsync(cancellationToken);
+
+            return results.Select(x => new CommentDTO()
+            {
+                Id = x.id,
+                Description = x.Description,
+                Rate = x.Rate,
+                CustomerId = x.CustomerId,
+                CustomerName = string.Join(" ", new[] { x.CustomerFirstName, x.CustomerLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                ExpertId = x.ExpertId,
+                ExpertName = string.Join(" ", new[] { x.ExpertFirstName, x.ExpertLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                RequestId = x.RequestId,
+                PackageId = x.PackageId,
+                PackageTiltle = x.PackageTitle,
+                CityId = x.CityId,
+                CityName = x.CityTitle,
+                Status = x.Status,
+                SetAt = x.SetAt
+            }).ToList();
+        }
+
+        public async Task<List<CommentDTO>> GetCommentByExpertIdAsync(int ExpertId, CancellationToken cancellationToken)
+        {
+            var query = _context.Comments
+                .Include(x => x.Customer)
+                    .ThenInclude(cu => cu.UserBase)
+                .Include(x => x.Expert)
+                    .ThenInclude(e => e.UserBase)
+                .Include(x => x.Request)
+                    .ThenInclude(r => r.City)
+                .Include(x => x.Request)
+                    .ThenInclude(r => r.ServicePackage)
+                .AsNoTracking()
+                .Where(x => x.ExpertId == ExpertId && x.IsDeleted == false && x.Status == CommentStatusEnum.Confirmed)
+                .Select(x => new
+                {
+                    x.id,
+                    x.Description,
+                    x.Rate,
+                    x.CustomerId,
+                    CustomerFirstName = x.Customer != null && x.Customer.UserBase != null ? x.Customer.UserBase.FirstName : (string?)null,
+                    CustomerLastName = x.Customer != null && x.Customer.UserBase != null ? x.Customer.UserBase.LastName : (string?)null,
+                    x.ExpertId,
+                    ExpertFirstName = x.Expert != null && x.Expert.UserBase != null ? x.Expert.UserBase.FirstName : (string?)null,
+                    ExpertLastName = x.Expert != null && x.Expert.UserBase != null ? x.Expert.UserBase.LastName : (string?)null,
+                    x.RequestId,
+                    PackageId = x.Request != null ? x.Request.ServicePackageId : 0,
+                    PackageTitle = x.Request != null && x.Request.ServicePackage != null ? x.Request.ServicePackage.Title : "",
+                    CityId = x.Request != null ? x.Request.CityId : 0,
+                    CityTitle = x.Request != null && x.Request.City != null ? x.Request.City.Title : "",
+                    x.Status,
+                    x.SetAt
+                });
+
+            var results = await query.ToListAsync(cancellationToken);
+
+            return results.Select(x => new CommentDTO()
+            {
+                Id = x.id,
+                Description = x.Description,
+                Rate = x.Rate,
+                CustomerId = x.CustomerId,
+                CustomerName = string.Join(" ", new[] { x.CustomerFirstName, x.CustomerLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                ExpertId = x.ExpertId,
+                ExpertName = string.Join(" ", new[] { x.ExpertFirstName, x.ExpertLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                RequestId = x.RequestId,
+                PackageId = x.PackageId,
+                PackageTiltle = x.PackageTitle,
+                CityId = x.CityId,
+                CityName = x.CityTitle,
+                Status = x.Status,
+                SetAt = x.SetAt
+            }).ToList();
+        }
+
+        public async Task<List<CommentDTO>> GetPendingCommentAsync(CancellationToken cancellationToken)
+        {
+            var query = _context.Comments
+                .Include(x => x.Customer)
+                    .ThenInclude(cu => cu.UserBase)
+                .Include(x => x.Expert)
+                    .ThenInclude(e => e.UserBase)
+                .Include(x => x.Request)
+                    .ThenInclude(r => r.City)
+                .Include(x => x.Request)
+                    .ThenInclude(r => r.ServicePackage)
+                .AsNoTracking()
+                .Where(x => x.Status == CommentStatusEnum.Pending && x.IsDeleted == false)
+                .Select(x => new
+                {
+                    x.id,
+                    x.Description,
+                    x.Rate,
+                    x.CustomerId,
+                    CustomerFirstName = x.Customer != null && x.Customer.UserBase != null ? x.Customer.UserBase.FirstName : (string?)null,
+                    CustomerLastName = x.Customer != null && x.Customer.UserBase != null ? x.Customer.UserBase.LastName : (string?)null,
+                    x.ExpertId,
+                    ExpertFirstName = x.Expert != null && x.Expert.UserBase != null ? x.Expert.UserBase.FirstName : (string?)null,
+                    ExpertLastName = x.Expert != null && x.Expert.UserBase != null ? x.Expert.UserBase.LastName : (string?)null,
+                    x.RequestId,
+                    PackageId = x.Request != null ? x.Request.ServicePackageId : 0,
+                    PackageTitle = x.Request != null && x.Request.ServicePackage != null ? x.Request.ServicePackage.Title : "",
+                    CityId = x.Request != null ? x.Request.CityId : 0,
+                    CityTitle = x.Request != null && x.Request.City != null ? x.Request.City.Title : "",
+                    x.Status,
+                    x.SetAt
+                });
+
+            var results = await query.ToListAsync(cancellationToken);
+
+            return results.Select(x => new CommentDTO()
+            {
+                Id = x.id,
+                Description = x.Description,
+                Rate = x.Rate,
+                CustomerId = x.CustomerId,
+                CustomerName = string.Join(" ", new[] { x.CustomerFirstName, x.CustomerLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                ExpertId = x.ExpertId,
+                ExpertName = string.Join(" ", new[] { x.ExpertFirstName, x.ExpertLastName }.Where(s => !string.IsNullOrEmpty(s))).Trim(),
+                RequestId = x.RequestId,
+                PackageId = x.PackageId,
+                PackageTiltle = x.PackageTitle,
+                CityId = x.CityId,
+                CityName = x.CityTitle,
+                Status = x.Status,
+                SetAt = x.SetAt
+            }).ToList();
+        }
+
+        public async Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Comments.Where(x => x.Status == CommentStatusEnum.Pending && x.IsDeleted == false).CountAsync(cancellationToken);
         }
         #endregion
         #region Update
@@ -148,11 +289,6 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                 return true;
             }
             return false;
-        }
-
-        public async Task<int> GetPendingCommentCountAsync(CancellationToken cancellationToken)
-        {
-            return await _context.Comments.Where(x=>x.Status == CommentStatusEnum.Pending && x.IsDeleted==false).CountAsync(cancellationToken);
         }
         #endregion
     }

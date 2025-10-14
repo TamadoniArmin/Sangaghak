@@ -18,7 +18,7 @@ namespace Connection.Configurations
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Customer)
-                .WithMany(x => x.Requets)
+                .WithMany(x => x.Requests)  
                 .HasForeignKey(x => x.CustomerId)
                 .OnDelete(DeleteBehavior.NoAction);
 
@@ -32,21 +32,12 @@ namespace Connection.Configurations
                 .HasForeignKey<Request>(x => x.AcceptedOfferId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(x => x.ServicePackage)
+                .WithMany(x => x.Requests)
+                .HasForeignKey(x => x.ServicePackageId)
+                .OnDelete(DeleteBehavior.NoAction);
 
-            //builder.HasData(new List<Request>
-            //{ new Request {
-            //Id = 1,
-            //CustomerId = 1,
-            //Description="درخواست برای کاغذ دیواری خانه",
-            //WantedPrice=10000,
-            //Address="خیابانی از خیابان های تهران",
-            //MaxTime=DateTime.Parse("2025-12-01"),
-            //Status=RequestStatusEnum.WatingForCustomerComfimation,
-            //CityId=3,
-            //ServicePackageId=1,
-            //SetAt=DateTime.Parse("2024-09-01")
-            //}
-            //});
+            builder.HasIndex(x => x.ServicePackageId);
         }
     }
 }

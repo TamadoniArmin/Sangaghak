@@ -14,15 +14,20 @@ namespace Connection.Configurations
     {
         public void Configure(EntityTypeBuilder<Expert> builder)
         {
-            builder.HasMany(x => x.Skills).WithMany(x => x.Experts);
+            builder.HasMany(x => x.Skills).WithMany(x => x.Experts);  
 
             builder.HasMany(x => x.Comments)
-            .WithOne(x => x.Expert)
-            .HasForeignKey(x => x.ExpertId)
-            .OnDelete(DeleteBehavior.NoAction);
+                .WithOne(x => x.Expert)
+                .HasForeignKey(x => x.ExpertId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(e => e.UserBase)
+                .WithOne(u => u.Expert)
+                .HasForeignKey<UserBase>(u => u.ExpertId)
+                .OnDelete(DeleteBehavior.NoAction);  
 
             builder.HasData(new List<Expert>() {
-                new Expert {Id = 1,TotalRate=0} });
+                new Expert {Id = 1, TotalRate = 0} });
         }
     }
 }

@@ -30,7 +30,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         {
             const string checkQuery = "SELECT COUNT(*) FROM Packages WHERE IsDeleted = 0";
             const string sql = @"
-            SELECT Id, Tiltle AS Title, Description, MinPrice, SubCategoryId, ImagePath
+            SELECT Id, Title AS Title, Description, MinPrice, SubCategoryId, ImagePath
             FROM Packages
             WHERE IsDeleted = 0";
 

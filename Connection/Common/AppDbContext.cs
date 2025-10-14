@@ -17,6 +17,7 @@ namespace Connection.Common
         //{
 
         //}
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -35,17 +36,19 @@ namespace Connection.Common
             modelBuilder.Entity<Customer>().ToTable("Customers");
             modelBuilder.Entity<Expert>().ToTable("Experts");
             modelBuilder.Entity<Admin>().ToTable("Admin");
+            modelBuilder.Entity<ServicePackage>().ToTable("Packages");
             base.OnModelCreating(modelBuilder);
         }
+
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Expert> Experts { get; set; }
-        public DbSet<ServicePackage> Packages { get; set; }
+        public DbSet<ServicePackage> ServicePackages { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<Offer> Offers { get; set; }
-        public DbSet<UserBase> Users { get; set; }
+        public DbSet<UserBase> UserBases { get; set; }
     }
 }

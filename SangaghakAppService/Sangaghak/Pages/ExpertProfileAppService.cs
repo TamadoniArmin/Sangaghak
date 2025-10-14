@@ -112,19 +112,7 @@ namespace SangaghakAppService.Sangaghak.Pages
         }
         public async Task<List<CommentDTO>?> GetExpertCommentsAsync(int ExpertId, CancellationToken cancellationToken)
         {
-            var WantedComments = await _commentService.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
-            if (WantedComments.Any())
-            {
-                foreach (var comment in WantedComments)
-                {
-                    comment.CustomerName = await _userBaseService.GetCustomerNameByCustomerIdAsync(comment.CustomerId, cancellationToken);
-                    comment.PackageId = await _requestService.GetRequestPackageIdAsync(comment.RequestId, cancellationToken);
-                    comment.PackageTiltle = await _servicePackageService.GetPackageTiltleById(comment.PackageId, cancellationToken);
-                    comment.CityId = await _requestService.GetRequestCityIdAsync(comment.RequestId, cancellationToken);
-                    comment.CityName = await _cityService.GetNameOfCity(comment.CityId, cancellationToken);
-                }
-            }
-            return WantedComments;
+            return await _commentService.GetCommentByExpertIdAsync(ExpertId, cancellationToken);
         }
 
         public async Task<int> GetExpertRateAysnc(int ExpertId, CancellationToken cancellationToken)

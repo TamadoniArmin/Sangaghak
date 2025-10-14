@@ -47,7 +47,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
                                     .Select(p => new AllServicePackageDTO
                                     {
                                         Id = p.Id,
-                                        Title = p.Tiltle, // فرض بر اصلاح Tiltle به Title
+                                        Title = p.Title,
                                         Description = p.Description,
                                         MinPrice = p.MinPrice,
                                         ImagePath = p.ImagePath ?? string.Empty,

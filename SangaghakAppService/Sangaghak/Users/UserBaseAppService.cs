@@ -242,7 +242,6 @@ namespace SangaghakAppService.Sangaghak.Users
         #region Update
         public async Task<IdentityResult> UpdateUserInfo(UserBaseDTO userDto, int userId, CancellationToken cancellationToken)
         {
-            // یافتن کاربر بر اساس شناسه
             var user = await _userManager.FindByIdAsync(userId.ToString());
             if (user == null)
             {

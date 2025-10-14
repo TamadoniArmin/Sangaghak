@@ -12,7 +12,7 @@ namespace Connection.Configurations
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Expert)
-                .WithMany(x => x.Offer)
+                .WithMany(x => x.Offers)
                 .HasForeignKey(x => x.ExpertId)
                 .OnDelete(DeleteBehavior.NoAction);
 

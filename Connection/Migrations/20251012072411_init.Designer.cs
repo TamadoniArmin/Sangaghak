@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Connection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250927222342_init")]
+    [Migration("20251012072411_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -448,7 +448,7 @@ namespace Connection.Migrations
                     b.Property<int>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Tiltle")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -456,7 +456,7 @@ namespace Connection.Migrations
 
                     b.HasIndex("SubCategoryId");
 
-                    b.ToTable("Packages");
+                    b.ToTable("Packages", (string)null);
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Admin", b =>
@@ -635,9 +635,13 @@ namespace Connection.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId")
+                        .IsUnique()
+                        .HasFilter("[CustomerId] IS NOT NULL");
 
-                    b.HasIndex("ExpertId");
+                    b.HasIndex("ExpertId")
+                        .IsUnique()
+                        .HasFilter("[ExpertId] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -955,7 +959,7 @@ namespace Connection.Migrations
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Requests.Offer", b =>
                 {
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Expert", "Expert")
-                        .WithMany("Offer")
+                        .WithMany("Offers")
                         .HasForeignKey("ExpertId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -985,7 +989,7 @@ namespace Connection.Migrations
                         .IsRequired();
 
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Customer", "Customer")
-                        .WithMany("Requets")
+                        .WithMany("Requests")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -1029,12 +1033,14 @@ namespace Connection.Migrations
                         .IsRequired();
 
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .WithOne("UserBase")
+                        .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Users.UserBase", "CustomerId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("App.Domain.Core.Sangaghak.Entities.Users.Expert", "Expert")
-                        .WithMany()
-                        .HasForeignKey("ExpertId");
+                        .WithOne("UserBase")
+                        .HasForeignKey("App.Domain.Core.Sangaghak.Entities.Users.UserBase", "ExpertId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Admin");
 
@@ -1147,14 +1153,18 @@ namespace Connection.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Requets");
+                    b.Navigation("Requests");
+
+                    b.Navigation("UserBase");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Sangaghak.Entities.Users.Expert", b =>
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Offer");
+                    b.Navigation("Offers");
+
+                    b.Navigation("UserBase");
                 });
 #pragma warning restore 612, 618
         }

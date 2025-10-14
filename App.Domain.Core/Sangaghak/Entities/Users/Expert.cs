@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using App.Domain.Core.Sangaghak.Entities.Categories;
 using App.Domain.Core.Sangaghak.Entities.Comments;
 using App.Domain.Core.Sangaghak.Entities.Requests;
+using App.Domain.Core.Sangaghak.Entities.Users;  // برای UserBase
 using Microsoft.AspNetCore.Http;
 
 namespace App.Domain.Core.Sangaghak.Entities.Users
 {
-    public class Expert 
+    public class Expert
     {
         public int Id { get; set; }
         public bool IsDeleted { get; set; }
@@ -22,8 +23,9 @@ namespace App.Domain.Core.Sangaghak.Entities.Users
         #endregion
         #region NavigationProperties
         public List<Category> Skills { get; set; }
-        public List<Offer>? Offer { get; set; }
+        public List<Offer>? Offers { get; set; } 
         public List<Comment>? Comments { get; set; }
+        public UserBase? UserBase { get; set; }
         #endregion
     }
 }

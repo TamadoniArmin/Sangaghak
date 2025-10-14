@@ -25,12 +25,12 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
             {
                 var Package = new ServicePackage();
 
-                Package.Tiltle = forCreateDTO.Title;
+                Package.Title = forCreateDTO.Title;
                 Package.Description = forCreateDTO.Description;
                 Package.MinPrice = forCreateDTO.MinPrice;
                 Package.SubCategoryId = forCreateDTO.SubCategoryId;
                 Package.ImagePath = forCreateDTO.ImagePath;
-                await _context.Packages.AddAsync(Package, cancellationToken);
+                await _context.ServicePackages.AddAsync(Package, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
                 return true;
             }
@@ -45,12 +45,12 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         public async Task<List<ServicePackageDTO>> FindPackageByTitle(string PackageTiltle, CancellationToken cancellationToken)
         {
             var Packages = await _context
-            .Packages
-            .Where(x => x.Tiltle.Contains(PackageTiltle) && x.IsDeleted == false)
+            .ServicePackages
+            .Where(x => x.Title.Contains(PackageTiltle) && x.IsDeleted == false)
             .Select(x => new ServicePackageDTO
             {
                 Id = x.Id,
-                Title = x.Tiltle,
+                Title = x.Title,
                 Description = x.Description,
                 MinPrice = x.MinPrice,
                 SubCategoryId = x.SubCategoryId,
@@ -61,12 +61,12 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         public async Task<List<ServicePackageDTO>> GetAllPackageBySubCategoryId(int SubCategoryId, CancellationToken cancellationToken)
         {
             return await _context
-                .Packages
+                .ServicePackages
                 .Where(x => x.SubCategoryId == SubCategoryId && x.IsDeleted == false)
                 .Select(x => new ServicePackageDTO()
                 {
                     Id = x.Id,
-                    Title = x.Tiltle,
+                    Title = x.Title,
                     Description = x.Description,
                     MinPrice = x.MinPrice,
                     SubCategoryId = x.SubCategoryId,
@@ -77,12 +77,12 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<int> GetAllPackageCount(CancellationToken cancellationToken)
         {
-            return await _context.Packages.Where(c => c.IsDeleted == false).CountAsync(cancellationToken);
+            return await _context.ServicePackages.Where(c => c.IsDeleted == false).CountAsync(cancellationToken);
         }
 
         public async Task<ServicePackageDTO> GetPackageById(int PackageId, CancellationToken cancellationToken)
         {
-            var Package = await _context.Packages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
+            var Package = await _context.ServicePackages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
             if (Package is null) return null;
             else
             {
@@ -98,7 +98,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<ServicePackageDTO> GetPackageByTitle(string PackageTiltle, CancellationToken cancellationToken)
         {
-            var Package = await _context.Packages.FirstOrDefaultAsync(x => x.Tiltle == PackageTiltle && x.IsDeleted == false);
+            var Package = await _context.ServicePackages.FirstOrDefaultAsync(x => x.Title == PackageTiltle && x.IsDeleted == false);
             if (Package is null) return null;
             else
             {
@@ -114,20 +114,20 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
 
         public async Task<string> GetPackageTiltleById(int PackageId, CancellationToken cancellationToken)
         {
-            var Package = await _context.Packages
+            var Package = await _context.ServicePackages
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
             if (Package is null) return string.Empty;
-            else return Package.Tiltle;
+            else return Package.Title;
         }
         public async Task<ServicePackageBasicInfoDTO?> GetPackageBasicInfo(int PackageId, CancellationToken cancellationToken)
         {
-            var WantedPackage= await _context.Packages
+            var WantedPackage= await _context.ServicePackages
                 .Where(x => x.Id == PackageId && x.IsDeleted == false)
                 .Select(x => new ServicePackageBasicInfoDTO
                 {
                     Id = x.Id,
-                    Tiltle = x.Tiltle,
+                    Tiltle = x.Title,
                     MinPrice = x.MinPrice
                 }).FirstOrDefaultAsync(cancellationToken);
             if (WantedPackage is null)
@@ -141,7 +141,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         }
         public async Task<List<int>>GetCategoryPackagesIdbyCategoriesIdAsync(List<int>  CategoriesId, CancellationToken cancellationToken)
         {
-            return await _context.Packages
+            return await _context.ServicePackages
                 .Where(x=> CategoriesId.Contains(x.SubCategoryId))
                 .AsNoTracking()
                 .Select(x=>x.Id)
@@ -151,9 +151,9 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Update
         public async Task<bool> UpdateServicePackage(ServicePackageForCreateDTO servicePackageDTO, int PackageId, CancellationToken cancellationToken)
         {
-            var Package = await _context.Packages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false, cancellationToken);
+            var Package = await _context.ServicePackages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false, cancellationToken);
             if (Package == null) return false;
-            Package.Tiltle = servicePackageDTO.Title;
+            Package.Title = servicePackageDTO.Title;
             Package.Description = servicePackageDTO.Description;
             Package.MinPrice = servicePackageDTO.MinPrice;
             Package.SubCategoryId = servicePackageDTO.SubCategoryId;
@@ -166,7 +166,7 @@ namespace App.Infra.Data.Repos.Ef.Sangaghak
         #region Delete
         public async Task<bool> DeleteServicePackage(int PackageId, CancellationToken cancellationToken)
         {
-            var Package = await _context.Packages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
+            var Package = await _context.ServicePackages.FirstOrDefaultAsync(x => x.Id == PackageId && x.IsDeleted == false);
             if (Package is null) return false;
             else
             {

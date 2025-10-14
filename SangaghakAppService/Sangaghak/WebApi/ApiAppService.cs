@@ -16,10 +16,7 @@ namespace SangaghakAppService.Sangaghak.WebApi
         #region Read
         public async Task<List<CategoryWithSubCategoriesAndPackagesDTO>> GetAllCategoriesWithSubCategoriesAndPackagesAsync(CancellationToken cancellationToken)
         {
-
-                return await _apiService.GetAllCategoriesWithSubCategoriesAndPackagesAsync(cancellationToken);
-
-
+            return await _apiService.GetAllCategoriesWithSubCategoriesAndPackagesAsync(cancellationToken);
         }
         #endregion
     }

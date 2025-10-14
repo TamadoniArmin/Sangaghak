@@ -131,7 +131,7 @@ namespace Connection.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tiltle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MinPrice = table.Column<int>(type: "int", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -563,12 +563,16 @@ namespace Connection.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_CustomerId",
                 table: "AspNetUsers",
-                column: "CustomerId");
+                column: "CustomerId",
+                unique: true,
+                filter: "[CustomerId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_ExpertId",
                 table: "AspNetUsers",
-                column: "ExpertId");
+                column: "ExpertId",
+                unique: true,
+                filter: "[ExpertId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
